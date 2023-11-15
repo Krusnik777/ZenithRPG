@@ -60,6 +60,8 @@ namespace DC_ARPG
 
         private void OnMovement()
         {
+            if (!player.IsGrounded) return;
+
             Vector2 directionV2 = _controls.Gameplay.Movement.ReadValue<Vector2>();
 
             if (directionV2 == Vector2.zero) return;

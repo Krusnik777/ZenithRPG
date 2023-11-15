@@ -17,6 +17,14 @@ namespace DC_ARPG
 
         private Animator m_animator;
 
+        private bool GetIsGrounded()
+        {
+            if (GetComponent<Rigidbody>().velocity.y == 0)
+                return true;
+            else return false;
+        }
+        public bool IsGrounded => GetIsGrounded();
+
         public void Move(Vector3 direction)
         {
             if (InMovement) return;
@@ -154,18 +162,28 @@ namespace DC_ARPG
             m_animator = GetComponentInChildren<Animator>();
         }
 
+        private void SetMovementAnimations(Vector3 direction, bool value)
+        {
+            if (direction == transform.forward) m_animator.SetBool("Forward", value);
+            if (direction == -transform.forward) m_animator.SetBool("Backward", value);
+            if (direction == transform.right) m_animator.SetBool("Right", value);
+            if (direction == -transform.right) m_animator.SetBool("Left", value);
+        }
+
         #region Coroutines
 
         private IEnumerator MoveTo(Vector3 direction)
         {
             inMovement = true;
+
             var startPosition = transform.position;
             var targetPosition = direction + startPosition;
 
             var elapsed = 0.0f;
 
             //m_audioSource.Play();
-            //m_animator.Play("Walk(Camera)");
+
+            SetMovementAnimations(direction, true);
 
             while (elapsed < m_transitionMoveSpeed)
             {
@@ -178,6 +196,8 @@ namespace DC_ARPG
             transform.position = targetPosition;
 
             inMovement = false;
+
+            SetMovementAnimations(direction, false);
         }
 
         private IEnumerator RotateAt(float angle)
@@ -203,26 +223,12 @@ namespace DC_ARPG
         {
             inMovement = true;
             var startPosition = transform.position;
-            var targetPosition = distance/2 + startPosition + new Vector3(0, 0.25f, 0);
+            var targetPosition = distance + startPosition;
 
             var elapsed = 0.0f;
 
             //m_audioSource.Play();
-            //m_animator.Play("Jump");
-
-            while (elapsed < m_transitionJumpSpeed || transform.position != targetPosition)
-            {
-                transform.position = Vector3.MoveTowards(startPosition, targetPosition, elapsed / m_transitionJumpSpeed);
-                elapsed += Time.deltaTime;
-
-                yield return null;
-            }
-
-            startPosition = transform.position;
-
-            targetPosition = distance/2 + startPosition - new Vector3(0, 0.25f, 0);
-
-            elapsed = 0.0f;
+            m_animator.Play("Jump");
 
             while (elapsed < m_transitionJumpSpeed || transform.position != targetPosition)
             {
@@ -241,14 +247,15 @@ namespace DC_ARPG
         {
             inMovement = true;
             var startPosition = transform.position;
-            var targetPosition = startPosition + new Vector3(0, 1.1f, 0);
+            var targetPosition = startPosition;
+            targetPosition.y = 0.1f;
 
             var elapsed = 0.0f;
 
             //m_audioSource.Play();
-            //m_animator.Play("Jump");
+            m_animator.Play("Jump");
 
-            while (elapsed < m_transitionJumpSpeed || transform.position != targetPosition)
+            while (transform.position != targetPosition)
             {
                 transform.position = Vector3.MoveTowards(startPosition, targetPosition, elapsed / m_transitionJumpSpeed);
                 elapsed += Time.deltaTime;
@@ -258,9 +265,10 @@ namespace DC_ARPG
 
             startPosition = transform.position;
             targetPosition = transform.position + transform.forward;
+            targetPosition.y = 0;
             elapsed = 0.0f;
 
-            while (elapsed < m_transitionJumpSpeed || transform.position != targetPosition)
+            while (transform.position != targetPosition)
             {
                 transform.position = Vector3.MoveTowards(startPosition, targetPosition, elapsed / m_transitionJumpSpeed);
                 elapsed += Time.deltaTime;
