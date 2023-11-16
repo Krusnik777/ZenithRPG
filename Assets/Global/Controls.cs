@@ -96,7 +96,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""id"": ""e4c34427-7466-4845-9019-dad7479da71c"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": """",
+                    ""interactions"": ""Hold"",
                     ""initialStateCheck"": false
                 },
                 {

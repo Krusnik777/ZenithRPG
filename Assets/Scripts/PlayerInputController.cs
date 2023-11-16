@@ -22,11 +22,17 @@ namespace DC_ARPG
             _controls.Gameplay.RotateLeft.performed += OnRotateLeft;
             _controls.Gameplay.RotateRight.performed += OnRotateRight;
             _controls.Gameplay.RotateBack.performed += OnRotateBack;
+
             _controls.Gameplay.Jump.performed += OnJump;
 
             _controls.Gameplay.Use.performed += OnUse;
+
             _controls.Gameplay.Attack.performed += OnAttack;
-            _controls.Gameplay.Block.performed += OnBlock;
+
+            _controls.Gameplay.Block.started += OnBlockStarted;
+            _controls.Gameplay.Block.performed += OnBlockHolded;
+            _controls.Gameplay.Block.canceled += OnBlockCanceled;
+
             _controls.Gameplay.Rest.performed += OnRest;
             _controls.Gameplay.Inventory.performed += OnCheckInventory;
             _controls.Gameplay.UseItem.performed += OnUseItem;
@@ -39,11 +45,17 @@ namespace DC_ARPG
             _controls.Gameplay.RotateLeft.performed -= OnRotateLeft;
             _controls.Gameplay.RotateRight.performed -= OnRotateRight;
             _controls.Gameplay.RotateBack.performed -= OnRotateBack;
+
             _controls.Gameplay.Jump.performed -= OnJump;
 
             _controls.Gameplay.Use.performed -= OnUse;
+
             _controls.Gameplay.Attack.performed -= OnAttack;
-            _controls.Gameplay.Block.performed -= OnBlock;
+
+            _controls.Gameplay.Block.started -= OnBlockStarted;
+            _controls.Gameplay.Block.performed -= OnBlockHolded;
+            _controls.Gameplay.Block.canceled -= OnBlockCanceled;
+
             _controls.Gameplay.Rest.performed -= OnRest;
             _controls.Gameplay.Inventory.performed -= OnCheckInventory;
             _controls.Gameplay.UseItem.performed -= OnUseItem;
@@ -111,9 +123,19 @@ namespace DC_ARPG
             player.Attack();
         }
 
-        private void OnBlock(InputAction.CallbackContext obj)
+        private void OnBlockStarted(InputAction.CallbackContext obj)
         {
-            player.Block();
+            player.Block("BlockStart");
+        }
+
+        private void OnBlockHolded(InputAction.CallbackContext obj)
+        {
+            //player.Block("BlockHold");
+        }
+
+        private void OnBlockCanceled(InputAction.CallbackContext obj)
+        {
+            player.Block("BlockEnd");
         }
 
         private void OnRest(InputAction.CallbackContext obj)

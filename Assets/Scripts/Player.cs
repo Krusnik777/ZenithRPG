@@ -10,8 +10,26 @@ namespace DC_ARPG
         [SerializeField] private float m_transitionJumpSpeed = 0.3f;
         [SerializeField] private float m_transitionRotateSpeed = 0.25f;
 
+        private Vector3 currentDirection;
+
         private bool inMovement;
         public bool InMovement => inMovement;
+
+        private bool isJumping;
+        public bool IsJumping => isJumping;
+
+        private bool isAttacking;
+        public bool IsAttacking => isAttacking;
+
+        private bool isBlocking;
+        public bool IsBlocking => isBlocking;
+
+        private int hitCount = 0;
+
+        private Coroutine attackRoutine;
+
+        private bool inIdleState => !(inMovement || isJumping || isAttacking || isBlocking);
+        public bool InIdleState => inIdleState;
 
         private AudioSource m_audioSource;
 
@@ -27,7 +45,9 @@ namespace DC_ARPG
 
         public void Move(Vector3 direction)
         {
-            if (InMovement) return;
+            if (!inIdleState) return;
+
+            if (currentDirection != direction) currentDirection = direction;
 
             Ray directionRay = new Ray(transform.position + new Vector3(0, 0.5f, 0), direction);
             RaycastHit hit;
@@ -46,14 +66,14 @@ namespace DC_ARPG
 
         public void Turn(float angle)
         {
-            if (InMovement) return;
+            if (!inIdleState) return;
 
             StartCoroutine(RotateAt(angle));
         }
 
         public void Jump()
         {
-            if (InMovement) return;
+            if (!inIdleState) return;
 
             if (Mathf.Sign(transform.position.y) < 0)
             {
@@ -101,7 +121,7 @@ namespace DC_ARPG
 
         public void Inspect()
         {
-            if (InMovement) return;
+            if (!inIdleState) return;
 
             Ray inspectRay = new Ray(transform.position + new Vector3(0, 0.1f, 0), transform.forward);
 
@@ -128,26 +148,73 @@ namespace DC_ARPG
 
         public void Attack()
         {
-            Debug.Log("Attack");
+            if (!inIdleState && !isAttacking) return;
+
+            if (
+                (m_animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.8f || m_animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 0.35f)
+                && m_animator.GetCurrentAnimatorStateInfo(0).IsName("Attack" + hitCount)
+                ) return;
+
+            hitCount++;
+
+            if (hitCount > 2)
+            {
+                if (isAttacking) return;
+                hitCount = 1;
+            }
+
+            if (attackRoutine != null)
+            {
+                StopCoroutine(attackRoutine);
+            }
+                
+            attackRoutine = StartCoroutine(SetAttack(hitCount));
         }
 
-        public void Block()
+        public void Block(string name)
         {
-            Debug.Log("Block");
+            if (!inIdleState && !isBlocking) return;
+
+            switch (name)
+            {
+                case "BlockStart":
+                    {
+                        m_animator.SetBool("BlockHold", true);
+                        isBlocking = true;
+                    };
+                    break;
+                case "BlockHold":
+                    {
+                        
+                    };
+                    break;
+                case "BlockEnd":
+                    {
+                        StartCoroutine(BlockEnd());
+                    };
+                    break;
+            }
+
         }
 
         public void Rest()
         {
+            if (inMovement || isJumping) return;
+
             Debug.Log("Rest");
         }
 
         public void CheckInventory()
         {
+            if (inMovement || isJumping) return;
+
             Debug.Log("Inventory Opened");
         }
 
         public void UseActiveItem()
         {
+            if (inMovement || isJumping) return;
+
             Debug.Log("Used Item");
         }
 
@@ -197,7 +264,10 @@ namespace DC_ARPG
 
             inMovement = false;
 
-            SetMovementAnimations(direction, false);
+            yield return null;
+            //yield return new WaitForSeconds(0.1f);
+
+            if (!inMovement || currentDirection != direction) SetMovementAnimations(direction, false);
         }
 
         private IEnumerator RotateAt(float angle)
@@ -207,6 +277,27 @@ namespace DC_ARPG
             var targetRotation = transform.rotation * Quaternion.Euler(Vector3.up * angle);
 
             var elapsed = 0.0f;
+            
+            if (angle == -90)
+            {
+                m_animator.Play("TurnLeft");
+
+                yield return new WaitUntil(() => m_animator.GetCurrentAnimatorStateInfo(0).IsName("TurnLeft"));
+            }
+
+            if (angle == 90)
+            {
+                m_animator.Play("TurnRight");
+
+                yield return new WaitUntil(() => m_animator.GetCurrentAnimatorStateInfo(0).IsName("TurnRight"));
+            }
+
+            if (angle == 180)
+            {
+                m_animator.Play("Turn180");
+
+                yield return new WaitUntil(() => m_animator.GetCurrentAnimatorStateInfo(0).IsName("Turn180"));
+            }
 
             while (elapsed < m_transitionRotateSpeed)
             {
@@ -216,12 +307,17 @@ namespace DC_ARPG
             }
 
             transform.rotation = targetRotation;
+
+            if (angle == -90) yield return new WaitWhile(() => m_animator.GetCurrentAnimatorStateInfo(0).IsName("TurnLeft"));
+            if (angle == 90) yield return new WaitWhile(() => m_animator.GetCurrentAnimatorStateInfo(0).IsName("TurnRight"));
+            if (angle == 180) yield return new WaitWhile(() => m_animator.GetCurrentAnimatorStateInfo(0).IsName("Turn180"));
+
             inMovement = false;
         }
 
         private IEnumerator JumpTo(Vector3 distance)
         {
-            inMovement = true;
+            isJumping = true;
             var startPosition = transform.position;
             var targetPosition = distance + startPosition;
 
@@ -230,22 +326,31 @@ namespace DC_ARPG
             //m_audioSource.Play();
             m_animator.Play("Jump");
 
-            while (elapsed < m_transitionJumpSpeed || transform.position != targetPosition)
-            {
-                transform.position = Vector3.MoveTowards(startPosition, targetPosition, elapsed / m_transitionJumpSpeed);
-                elapsed += Time.deltaTime;
+            yield return new WaitUntil(() => m_animator.GetCurrentAnimatorStateInfo(0).IsName("Jump"));
 
-                yield return null;
+            if (distance != Vector3.zero)
+            {
+                while (elapsed < m_transitionJumpSpeed || transform.position != targetPosition)
+                {
+                    transform.position = Vector3.MoveTowards(startPosition, targetPosition, elapsed / m_transitionJumpSpeed);
+                    elapsed += Time.deltaTime;
+
+                    yield return null;
+                }
+
+                transform.position = targetPosition;
             }
 
-            transform.position = targetPosition;
+            yield return new WaitWhile(() => m_animator.GetCurrentAnimatorStateInfo(0).IsName("Jump"));
 
-            inMovement = false;
+            //yield return new WaitForSeconds(0.1f);
+
+            isJumping = false;
         }
 
         private IEnumerator JumpUp()
         {
-            inMovement = true;
+            isJumping = true;
             var startPosition = transform.position;
             var targetPosition = startPosition;
             targetPosition.y = 0.1f;
@@ -278,7 +383,47 @@ namespace DC_ARPG
 
             transform.position = targetPosition;
 
-            inMovement = false;
+            yield return new WaitWhile(() => m_animator.GetCurrentAnimatorStateInfo(0).IsName("Jump"));
+
+            //yield return new WaitForSeconds(0.1f);
+
+            isJumping = false;
+        }
+
+        private IEnumerator SetAttack(int attackCount)
+        {
+            isAttacking = true;
+
+            if (attackCount == 1)
+            {
+                m_animator.SetTrigger("Attack1");
+
+                yield return new WaitUntil(() => m_animator.GetCurrentAnimatorStateInfo(0).IsName("Attack1"));
+            }
+
+            if (attackCount == 2)
+            {
+                m_animator.SetTrigger("Attack" + attackCount);
+
+                yield return new WaitUntil(() => m_animator.GetCurrentAnimatorStateInfo(0).IsName("Attack" + attackCount));
+            }
+
+            yield return new WaitWhile(() => m_animator.GetCurrentAnimatorStateInfo(0).IsName("Attack" + attackCount));
+
+            isAttacking = false;
+            hitCount = 0;
+            attackRoutine = null;
+        }
+
+        private IEnumerator BlockEnd()
+        {
+            m_animator.SetBool("BlockHold", false);
+
+            yield return new WaitUntil(() => m_animator.GetCurrentAnimatorStateInfo(0).IsName("BlockEnd"));
+
+            yield return new WaitWhile(() => m_animator.GetCurrentAnimatorStateInfo(0).IsName("BlockEnd"));
+
+            isBlocking = false;
         }
 
         #endregion
