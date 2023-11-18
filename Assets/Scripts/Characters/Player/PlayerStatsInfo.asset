@@ -19,8 +19,8 @@ MonoBehaviour:
   Intelligence: 1
   MagicResist: 1
   Luck: 5
-  MaxLevel: 99
-  MaxStatLevel: 99
+  MaxLevel: 10
+  MaxStatLevel: 15
   LevelGrowthPoints: 100
   StrengthGrowthPoints: 50
   IntelligenceGrowthPoints: 25

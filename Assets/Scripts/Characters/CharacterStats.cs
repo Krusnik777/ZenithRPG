@@ -26,14 +26,15 @@ namespace DC_ARPG
 
         #region BaseEvents
 
-        public UnityEvent OnDeath;
+        public event UnityAction EventOnHitPointsChange;
+        public event UnityAction EventOnDeath;
 
         #endregion
 
         public virtual void InitStats(T characterInfo)
         {
             Level = characterInfo.Level;
-            HitPoints = characterInfo.Level;
+            HitPoints = characterInfo.HitPoints;
             MagicPoints = characterInfo.MagicPoints;
             Strength = characterInfo.Strength;
             Intelligence = characterInfo.Intelligence;
@@ -57,15 +58,19 @@ namespace DC_ARPG
         {
             CurrentHitPoints += change;
 
-            if (CurrentHitPoints <= 0)
-            {
-                OnDeath?.Invoke();
-            }
-
             if (CurrentHitPoints >= HitPoints)
             {
                 CurrentHitPoints = HitPoints;
             }
+
+            if (CurrentHitPoints <= 0)
+            {
+                CurrentHitPoints = 0;
+
+                EventOnDeath?.Invoke();
+            }
+
+            EventOnHitPointsChange?.Invoke();
         }
     }
 }

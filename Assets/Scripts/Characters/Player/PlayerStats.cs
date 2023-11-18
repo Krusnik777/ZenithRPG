@@ -47,10 +47,18 @@ namespace DC_ARPG
 
         #region Events
 
-        public UnityEvent OnLevelUp;
-        public UnityEvent OnStrengthUp;
-        public UnityEvent OnIntelligenceUp;
-        public UnityEvent OnMagicResistUp;
+        public event UnityAction EventOnLevelUp;
+        public event UnityAction EventOnStrengthUp;
+        public event UnityAction EventOnIntelligenceUp;
+        public event UnityAction EventOnMagicResistUp;
+
+        public event UnityAction EventOnAttackChange;
+        public event UnityAction EventOnDefenseChange;
+
+        public event UnityAction EventOnExperienceChange;
+        public event UnityAction EventOnStrengthExperienceChange;
+        public event UnityAction EventOnIntelligenceExperienceChange;
+        public event UnityAction EventOnMagicResistExperienceChange;
 
         #endregion
 
@@ -92,21 +100,27 @@ namespace DC_ARPG
         public void SetWeaponDamage(int weaponDamage)
         {
             equippedWeaponDamage = weaponDamage;
+            SetAttack();
         }
 
         public void SetAttack()
         {
             Attack = (int)((Strength + equippedWeaponDamage) * attackMultiplier);
+
+            EventOnAttackChange?.Invoke();
         }
 
         public void SetArmorDefense(int armorDefense)
         {
             equippedArmorDefense = armorDefense;
+            SetDefense();
         }
 
         public void SetDefense()
         {
             Defense = equippedArmorDefense + (int)(MagicResist * defenseMultiplier);
+
+            EventOnDefenseChange?.Invoke();
         }
 
         #endregion
@@ -119,26 +133,19 @@ namespace DC_ARPG
 
             Level++;
 
-            if (Strength < MaxStatLevel)
-            {
-                Strength++;
-                SetAttack();
-            }
+            GetStrengthUp();
 
-            if (Intelligence < MaxStatLevel) Intelligence++;
+            GetIntelligenceUp();
 
-            if (MagicResist < MaxStatLevel)
-            {
-                MagicResist++;
-                SetDefense();
-            }
+            GetMagicResistUp();
+
             if (Luck < MaxStatLevel) Luck++;
 
             HitPoints += (int)(hitPointsGrowthPoints * (hitPointsGrowthMultiplier * Level));
             MagicPoints += (int)(magicPointsGrowthPoints * (magicPointsGrowthMultiplier * Level));
             SetBaseParametersPoints();
 
-            OnLevelUp?.Invoke();
+            EventOnLevelUp?.Invoke();
         }
 
         private void GetStrengthUp()
@@ -147,7 +154,8 @@ namespace DC_ARPG
 
             Strength++;
             SetAttack();
-            OnStrengthUp?.Invoke();
+
+            EventOnStrengthUp?.Invoke();
         }
 
         private void GetIntelligenceUp()
@@ -155,7 +163,10 @@ namespace DC_ARPG
             if (Intelligence >= MaxStatLevel) return;
 
             Intelligence++;
-            OnIntelligenceUp?.Invoke();
+            MagicPoints += (int)(Intelligence * magicPointsGrowthMultiplier);
+            CurrentMagicPoints = MagicPoints;
+
+            EventOnIntelligenceUp?.Invoke();
         }
 
         private void GetMagicResistUp()
@@ -164,8 +175,8 @@ namespace DC_ARPG
 
             MagicResist++;
             SetDefense();
-            MagicPoints += (int)(MagicResist * magicPointsGrowthMultiplier);
-            OnMagicResistUp?.Invoke();
+            
+            EventOnMagicResistUp?.Invoke();
         }
 
         #endregion
@@ -183,10 +194,14 @@ namespace DC_ARPG
                 CurrentExperiencePoints -= GetExperienceForLevelUp();
                 GetLevelUp();
             }
+
+            EventOnExperienceChange?.Invoke();
         }
 
         public void AddStrengthExperience(int strengthExperience)
         {
+            if (Strength >= MaxStatLevel) return;
+
             CurrentStrengthExperiencePoints += strengthExperience;
 
             if (CurrentStrengthExperiencePoints >= GetExperienceForStrengthUp())
@@ -194,10 +209,14 @@ namespace DC_ARPG
                 CurrentStrengthExperiencePoints -= GetExperienceForStrengthUp();
                 GetStrengthUp();
             }
+
+            EventOnStrengthExperienceChange?.Invoke();
         }
 
         public void AddIntelligenceExperience(int intelligenceExperience)
         {
+            if (Intelligence >= MaxStatLevel) return;
+
             CurrentIntelligenceExperiencePoints += intelligenceExperience;
 
             if (CurrentIntelligenceExperiencePoints >= GetExperienceForIntelligenceUp())
@@ -205,10 +224,14 @@ namespace DC_ARPG
                 CurrentIntelligenceExperiencePoints -= GetExperienceForIntelligenceUp();
                 GetIntelligenceUp();
             }
+
+            EventOnIntelligenceExperienceChange?.Invoke();
         }
 
         public void AddMagicResistExperience(int magicResistExperience)
         {
+            if (MagicResist >= MaxStatLevel) return;
+
             CurrentMagicResistExperiencePoints += magicResistExperience;
 
             if (CurrentMagicResistExperiencePoints >= GetExperienceForMagicResistUp())
@@ -216,6 +239,8 @@ namespace DC_ARPG
                 CurrentMagicResistExperiencePoints -= GetExperienceForMagicResistUp();
                 GetMagicResistUp();
             }
+
+            EventOnMagicResistExperienceChange?.Invoke();
         }
 
         #endregion

@@ -6,6 +6,8 @@ namespace DC_ARPG
     [RequireComponent(typeof(Player))]
     public class PlayerInputController : MonoBehaviour
     {
+        [SerializeField] private MenuInputController m_menuInputController;
+
         private Controls _controls;
         private Player player;
 
@@ -38,6 +40,8 @@ namespace DC_ARPG
             _controls.Gameplay.UseItem.performed += OnUseItem;
             _controls.Gameplay.NextItem.performed += ChangeItem;
             _controls.Gameplay.PreviousItem.performed += ChangeItem;
+
+            _controls.Gameplay.Pause.performed += OnPause;
         }
 
         private void OnDisable()
@@ -62,7 +66,9 @@ namespace DC_ARPG
             _controls.Gameplay.NextItem.performed -= ChangeItem;
             _controls.Gameplay.PreviousItem.performed -= ChangeItem;
 
-            _controls.Disable();
+            _controls.Gameplay.Pause.performed -= OnPause;
+
+            _controls.Gameplay.Disable();
         }
 
         private void Update()
@@ -156,6 +162,16 @@ namespace DC_ARPG
         private void ChangeItem(InputAction.CallbackContext obj)
         {
             player.ChangeActiveItem();
+        }
+
+        private void OnPause(InputAction.CallbackContext obj)
+        {
+            // DEBUG
+
+            m_menuInputController.enabled = true;
+
+            enabled = false;
+
         }
     }
 }
