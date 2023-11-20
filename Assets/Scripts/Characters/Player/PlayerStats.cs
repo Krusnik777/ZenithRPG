@@ -41,6 +41,7 @@ namespace DC_ARPG
         private float attackMultiplier;
 
         private int equippedArmorDefense = 0;
+        private int equippedShieldDefense = 0;
         private float defenseMultiplier;
 
         #endregion
@@ -51,6 +52,7 @@ namespace DC_ARPG
         public event UnityAction EventOnStrengthUp;
         public event UnityAction EventOnIntelligenceUp;
         public event UnityAction EventOnMagicResistUp;
+        public event UnityAction EventOnLuckUp;
 
         public event UnityAction EventOnAttackChange;
         public event UnityAction EventOnDefenseChange;
@@ -116,9 +118,15 @@ namespace DC_ARPG
             SetDefense();
         }
 
+        public void SetShieldDefense(int shieldDefense)
+        {
+            equippedShieldDefense = shieldDefense;
+            SetDefense();
+        }
+
         public void SetDefense()
         {
-            Defense = equippedArmorDefense + (int)(MagicResist * defenseMultiplier);
+            Defense = equippedArmorDefense + equippedShieldDefense + (int)(MagicResist * defenseMultiplier);
 
             EventOnDefenseChange?.Invoke();
         }
@@ -139,7 +147,7 @@ namespace DC_ARPG
 
             GetMagicResistUp();
 
-            if (Luck < MaxStatLevel) Luck++;
+            GetLuckUp(1);
 
             HitPoints += (int)(hitPointsGrowthPoints * (hitPointsGrowthMultiplier * Level));
             MagicPoints += (int)(magicPointsGrowthPoints * (magicPointsGrowthMultiplier * Level));
@@ -177,6 +185,13 @@ namespace DC_ARPG
             SetDefense();
             
             EventOnMagicResistUp?.Invoke();
+        }
+
+        public void GetLuckUp(int amount)
+        {
+            Luck += amount;
+
+            EventOnLuckUp?.Invoke();
         }
 
         #endregion
