@@ -2,15 +2,25 @@ using UnityEngine;
 
 namespace DC_ARPG
 {
-    public class EquipItem : Item<EquipItemInfo>
+    public class EquipItem : Item
     {
-        public enum EquipItemType
+        [SerializeField] protected EquipItemInfo m_itemInfo;
+
+        [SerializeField] private bool m_isEquipped;
+        public override ItemInfo Info => m_itemInfo;
+        public bool IsEquipped => m_isEquipped;
+        public EquipItemType Type => m_itemInfo.EquipType;
+
+        public EquipItem(EquipItemInfo info, bool isEquipped)
         {
-            Armor,
-            Shield
+            m_itemInfo = info;
+            m_isEquipped = isEquipped;
         }
 
-        [SerializeField] private EquipItemType m_type;
-        [SerializeField] private bool m_isEquipped;
+        public EquipItem Clone()
+        {
+            var clonedItem = new EquipItem(m_itemInfo, m_isEquipped);
+            return clonedItem;
+        }
     }
 }

@@ -2,8 +2,10 @@ using UnityEngine;
 
 namespace DC_ARPG
 {
-    public abstract class Item<T> : MonoBehaviour where T: ItemInfo
+    public abstract class Item : MonoBehaviour
     {
-        [SerializeField] protected T m_itemInfo;
+        public virtual ItemInfo Info { get;}
+        public virtual int Amount => 1;
+        public virtual int MaxAmount => 1;
     }
 }

@@ -3,9 +3,10 @@ using UnityEngine;
 namespace DC_ARPG
 {
     [CreateAssetMenu(fileName = "WeaponItemInfo", menuName = "ScriptableObjects/ItemInfo/WeaponItemInfo")]
-    public class WeaponItemInfo : EquipItemInfo
+    public class WeaponItemInfo : ItemInfo
     {
-        public int Uses;
+        [Header("WeaponItem")]
+        public int AttackIncrease;
         public bool HasInfiniteUses;
     }
 }
