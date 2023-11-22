@@ -2,26 +2,29 @@ using UnityEngine;
 
 namespace DC_ARPG
 {
-    public class MagicItem : Item
+    [System.Serializable]
+    public class MagicItem : IItem
     {
         [SerializeField] protected MagicItemInfo m_itemInfo;
 
         [SerializeField] private int m_uses;
-        [SerializeField] private bool m_isEquipped;
-        public override ItemInfo Info => m_itemInfo;
-        public int Uses => m_uses;
-        public bool IsEquipped => m_isEquipped;
+        public ItemInfo Info => m_itemInfo;
 
-        public MagicItem(MagicItemInfo info, int uses, bool isEquipped)
+        private int defaultAmount = 1;
+        public int Amount { get => defaultAmount; set => defaultAmount = value; }
+        public int MaxAmount => defaultAmount;
+        public int Uses => m_uses;
+
+        public MagicItem(MagicItemInfo info, int uses, int amount = 1)
         {
             m_itemInfo = info;
             m_uses = uses;
-            m_isEquipped = isEquipped;
+            Amount = amount;
         }
 
-        public MagicItem Clone()
+        public IItem Clone()
         {
-            var clonedItem = new MagicItem(m_itemInfo, m_uses, m_isEquipped);
+            var clonedItem = new MagicItem(m_itemInfo, m_uses, 1);
             return clonedItem;
         }
     }

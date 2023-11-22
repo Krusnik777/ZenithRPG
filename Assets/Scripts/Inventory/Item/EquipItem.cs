@@ -2,24 +2,26 @@ using UnityEngine;
 
 namespace DC_ARPG
 {
-    public class EquipItem : Item
+    [System.Serializable]
+    public class EquipItem : IItem
     {
         [SerializeField] protected EquipItemInfo m_itemInfo;
+        public ItemInfo Info => m_itemInfo;
 
-        [SerializeField] private bool m_isEquipped;
-        public override ItemInfo Info => m_itemInfo;
-        public bool IsEquipped => m_isEquipped;
-        public EquipItemType Type => m_itemInfo.EquipType;
+        private int defaultAmount = 1;
+        public int Amount { get => defaultAmount; set => defaultAmount = value; }
+        public int MaxAmount => defaultAmount;
+        public EquipItemType EquipType => m_itemInfo.EquipType;
 
-        public EquipItem(EquipItemInfo info, bool isEquipped)
+        public EquipItem(EquipItemInfo info, int amount = 1)
         {
             m_itemInfo = info;
-            m_isEquipped = isEquipped;
+            Amount = amount;
         }
 
-        public EquipItem Clone()
+        public IItem Clone()
         {
-            var clonedItem = new EquipItem(m_itemInfo, m_isEquipped);
+            var clonedItem = new EquipItem(m_itemInfo, 1);
             return clonedItem;
         }
     }

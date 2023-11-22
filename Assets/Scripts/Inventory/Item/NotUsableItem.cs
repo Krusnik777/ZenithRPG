@@ -2,23 +2,25 @@ using UnityEngine;
 
 namespace DC_ARPG
 {
-    public class NotUsableItem : Item
+    [System.Serializable]
+    public class NotUsableItem : IItem
     {
         [SerializeField] protected NotUsableItemInfo m_itemInfo;
 
-        [SerializeField] private bool m_isActive;
-        public override ItemInfo Info => m_itemInfo;
-        public bool IsActive => m_isActive;
+        [SerializeField] private int m_amount;
+        public ItemInfo Info => m_itemInfo;
+        public int Amount { get => m_amount; set => m_amount = value; }
+        public int MaxAmount => m_itemInfo.MaxAmount;
 
-        public NotUsableItem(NotUsableItemInfo info, bool isActive)
+        public NotUsableItem(NotUsableItemInfo info, int amount)
         {
             m_itemInfo = info;
-            m_isActive = isActive;
+            m_amount = amount;
         }
 
-        public NotUsableItem Clone()
+        public IItem Clone()
         {
-            var clonedItem = new NotUsableItem(m_itemInfo, m_isActive);
+            var clonedItem = new NotUsableItem(m_itemInfo, m_amount);
             return clonedItem;
         }
     }

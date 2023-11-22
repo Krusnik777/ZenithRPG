@@ -2,14 +2,15 @@ using UnityEngine;
 
 namespace DC_ARPG
 {
-    public class UsableItem : Item
+    [System.Serializable]
+    public class UsableItem : IItem
     {
         [SerializeField] protected UsableItemInfo m_itemInfo;
         
         [SerializeField] private int m_amount;
-        public override ItemInfo Info => m_itemInfo;
-        public override int Amount => m_amount;
-        public override int MaxAmount => m_itemInfo.MaxAmount;
+        public ItemInfo Info => m_itemInfo;
+        public int Amount { get => m_amount; set => m_amount = value; }
+        public int MaxAmount => m_itemInfo.MaxAmount;
 
         public UsableItem(UsableItemInfo info, int amount)
         {
@@ -17,7 +18,7 @@ namespace DC_ARPG
             m_amount = amount;
         }
 
-        public UsableItem Clone()
+        public IItem Clone()
         {
             var clonedItem = new UsableItem(m_itemInfo, m_amount);
             return clonedItem;
