@@ -10,8 +10,10 @@ namespace DC_ARPG
         [SerializeField] private int m_uses;
         public ItemInfo Info => m_itemInfo;
 
-        private int defaultAmount = 1;
-        public int Amount { get => defaultAmount; set => defaultAmount = value; }
+        private const int defaultAmount = 1;
+        private int itemAmount;
+
+        public int Amount { get => itemAmount; set => itemAmount = value; }
         public int MaxAmount => defaultAmount;
         public int Uses => m_uses;
 
@@ -19,12 +21,12 @@ namespace DC_ARPG
         {
             m_itemInfo = info;
             m_uses = uses;
-            Amount = 1;
+            itemAmount = amount;
         }
 
         public IItem Clone()
         {
-            var clonedItem = new WeaponItem(m_itemInfo, m_uses, 1);
+            var clonedItem = new WeaponItem(m_itemInfo, m_uses, defaultAmount);
             return clonedItem;
         }
     }

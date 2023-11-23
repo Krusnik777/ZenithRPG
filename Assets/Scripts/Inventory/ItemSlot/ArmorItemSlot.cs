@@ -1,8 +1,8 @@
 namespace DC_ARPG
 {
-    public class ArmorItemSlot : IItemSlot<EquipItem>
+    public class ArmorItemSlot : IItemSlot
     {
-        public EquipItem Item { get; protected set; }
+        public IItem Item { get; protected set; }
         public ItemInfo ItemInfo => Item?.Info;
 
         public int Amount => IsEmpty ? 0 : Item.Amount;
@@ -11,12 +11,19 @@ namespace DC_ARPG
         public bool IsEmpty => Item == null;
         public bool IsFull => !IsEmpty && Amount >= Capacity;
 
-        public void SetItemInSlot(EquipItem item)
+        public bool TrySetItemInSlot(IItem item)
         {
-            if (!IsEmpty || item.EquipType != EquipItemType.Armor) return;
+            if (!(item is EquipItem))
+            {
+                UnityEngine.Debug.Log("WrongTypeOfItem");
+                return false;
+            }
+
+            if (!IsEmpty || (item as EquipItem).EquipType != EquipItemType.Armor) return false;
 
             Item = item;
             Capacity = item.MaxAmount;
+            return true;
         }
 
         public void ClearSlot()
@@ -24,6 +31,25 @@ namespace DC_ARPG
             if (IsEmpty) return;
 
             Item = null;
+        }
+
+        public bool TryClearSlotAndSetItem(IItem item)
+        {
+            if (!(item is EquipItem))
+            {
+                UnityEngine.Debug.Log("WrongTypeOfItem");
+                return false;
+            }
+
+            if ((item as EquipItem).EquipType != EquipItemType.Armor)
+            {
+                UnityEngine.Debug.Log("WrongEquipTypeOfItem");
+                return false;
+            }
+
+            ClearSlot();
+
+            return TrySetItemInSlot(item);
         }
     }
 }

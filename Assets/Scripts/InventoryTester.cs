@@ -16,58 +16,41 @@ namespace DC_ARPG
 
         private void Awake()
         {
-            inventory = new Inventory(1, 3, 2);
+            inventory = new Inventory(1, 7, 2);
             Debug.Log("Inventory created: " + inventory);
         }
 
         private void Start()
         {
             inventory.TryToAddItem(this, notUsableItem);
-            inventory.TryToAddItem(this, usableItem);
-            inventory.TryToAddItem(this, armorItem);
-
-            inventory.TryToAddItem(this, shieldItem);
-
-            Debug.Log("Transit: " + inventory.MainPocket.ItemSlots[0].Item + " -> " + inventory.ExtraPockets[0].ItemSlots[0].Item);
-            inventory.TransitFromSlotToSlot(this, inventory.MainPocket.ItemSlots[0], inventory.ExtraPockets[0].ItemSlots[0]);
-            Debug.Log("Amount: " + inventory.ExtraPockets[0].ItemSlots[0].Item.Amount + " Capacity: " + inventory.ExtraPockets[0].ItemSlots[0].Capacity);
-
+            Debug.Log("Added: " + inventory.MainPocket.ItemSlots[0].Item + " Amount: " + inventory.MainPocket.ItemSlots[0].Item?.Amount + " Capacity: " + inventory.MainPocket.ItemSlots[0].Item?.MaxAmount);
             inventory.TryToAddItem(this, notUsableItem2);
-            Debug.Log("Added: " + inventory.MainPocket.ItemSlots[0].Item + "Amount: " + inventory.MainPocket.ItemSlots[0].Item.Amount);
-
-            Debug.Log("Transit: " + inventory.MainPocket.ItemSlots[0].Item + " -> " + inventory.ExtraPockets[0].ItemSlots[0].Item);
-            inventory.TransitFromSlotToSlot(this, inventory.MainPocket.ItemSlots[0], inventory.ExtraPockets[0].ItemSlots[0]);
-            Debug.Log("Amount: " + inventory.ExtraPockets[0].ItemSlots[0].Item.Amount + " Capacity: " + inventory.ExtraPockets[0].ItemSlots[0].Capacity);
-
+            Debug.Log("Added: " + inventory.MainPocket.ItemSlots[1].Item + " Amount: " + inventory.MainPocket.ItemSlots[1].Item?.Amount + " Capacity: " + inventory.MainPocket.ItemSlots[1].Item?.MaxAmount);
+            inventory.TryToAddItem(this, usableItem);
+            Debug.Log("Added: " + inventory.MainPocket.ItemSlots[2].Item + " Amount: " + inventory.MainPocket.ItemSlots[2].Item?.Amount + " Capacity: " + inventory.MainPocket.ItemSlots[2].Item?.MaxAmount);
+            inventory.TryToAddItem(this, armorItem);
+            Debug.Log("Added: " + inventory.MainPocket.ItemSlots[3].Item + " Amount: " + inventory.MainPocket.ItemSlots[3].Item?.Amount + " Capacity: " + inventory.MainPocket.ItemSlots[3].Item?.MaxAmount);
+            inventory.TryToAddItem(this, shieldItem);
+            Debug.Log("Added: " + inventory.MainPocket.ItemSlots[4].Item + " Amount: " + inventory.MainPocket.ItemSlots[4].Item?.Amount + " Capacity: " + inventory.MainPocket.ItemSlots[4].Item?.MaxAmount);
+            inventory.TryToAddItem(this, weaponItem);
+            Debug.Log("Added: " + inventory.MainPocket.ItemSlots[5].Item + " Amount: " + inventory.MainPocket.ItemSlots[5].Item?.Amount + " Capacity: " + inventory.MainPocket.ItemSlots[5].Item?.MaxAmount);
             inventory.TryToAddItem(this, magicItem);
-            Debug.Log("Added: " + inventory.MainPocket.ItemSlots[0].Item + "Amount: " + inventory.MainPocket.ItemSlots[0].Item.Amount + " Capacity: " + inventory.MainPocket.ItemSlots[0].Item.MaxAmount);
+            Debug.Log("Added: " + inventory.MainPocket.ItemSlots[6].Item + " Amount: " + inventory.MainPocket.ItemSlots[6].Item?.Amount + " Capacity: " + inventory.MainPocket.ItemSlots[6].Item?.MaxAmount);
 
-            Debug.Log("Transit: " + inventory.MainPocket.ItemSlots[0].Item + " -> " + inventory.ExtraPockets[0].ItemSlots[0].Item);
-            inventory.TransitFromSlotToSlot(this, inventory.MainPocket.ItemSlots[0], inventory.ExtraPockets[0].ItemSlots[0]);
-            Debug.Log("Item: " + inventory.ExtraPockets[0].ItemSlots[0].Item);
-            Debug.Log("Amount: " + inventory.ExtraPockets[0].ItemSlots[0].Item.Amount + " Capacity: " + inventory.ExtraPockets[0].ItemSlots[0].Capacity);
+            Debug.Log("1: " + inventory.MainPocket.ItemSlots[0].Item + " Amount: " + inventory.MainPocket.ItemSlots[0].Item?.Amount + " Capacity: " + inventory.MainPocket.ItemSlots[0].Item?.MaxAmount);
+            Debug.Log("2: " + inventory.MainPocket.ItemSlots[1].Item + " Amount: " + inventory.MainPocket.ItemSlots[1].Item?.Amount + " Capacity: " + inventory.MainPocket.ItemSlots[1].Item?.MaxAmount);
+            Debug.Log("3: " + inventory.MainPocket.ItemSlots[2].Item + " Amount: " + inventory.MainPocket.ItemSlots[2].Item?.Amount + " Capacity: " + inventory.MainPocket.ItemSlots[2].Item?.MaxAmount);
+            Debug.Log("4: " + inventory.MainPocket.ItemSlots[3].Item + " Amount: " + inventory.MainPocket.ItemSlots[3].Item?.Amount + " Capacity: " + inventory.MainPocket.ItemSlots[3].Item?.MaxAmount);
+            Debug.Log("5: " + inventory.MainPocket.ItemSlots[4].Item + " Amount: " + inventory.MainPocket.ItemSlots[4].Item?.Amount + " Capacity: " + inventory.MainPocket.ItemSlots[4].Item?.MaxAmount);
+            Debug.Log("6: " + inventory.MainPocket.ItemSlots[5].Item + " Amount: " + inventory.MainPocket.ItemSlots[5].Item?.Amount + " Capacity: " + inventory.MainPocket.ItemSlots[5].Item?.MaxAmount);
+            Debug.Log("7: " + inventory.MainPocket.ItemSlots[6].Item + " Amount: " + inventory.MainPocket.ItemSlots[6].Item?.Amount + " Capacity: " + inventory.MainPocket.ItemSlots[6].Item?.MaxAmount);
 
-            Debug.Log(inventory.MainPocket.ItemSlots[0].Item);
-            Debug.Log("Amount: " + inventory.MainPocket.ItemSlots[0].Item.Amount + " Capacity: " + inventory.MainPocket.ItemSlots[0].Capacity);
-            Debug.Log(inventory.MainPocket.ItemSlots[1].Item);
-            Debug.Log(inventory.MainPocket.ItemSlots[2].Item);
+            Debug.Log("Weapon: " + inventory.WeaponItemSlot.Item + " Amount: " + inventory.WeaponItemSlot.Item?.Amount + " Capacity: " + inventory.WeaponItemSlot.Item?.MaxAmount);
 
-            //inventory.TryToAddItem(this, notUsableItem);
-
-            /*
-            inventory.TryToAddItem(this, notUsableItem);
-            
-            inventory.TransitFromSlotToSlot(this, inventory.MainPocket.ItemSlots[0], inventory.ExtraPockets[0].ItemSlots[0]);
-            Debug.Log(inventory.ExtraPockets[0].ItemSlots[0].Item);
-            Debug.Log(inventory.ExtraPockets[0].ItemSlots[0].Amount);
-            Debug.Log(inventory.ExtraPockets[0].ItemSlots[0].Capacity);
-
-            inventory.TryToAddItem(this, notUsableItem);
-            inventory.TransitFromSlotToSlot(this, inventory.MainPocket.ItemSlots[0], inventory.ExtraPockets[0].ItemSlots[0]);
-            Debug.Log(inventory.ExtraPockets[0].ItemSlots[0].Item);
-            Debug.Log(inventory.ExtraPockets[0].ItemSlots[0].Amount);
-            Debug.Log(inventory.ExtraPockets[0].ItemSlots[0].Capacity);
-            Debug.Log(inventory.ExtraPockets[0].ItemSlots[1].Item);*/
+            Debug.Log("Transit: " + inventory.MagicItemSlot.Item + " -> " + inventory.WeaponItemSlot.Item);
+            inventory.TransitFromSlotToSlot(this, inventory.MagicItemSlot, inventory.WeaponItemSlot);
+            Debug.Log("Weapon: " + inventory.WeaponItemSlot.Item + " Amount: " + inventory.WeaponItemSlot.Item?.Amount + " Capacity: " + inventory.WeaponItemSlot.Item?.MaxAmount);
+            Debug.Log("5: " + inventory.MainPocket.ItemSlots[5].Item + " Amount: " + inventory.MainPocket.ItemSlots[5].Item?.Amount + " Capacity: " + inventory.MainPocket.ItemSlots[5].Item?.MaxAmount);
 
         }
     }

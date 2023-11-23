@@ -1,8 +1,8 @@
 namespace DC_ARPG
 {
-    public interface IItemSlot<T> where T:IItem
+    public interface IItemSlot
     {
-        T Item { get; }
+        IItem Item { get; }
         ItemInfo ItemInfo { get; }
 
         int Amount { get; }
@@ -11,7 +11,8 @@ namespace DC_ARPG
         bool IsEmpty { get; }
         bool IsFull { get; }
 
-        void SetItemInSlot(T item);
+        bool TrySetItemInSlot(IItem item);
         void ClearSlot();
+        bool TryClearSlotAndSetItem(IItem item);
     }
 }

@@ -8,20 +8,22 @@ namespace DC_ARPG
         [SerializeField] protected EquipItemInfo m_itemInfo;
         public ItemInfo Info => m_itemInfo;
 
-        private int defaultAmount = 1;
-        public int Amount { get => defaultAmount; set => defaultAmount = value; }
+        private const int defaultAmount = 1;
+        private int itemAmount;
+
+        public int Amount { get => itemAmount; set => itemAmount = value; }
         public int MaxAmount => defaultAmount;
         public EquipItemType EquipType => m_itemInfo.EquipType;
 
         public EquipItem(EquipItemInfo info, int amount = 1)
         {
             m_itemInfo = info;
-            Amount = amount;
+            itemAmount = amount;
         }
 
         public IItem Clone()
         {
-            var clonedItem = new EquipItem(m_itemInfo, 1);
+            var clonedItem = new EquipItem(m_itemInfo, defaultAmount);
             return clonedItem;
         }
     }
