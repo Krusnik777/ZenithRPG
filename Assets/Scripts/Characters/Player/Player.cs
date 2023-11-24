@@ -197,6 +197,11 @@ namespace DC_ARPG
 
         }
 
+        public void UseMagic()
+        {
+            Debug.Log("UsedMagic");
+        }
+
         public void Rest()
         {
             if (inMovement || isJumping) return;
@@ -218,9 +223,19 @@ namespace DC_ARPG
             Debug.Log("Used Item");
         }
 
-        public void ChangeActiveItem()
+        public void ChooseLeftActiveItem()
         {
-            Debug.Log("ChangedItem");
+            Debug.Log("ChangedToLeftItem");
+        }
+
+        public void ChooseMiddleActiveItem()
+        {
+            Debug.Log("ChangedToMiddleItem");
+        }
+
+        public void ChooseRightActiveItem()
+        {
+            Debug.Log("ChangedToRightItem");
         }
 
         private void Awake()

@@ -5,19 +5,16 @@ namespace DC_ARPG
 {
     public class MenuInputController : MonoBehaviour
     {
-        [SerializeField] private PlayerInputController m_playerInputController;
+        [SerializeField] private ControlsManager m_controlsManager;
         [SerializeField] private UIStatsTest m_uiStatsTest;
 
         private Controls _controls;
 
-        private void Awake()
-        {
-            _controls = new Controls();
-        }
-
         private void OnEnable()
         {
-            _controls.Enable();
+            _controls = m_controlsManager.Controls;
+
+            _controls.Menu.Enable();
 
             m_uiStatsTest.TurnStatsPanel(true);
 
@@ -28,7 +25,7 @@ namespace DC_ARPG
         {
             _controls.Menu.Cancel.performed -= OnUnpause;
 
-            _controls.Disable();
+            _controls.Menu.Disable();
         }
 
         private void OnUnpause(InputAction.CallbackContext obj)
@@ -37,9 +34,8 @@ namespace DC_ARPG
 
             m_uiStatsTest.TurnStatsPanel(false);
 
-            m_playerInputController.enabled = true;
-
-            enabled = false;
+            m_controlsManager.SetPlayerControlsActive(true);
+            m_controlsManager.SetMenuControlsActive(false);
         }
     }
 }

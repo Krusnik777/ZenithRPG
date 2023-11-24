@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 935032597161760912}
   - component: {fileID: 6894039611509924673}
   m_Layer: 5
-  m_Name: Stat
+  m_Name: DoubleText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -15,7 +15,11 @@ namespace DC_ARPG
 
         public int Amount { get => itemAmount; set => itemAmount = value; }
         public int MaxAmount => defaultAmount;
-        public int Uses => m_uses;
+
+        public int Uses { get => m_uses; set => m_uses = value; }
+
+        public int AttackIncrease => m_itemInfo.AttackIncrease;
+        public bool HasInfiniteUses => m_itemInfo.HasInfiniteUses;
 
         public WeaponItem(WeaponItemInfo info, int uses, int amount = 1)
         {

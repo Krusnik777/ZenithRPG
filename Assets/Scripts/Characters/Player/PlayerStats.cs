@@ -189,6 +189,8 @@ namespace DC_ARPG
 
         public void GetLuckUp(int amount)
         {
+            if (Luck >= MaxStatLevel) return;
+
             Luck += amount;
 
             EventOnLuckUp?.Invoke();

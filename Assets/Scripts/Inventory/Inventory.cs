@@ -28,7 +28,7 @@ namespace DC_ARPG
 
         #endregion
 
-        public Inventory(int extraPocketsAmount, int itemSlotsAmountInPocket, int usableItemSlotsAmount)
+        public Inventory(int extraPocketsAmount = 3, int itemSlotsAmountInPocket = 9, int usableItemSlotsAmount = 3)
         {
             WeaponItemSlot = new WeaponItemSlot();
             ArmorItemSlot = new ArmorItemSlot();

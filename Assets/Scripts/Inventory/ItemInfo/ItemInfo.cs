@@ -7,7 +7,7 @@ namespace DC_ARPG
         [Header("Base")]
         public int ID;
         public string Title;
-        public string Description;
+        [TextArea(1,5)]public string Description;
         public Sprite Icon;
         public int Price;
     }

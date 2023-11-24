@@ -15,6 +15,8 @@ namespace DC_ARPG
         public int MaxAmount => defaultAmount;
         public EquipItemType EquipType => m_itemInfo.EquipType;
 
+        public int DefenseIncrease => m_itemInfo.DefenseIncrease;
+
         public EquipItem(EquipItemInfo info, int amount = 1)
         {
             m_itemInfo = info;

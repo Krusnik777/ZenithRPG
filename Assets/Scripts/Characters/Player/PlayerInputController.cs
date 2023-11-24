@@ -6,7 +6,7 @@ namespace DC_ARPG
     [RequireComponent(typeof(Player))]
     public class PlayerInputController : MonoBehaviour
     {
-        [SerializeField] private MenuInputController m_menuInputController;
+        [SerializeField] private ControlsManager m_controlsManager;
 
         private Controls _controls;
         private Player player;
@@ -14,11 +14,12 @@ namespace DC_ARPG
         private void Awake()
         {
             player = GetComponent<Player>();
-            _controls = new Controls();
         }
 
         private void OnEnable()
         {
+            _controls = m_controlsManager.Controls;
+
             _controls.Gameplay.Enable();
 
             _controls.Gameplay.RotateLeft.performed += OnRotateLeft;
@@ -35,11 +36,14 @@ namespace DC_ARPG
             _controls.Gameplay.Block.performed += OnBlockHolded;
             _controls.Gameplay.Block.canceled += OnBlockCanceled;
 
+            _controls.Gameplay.UseMagic.performed += OnUseMagic;
+
             _controls.Gameplay.Rest.performed += OnRest;
             _controls.Gameplay.Inventory.performed += OnCheckInventory;
             _controls.Gameplay.UseItem.performed += OnUseItem;
-            _controls.Gameplay.NextItem.performed += ChangeItem;
-            _controls.Gameplay.PreviousItem.performed += ChangeItem;
+            _controls.Gameplay.LeftItem.performed += OnLeftItem;
+            _controls.Gameplay.MiddleItem.performed += OnMiddleItem;
+            _controls.Gameplay.RightItem.performed += OnRightItem;
 
             _controls.Gameplay.Pause.performed += OnPause;
         }
@@ -60,11 +64,14 @@ namespace DC_ARPG
             _controls.Gameplay.Block.performed -= OnBlockHolded;
             _controls.Gameplay.Block.canceled -= OnBlockCanceled;
 
+            _controls.Gameplay.UseMagic.performed -= OnUseMagic;
+
             _controls.Gameplay.Rest.performed -= OnRest;
             _controls.Gameplay.Inventory.performed -= OnCheckInventory;
             _controls.Gameplay.UseItem.performed -= OnUseItem;
-            _controls.Gameplay.NextItem.performed -= ChangeItem;
-            _controls.Gameplay.PreviousItem.performed -= ChangeItem;
+            _controls.Gameplay.LeftItem.performed -= OnLeftItem;
+            _controls.Gameplay.MiddleItem.performed -= OnMiddleItem;
+            _controls.Gameplay.RightItem.performed -= OnRightItem;
 
             _controls.Gameplay.Pause.performed -= OnPause;
 
@@ -144,6 +151,11 @@ namespace DC_ARPG
             player.Block("BlockEnd");
         }
 
+        private void OnUseMagic(InputAction.CallbackContext obj)
+        {
+            player.UseMagic();
+        }
+
         private void OnRest(InputAction.CallbackContext obj)
         {
             player.Rest();
@@ -151,7 +163,8 @@ namespace DC_ARPG
 
         private void OnCheckInventory(InputAction.CallbackContext obj)
         {
-            player.CheckInventory();
+            m_controlsManager.SetInventoryControlsActive(true);
+            m_controlsManager.SetPlayerControlsActive(false);
         }
 
         private void OnUseItem(InputAction.CallbackContext obj)
@@ -159,19 +172,27 @@ namespace DC_ARPG
             player.UseActiveItem();
         }
 
-        private void ChangeItem(InputAction.CallbackContext obj)
+        private void OnLeftItem(InputAction.CallbackContext obj)
         {
-            player.ChangeActiveItem();
+            player.ChooseLeftActiveItem();
+        }
+
+        private void OnMiddleItem(InputAction.CallbackContext obj)
+        {
+            player.ChooseMiddleActiveItem();
+        }
+
+        private void OnRightItem(InputAction.CallbackContext obj)
+        {
+            player.ChooseRightActiveItem();
         }
 
         private void OnPause(InputAction.CallbackContext obj)
         {
             // DEBUG
 
-            m_menuInputController.enabled = true;
-
-            enabled = false;
-
+            m_controlsManager.SetMenuControlsActive(true);
+            m_controlsManager.SetPlayerControlsActive(false);
         }
     }
 }
