@@ -101,7 +101,7 @@
                     "id": "2ed7cc47-3112-4cc8-b31d-9b3b1d4a7c2c",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "",
+                    "interactions": "Press(behavior=1)",
                     "initialStateCheck": false
                 },
                 {
@@ -110,7 +110,7 @@
                     "id": "52add0f5-efdb-440e-ad3f-63f9495d416d",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "",
+                    "interactions": "Press(behavior=1)",
                     "initialStateCheck": false
                 },
                 {
@@ -687,6 +687,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "CloseMenu",
+                    "type": "Button",
+                    "id": "c72e1634-a01d-405c-a3fe-1f4751f15478",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -709,17 +718,6 @@
                     "processors": "",
                     "groups": "",
                     "action": "Confirm",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "d158314a-04b4-4959-ba31-9af5cf5214f4",
-                    "path": "<Keyboard>/escape",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Cancel",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -997,6 +995,28 @@
                     "action": "ChangeParameters",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "87dc7c12-d024-48e1-a7e8-76ca2197d169",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "CloseMenu",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "437c9e91-be85-4083-9c7c-56237ea1a335",
+                    "path": "<Gamepad>/start",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "CloseMenu",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },
@@ -1044,6 +1064,15 @@
                     "name": "DropItem",
                     "type": "Button",
                     "id": "3533f0c5-b6c7-4f57-a743-55e0f03ec716",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "CloseInventory",
+                    "type": "Button",
+                    "id": "b26f6157-efa0-4291-ab09-e01f36237026",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -1356,6 +1385,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "DropItem",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "75270714-0a2d-4e64-92fc-b8a004cd54cc",
+                    "path": "<Keyboard>/i",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "CloseInventory",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b5f2615b-aed0-4cde-9dc7-fd766d4b5d1a",
+                    "path": "<Gamepad>/buttonNorth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "CloseInventory",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

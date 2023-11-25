@@ -23,8 +23,26 @@ namespace DC_ARPG
         #region Events
 
         public event UnityAction EventOnItemAdded;
-        public event UnityAction<object, IItem> EventOnItemRemoved;
-        public event UnityAction EventOnInventoryChange;
+        public event UnityAction<object, IItemSlot> EventOnItemUsed;
+        public event UnityAction<object, IItemSlot> EventOnItemRemoved;
+        public event UnityAction<object, IItemSlot, IItemSlot> EventOnTransitCompleted;
+
+        #endregion
+
+        #region Support Variables
+
+        private IItemSlot m_fromSlot;
+
+        public void SetFromSlot(IItemSlot slot)
+        {
+            m_fromSlot = slot;
+        }
+
+        public void TransitToSlot(object sender, IItemSlot toSlot)
+        {
+            TransitFromSlotToSlot(sender, m_fromSlot, toSlot);
+            m_fromSlot = null;
+        }
 
         #endregion
 
@@ -87,18 +105,16 @@ namespace DC_ARPG
             availableSlot.TrySetItemInSlot(item.Clone());
 
             EventOnItemAdded?.Invoke();
-            EventOnInventoryChange?.Invoke();
         }
 
         public void TransitFromSlotToSlot(object sender, IItemSlot fromSlot, IItemSlot toSlot)
         {
             if (fromSlot.IsEmpty) return;
 
-            HandleTransitFromSlotToSlot(fromSlot, toSlot);
+            HandleTransitFromSlotToSlot(sender, fromSlot, toSlot);
 
+            #region OBSOLETE
             /*
-            // OBSOLETE
-
             if (!(fromSlot is AnyItemSlot) && toSlot is AnyItemSlot)
                 HandleTransitFromSlotToSlot(fromSlot, toSlot);
 
@@ -128,17 +144,69 @@ namespace DC_ARPG
             if (fromSlot is AnyItemSlot && toSlot is AnyItemSlot)
                 HandleTransitFromSlotToSlot(fromSlot, toSlot);
             */
+            #endregion
         }
 
-        public void RemoveItemFromInventory(object sender, AnyItemSlot slot)
+        public void RemoveItemFromInventory(object sender, IItemSlot slot)
         {
             if (slot.IsEmpty) return;
 
             var item = slot.Item;
             slot.ClearSlot();
 
-            EventOnItemRemoved?.Invoke(sender, item);
-            EventOnInventoryChange?.Invoke();
+            EventOnItemRemoved?.Invoke(sender, slot);
+        }
+
+        public void UseItem(object sender, IItemSlot slot)
+        {
+            if (slot.IsEmpty) return;
+
+            if (slot.Item is NotUsableItem)
+            {
+                Debug.Log("NotUsable");
+                return;
+            }
+
+            if (slot.Item is UsableItem)
+            {
+                //slot.Item.Use();
+                slot.Item.Amount--;
+                Debug.Log("ItemUsed");
+
+                if (slot.Item.Amount <= 0)
+                {
+                    RemoveItemFromInventory(sender, slot);
+                    return;
+                }
+
+                EventOnItemUsed?.Invoke(sender, slot);
+            }
+            else EquipItem(sender, slot);
+        }
+
+        public IItemSlot TryToGetInventorySlot(IItemSlot slot)
+        {
+            if (slot == WeaponItemSlot) return WeaponItemSlot;
+            if (slot == ArmorItemSlot) return ArmorItemSlot;
+            if (slot == ShieldItemSlot) return ShieldItemSlot;
+            if (slot == MagicItemSlot) return MagicItemSlot;
+
+            for (int i = 0; i < UsableItemSlots.Length; i++)
+            {
+                if (UsableItemSlots[i] == slot) return UsableItemSlots[i];
+            }
+
+            var findedSlot = MainPocket.FindSlot(slot);
+
+            if (findedSlot != null) return findedSlot;
+
+            for (int i = 0; i < ExtraPockets.Length; i++)
+            {
+                findedSlot = ExtraPockets[i].FindSlot(slot);
+                if (findedSlot != null) return findedSlot;
+            }
+
+            return null;
         }
 
         public IItem TryToGetItem(IItem item, InventoryPocket pocket)
@@ -155,7 +223,7 @@ namespace DC_ARPG
 
         #region Private Methods
 
-        private void HandleTransitFromSlotToSlot(IItemSlot fromSlot, IItemSlot toSlot)
+        private void HandleTransitFromSlotToSlot(object sender, IItemSlot fromSlot, IItemSlot toSlot)
         {
             if (!toSlot.IsEmpty && toSlot.ItemInfo == fromSlot.ItemInfo)
             {
@@ -171,19 +239,19 @@ namespace DC_ARPG
                     if (fits) fromSlot.ClearSlot();
                     else fromSlot.Item.Amount = amountLeft;
 
-                    EventOnInventoryChange?.Invoke();
+                    EventOnTransitCompleted?.Invoke(sender, fromSlot, toSlot);
                 }
                 return;
             }
 
             if (!toSlot.IsEmpty && toSlot.ItemInfo != fromSlot.ItemInfo)
-                SwapItemsInSlots(fromSlot, toSlot);
+                SwapItemsInSlots(sender, fromSlot, toSlot);
 
             if (toSlot.IsEmpty)
-                PlaceItemInEmptySlot(fromSlot, toSlot);
+                PlaceItemInEmptySlot(sender, fromSlot, toSlot);
         }
 
-        private void SwapItemsInSlots(IItemSlot fromSlot, IItemSlot toSlot)
+        private void SwapItemsInSlots(object sender, IItemSlot fromSlot, IItemSlot toSlot)
         {
             if (!toSlot.IsEmpty)
             {
@@ -196,17 +264,39 @@ namespace DC_ARPG
                     Debug.Log("Swap Error -> fromSlot.TryClearSlotAndSetItem(swappedItem) = false");
                 }
 
-                EventOnInventoryChange?.Invoke();
+                EventOnTransitCompleted?.Invoke(sender, fromSlot, toSlot);
             }
-            else PlaceItemInEmptySlot(fromSlot, toSlot);
+            else PlaceItemInEmptySlot(sender, fromSlot, toSlot);
         }
 
-        private void PlaceItemInEmptySlot(IItemSlot fromSlot, IItemSlot toSlot)
+        private void PlaceItemInEmptySlot(object sender, IItemSlot fromSlot, IItemSlot toSlot)
         {
             if (toSlot.TrySetItemInSlot(fromSlot.Item) == false) return;
             fromSlot.ClearSlot();
 
-            EventOnInventoryChange?.Invoke();
+            EventOnTransitCompleted?.Invoke(sender, fromSlot, toSlot);
+        }
+
+        private void EquipItem(object sender, IItemSlot slot)
+        {
+            if (slot.Item is WeaponItem)
+            {
+                TransitFromSlotToSlot(sender, slot, WeaponItemSlot);
+            }
+            if (slot.Item is MagicItem)
+            {
+                TransitFromSlotToSlot(sender, slot, MagicItemSlot);
+            }
+            if (slot.Item is EquipItem)
+            {
+                var item = slot.Item as EquipItem;
+
+                if (item.EquipType == EquipItemType.Armor)
+                    TransitFromSlotToSlot(sender, slot, ArmorItemSlot);
+
+                if (item.EquipType == EquipItemType.Shield)
+                    TransitFromSlotToSlot(sender, slot, ShieldItemSlot);
+            }
         }
 
         #endregion

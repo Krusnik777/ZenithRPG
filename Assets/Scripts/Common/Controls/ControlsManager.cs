@@ -32,12 +32,10 @@ namespace DC_ARPG
             base.Awake();
 
             _controls = new Controls();
-        }
-
-        private void OnEnable()
-        {
             _controls.Enable();
             SetPlayerControlsActive(true);
+            SetMenuControlsActive(false);
+            SetInventoryControlsActive(false);
         }
 
         private void OnDisable()

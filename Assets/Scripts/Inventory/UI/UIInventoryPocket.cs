@@ -6,7 +6,9 @@ namespace DC_ARPG
     {
         [SerializeField] private UIInventorySlot[] m_uiInventorySlots;
 
-        public void SetSlots(InventoryPocket pocket)
+        private InventoryPocket m_pocket;
+        public InventoryPocket InventoryPocket => m_pocket;
+        public void SetSlots(UIInventory uIInventory, InventoryPocket pocket)
         {
             if (pocket.ItemSlots.Length != m_uiInventorySlots.Length)
             {
@@ -14,9 +16,11 @@ namespace DC_ARPG
                 return;
             }
 
+            m_pocket = pocket;
+
             for (int i = 0; i < pocket.ItemSlots.Length; i++)
             {
-                m_uiInventorySlots[i].SetSlot(pocket.ItemSlots[i]);
+                m_uiInventorySlots[i].SetSlot(uIInventory, pocket.ItemSlots[i]);
             }
         }
     }

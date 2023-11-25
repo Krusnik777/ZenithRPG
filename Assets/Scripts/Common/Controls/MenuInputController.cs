@@ -12,18 +12,20 @@ namespace DC_ARPG
 
         private void OnEnable()
         {
-            _controls = m_controlsManager.Controls;
+            if (_controls == null) _controls = m_controlsManager.Controls;
 
             _controls.Menu.Enable();
 
             m_uiStatsTest.TurnStatsPanel(true);
 
             _controls.Menu.Cancel.performed += OnUnpause;
+            _controls.Menu.CloseMenu.performed += OnUnpause;
         }
 
         private void OnDisable()
         {
             _controls.Menu.Cancel.performed -= OnUnpause;
+            _controls.Menu.CloseMenu.performed -= OnUnpause;
 
             _controls.Menu.Disable();
         }

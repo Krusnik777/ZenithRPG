@@ -55,6 +55,16 @@ namespace DC_ARPG
             return null;
         }
 
+        public IItemSlot FindSlot(IItemSlot slot)
+        {
+            for (int i = 0; i < ItemSlots.Length; i++)
+            {
+                if (ItemSlots[i].IsEmpty)
+                    return ItemSlots[i];
+            }
+            return null;
+        }
+
         public IItem FindItem(IItem item)
         {
             for (int i = 0; i < ItemSlots.Length; i++)

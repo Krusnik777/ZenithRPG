@@ -7,7 +7,7 @@ namespace DC_ARPG
     {
         [SerializeField] protected MagicItemInfo m_itemInfo;
 
-        [SerializeField] private int m_uses;
+        [SerializeField] private int m_uses = 1;
         public ItemInfo Info => m_itemInfo;
 
         private const int defaultAmount = 1;

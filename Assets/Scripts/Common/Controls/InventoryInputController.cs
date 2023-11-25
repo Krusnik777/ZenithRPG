@@ -12,25 +12,26 @@ namespace DC_ARPG
 
         private void OnEnable()
         {
-            _controls = m_controlsManager.Controls;
+            if (_controls == null) _controls = m_controlsManager.Controls;
+
             _controls.Inventory.Enable();
 
             m_uIInventory.gameObject.SetActive(true);
 
-            _controls.Inventory.Cancel.performed += OnCancel;
+            _controls.Inventory.Cancel.performed += CloseInventory;
+            _controls.Inventory.CloseInventory.performed += CloseInventory;
         }
 
         private void OnDisable()
         {
-            _controls.Inventory.Cancel.performed -= OnCancel;
+            _controls.Inventory.Cancel.performed -= CloseInventory;
+            _controls.Inventory.CloseInventory.performed -= CloseInventory;
 
             _controls.Inventory.Disable();
         }
 
-        private void OnCancel(InputAction.CallbackContext obj)
+        private void CloseInventory(InputAction.CallbackContext obj)
         {
-            // DEBUG
-
             m_uIInventory.gameObject.SetActive(false);
 
             m_controlsManager.SetPlayerControlsActive(true);

@@ -18,7 +18,7 @@ namespace DC_ARPG
 
         private void OnEnable()
         {
-            _controls = m_controlsManager.Controls;
+            if (_controls == null) _controls = m_controlsManager.Controls;
 
             _controls.Gameplay.Enable();
 
@@ -163,8 +163,10 @@ namespace DC_ARPG
 
         private void OnCheckInventory(InputAction.CallbackContext obj)
         {
-            m_controlsManager.SetInventoryControlsActive(true);
             m_controlsManager.SetPlayerControlsActive(false);
+
+            m_controlsManager.SetInventoryControlsActive(true);
+            
         }
 
         private void OnUseItem(InputAction.CallbackContext obj)
@@ -191,8 +193,10 @@ namespace DC_ARPG
         {
             // DEBUG
 
-            m_controlsManager.SetMenuControlsActive(true);
             m_controlsManager.SetPlayerControlsActive(false);
+
+            m_controlsManager.SetMenuControlsActive(true);
+            
         }
     }
 }

@@ -9,8 +9,38 @@ namespace DC_ARPG
         [SerializeField] private Image m_itemIcon;
         [SerializeField] private TextMeshProUGUI m_itemAmountText;
 
-        public void SetSlot(IItemSlot inventorySlot)
+        private IItemSlot m_inventorySlot;
+        public IItemSlot InventorySlot => m_inventorySlot;
+
+        private UIInventory m_uiInventory;
+        public UIInventory UIInventory => m_uiInventory;
+        public Inventory Inventory => m_uiInventory.Inventory;
+
+        public void UseItem()
         {
+            Inventory.UseItem(this, m_inventorySlot);
+        }
+
+        public void RemoveItem()
+        {
+            Inventory.RemoveItemFromInventory(this, m_inventorySlot);
+        }
+
+        public void StartTransit()
+        {
+            Inventory.SetFromSlot(m_inventorySlot);
+        }
+
+        public void CompleteTransit()
+        {
+            Inventory.TransitToSlot(this, m_inventorySlot);
+        }
+
+        public void SetSlot(UIInventory uIInventory,IItemSlot inventorySlot)
+        {
+            m_uiInventory = uIInventory;
+            m_inventorySlot = inventorySlot;
+
             if (inventorySlot.IsEmpty)
             {
                 m_itemIcon.gameObject.SetActive(false);
@@ -20,11 +50,15 @@ namespace DC_ARPG
             {
                 var item = inventorySlot.Item;
                 m_itemIcon.sprite = item.Info.Icon;
+                m_itemIcon.gameObject.SetActive(true);
 
                 if (item is UsableItem || item is NotUsableItem)
                 {
-                    m_itemAmountText.gameObject.SetActive(true);
-                    if (item.Amount > 1) m_itemAmountText.text = item.Amount.ToString();
+                    if (item.MaxAmount != 1)
+                    {
+                        m_itemAmountText.text = item.Amount.ToString();
+                        m_itemAmountText.gameObject.SetActive(true);
+                    }
 
                     return;
                 }
@@ -35,8 +69,8 @@ namespace DC_ARPG
 
                     if (!weapon.HasInfiniteUses)
                     {
-                        m_itemAmountText.gameObject.SetActive(true);
                         m_itemAmountText.text = weapon.Uses.ToString();
+                        m_itemAmountText.gameObject.SetActive(true);
                     }
                     else m_itemAmountText.gameObject.SetActive(false);
 
@@ -49,8 +83,8 @@ namespace DC_ARPG
 
                     if (!magicItem.HasInfiniteUses)
                     {
-                        m_itemAmountText.gameObject.SetActive(true);
                         m_itemAmountText.text = magicItem.Uses.ToString();
+                        m_itemAmountText.gameObject.SetActive(true);
                     }
                     else m_itemAmountText.gameObject.SetActive(false);
 
@@ -60,6 +94,5 @@ namespace DC_ARPG
                 m_itemAmountText.gameObject.SetActive(false);
             }
         }
-
     }
 }

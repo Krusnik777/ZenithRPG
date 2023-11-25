@@ -123,7 +123,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""id"": ""2ed7cc47-3112-4cc8-b31d-9b3b1d4a7c2c"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": """",
+                    ""interactions"": ""Press(behavior=1)"",
                     ""initialStateCheck"": false
                 },
                 {
@@ -132,7 +132,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""id"": ""52add0f5-efdb-440e-ad3f-63f9495d416d"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": """",
+                    ""interactions"": ""Press(behavior=1)"",
                     ""initialStateCheck"": false
                 },
                 {
@@ -709,6 +709,15 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""CloseMenu"",
+                    ""type"": ""Button"",
+                    ""id"": ""c72e1634-a01d-405c-a3fe-1f4751f15478"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -731,17 +740,6 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Confirm"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""d158314a-04b4-4959-ba31-9af5cf5214f4"",
-                    ""path"": ""<Keyboard>/escape"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Cancel"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -1019,6 +1017,28 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""action"": ""ChangeParameters"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""87dc7c12-d024-48e1-a7e8-76ca2197d169"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CloseMenu"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""437c9e91-be85-4083-9c7c-56237ea1a335"",
+                    ""path"": ""<Gamepad>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CloseMenu"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -1066,6 +1086,15 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""name"": ""DropItem"",
                     ""type"": ""Button"",
                     ""id"": ""3533f0c5-b6c7-4f57-a743-55e0f03ec716"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""CloseInventory"",
+                    ""type"": ""Button"",
+                    ""id"": ""b26f6157-efa0-4291-ab09-e01f36237026"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -1380,6 +1409,28 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""action"": ""DropItem"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""75270714-0a2d-4e64-92fc-b8a004cd54cc"",
+                    ""path"": ""<Keyboard>/i"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CloseInventory"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b5f2615b-aed0-4cde-9dc7-fd766d4b5d1a"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CloseInventory"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -1410,6 +1461,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         m_Menu_Cancel = m_Menu.FindAction("Cancel", throwIfNotFound: true);
         m_Menu_Move = m_Menu.FindAction("Move", throwIfNotFound: true);
         m_Menu_ChangeParameters = m_Menu.FindAction("ChangeParameters", throwIfNotFound: true);
+        m_Menu_CloseMenu = m_Menu.FindAction("CloseMenu", throwIfNotFound: true);
         // Inventory
         m_Inventory = asset.FindActionMap("Inventory", throwIfNotFound: true);
         m_Inventory_MoveCursor = m_Inventory.FindAction("MoveCursor", throwIfNotFound: true);
@@ -1417,6 +1469,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         m_Inventory_Cancel = m_Inventory.FindAction("Cancel", throwIfNotFound: true);
         m_Inventory_MoveItem = m_Inventory.FindAction("MoveItem", throwIfNotFound: true);
         m_Inventory_DropItem = m_Inventory.FindAction("DropItem", throwIfNotFound: true);
+        m_Inventory_CloseInventory = m_Inventory.FindAction("CloseInventory", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -1648,6 +1701,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Menu_Cancel;
     private readonly InputAction m_Menu_Move;
     private readonly InputAction m_Menu_ChangeParameters;
+    private readonly InputAction m_Menu_CloseMenu;
     public struct MenuActions
     {
         private @Controls m_Wrapper;
@@ -1656,6 +1710,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         public InputAction @Cancel => m_Wrapper.m_Menu_Cancel;
         public InputAction @Move => m_Wrapper.m_Menu_Move;
         public InputAction @ChangeParameters => m_Wrapper.m_Menu_ChangeParameters;
+        public InputAction @CloseMenu => m_Wrapper.m_Menu_CloseMenu;
         public InputActionMap Get() { return m_Wrapper.m_Menu; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1677,6 +1732,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @ChangeParameters.started += instance.OnChangeParameters;
             @ChangeParameters.performed += instance.OnChangeParameters;
             @ChangeParameters.canceled += instance.OnChangeParameters;
+            @CloseMenu.started += instance.OnCloseMenu;
+            @CloseMenu.performed += instance.OnCloseMenu;
+            @CloseMenu.canceled += instance.OnCloseMenu;
         }
 
         private void UnregisterCallbacks(IMenuActions instance)
@@ -1693,6 +1751,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @ChangeParameters.started -= instance.OnChangeParameters;
             @ChangeParameters.performed -= instance.OnChangeParameters;
             @ChangeParameters.canceled -= instance.OnChangeParameters;
+            @CloseMenu.started -= instance.OnCloseMenu;
+            @CloseMenu.performed -= instance.OnCloseMenu;
+            @CloseMenu.canceled -= instance.OnCloseMenu;
         }
 
         public void RemoveCallbacks(IMenuActions instance)
@@ -1719,6 +1780,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Inventory_Cancel;
     private readonly InputAction m_Inventory_MoveItem;
     private readonly InputAction m_Inventory_DropItem;
+    private readonly InputAction m_Inventory_CloseInventory;
     public struct InventoryActions
     {
         private @Controls m_Wrapper;
@@ -1728,6 +1790,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         public InputAction @Cancel => m_Wrapper.m_Inventory_Cancel;
         public InputAction @MoveItem => m_Wrapper.m_Inventory_MoveItem;
         public InputAction @DropItem => m_Wrapper.m_Inventory_DropItem;
+        public InputAction @CloseInventory => m_Wrapper.m_Inventory_CloseInventory;
         public InputActionMap Get() { return m_Wrapper.m_Inventory; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1752,6 +1815,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @DropItem.started += instance.OnDropItem;
             @DropItem.performed += instance.OnDropItem;
             @DropItem.canceled += instance.OnDropItem;
+            @CloseInventory.started += instance.OnCloseInventory;
+            @CloseInventory.performed += instance.OnCloseInventory;
+            @CloseInventory.canceled += instance.OnCloseInventory;
         }
 
         private void UnregisterCallbacks(IInventoryActions instance)
@@ -1771,6 +1837,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @DropItem.started -= instance.OnDropItem;
             @DropItem.performed -= instance.OnDropItem;
             @DropItem.canceled -= instance.OnDropItem;
+            @CloseInventory.started -= instance.OnCloseInventory;
+            @CloseInventory.performed -= instance.OnCloseInventory;
+            @CloseInventory.canceled -= instance.OnCloseInventory;
         }
 
         public void RemoveCallbacks(IInventoryActions instance)
@@ -1813,6 +1882,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         void OnCancel(InputAction.CallbackContext context);
         void OnMove(InputAction.CallbackContext context);
         void OnChangeParameters(InputAction.CallbackContext context);
+        void OnCloseMenu(InputAction.CallbackContext context);
     }
     public interface IInventoryActions
     {
@@ -1821,5 +1891,6 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         void OnCancel(InputAction.CallbackContext context);
         void OnMoveItem(InputAction.CallbackContext context);
         void OnDropItem(InputAction.CallbackContext context);
+        void OnCloseInventory(InputAction.CallbackContext context);
     }
 }
