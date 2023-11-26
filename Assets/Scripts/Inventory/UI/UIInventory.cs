@@ -1,4 +1,6 @@
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 namespace DC_ARPG
 {
@@ -18,6 +20,9 @@ namespace DC_ARPG
         [SerializeField] private UIInventoryPocket m_extraPocket;
         [Header("InfoPanel")]
         [SerializeField] private UIItemInfoPanelController m_uiItemInfoPanelController;
+        [Header("EquipInfo")]
+        [SerializeField] private TextMeshProUGUI m_defenseAmountText;
+        [SerializeField] private TextMeshProUGUI m_attackAmountText;
         public UIItemInfoPanelController InfoPanelController => m_uiItemInfoPanelController;
 
         private Inventory m_inventory;
@@ -64,11 +69,17 @@ namespace DC_ARPG
             }
 
             m_mainPocket.SetSlots(this, m_inventory.MainPocket);
+
+
+            UpdateEquipInfo();
         }
 
         private void OnItemRemoved(object sender, IItemSlot slot)
         {
             FindAndSetSlot(slot);
+
+            if (slot == m_inventory.WeaponItemSlot) UpdateWeaponInfo();
+            if (slot == m_inventory.ArmorItemSlot || slot == m_inventory.ShieldItemSlot) UpdateDefenseInfo();
         }
 
         private void OnItemUsed(object sender, IItemSlot slot)
@@ -80,6 +91,10 @@ namespace DC_ARPG
         {
             FindAndSetSlot(fromSlot);
             FindAndSetSlot(toSlot);
+
+            if (fromSlot == m_inventory.WeaponItemSlot || toSlot == m_inventory.WeaponItemSlot) UpdateWeaponInfo();
+            if (fromSlot == m_inventory.ArmorItemSlot || toSlot == m_inventory.ArmorItemSlot ||
+                fromSlot == m_inventory.ShieldItemSlot || toSlot == m_inventory.ShieldItemSlot) UpdateDefenseInfo();
         }
 
         private void FindAndSetSlot(IItemSlot slot)
@@ -92,6 +107,26 @@ namespace DC_ARPG
                     return;
                 }
             }
+        }
+
+        private void UpdateEquipInfo()
+        {
+            UpdateWeaponInfo();
+
+            UpdateDefenseInfo();
+        }
+
+        private void UpdateWeaponInfo()
+        {
+            m_attackAmountText.text = m_inventory.WeaponItemSlot.IsEmpty ? "0" : (m_inventory.WeaponItemSlot.Item as WeaponItem).AttackIncrease.ToString();
+        }
+
+        private void UpdateDefenseInfo()
+        {
+            var defenseAmount = m_inventory.ShieldItemSlot.IsEmpty ? 0 : (m_inventory.ShieldItemSlot.Item as EquipItem).DefenseIncrease;
+            defenseAmount += m_inventory.ArmorItemSlot.IsEmpty ? 0 : (m_inventory.ArmorItemSlot.Item as EquipItem).DefenseIncrease;
+
+            m_defenseAmountText.text = defenseAmount.ToString();
         }
 
     }

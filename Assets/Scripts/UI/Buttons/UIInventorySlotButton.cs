@@ -1,16 +1,23 @@
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.Events;
 
 namespace DC_ARPG
 {
     public class UIInventorySlotButton : UISelectableButton
     {
+        [Header("InventorySlotImages")]
+        [SerializeField] private Image m_transitSelectImage;
+        [SerializeField] private Image m_transitImage;
+
         [Header("InventorySlotEvents")]
         public UnityEvent OnButtonUseClick;
         public UnityEvent OnButtonRemoveClick;
         public UnityEvent OnButtonMoveClick;
 
-        public static bool inTransit = false;
+        public static bool InTransit = false;
+
+        public static Image TransitImage;
 
         private UIInventorySlot uiSlot => GetComponent<UIInventorySlot>();
 
@@ -18,14 +25,27 @@ namespace DC_ARPG
         {
             if (!m_interactable) return;
 
-            base.SetFocus();
+            m_selectImage.enabled = true;
+            if (InTransit) m_transitSelectImage.enabled = true;
+
+            OnSelect?.Invoke();
 
             uiSlot.UIInventory.InfoPanelController.ShowInfoPanel(uiSlot.InventorySlot);
         }
 
-        public void OnButtonUse()
+        public override void UnsetFocus()
         {
             if (!m_interactable) return;
+
+            m_selectImage.enabled = false;
+            if (m_transitSelectImage.isActiveAndEnabled) m_transitSelectImage.enabled = false;
+
+            OnUnselect?.Invoke();
+        }
+
+        public void OnButtonUse()
+        {
+            if (!m_interactable || InTransit) return;
 
             uiSlot.UseItem();
 
@@ -34,7 +54,7 @@ namespace DC_ARPG
 
         public void OnButtonRemove()
         {
-            if (!m_interactable) return;
+            if (!m_interactable || InTransit) return;
 
             uiSlot.RemoveItem();
 
@@ -45,20 +65,42 @@ namespace DC_ARPG
         {
             if (!m_interactable) return;
 
-            if (!inTransit)
+            if (!InTransit)
             {
                 if (uiSlot.InventorySlot.IsEmpty) return;
 
+                m_transitSelectImage.enabled = true;
+
                 uiSlot.StartTransit();
-                inTransit = true;
+                InTransit = true;
+
+                SetTransitImage(m_transitImage);
             }
             else
             {
                 uiSlot.CompleteTransit();
-                inTransit = false;
+                InTransit = false;
+
+                m_transitSelectImage.enabled = false;
+
+                ResetTransitImage();
             }
 
             OnButtonMoveClick?.Invoke();
+        }
+
+        private void SetTransitImage(Image img)
+        {
+            TransitImage = img;
+            TransitImage.enabled = true;
+        }
+
+        private void ResetTransitImage()
+        {
+            if (TransitImage == null) return;
+
+            TransitImage.enabled = false;
+            TransitImage = null;
         }
     }
 }

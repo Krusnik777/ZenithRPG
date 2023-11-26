@@ -6,7 +6,7 @@ namespace DC_ARPG
 {
     public class UISelectableButton : UIButton
     {
-        [SerializeField] private Image m_selectImage;
+        [SerializeField] protected Image m_selectImage;
 
         public UnityEvent OnSelect;
         public UnityEvent OnUnselect;

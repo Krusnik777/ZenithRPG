@@ -694,21 +694,21 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": ""Move"",
-                    ""type"": ""Button"",
+                    ""type"": ""Value"",
                     ""id"": ""1a76acbd-779f-40ea-848a-b4c00cc850e9"",
-                    ""expectedControlType"": ""Button"",
+                    ""expectedControlType"": ""Dpad"",
                     ""processors"": """",
                     ""interactions"": """",
-                    ""initialStateCheck"": false
+                    ""initialStateCheck"": true
                 },
                 {
                     ""name"": ""ChangeParameters"",
-                    ""type"": ""Button"",
+                    ""type"": ""Value"",
                     ""id"": ""021b4599-f013-4a44-acd3-383d33868005"",
-                    ""expectedControlType"": ""Button"",
+                    ""expectedControlType"": ""Dpad"",
                     ""processors"": """",
                     ""interactions"": """",
-                    ""initialStateCheck"": false
+                    ""initialStateCheck"": true
                 },
                 {
                     ""name"": ""CloseMenu"",
@@ -777,6 +777,17 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": true
                 },
                 {
+                    ""name"": ""positive"",
+                    ""id"": ""273f1df2-86bf-4ffc-aeb3-191ff4fd2bd3"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
                     ""name"": ""ArrowsUpDown [Keyboard]"",
                     ""id"": ""a735ab2e-a716-4ea6-82b8-481563d6167c"",
                     ""path"": ""1DAxis"",
@@ -835,17 +846,6 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""name"": ""positive"",
                     ""id"": ""25639ab9-a6de-41e1-8fa6-8f791f81da89"",
                     ""path"": ""<Gamepad>/leftStick/up"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Move"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""positive"",
-                    ""id"": ""273f1df2-86bf-4ffc-aeb3-191ff4fd2bd3"",
-                    ""path"": ""<Keyboard>/w"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -1048,12 +1048,12 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             ""actions"": [
                 {
                     ""name"": ""MoveCursor"",
-                    ""type"": ""Button"",
+                    ""type"": ""Value"",
                     ""id"": ""573f22b0-1270-4242-9189-f9153575c3bf"",
-                    ""expectedControlType"": ""Button"",
+                    ""expectedControlType"": ""Dpad"",
                     ""processors"": """",
                     ""interactions"": """",
-                    ""initialStateCheck"": false
+                    ""initialStateCheck"": true
                 },
                 {
                     ""name"": ""Confirm"",
@@ -1216,7 +1216,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""name"": ""LeftStick [Gamepad]"",
                     ""id"": ""9fb07cda-18a9-453d-92e4-37b178748944"",
                     ""path"": ""2DVector"",
-                    ""interactions"": """",
+                    ""interactions"": ""Press(behavior=2)"",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""MoveCursor"",

@@ -49,7 +49,7 @@ namespace DC_ARPG
             do
             {
                 newButtonIndex--;
-                if (newButtonIndex < 0) newButtonIndex = buttons.Length - 1;
+                if (newButtonIndex < 0) return;
             } while (buttonsTransforms[selectButtonIndex].anchoredPosition.y != buttonsTransforms[newButtonIndex].anchoredPosition.y);
 
             SelectButton(buttons[newButtonIndex]);
@@ -62,7 +62,7 @@ namespace DC_ARPG
             do
             {
                 newButtonIndex++;
-                if (newButtonIndex >= buttons.Length) newButtonIndex = 0;
+                if (newButtonIndex >= buttons.Length) return;
             } while (buttonsTransforms[selectButtonIndex].anchoredPosition.y != buttonsTransforms[newButtonIndex].anchoredPosition.y);
 
             SelectButton(buttons[newButtonIndex]);
@@ -75,7 +75,7 @@ namespace DC_ARPG
             do
             {
                 newButtonIndex--;
-                if (newButtonIndex < 0) newButtonIndex = buttons.Length - 1;
+                if (newButtonIndex < 0) return;
             } while (buttonsTransforms[selectButtonIndex].anchoredPosition.x != buttonsTransforms[newButtonIndex].anchoredPosition.x);
 
             SelectButton(buttons[newButtonIndex]);
@@ -88,7 +88,8 @@ namespace DC_ARPG
             do
             {
                 newButtonIndex++;
-                if (newButtonIndex >= buttons.Length) newButtonIndex = 0;
+                if (newButtonIndex >= buttons.Length) return;
+
             } while (buttonsTransforms[selectButtonIndex].anchoredPosition.x != buttonsTransforms[newButtonIndex].anchoredPosition.x);
 
             SelectButton(buttons[newButtonIndex]);
