@@ -23,6 +23,10 @@ namespace DC_ARPG
 
         public void RemoveItem()
         {
+            if (m_uiInventory.Player.CheckForwardGridIsEmpty() == false) return;
+
+            m_uiInventory.Player.InstantiateItemContainer(m_inventorySlot.Item);
+
             Inventory.RemoveItemFromInventory(this, m_inventorySlot);
         }
 

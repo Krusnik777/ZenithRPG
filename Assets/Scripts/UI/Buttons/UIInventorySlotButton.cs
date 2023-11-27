@@ -41,6 +41,8 @@ namespace DC_ARPG
             if (m_transitSelectImage.isActiveAndEnabled) m_transitSelectImage.enabled = false;
 
             OnUnselect?.Invoke();
+
+            uiSlot.UIInventory.InfoPanelController.HideInfoPanel();
         }
 
         public void OnButtonUse()

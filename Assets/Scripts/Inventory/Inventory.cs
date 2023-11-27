@@ -29,7 +29,9 @@ namespace DC_ARPG
 
         #endregion
 
-        #region Support Variables
+        #region Support Parameters and Methods
+
+        public int UnlockedPockets = 3;
 
         private IItemSlot m_fromSlot;
 
@@ -94,17 +96,21 @@ namespace DC_ARPG
 
         #region Public Actions with Inventory
 
-        public void TryToAddItem(object sender, IItem item)
+        public bool TryToAddItem(object sender, IItem item)
         {
             if (MainPocket.IsFull)
             {
-                Debug.Log("No place for this item");
-                return;
+                ShortMessage.Instance.ShowMessage("Нет места в инвентаре.");
+                return false;
             }
             var availableSlot = MainPocket.GetEmptySlot();
             availableSlot.TrySetItemInSlot(item.Clone());
 
             EventOnItemAdded?.Invoke();
+
+            ShortMessage.Instance.ShowMessage("Добавлено в инвентарь: " + item.Info.Title);
+
+            return true;
         }
 
         public void TransitFromSlotToSlot(object sender, IItemSlot fromSlot, IItemSlot toSlot)
@@ -151,7 +157,6 @@ namespace DC_ARPG
         {
             if (slot.IsEmpty) return;
 
-            var item = slot.Item;
             slot.ClearSlot();
 
             EventOnItemRemoved?.Invoke(sender, slot);
@@ -283,10 +288,12 @@ namespace DC_ARPG
             {
                 TransitFromSlotToSlot(sender, slot, WeaponItemSlot);
             }
+
             if (slot.Item is MagicItem)
             {
                 TransitFromSlotToSlot(sender, slot, MagicItemSlot);
             }
+
             if (slot.Item is EquipItem)
             {
                 var item = slot.Item as EquipItem;

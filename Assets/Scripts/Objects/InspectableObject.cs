@@ -6,7 +6,7 @@ namespace DC_ARPG
     public class InspectableObject : MonoBehaviour
     {
         public UnityEvent EventOnInspection;
-        public virtual void OnInspection()
+        public virtual void OnInspection(Player player)
         {
             EventOnInspection?.Invoke();
         }

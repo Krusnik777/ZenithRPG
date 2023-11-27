@@ -33,7 +33,13 @@ namespace DC_ARPG
                 m_standardpanel.gameObject.SetActive(true);
                 m_standardpanel.SetInfoPanel(slot);
             }
+        }
 
+        public void HideInfoPanel()
+        {
+            m_standardpanel.gameObject.SetActive(false);
+
+            m_specialpanel.gameObject.SetActive(false);
         }
 
 

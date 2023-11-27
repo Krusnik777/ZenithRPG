@@ -95,6 +95,35 @@ namespace DC_ARPG
             SelectButton(buttons[newButtonIndex]);
         }
 
+        public void UpdateContainer()
+        {
+            var tempButtons = m_buttonsContainer.GetComponentsInChildren<UISelectableButton>();
+
+            if (tempButtons.Length != buttons?.Length)
+            {
+                for (int i = 0; i < buttons.Length; i++)
+                {
+                    buttons[i].EventOnPointerEnter -= OnPointerEnter;
+                }
+
+                buttons = tempButtons;
+
+                buttonsTransforms = new RectTransform[buttons.Length];
+
+                for (int i = 0; i < buttons.Length; i++)
+                {
+                    buttonsTransforms[i] = buttons[i].transform.GetComponent<RectTransform>();
+
+                    buttons[i].EventOnPointerEnter += OnPointerEnter;
+                }
+            }
+
+            if (selectButtonIndex >= buttons.Length)
+            {
+                selectButtonIndex = buttons.Length - 1;
+                buttons[selectButtonIndex].SetFocus();
+            }
+        }
 
         #endregion
 

@@ -4,9 +4,8 @@ using TMPro;
 
 namespace DC_ARPG
 {
-    public class UIStatsTest : MonoBehaviour
+    public class UIStatsTest : MonoBehaviour, IDependency<Character>
     {
-        [SerializeField] private Character m_character;
         [SerializeField] private GameObject m_panel;
 
         [Header("Stats")]
@@ -47,6 +46,9 @@ namespace DC_ARPG
         [SerializeField] private Button m_getMagResExpButton;
         [SerializeField] private Button m_equipWeaponButton;
         [SerializeField] private Button m_equipArmorButton;
+
+        private Character m_character;
+        public void Construct(Character character) => m_character = character;
 
         public void TurnStatsPanel(bool state)
         {

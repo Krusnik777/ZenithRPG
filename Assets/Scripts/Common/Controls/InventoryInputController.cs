@@ -3,10 +3,12 @@ using UnityEngine.InputSystem;
 
 namespace DC_ARPG
 {
-    public class InventoryInputController : MonoBehaviour
+    public class InventoryInputController : MonoBehaviour, IDependency<ControlsManager>
     {
-        [SerializeField] private ControlsManager m_controlsManager;
         [SerializeField] private UIInventory m_uIInventory;
+
+        private ControlsManager m_controlsManager;
+        public void Construct(ControlsManager controlsManager) => m_controlsManager = controlsManager;
 
         private Controls _controls;
 
@@ -18,9 +20,9 @@ namespace DC_ARPG
 
             _controls.Inventory.Enable();
 
-            m_uIInventory.gameObject.SetActive(true);
+            m_buttonContainer = m_uIInventory.UISlotButtonsContainer;
 
-            m_buttonContainer = m_uIInventory.gameObject.GetComponent<UISelectableButtonContainer>();
+            m_uIInventory.ShowInventory();
 
             _controls.Inventory.Cancel.performed += CloseInventory;
             _controls.Inventory.CloseInventory.performed += CloseInventory;
@@ -48,7 +50,7 @@ namespace DC_ARPG
 
         private void CloseInventory(InputAction.CallbackContext obj)
         {
-            m_uIInventory.gameObject.SetActive(false);
+            m_uIInventory.HideInventory();
 
             m_controlsManager.SetPlayerControlsActive(true);
             m_controlsManager.SetInventoryControlsActive(false);
@@ -72,7 +74,10 @@ namespace DC_ARPG
                 return;
             }
 
-            // if !UIInventorySlotButton then another action
+            if (m_buttonContainer.SelectedButton is UIExtraPocketButton)
+            {
+                m_buttonContainer.SelectedButton.OnButtonClick();
+            }
         }
 
         private void OnMoveItem(InputAction.CallbackContext obj)
@@ -88,5 +93,7 @@ namespace DC_ARPG
 
             (m_buttonContainer.SelectedButton as UIInventorySlotButton).OnButtonRemove();
         }
+
+        
     }
 }

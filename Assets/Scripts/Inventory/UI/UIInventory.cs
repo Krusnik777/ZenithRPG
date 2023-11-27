@@ -4,9 +4,9 @@ using TMPro;
 
 namespace DC_ARPG
 {
-    public class UIInventory : MonoBehaviour
+    public class UIInventory : MonoBehaviour, IDependency<Character>, IDependency<Player>
     {
-        [SerializeField] private Character m_character;
+        [SerializeField] private GameObject m_inventoryPanel;
         [Header("Equipment")]
         [SerializeField] private UIInventorySlot m_weaponSlot;
         [SerializeField] private UIInventorySlot m_magicSlot;
@@ -17,6 +17,7 @@ namespace DC_ARPG
         [Header("MainPocket")]
         [SerializeField] private UIInventoryPocket m_mainPocket;
         [Header("ExtraPocket")]
+        [SerializeField] private UIExtraButtonsController m_extraButtonsController;
         [SerializeField] private UIInventoryPocket m_extraPocket;
         [Header("InfoPanel")]
         [SerializeField] private UIItemInfoPanelController m_uiItemInfoPanelController;
@@ -25,29 +26,79 @@ namespace DC_ARPG
         [SerializeField] private TextMeshProUGUI m_attackAmountText;
         public UIItemInfoPanelController InfoPanelController => m_uiItemInfoPanelController;
 
+        private Character m_character;
+        public void Construct(Character character) => m_character = character;
+
+        private Player m_player;
+        public void Construct(Player player) => m_player = player;
+        public Player Player => m_player;
+
         private Inventory m_inventory;
         public Inventory Inventory => m_inventory;
 
         private UIInventorySlot[] m_allUIInventorySlots;
 
-        private void OnEnable()
-        {
-            if (m_inventory == null) m_inventory = m_character.Inventory;
+        private UISelectableButtonContainer m_uiSlotButtonsContainer;
+        public UISelectableButtonContainer UISlotButtonsContainer => m_uiSlotButtonsContainer;
 
-            m_allUIInventorySlots = GetComponentsInChildren<UIInventorySlot>();
+        public void ShowInventory()
+        {
+            m_inventoryPanel.SetActive(true);
+
+            GetAllUIInventorySlots();
+
+            SetInventory();
 
             m_inventory.EventOnItemRemoved += OnItemRemoved;
             m_inventory.EventOnItemUsed += OnItemUsed;
             m_inventory.EventOnTransitCompleted += OnTransitCompleted;
-
-            SetInventory();
         }
 
-        private void OnDisable()
+        public void HideInventory()
         {
+            m_inventoryPanel.SetActive(false);
+
             m_inventory.EventOnItemRemoved -= OnItemRemoved;
             m_inventory.EventOnItemUsed -= OnItemUsed;
             m_inventory.EventOnTransitCompleted -= OnTransitCompleted;
+        }
+
+        public void HideExtraPocket()
+        {
+            m_extraPocket.gameObject.SetActive(false);
+
+            m_uiSlotButtonsContainer.UpdateContainer();
+
+            GetAllUIInventorySlots();
+        }
+
+        public void SetExtraPocket(int index = 0)
+        {
+            if (index >= m_inventory.ExtraPockets.Length)
+            {
+                Debug.LogError("index for SetExtraPocket >= m_inventory.ExtraPockets.Length");
+                return;
+            }
+
+            m_extraPocket.SetSlots(this, m_inventory.ExtraPockets[index]);
+
+            m_extraPocket.gameObject.SetActive(true);
+
+            m_uiSlotButtonsContainer.UpdateContainer();
+
+            GetAllUIInventorySlots();
+        }
+
+        private void GetAllUIInventorySlots()
+        {
+            m_allUIInventorySlots = GetComponentsInChildren<UIInventorySlot>();
+        }
+
+        private void Start()
+        {
+            if (m_inventory == null) m_inventory = m_character.Inventory;
+
+            m_uiSlotButtonsContainer = m_inventoryPanel.GetComponent<UISelectableButtonContainer>();
         }
 
         private void SetInventory()
@@ -70,6 +121,7 @@ namespace DC_ARPG
 
             m_mainPocket.SetSlots(this, m_inventory.MainPocket);
 
+            m_extraButtonsController.SetExtraButtons(this, m_inventory.UnlockedPockets);
 
             UpdateEquipInfo();
         }

@@ -4,9 +4,10 @@ using UnityEngine.InputSystem;
 namespace DC_ARPG
 {
     [RequireComponent(typeof(Player))]
-    public class PlayerInputController : MonoBehaviour
+    public class PlayerInputController : MonoBehaviour, IDependency<ControlsManager>
     {
-        [SerializeField] private ControlsManager m_controlsManager;
+        private ControlsManager m_controlsManager;
+        public void Construct(ControlsManager controlsManager) => m_controlsManager = controlsManager;
 
         private Controls _controls;
         private Player player;

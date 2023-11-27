@@ -3,10 +3,12 @@ using UnityEngine.InputSystem;
 
 namespace DC_ARPG
 {
-    public class MenuInputController : MonoBehaviour
+    public class MenuInputController : MonoBehaviour, IDependency<ControlsManager>
     {
-        [SerializeField] private ControlsManager m_controlsManager;
         [SerializeField] private UIStatsTest m_uiStatsTest;
+
+        private ControlsManager m_controlsManager;
+        public void Construct(ControlsManager controlsManager) => m_controlsManager = controlsManager;
 
         private Controls _controls;
 

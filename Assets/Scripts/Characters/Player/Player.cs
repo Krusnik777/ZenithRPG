@@ -3,12 +3,25 @@ using UnityEngine;
 
 namespace DC_ARPG
 {
-    public class Player : MonoBehaviour
+    public class Player : MonoBehaviour, IDependency<Character>
     {
+        // TEST
+
+        [SerializeField] private GameObject m_itemContainerPrefab;
+        public GameObject ItemContainerPrefab => m_itemContainerPrefab;
+
+        // TEST END
+
         [Header("MovementParameters")]
         [SerializeField] private float m_transitionMoveSpeed = 0.5f;
         [SerializeField] private float m_transitionJumpSpeed = 0.3f;
         [SerializeField] private float m_transitionRotateSpeed = 0.25f;
+
+        private Character m_character;
+        public void Construct(Character character) => m_character = character;
+        public Character Character => m_character;
+
+        #region Parameters
 
         private Vector3 currentDirection;
 
@@ -42,6 +55,12 @@ namespace DC_ARPG
             else return false;
         }
         public bool IsGrounded => GetIsGrounded();
+
+        private Ray m_inspectRay;
+
+        #endregion
+
+        #region PlayerActions
 
         public void Move(Vector3 direction)
         {
@@ -137,13 +156,13 @@ namespace DC_ARPG
                 {
                     if (hit.collider.transform.parent.TryGetComponent(out InspectableObject inspectableObject))
                     {
-                        inspectableObject.OnInspection();
+                        inspectableObject.OnInspection(this);
                         return;
                     }
-                    Debug.Log("Nothing Interesting");
+                    ShortMessage.Instance.ShowMessage("Ничего интересного");
                 }
             }
-            else Debug.Log("Nothing Interesting at all");
+            else ShortMessage.Instance.ShowMessage("Совсем ничего интересного");
         }
 
         public void Attack()
@@ -194,7 +213,6 @@ namespace DC_ARPG
                     };
                     break;
             }
-
         }
 
         public void UseMagic()
@@ -207,13 +225,6 @@ namespace DC_ARPG
             if (inMovement || isJumping) return;
 
             Debug.Log("Rest");
-        }
-
-        public void CheckInventory()
-        {
-            if (inMovement || isJumping) return;
-
-            Debug.Log("Inventory Opened");
         }
 
         public void UseActiveItem()
@@ -238,10 +249,46 @@ namespace DC_ARPG
             Debug.Log("ChangedToRightItem");
         }
 
+        #endregion
+
+        public bool CheckForwardGridIsEmpty()
+        {
+            RaycastHit hit;
+
+            if (Physics.Raycast(m_inspectRay, out hit, 1f))
+            {
+                if (hit.collider && !hit.collider.isTrigger)
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        public void InstantiateItemContainer(IItem item)
+        {
+            var itemContainer = Instantiate(m_itemContainerPrefab, transform.position + transform.forward, Quaternion.identity);
+
+            itemContainer.GetComponent<ItemContainer>().AssignItem(item);
+        }
+
+
         private void Awake()
         {
             m_audioSource = GetComponent<AudioSource>();
             m_animator = GetComponentInChildren<Animator>();
+        }
+
+        private void Update()
+        {
+            // TEMP
+            
+            m_inspectRay = new Ray(transform.position + new Vector3(0, 0.1f, 0), transform.forward);
+
+            #if UNITY_EDITOR
+            Debug.DrawRay(m_inspectRay.origin, m_inspectRay.direction, Color.green);
+            #endif
         }
 
         private void SetMovementAnimations(Vector3 direction, bool value)

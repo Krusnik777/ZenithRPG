@@ -56,10 +56,13 @@ namespace DC_ARPG
             inventory.TryToAddItem(this, usableItems[1]);
 
             inventory.TryToAddItem(this, notUsableItems[0]);
+            inventory.TransitFromSlotToSlot(this, inventory.MainPocket.ItemSlots[8], inventory.ExtraPockets[0].ItemSlots[5]);
 
+            inventory.TryToAddItem(this, usableItems[0]);
+            inventory.TransitFromSlotToSlot(this, inventory.MainPocket.ItemSlots[8], inventory.ExtraPockets[1].ItemSlots[2]);
 
-
-
+            inventory.TryToAddItem(this, magicItems[0]);
+            inventory.TransitFromSlotToSlot(this, inventory.MainPocket.ItemSlots[8], inventory.ExtraPockets[2].ItemSlots[7]);
         }
     }
 }

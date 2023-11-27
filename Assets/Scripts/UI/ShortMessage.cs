@@ -4,7 +4,7 @@ using TMPro;
 
 namespace DC_ARPG
 {
-    public class ShortMessage : MonoBehaviour
+    public class ShortMessage : MonoSingleton<ShortMessage>
     {
         [SerializeField] private GameObject m_shortMessagePanel;
         [SerializeField] private TextMeshProUGUI m_shortMessageText;
@@ -23,7 +23,7 @@ namespace DC_ARPG
 
         private void Start()
         {
-            m_shortMessagePanel.SetActive(false);
+            if (m_shortMessagePanel.activeInHierarchy) m_shortMessagePanel.SetActive(false);
         }
 
         #region Coroutines
