@@ -12,6 +12,8 @@ namespace DC_ARPG
         public int Amount { get => m_amount; set => m_amount = value; }
         public int MaxAmount => m_itemInfo.MaxAmount;
 
+        public int Price => m_itemInfo.Price * m_amount;
+
         public UsableItem(UsableItemInfo info, int amount)
         {
             m_itemInfo = info;

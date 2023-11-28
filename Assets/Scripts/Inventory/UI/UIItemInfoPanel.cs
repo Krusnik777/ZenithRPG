@@ -17,7 +17,7 @@ namespace DC_ARPG
             var item = slot.Item;
 
             m_titleText.text = item.Info.Title;
-            m_priceText.text = item.Info.Price.ToString(); // TEMP
+            m_priceText.text = item.Price.ToString();
 
             if (item is UsableItem || item is NotUsableItem)
             {
@@ -32,7 +32,7 @@ namespace DC_ARPG
                 }
             }
 
-            m_typeIconImage.sprite = slot.ItemInfo.Icon; // TEMP
+            m_typeIconImage.sprite = slot.ItemInfo.ItemTypeIcon;
 
             m_description.text = slot.ItemInfo.Description;
 

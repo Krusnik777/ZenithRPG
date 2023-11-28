@@ -7,6 +7,6 @@ namespace DC_ARPG
     {
         [Header("NotUsableItem")]
         public int MaxAmount;
-        //public ItemEffect ItemEffect;
+        public PassiveEffect PassiveEffect;
     }
 }

@@ -14,7 +14,7 @@ namespace DC_ARPG
             var item = slot.Item;
 
             m_titleText.text = item.Info.Title;
-            m_priceText.text = item.Info.Price.ToString(); // TEMP
+            m_priceText.text = item.Price.ToString();
 
             if (item is WeaponItem)
             {
@@ -50,10 +50,10 @@ namespace DC_ARPG
             {
                 var magicItem = item as MagicItem;
 
-                m_specialInfoParamName.text = "Название магии"; // TEMP
-
                 if (!magicItem.HasInfiniteUses)
                 {
+                    m_specialInfoParamName.text = "Без расхода маны";
+
                     m_amountText.text = magicItem.Uses.ToString();
                     m_amountText.gameObject.SetActive(true);
 
@@ -61,14 +61,16 @@ namespace DC_ARPG
                 }
                 else
                 {
-                    m_specialInfoParamText.text = magicItem.MagicPointsForUse.ToString();
+                    m_specialInfoParamName.text = "Расход маны";
+
+                    m_specialInfoParamText.text = magicItem.MagicPointsForUse.ToString() + " MP";
                     m_specialInfoParamText.gameObject.SetActive(true);
 
                     m_amountText.gameObject.SetActive(false);
                 }
             }
 
-            m_typeIconImage.sprite = slot.ItemInfo.Icon; // TEMP
+            m_typeIconImage.sprite = slot.ItemInfo.ItemTypeIcon;
 
             m_description.text = slot.ItemInfo.Description;
         }

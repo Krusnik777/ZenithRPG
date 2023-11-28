@@ -17,6 +17,8 @@ MonoBehaviour:
   Description: "\u0413\u043E\u0434\u0435\u043D \u0442\u043E\u043B\u044C\u043A\u043E
     \u043E\u0442 \u043C\u0443\u0445 \u043E\u0442\u043C\u0430\u0445\u0438\u0432\u0430\u0442\u044C\u0441\u044F."
   Icon: {fileID: 1622190476, guid: 477fee2de31240a4a910457991d1ca00, type: 3}
+  ItemTypeIcon: {fileID: 21300000, guid: 69916cd2953535846862aa612b70aa65, type: 3}
+  Prefab: {fileID: 5010736486517576525, guid: 3ca53e71b8431dd49a556a2c40d4d54d, type: 3}
   Price: 5
   AttackIncrease: 0
   HasInfiniteUses: 1

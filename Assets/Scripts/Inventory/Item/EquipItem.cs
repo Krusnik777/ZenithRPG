@@ -17,15 +17,17 @@ namespace DC_ARPG
 
         public int DefenseIncrease => m_itemInfo.DefenseIncrease;
 
-        public EquipItem(EquipItemInfo info, int amount = 1)
+        public int Price => m_itemInfo.Price;
+
+        public EquipItem(EquipItemInfo info)
         {
             m_itemInfo = info;
-            itemAmount = amount;
+            itemAmount = defaultAmount;
         }
 
         public IItem Clone()
         {
-            var clonedItem = new EquipItem(m_itemInfo, defaultAmount);
+            var clonedItem = new EquipItem(m_itemInfo);
             return clonedItem;
         }
     }

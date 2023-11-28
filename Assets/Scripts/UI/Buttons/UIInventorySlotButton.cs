@@ -51,6 +51,8 @@ namespace DC_ARPG
 
             uiSlot.UseItem();
 
+            uiSlot.UIInventory.InfoPanelController.ShowInfoPanel(uiSlot.InventorySlot);
+
             OnButtonUseClick?.Invoke();
         }
 
@@ -86,6 +88,8 @@ namespace DC_ARPG
                 m_transitSelectImage.enabled = false;
 
                 ResetTransitImage();
+
+                uiSlot.UIInventory.InfoPanelController.ShowInfoPanel(uiSlot.InventorySlot);
             }
 
             OnButtonMoveClick?.Invoke();

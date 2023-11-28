@@ -25,7 +25,8 @@ namespace DC_ARPG
         {
             if (m_uiInventory.Player.CheckForwardGridIsEmpty() == false) return;
 
-            m_uiInventory.Player.InstantiateItemContainer(m_inventorySlot.Item);
+            var itemContainer = Instantiate(m_inventorySlot.Item.Info.Prefab, m_uiInventory.Player.transform.position + m_uiInventory.Player.transform.forward, Quaternion.identity);
+            itemContainer.GetComponent<ItemContainer>().AssignItem(m_inventorySlot.Item);
 
             Inventory.RemoveItemFromInventory(this, m_inventorySlot);
         }
@@ -62,6 +63,10 @@ namespace DC_ARPG
                     {
                         m_itemAmountText.text = item.Amount.ToString();
                         m_itemAmountText.gameObject.SetActive(true);
+                    }
+                    else
+                    {
+                        m_itemAmountText.gameObject.SetActive(false);
                     }
 
                     return;

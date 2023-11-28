@@ -19,5 +19,9 @@ MonoBehaviour:
     \u0438\u0441\u043F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u043D\u0438\u044F
     \u043B\u043E\u043C\u0430\u0435\u0442\u0441\u044F."
   Icon: {fileID: 107725922, guid: 477fee2de31240a4a910457991d1ca00, type: 3}
+  ItemTypeIcon: {fileID: 21300000, guid: e7d8422b8e6803e4c8aaa09549050b99, type: 3}
+  Prefab: {fileID: 5010736486517576525, guid: 3ca53e71b8431dd49a556a2c40d4d54d, type: 3}
   Price: 0
   MaxAmount: 99
+  UseEffect:
+    m_useEffect: 1

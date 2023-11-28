@@ -22,7 +22,7 @@ namespace DC_ARPG
 
         #region Events
 
-        public event UnityAction EventOnItemAdded;
+        public event UnityAction<object, IItemSlot> EventOnItemAdded;
         public event UnityAction<object, IItemSlot> EventOnItemUsed;
         public event UnityAction<object, IItemSlot> EventOnItemRemoved;
         public event UnityAction<object, IItemSlot, IItemSlot> EventOnTransitCompleted;
@@ -30,6 +30,10 @@ namespace DC_ARPG
         #endregion
 
         #region Support Parameters and Methods
+
+        private Player m_player;
+        public Player ParentPlayer => m_player;
+        public Character ParentCharacter => m_player.Character;
 
         public int UnlockedPockets = 3;
 
@@ -44,6 +48,11 @@ namespace DC_ARPG
         {
             TransitFromSlotToSlot(sender, m_fromSlot, toSlot);
             m_fromSlot = null;
+        }
+
+        public void SetParent(Player player)
+        {
+            m_player = player;
         }
 
         #endregion
@@ -106,7 +115,7 @@ namespace DC_ARPG
             var availableSlot = MainPocket.GetEmptySlot();
             availableSlot.TrySetItemInSlot(item.Clone());
 
-            EventOnItemAdded?.Invoke();
+            EventOnItemAdded?.Invoke(sender, availableSlot);
 
             ShortMessage.Instance.ShowMessage("Добавлено в инвентарь: " + item.Info.Title);
 
@@ -174,9 +183,7 @@ namespace DC_ARPG
 
             if (slot.Item is UsableItem)
             {
-                //slot.Item.Use();
-                slot.Item.Amount--;
-                Debug.Log("ItemUsed");
+                (slot.ItemInfo as UsableItemInfo).UseEffect.Use(m_player, slot.Item);
 
                 if (slot.Item.Amount <= 0)
                 {

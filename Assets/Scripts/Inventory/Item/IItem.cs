@@ -6,6 +6,8 @@ namespace DC_ARPG
         int Amount { get; set; }
         int MaxAmount { get; }
 
+        int Price { get; }
+
         IItem Clone();
     }
 }

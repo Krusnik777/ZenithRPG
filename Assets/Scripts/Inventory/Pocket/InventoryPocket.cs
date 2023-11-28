@@ -21,6 +21,7 @@ namespace DC_ARPG
             for (int i = 0; i < ItemSlots.Length; i++)
             {
                 ItemSlots[i] = new AnyItemSlot();
+                ItemSlots[i].SetParent(this);
             }
             Type = type;
         }
@@ -61,6 +62,19 @@ namespace DC_ARPG
             {
                 if (ItemSlots[i].IsEmpty)
                     return ItemSlots[i];
+            }
+            return null;
+        }
+
+        public IItemSlot FindSlot(PassiveEffect.PassiveType passiveEffect)
+        {
+            foreach (var slot in ItemSlots)
+            {
+                if (slot.Item is NotUsableItem)
+                {
+                    if ((slot.ItemInfo as NotUsableItemInfo).PassiveEffect.EffectType == passiveEffect)
+                        return slot;
+                }
             }
             return null;
         }

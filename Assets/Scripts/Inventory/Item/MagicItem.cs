@@ -21,16 +21,18 @@ namespace DC_ARPG
         public int MagicPointsForUse => m_itemInfo.MagicPointsForUse;
         public bool HasInfiniteUses => m_itemInfo.HasInfiniteUses;
 
-        public MagicItem(MagicItemInfo info, int uses, int amount = 1)
+        public int Price => m_itemInfo.Price;
+
+        public MagicItem(MagicItemInfo info, int uses)
         {
             m_itemInfo = info;
             m_uses = uses;
-            itemAmount = amount;
+            itemAmount = defaultAmount;
         }
 
         public IItem Clone()
         {
-            var clonedItem = new MagicItem(m_itemInfo, m_uses, defaultAmount);
+            var clonedItem = new MagicItem(m_itemInfo, m_uses);
             return clonedItem;
         }
     }

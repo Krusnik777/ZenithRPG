@@ -29,6 +29,7 @@ namespace DC_ARPG
         public void AssignItem(IItem item)
         {
             m_item = item.Clone();
+            
         }
 
         private void Start()

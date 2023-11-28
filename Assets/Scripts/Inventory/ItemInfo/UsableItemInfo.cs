@@ -7,6 +7,6 @@ namespace DC_ARPG
     {
         [Header("UsableItem")]
         public int MaxAmount;
-        //public UseEffect UseEffect;
+        public UseEffect UseEffect;
     }
 }

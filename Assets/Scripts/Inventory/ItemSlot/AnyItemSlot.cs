@@ -11,6 +11,10 @@ namespace DC_ARPG
         public bool IsEmpty => Item == null;
         public bool IsFull => !IsEmpty && Amount >= Capacity;
 
+        private InventoryPocket m_parentPocket;
+
+        public InventoryPocket ParentPocket => m_parentPocket;
+
         public bool TrySetItemInSlot(IItem item)
         {
             if (!IsEmpty) return false;
@@ -32,6 +36,11 @@ namespace DC_ARPG
             ClearSlot();
 
             return TrySetItemInSlot(item);
+        }
+
+        public void SetParent(InventoryPocket parentPocket)
+        {
+            m_parentPocket = parentPocket;
         }
     }
 }

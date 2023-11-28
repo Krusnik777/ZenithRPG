@@ -4,7 +4,7 @@ using TMPro;
 
 namespace DC_ARPG
 {
-    public class UIInventory : MonoBehaviour, IDependency<Character>, IDependency<Player>
+    public class UIInventory : MonoBehaviour, IDependency<Player>
     {
         [SerializeField] private GameObject m_inventoryPanel;
         [Header("Equipment")]
@@ -25,9 +25,6 @@ namespace DC_ARPG
         [SerializeField] private TextMeshProUGUI m_defenseAmountText;
         [SerializeField] private TextMeshProUGUI m_attackAmountText;
         public UIItemInfoPanelController InfoPanelController => m_uiItemInfoPanelController;
-
-        private Character m_character;
-        public void Construct(Character character) => m_character = character;
 
         private Player m_player;
         public void Construct(Player player) => m_player = player;
@@ -96,7 +93,9 @@ namespace DC_ARPG
 
         private void Start()
         {
-            if (m_inventory == null) m_inventory = m_character.Inventory;
+            if (m_inventory == null) m_inventory = m_player.Character.Inventory;
+
+            m_inventory.SetParent(m_player);
 
             m_uiSlotButtonsContainer = m_inventoryPanel.GetComponent<UISelectableButtonContainer>();
         }

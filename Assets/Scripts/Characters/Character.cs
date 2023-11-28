@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace DC_ARPG
 {
-    public class Character : MonoBehaviour
+    public class Character : MonoBehaviour, IDependency<Player>
     {
         [SerializeField] private PlayerStatsInfo m_playerStatsInfo;
         private PlayerStats playerStats;
@@ -10,6 +10,9 @@ namespace DC_ARPG
 
         private Inventory inventory;
         public Inventory Inventory => inventory;
+
+        private Player m_player;
+        public void Construct(Player player) => m_player = player;
 
         // TEST
         [SerializeField] private NotUsableItem[] notUsableItems;
@@ -25,7 +28,28 @@ namespace DC_ARPG
             playerStats.InitStats(m_playerStatsInfo);
 
             inventory = new Inventory(3, 9, 3);
+
+            playerStats.EventOnDeath += OnDeath;
         }
+
+        private void OnDestroy()
+        {
+            playerStats.EventOnDeath -= OnDeath;
+        }
+
+        private void OnDeath()
+        {
+            var slot = inventory.MainPocket.FindSlot(PassiveEffect.PassiveType.Revival);
+
+            if (slot != null)
+            {
+                (slot.ItemInfo as NotUsableItemInfo).PassiveEffect.GetEffect(m_player, slot);
+                return;
+            }
+
+            Debug.Log("Game Over");
+        }
+
 
         private void Start()
         {
@@ -64,5 +88,6 @@ namespace DC_ARPG
             inventory.TryToAddItem(this, magicItems[0]);
             inventory.TransitFromSlotToSlot(this, inventory.MainPocket.ItemSlots[8], inventory.ExtraPockets[2].ItemSlots[7]);
         }
+
     }
 }

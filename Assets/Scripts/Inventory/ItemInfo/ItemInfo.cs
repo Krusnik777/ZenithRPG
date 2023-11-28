@@ -9,6 +9,8 @@ namespace DC_ARPG
         public string Title;
         [TextArea(1,5)]public string Description;
         public Sprite Icon;
+        public Sprite ItemTypeIcon;
+        public GameObject Prefab;
         public int Price;
     }
 }

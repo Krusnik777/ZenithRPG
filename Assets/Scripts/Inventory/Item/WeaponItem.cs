@@ -21,16 +21,18 @@ namespace DC_ARPG
         public int AttackIncrease => m_itemInfo.AttackIncrease;
         public bool HasInfiniteUses => m_itemInfo.HasInfiniteUses;
 
-        public WeaponItem(WeaponItemInfo info, int uses, int amount = 1)
+        public int Price => m_itemInfo.Price;
+
+        public WeaponItem(WeaponItemInfo info, int uses)
         {
             m_itemInfo = info;
             m_uses = uses;
-            itemAmount = amount;
+            itemAmount = defaultAmount;
         }
 
         public IItem Clone()
         {
-            var clonedItem = new WeaponItem(m_itemInfo, m_uses, defaultAmount);
+            var clonedItem = new WeaponItem(m_itemInfo, m_uses);
             return clonedItem;
         }
     }

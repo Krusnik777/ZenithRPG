@@ -5,13 +5,6 @@ namespace DC_ARPG
 {
     public class Player : MonoBehaviour, IDependency<Character>
     {
-        // TEST
-
-        [SerializeField] private GameObject m_itemContainerPrefab;
-        public GameObject ItemContainerPrefab => m_itemContainerPrefab;
-
-        // TEST END
-
         [Header("MovementParameters")]
         [SerializeField] private float m_transitionMoveSpeed = 0.5f;
         [SerializeField] private float m_transitionJumpSpeed = 0.3f;
@@ -56,7 +49,7 @@ namespace DC_ARPG
         }
         public bool IsGrounded => GetIsGrounded();
 
-        private Ray m_inspectRay;
+        private Ray m_lookRay;
 
         #endregion
 
@@ -255,7 +248,7 @@ namespace DC_ARPG
         {
             RaycastHit hit;
 
-            if (Physics.Raycast(m_inspectRay, out hit, 1f))
+            if (Physics.Raycast(m_lookRay, out hit, 1f))
             {
                 if (hit.collider && !hit.collider.isTrigger)
                 {
@@ -265,14 +258,6 @@ namespace DC_ARPG
 
             return true;
         }
-
-        public void InstantiateItemContainer(IItem item)
-        {
-            var itemContainer = Instantiate(m_itemContainerPrefab, transform.position + transform.forward, Quaternion.identity);
-
-            itemContainer.GetComponent<ItemContainer>().AssignItem(item);
-        }
-
 
         private void Awake()
         {
@@ -284,10 +269,10 @@ namespace DC_ARPG
         {
             // TEMP
             
-            m_inspectRay = new Ray(transform.position + new Vector3(0, 0.1f, 0), transform.forward);
+            m_lookRay = new Ray(transform.position + new Vector3(0, 0.1f, 0), transform.forward);
 
             #if UNITY_EDITOR
-            Debug.DrawRay(m_inspectRay.origin, m_inspectRay.direction, Color.green);
+            Debug.DrawRay(m_lookRay.origin, m_lookRay.direction, Color.green);
             #endif
         }
 
