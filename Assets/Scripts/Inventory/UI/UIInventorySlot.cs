@@ -23,12 +23,36 @@ namespace DC_ARPG
 
         public void RemoveItem()
         {
-            if (m_uiInventory.Player.CheckForwardGridIsEmpty() == false) return;
+            if (m_uiInventory.Player.CheckForwardGridIsEmpty() == true)
+            {
+                var itemContainer = Instantiate(m_inventorySlot.Item.Info.Prefab, m_uiInventory.Player.transform.position + m_uiInventory.Player.transform.forward, Quaternion.identity);
+                itemContainer.GetComponent<ItemContainer>().AssignItem(m_inventorySlot.Item);
 
-            var itemContainer = Instantiate(m_inventorySlot.Item.Info.Prefab, m_uiInventory.Player.transform.position + m_uiInventory.Player.transform.forward, Quaternion.identity);
-            itemContainer.GetComponent<ItemContainer>().AssignItem(m_inventorySlot.Item);
+                Inventory.RemoveItemFromInventory(this, m_inventorySlot);
+            }
+            else
+            {
+                var potentialItemContainer = m_uiInventory.Player.CheckForwardGridForInsectableObject();
 
-            Inventory.RemoveItemFromInventory(this, m_inventorySlot);
+                if (potentialItemContainer is Chest)
+                {
+                    var chest = potentialItemContainer as Chest;
+
+                    if (chest.Item != null)
+                    {
+                        ShortMessage.Instance.ShowMessage("Больше нет места.");
+                        return;
+                    }
+
+                    chest.AssignItem(m_inventorySlot.Item);
+
+                    Inventory.RemoveItemFromInventory(this, m_inventorySlot);
+
+                    return;
+                }
+
+                ShortMessage.Instance.ShowMessage("Некуда класть.");
+            }  
         }
 
         public void StartTransit()

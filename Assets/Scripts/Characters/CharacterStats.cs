@@ -28,6 +28,7 @@ namespace DC_ARPG
 
         public event UnityAction EventOnHitPointsChange;
         public event UnityAction EventOnDeath;
+        public event UnityAction EventOnMagicPointsChange;
 
         #endregion
 
@@ -71,6 +72,17 @@ namespace DC_ARPG
             }
 
             EventOnHitPointsChange?.Invoke();
+        }
+
+        public bool TryUseMagicPoints(int magicPoints)
+        {
+            if (CurrentMagicPoints - magicPoints < 0) return false;
+
+            CurrentMagicPoints -= magicPoints;
+
+            EventOnMagicPointsChange?.Invoke();
+
+            return true;
         }
     }
 }

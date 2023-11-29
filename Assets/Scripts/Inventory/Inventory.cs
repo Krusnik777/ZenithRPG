@@ -33,7 +33,7 @@ namespace DC_ARPG
 
         private Player m_player;
         public Player ParentPlayer => m_player;
-        public Character ParentCharacter => m_player.Character;
+        public PlayerCharacter ParentCharacter => m_player.Character;
 
         public int UnlockedPockets = 3;
 
@@ -81,10 +81,10 @@ namespace DC_ARPG
 
         #region Public GetMethods
 
-        public IItem GetEquippedWeapon() => WeaponItemSlot.Item;
-        public IItem GetEquippedArmor() => ArmorItemSlot.Item;
-        public IItem GetEquippedShield() => ShieldItemSlot.Item;
-        public IItem GetEquippedMagicItem() => MagicItemSlot.Item;
+        public WeaponItem GetEquippedWeapon() => WeaponItemSlot.Item as WeaponItem;
+        public EquipItem GetEquippedArmor() => ArmorItemSlot.Item as EquipItem;
+        public EquipItem GetEquippedShield() => ShieldItemSlot.Item as EquipItem;
+        public MagicItem GetEquippedMagicItem() => MagicItemSlot.Item as MagicItem;
 
         public IItem[] GetAllItemsInPocket(InventoryPocket pocket) => pocket.GetAllItems();
 
@@ -117,7 +117,7 @@ namespace DC_ARPG
 
             EventOnItemAdded?.Invoke(sender, availableSlot);
 
-            ShortMessage.Instance.ShowMessage("Добавлено в инвентарь: " + item.Info.Title);
+            ShortMessage.Instance.ShowMessage("Добавлено в инвентарь: " + item.Info.Title + ".");
 
             return true;
         }
@@ -237,6 +237,8 @@ namespace DC_ARPG
 
         private void HandleTransitFromSlotToSlot(object sender, IItemSlot fromSlot, IItemSlot toSlot)
         {
+            if (fromSlot == toSlot) return;
+
             if (!toSlot.IsEmpty && toSlot.ItemInfo == fromSlot.ItemInfo)
             {
                 var slotCapacity = toSlot.Capacity;

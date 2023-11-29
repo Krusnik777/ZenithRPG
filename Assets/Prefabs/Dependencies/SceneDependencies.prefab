@@ -1,5 +1,50 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &827443842768865359
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5806365307792958396}
+  - component: {fileID: 3554854585991305212}
+  m_Layer: 0
+  m_Name: AvailableMagic
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5806365307792958396
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 827443842768865359}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 35800482980028778}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3554854585991305212
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 827443842768865359}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0c62009ad67d1842ac5ee2b2ed66bd2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_fireBallPrefab: {fileID: 6504091377025521423, guid: 5bd85481b69615d4c9146872fe290af5, type: 3}
 --- !u!1 &4149430568273459097
 GameObject:
   m_ObjectHideFlags: 0
@@ -48,6 +93,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81c1f23bad327b14d91a725d4e67c6de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_player: {fileID: 0}
   m_playerCharacter: {fileID: 1090631830285505044}
   m_controlsManager: {fileID: 9094901245772451090}
 --- !u!1 &5689747224736265268
@@ -217,7 +263,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 5806365307792958396}
   m_Father: {fileID: 4079432220239866631}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1090631830285505044
@@ -229,20 +276,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 8994156495522218892}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 65981883c6c88174cb8a534b6e5186d6, type: 3}
+  m_Script: {fileID: 11500000, guid: 6eaa7bcc86e98e9478e05ee21b2c8239, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_playerStatsInfo: {fileID: 11400000, guid: fd46a6466bdcabb4cb5d41de891b793c, type: 2}
+  m_magic: {fileID: 3554854585991305212}
   notUsableItems:
   - m_itemInfo: {fileID: 11400000, guid: cf2f4a2b8c48efd429d56e8e72931749, type: 2}
     m_amount: 3
   - m_itemInfo: {fileID: 11400000, guid: dda5bd3912eaaef4f90f3bf6425a406f, type: 2}
     m_amount: 1
   usableItems:
-  - m_itemInfo: {fileID: 11400000, guid: ba0c1000f3fdf72459c20fa7a2a7b597, type: 2}
-    m_amount: 10
   - m_itemInfo: {fileID: 11400000, guid: 097fda4fc58e48a4fbb25f7ac89563d4, type: 2}
     m_amount: 20
+  - m_itemInfo: {fileID: 11400000, guid: ba0c1000f3fdf72459c20fa7a2a7b597, type: 2}
+    m_amount: 30
   armorItems:
   - m_itemInfo: {fileID: 11400000, guid: 525e1e509c81eaf40aa34b2c3319672d, type: 2}
   - m_itemInfo: {fileID: 11400000, guid: 864f9785d77d2cf40aade483bb0e03a7, type: 2}
@@ -256,6 +304,6 @@ MonoBehaviour:
     m_uses: 40
   magicItems:
   - m_itemInfo: {fileID: 11400000, guid: 60e68b13b98adce439adff0fcc276610, type: 2}
-    m_uses: 20
+    m_uses: 22
   - m_itemInfo: {fileID: 11400000, guid: c91de874e23868848ade651b48a1acd8, type: 2}
     m_uses: 0

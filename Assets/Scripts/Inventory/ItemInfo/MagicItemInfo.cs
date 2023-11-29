@@ -6,7 +6,7 @@ namespace DC_ARPG
     public class MagicItemInfo : ItemInfo
     {
         [Header("MagicItem")]
-        //public MagicType Magic;
+        public MagicEffect Magic;
         public bool HasInfiniteUses;
         public int MagicPointsForUse;
     }

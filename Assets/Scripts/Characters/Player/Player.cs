@@ -3,16 +3,16 @@ using UnityEngine;
 
 namespace DC_ARPG
 {
-    public class Player : MonoBehaviour, IDependency<Character>
+    public class Player : MonoBehaviour, IDependency<PlayerCharacter>
     {
         [Header("MovementParameters")]
         [SerializeField] private float m_transitionMoveSpeed = 0.5f;
         [SerializeField] private float m_transitionJumpSpeed = 0.3f;
         [SerializeField] private float m_transitionRotateSpeed = 0.25f;
 
-        private Character m_character;
-        public void Construct(Character character) => m_character = character;
-        public Character Character => m_character;
+        private PlayerCharacter m_character;
+        public void Construct(PlayerCharacter character) => m_character = character;
+        public PlayerCharacter Character => m_character;
 
         #region Parameters
 
@@ -94,7 +94,7 @@ namespace DC_ARPG
 
                 if (Physics.Raycast(upRay, out upHit, 1.0f))
                 {
-                    if (upHit.collider) return;
+                    if (upHit.collider && !upHit.collider.isTrigger) return;
                 }
 
                 StartCoroutine(JumpUp());
@@ -135,27 +135,16 @@ namespace DC_ARPG
         {
             if (!inIdleState) return;
 
-            Ray inspectRay = new Ray(transform.position + new Vector3(0, 0.1f, 0), transform.forward);
+            var inspectableObject = CheckForwardGridForInsectableObject();
 
-            #if UNITY_EDITOR
-            Debug.DrawRay(inspectRay.origin, inspectRay.direction, Color.blue);
-            #endif
-
-            RaycastHit hit;
-
-            if (Physics.Raycast(inspectRay, out hit, 1f))
+            if (inspectableObject != null)
             {
-                if (hit.collider)
-                {
-                    if (hit.collider.transform.parent.TryGetComponent(out InspectableObject inspectableObject))
-                    {
-                        inspectableObject.OnInspection(this);
-                        return;
-                    }
-                    ShortMessage.Instance.ShowMessage("Ничего интересного");
-                }
+                inspectableObject.OnInspection(this);
             }
-            else ShortMessage.Instance.ShowMessage("Совсем ничего интересного");
+            else
+            {
+                ShortMessage.Instance.ShowMessage("Ничего интересного.");
+            }
         }
 
         public void Attack()
@@ -210,19 +199,23 @@ namespace DC_ARPG
 
         public void UseMagic()
         {
-            Debug.Log("UsedMagic");
+            if (!inIdleState) return;
+
+            if (Character.Inventory.MagicItemSlot.IsEmpty) return;
+
+            (Character.Inventory.GetEquippedMagicItem().Info as MagicItemInfo).Magic.Use(this, Character.Inventory.GetEquippedMagicItem());
         }
 
         public void Rest()
         {
-            if (inMovement || isJumping) return;
+            if (!inIdleState) return;
 
             Debug.Log("Rest");
         }
 
         public void UseActiveItem()
         {
-            if (inMovement || isJumping) return;
+            if (!inIdleState) return;
 
             Debug.Log("Used Item");
         }
@@ -243,6 +236,23 @@ namespace DC_ARPG
         }
 
         #endregion
+
+        public InspectableObject CheckForwardGridForInsectableObject()
+        {
+            RaycastHit hit;
+
+            if (Physics.Raycast(m_lookRay, out hit, 1f))
+            {
+                if (hit.collider != null)
+                {
+                    if (hit.collider.transform.parent.TryGetComponent(out InspectableObject inspectableObject))
+                    {
+                        return inspectableObject;
+                    }
+                }
+            }
+            return null;
+        }
 
         public bool CheckForwardGridIsEmpty()
         {
@@ -267,8 +277,6 @@ namespace DC_ARPG
 
         private void Update()
         {
-            // TEMP
-            
             m_lookRay = new Ray(transform.position + new Vector3(0, 0.1f, 0), transform.forward);
 
             #if UNITY_EDITOR

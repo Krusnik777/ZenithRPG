@@ -2,9 +2,12 @@ using UnityEngine;
 
 namespace DC_ARPG
 {
-    public class Character : MonoBehaviour, IDependency<Player>
+    public class PlayerCharacter : MonoBehaviour, IDependency<Player>
     {
         [SerializeField] private PlayerStatsInfo m_playerStatsInfo;
+        [SerializeField] private Magic m_availableMagic;
+        public Magic AvailableMagic => m_availableMagic;
+
         private PlayerStats playerStats;
         public PlayerStats PlayerStats => playerStats;
 

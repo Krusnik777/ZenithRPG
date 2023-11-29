@@ -7,21 +7,21 @@ namespace DC_ARPG
         [SerializeField] private ItemInfo m_itemInfo;
         [SerializeField] private int m_amount;
 
-        private IItem m_item;
+        protected IItem m_item;
 
         public override void OnInspection(Player player)
         {
-            base.OnInspection(player);
-
             if (m_item == null)
             {
-                ShortMessage.Instance.ShowMessage("Пусто");
+                ShortMessage.Instance.ShowMessage("Пусто.");
                 Destroy(gameObject);
                 return;
             }
 
             if (player.Character.Inventory.TryToAddItem(this, m_item) == true)
             {
+                base.OnInspection(player);
+
                 Destroy(gameObject);
             }
         }
@@ -29,7 +29,6 @@ namespace DC_ARPG
         public void AssignItem(IItem item)
         {
             m_item = item.Clone();
-            
         }
 
         private void Start()
@@ -39,6 +38,10 @@ namespace DC_ARPG
 
         private IItem CreateItem()
         {
+            if (m_itemInfo == null) return null;
+
+            if (m_amount <= 0) m_amount = 1;
+
             if (m_itemInfo is UsableItemInfo) return new UsableItem(m_itemInfo as UsableItemInfo, m_amount);
 
             if (m_itemInfo is NotUsableItemInfo) return new NotUsableItem(m_itemInfo as NotUsableItemInfo, m_amount);
