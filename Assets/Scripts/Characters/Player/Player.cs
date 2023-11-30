@@ -203,7 +203,7 @@ namespace DC_ARPG
 
             if (Character.Inventory.MagicItemSlot.IsEmpty) return;
 
-            (Character.Inventory.GetEquippedMagicItem().Info as MagicItemInfo).Magic.Use(this, Character.Inventory.GetEquippedMagicItem());
+            Character.Inventory.MagicItemSlot.UseMagic(this, this);
         }
 
         public void Rest()
@@ -217,22 +217,22 @@ namespace DC_ARPG
         {
             if (!inIdleState) return;
 
-            Debug.Log("Used Item");
+            Character.Inventory.UseItem(this, Character.Inventory.ActiveItemSlot);
         }
 
         public void ChooseLeftActiveItem()
         {
-            Debug.Log("ChangedToLeftItem");
+            Character.Inventory.SetActiveItemSlot(this, 0);
         }
 
         public void ChooseMiddleActiveItem()
         {
-            Debug.Log("ChangedToMiddleItem");
+            Character.Inventory.SetActiveItemSlot(this, 1);
         }
 
         public void ChooseRightActiveItem()
         {
-            Debug.Log("ChangedToRightItem");
+            Character.Inventory.SetActiveItemSlot(this, 2);
         }
 
         #endregion

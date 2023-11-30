@@ -7,6 +7,7 @@ namespace DC_ARPG
     public class UIInventory : MonoBehaviour, IDependency<Player>
     {
         [SerializeField] private GameObject m_inventoryPanel;
+        [SerializeField] private ItemsPanel m_itemsPanel;
         [Header("Equipment")]
         [SerializeField] private UIInventorySlot m_weaponSlot;
         [SerializeField] private UIInventorySlot m_magicSlot;
@@ -21,10 +22,13 @@ namespace DC_ARPG
         [SerializeField] private UIInventoryPocket m_extraPocket;
         [Header("InfoPanel")]
         [SerializeField] private UIItemInfoPanelController m_uiItemInfoPanelController;
+        [SerializeField] private UIInventoryButtonsPanel m_uIInventoryButtonsPanel;
         [Header("EquipInfo")]
         [SerializeField] private TextMeshProUGUI m_defenseAmountText;
         [SerializeField] private TextMeshProUGUI m_attackAmountText;
+        
         public UIItemInfoPanelController InfoPanelController => m_uiItemInfoPanelController;
+        public UIInventoryButtonsPanel ButtonsInfoPanel => m_uIInventoryButtonsPanel;
 
         private Player m_player;
         public void Construct(Player player) => m_player = player;
@@ -40,24 +44,20 @@ namespace DC_ARPG
 
         public void ShowInventory()
         {
-            m_inventoryPanel.SetActive(true);
+            m_itemsPanel.TurnPanel(false);
 
-            GetAllUIInventorySlots();
+            m_inventoryPanel.SetActive(true);
 
             SetInventory();
 
-            m_inventory.EventOnItemRemoved += OnItemRemoved;
-            m_inventory.EventOnItemUsed += OnItemUsed;
-            m_inventory.EventOnTransitCompleted += OnTransitCompleted;
+            GetAllUIInventorySlots();
         }
 
         public void HideInventory()
         {
             m_inventoryPanel.SetActive(false);
 
-            m_inventory.EventOnItemRemoved -= OnItemRemoved;
-            m_inventory.EventOnItemUsed -= OnItemUsed;
-            m_inventory.EventOnTransitCompleted -= OnTransitCompleted;
+            m_itemsPanel.TurnPanel(true);
         }
 
         public void HideExtraPocket()
@@ -98,6 +98,23 @@ namespace DC_ARPG
             m_inventory.SetParent(m_player);
 
             m_uiSlotButtonsContainer = m_inventoryPanel.GetComponent<UISelectableButtonContainer>();
+
+            SetInventory();
+
+            m_itemsPanel.SetPanel(this);
+
+            m_inventory.EventOnItemAdded += OnItemAdded;
+            m_inventory.EventOnItemRemoved += OnItemRemoved;
+            m_inventory.EventOnItemUsed += OnItemUsed;
+            m_inventory.EventOnTransitCompleted += OnTransitCompleted;
+        }
+
+        private void OnDestroy()
+        {
+            m_inventory.EventOnItemAdded -= OnItemAdded;
+            m_inventory.EventOnItemRemoved -= OnItemRemoved;
+            m_inventory.EventOnItemUsed -= OnItemUsed;
+            m_inventory.EventOnTransitCompleted -= OnTransitCompleted;
         }
 
         private void SetInventory()
@@ -125,6 +142,11 @@ namespace DC_ARPG
             UpdateEquipInfo();
         }
 
+        private void OnItemAdded(object sender, IItemSlot slot)
+        {
+            FindAndSetSlot(slot);
+        }
+
         private void OnItemRemoved(object sender, IItemSlot slot)
         {
             FindAndSetSlot(slot);
@@ -143,13 +165,18 @@ namespace DC_ARPG
             FindAndSetSlot(fromSlot);
             FindAndSetSlot(toSlot);
 
-            if (fromSlot == m_inventory.WeaponItemSlot || toSlot == m_inventory.WeaponItemSlot) UpdateWeaponInfo();
+            if (fromSlot == m_inventory.WeaponItemSlot || toSlot == m_inventory.WeaponItemSlot)
+                UpdateWeaponInfo();
+
             if (fromSlot == m_inventory.ArmorItemSlot || toSlot == m_inventory.ArmorItemSlot ||
-                fromSlot == m_inventory.ShieldItemSlot || toSlot == m_inventory.ShieldItemSlot) UpdateDefenseInfo();
+                fromSlot == m_inventory.ShieldItemSlot || toSlot == m_inventory.ShieldItemSlot)
+                UpdateDefenseInfo();
         }
 
         private void FindAndSetSlot(IItemSlot slot)
         {
+            if (m_allUIInventorySlots == null) return;
+
             foreach (var checkSlot in m_allUIInventorySlots)
             {
                 if (checkSlot.InventorySlot == slot)

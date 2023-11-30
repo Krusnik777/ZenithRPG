@@ -1,3 +1,5 @@
+using UnityEngine.Events;
+
 namespace DC_ARPG
 {
     public class MagicItemSlot : IItemSlot
@@ -10,6 +12,8 @@ namespace DC_ARPG
 
         public bool IsEmpty => Item == null;
         public bool IsFull => !IsEmpty && Amount >= Capacity;
+
+        public event UnityAction<object, MagicItem> EventOnMagicUsed;
 
         public bool TrySetItemInSlot(IItem item)
         {
@@ -44,6 +48,13 @@ namespace DC_ARPG
             ClearSlot();
 
             return TrySetItemInSlot(item);
+        }
+
+        public void UseMagic(object sender,Player player)
+        {
+            (ItemInfo as MagicItemInfo).Magic.Use(player, Item as MagicItem);
+
+            EventOnMagicUsed?.Invoke(sender, Item as MagicItem);
         }
     }
 }

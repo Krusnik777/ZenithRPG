@@ -198,7 +198,7 @@ namespace DC_ARPG
 
         #endregion
 
-        #region MethodsForStatsChecks
+        #region MethodsForStatsExperience
 
         public void AddExperience(int experience)
         {

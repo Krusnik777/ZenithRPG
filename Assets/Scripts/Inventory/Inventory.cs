@@ -14,6 +14,7 @@ namespace DC_ARPG
         public MagicItemSlot MagicItemSlot { get; private set; }
 
         public UsableItemSlot[] UsableItemSlots { get; private set; }
+        public UsableItemSlot ActiveItemSlot { get; private set; }
 
         public InventoryPocket MainPocket { get; private set;  }
         public InventoryPocket[] ExtraPockets { get; private set; }
@@ -26,6 +27,8 @@ namespace DC_ARPG
         public event UnityAction<object, IItemSlot> EventOnItemUsed;
         public event UnityAction<object, IItemSlot> EventOnItemRemoved;
         public event UnityAction<object, IItemSlot, IItemSlot> EventOnTransitCompleted;
+
+        public event UnityAction<object, int> EventOnActiveItemChanged;
 
         #endregion
 
@@ -55,6 +58,13 @@ namespace DC_ARPG
             m_player = player;
         }
 
+        public void SetActiveItemSlot(object sender, int slotNumber)
+        {
+            ActiveItemSlot = UsableItemSlots[slotNumber];
+
+            EventOnActiveItemChanged?.Invoke(sender, slotNumber);
+        }
+
         #endregion
 
         public Inventory(int extraPocketsAmount = 3, int itemSlotsAmountInPocket = 9, int usableItemSlotsAmount = 3)
@@ -69,6 +79,8 @@ namespace DC_ARPG
             {
                 UsableItemSlots[i] = new UsableItemSlot();
             }
+
+            SetActiveItemSlot(this, 0);
 
             MainPocket = new InventoryPocket(itemSlotsAmountInPocket, InventoryPocket.PocketType.Main);
 

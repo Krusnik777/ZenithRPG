@@ -31,6 +31,8 @@ namespace DC_ARPG
             OnSelect?.Invoke();
 
             uiSlot.UIInventory.InfoPanelController.ShowInfoPanel(uiSlot.InventorySlot);
+
+            uiSlot.UIInventory.ButtonsInfoPanel.UpdateButtonsPanel(uiSlot.InventorySlot);
         }
 
         public override void UnsetFocus()
@@ -43,6 +45,7 @@ namespace DC_ARPG
             OnUnselect?.Invoke();
 
             uiSlot.UIInventory.InfoPanelController.HideInfoPanel();
+            uiSlot.UIInventory.ButtonsInfoPanel.UnsetButtonPanel();
         }
 
         public void OnButtonUse()
@@ -52,6 +55,7 @@ namespace DC_ARPG
             uiSlot.UseItem();
 
             uiSlot.UIInventory.InfoPanelController.ShowInfoPanel(uiSlot.InventorySlot);
+            uiSlot.UIInventory.ButtonsInfoPanel.UpdateButtonsPanel(uiSlot.InventorySlot);
 
             OnButtonUseClick?.Invoke();
         }
@@ -61,6 +65,8 @@ namespace DC_ARPG
             if (!m_interactable || InTransit) return;
 
             uiSlot.RemoveItem();
+
+            uiSlot.UIInventory.ButtonsInfoPanel.UpdateButtonsPanel(uiSlot.InventorySlot);
 
             OnButtonRemoveClick?.Invoke();
         }
@@ -91,6 +97,8 @@ namespace DC_ARPG
 
                 uiSlot.UIInventory.InfoPanelController.ShowInfoPanel(uiSlot.InventorySlot);
             }
+
+            uiSlot.UIInventory.ButtonsInfoPanel.UpdateButtonsPanel(uiSlot.InventorySlot);
 
             OnButtonMoveClick?.Invoke();
         }
