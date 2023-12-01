@@ -20,6 +20,23 @@ namespace DC_ARPG
         public static Image TransitImage;
 
         private UIInventorySlot uiSlot => GetComponent<UIInventorySlot>();
+        public UIInventorySlot UISlot => uiSlot;
+
+        public static void ResetInTransit()
+        {
+            InTransit = false;
+
+            if (TransitImage != null)
+            {
+                TransitImage.enabled = false;
+                TransitImage = null;
+            }
+        }
+
+        public void ResetTransitSelectImage()
+        {
+            if (!InTransit) m_transitSelectImage.enabled = false;
+        }
 
         public override void SetFocus()
         {

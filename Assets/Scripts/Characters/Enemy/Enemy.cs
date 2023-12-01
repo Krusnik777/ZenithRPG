@@ -4,12 +4,12 @@ namespace DC_ARPG
 {
     public class Enemy : MonoBehaviour
     {
-        private EnemyCharacter m_enemyCharacter;
-        public EnemyCharacter EnemyCharacter => m_enemyCharacter;
+        private EnemyCharacter m_character;
+        public EnemyCharacter Character => m_character;
 
         private void Start()
         {
-            m_enemyCharacter = GetComponent<EnemyCharacter>();
+            m_character = GetComponent<EnemyCharacter>();
         }
     }
 }

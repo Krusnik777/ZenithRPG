@@ -224,7 +224,7 @@ MonoBehaviour:
   m_amount: 0
   m_locked: 0
   m_requireSpecialKey: 0
-  m_specialKeyInfo: {fileID: 0}
+  m_specificKeyItemInfo: {fileID: 0}
 --- !u!1 &7500815262325290915
 GameObject:
   m_ObjectHideFlags: 0

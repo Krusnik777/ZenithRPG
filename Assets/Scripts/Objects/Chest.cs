@@ -23,10 +23,16 @@ namespace DC_ARPG
         private bool inClosedState => m_animator != null ? m_animator.GetCurrentAnimatorStateInfo(0).IsName("ClosedState") : true;
         private bool inOpenedState => m_animator != null ? m_animator.GetCurrentAnimatorStateInfo(0).IsName("OpenedState") : false;
 
+        public void Lock()
+        {
+            m_locked = true;
+            if (inOpenedState) Close();
+        }
+
         public void Unlock()
         {
             m_locked = false;
-            ShortMessage.Instance.ShowMessage("Открыто.");
+            if (StandingInFrontOfChest) ShortMessage.Instance.ShowMessage("Открыто.");
         }
 
         public override void OnInspection(Player player)
@@ -66,6 +72,7 @@ namespace DC_ARPG
 
             if (player.Character.Inventory.TryToAddItem(this, m_item) == true)
             {
+                ShortMessage.Instance.ShowMessage("Добавлено в инвентарь: " + m_item.Info.Title + ".");
                 m_item = null;
 
                 EventOnInspection?.Invoke();

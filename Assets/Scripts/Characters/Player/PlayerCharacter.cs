@@ -40,7 +40,7 @@ namespace DC_ARPG
             playerStats.EventOnDeath -= OnDeath;
         }
 
-        private void OnDeath()
+        private void OnDeath(object sender)
         {
             var slot = inventory.MainPocket.FindSlot(PassiveEffect.PassiveType.Revival);
 
@@ -80,6 +80,8 @@ namespace DC_ARPG
             inventory.TryToAddItem(this, usableItems[0]); //7
             inventory.TryToAddItem(this, usableItems[1]); //8
             inventory.TransitFromSlotToSlot(this, inventory.MainPocket.ItemSlots[7], inventory.UsableItemSlots[0]);
+            inventory.TryToAddItem(this, usableItems[0]);
+            inventory.TransitFromSlotToSlot(this, inventory.MainPocket.ItemSlots[7], inventory.UsableItemSlots[1]);
             inventory.TryToAddItem(this, usableItems[1]);
 
             inventory.TryToAddItem(this, notUsableItems[0]);

@@ -12,6 +12,9 @@ namespace DC_ARPG
         [Header("PositionTriggers")]
         [SerializeField] private PositionTrigger m_forwardPositionTrigger;
         [SerializeField] private PositionTrigger m_backwardPositionTrigger;
+        [Header("Ceilings")]
+        [SerializeField] private GameObject m_forwardRoomCeiling;
+        [SerializeField] private GameObject m_backwardRoomCeiling;
         public bool Locked => m_locked;
         public bool RequireSpecialKey => m_requireSpecialKey;
         public UsableItemInfo SpecificKeyItemInfo => m_specificKeyItemInfo;
@@ -23,11 +26,17 @@ namespace DC_ARPG
         private bool inClosedState => m_animator != null ? m_animator.GetCurrentAnimatorStateInfo(0).IsName("ClosedState") : true;
         private bool inOpenedState => m_animator != null ? m_animator.GetCurrentAnimatorStateInfo(0).IsName("OpenedState") : false;
 
+        public void Lock()
+        {
+            m_locked = true;
+            if (inOpenedState) Close();
+        }
+
         public void Unlock()
         {
             m_locked = false;
-            ShortMessage.Instance.ShowMessage("Открыто.");
-            Open();
+            if (StandingInFrontOfDoor) ShortMessage.Instance.ShowMessage("Открыто.");
+            if (inClosedState) Open();
         }
 
         public override void OnInspection(Player player)
@@ -60,12 +69,24 @@ namespace DC_ARPG
         {
             m_animator.SetTrigger("Open");
             m_collider.isTrigger = true;
+
+            if (StandingInFrontOfDoor)
+            {
+                if (m_forwardPositionTrigger.InRightPosition) m_forwardRoomCeiling.SetActive(false);
+                if (m_backwardPositionTrigger.InRightPosition) m_backwardRoomCeiling.SetActive(false);
+            }
         }
 
         private void Close()
         {
             m_animator.SetTrigger("Close");
             m_collider.isTrigger = false;
+
+            if (StandingInFrontOfDoor)
+            {
+                if (m_forwardPositionTrigger.InRightPosition) m_forwardRoomCeiling.SetActive(true);
+                if (m_backwardPositionTrigger.InRightPosition) m_backwardRoomCeiling.SetActive(true);
+            }
         }
     }
 }

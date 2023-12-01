@@ -50,6 +50,16 @@ namespace DC_ARPG
 
         private void CloseInventory(InputAction.CallbackContext obj)
         {
+            if (UIInventorySlotButton.InTransit)
+            {
+                UIInventorySlotButton.ResetInTransit();
+                if (m_buttonContainer.SelectedButton is UIInventorySlotButton)
+                {
+                    (m_buttonContainer.SelectedButton as UIInventorySlotButton).ResetTransitSelectImage();
+                    m_uIInventory.ButtonsInfoPanel.UpdateButtonsPanel((m_buttonContainer.SelectedButton as UIInventorySlotButton).UISlot.InventorySlot);
+                }
+            }
+
             m_uIInventory.HideInventory();
 
             m_controlsManager.SetPlayerControlsActive(true);

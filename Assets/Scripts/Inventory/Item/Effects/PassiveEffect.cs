@@ -21,7 +21,7 @@ namespace DC_ARPG
 
         private void Revive(Player player, IItemSlot slot)
         {
-            player.Character.PlayerStats.ChangeCurrentHitPoints(9999);
+            player.Character.PlayerStats.ChangeCurrentHitPoints(this, 9999);
             player.Character.Inventory.RemoveItemFromInventory(this, slot);
 
             Debug.Log("Revived");

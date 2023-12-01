@@ -21,8 +21,13 @@ namespace DC_ARPG
             enemyStats.EventOnDeath -= OnDeath;
         }
 
-        private void OnDeath()
+        private void OnDeath(object sender)
         {
+            if (sender is Player)
+            {
+                (sender as Player).Character.PlayerStats.AddExperience(enemyStats.ExperiencePoints);
+            }
+
             Debug.Log("Defeated");
             Destroy(gameObject);
         }

@@ -109,7 +109,7 @@ namespace DC_ARPG
             Debug.DrawRay(jumpRay.origin, jumpRay.direction, Color.yellow);
             #endif
 
-            if (Physics.Raycast(jumpRay, out hit, 2.0f))
+            if (Physics.Raycast(jumpRay, out hit, 2.0f,1,QueryTriggerInteraction.Ignore))
             {
                 if (hit.collider)
                 {
@@ -374,9 +374,10 @@ namespace DC_ARPG
         {
             isJumping = true;
             var startPosition = transform.position;
-            var targetPosition = distance + startPosition;
+            Vector3 targetPosition;
 
             var elapsed = 0.0f;
+            var time = m_transitionJumpSpeed;
 
             //m_audioSource.Play();
             m_animator.Play("Jump");
@@ -385,12 +386,44 @@ namespace DC_ARPG
 
             if (distance != Vector3.zero)
             {
-                while (elapsed < m_transitionJumpSpeed || transform.position != targetPosition)
+                if (distance == transform.forward)
                 {
-                    transform.position = Vector3.MoveTowards(startPosition, targetPosition, elapsed / m_transitionJumpSpeed);
-                    elapsed += Time.deltaTime;
+                    targetPosition = distance + startPosition;
+                    time *= 1.5f;
 
-                    yield return null;
+                    while (elapsed < time || transform.position != targetPosition)
+                    {
+                        transform.position = Vector3.MoveTowards(startPosition, targetPosition, elapsed / time);
+                        elapsed += Time.deltaTime;
+
+                        yield return null;
+                    }
+                }
+                else
+                {
+                    targetPosition = distance/2 + startPosition;
+                    targetPosition.y = 0.5f;
+
+                    while (elapsed < time || transform.position != targetPosition)
+                    {
+                        transform.position = Vector3.MoveTowards(startPosition, targetPosition, elapsed / time);
+                        elapsed += Time.deltaTime;
+
+                        yield return null;
+                    }
+
+                    startPosition = transform.position;
+                    targetPosition = startPosition + distance / 2;
+                    targetPosition.y = 0;
+                    elapsed = 0.0f;
+
+                    while (elapsed < time || transform.position != targetPosition)
+                    {
+                        transform.position = Vector3.MoveTowards(startPosition, targetPosition, elapsed / time);
+                        elapsed += Time.deltaTime;
+
+                        yield return null;
+                    }
                 }
 
                 transform.position = targetPosition;

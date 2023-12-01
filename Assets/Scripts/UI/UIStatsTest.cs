@@ -222,12 +222,12 @@ namespace DC_ARPG
 
         private void TakeDamage()
         {
-            m_character.PlayerStats.ChangeCurrentHitPoints(-5);
+            m_character.PlayerStats.ChangeCurrentHitPoints(this, -5);
         }
 
         private void Heal()
         {
-            m_character.PlayerStats.ChangeCurrentHitPoints(5);
+            m_character.PlayerStats.ChangeCurrentHitPoints(this, 5);
         }
 
         private void GetExp()

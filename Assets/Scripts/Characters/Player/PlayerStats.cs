@@ -206,7 +206,7 @@ namespace DC_ARPG
 
             CurrentExperiencePoints += experience;
 
-            if (CurrentExperiencePoints >= GetExperienceForLevelUp())
+            while (CurrentExperiencePoints >= GetExperienceForLevelUp())
             {
                 CurrentExperiencePoints -= GetExperienceForLevelUp();
                 GetLevelUp();
@@ -221,7 +221,7 @@ namespace DC_ARPG
 
             CurrentStrengthExperiencePoints += strengthExperience;
 
-            if (CurrentStrengthExperiencePoints >= GetExperienceForStrengthUp())
+            while (CurrentStrengthExperiencePoints >= GetExperienceForStrengthUp())
             {
                 CurrentStrengthExperiencePoints -= GetExperienceForStrengthUp();
                 GetStrengthUp();
@@ -236,7 +236,7 @@ namespace DC_ARPG
 
             CurrentIntelligenceExperiencePoints += intelligenceExperience;
 
-            if (CurrentIntelligenceExperiencePoints >= GetExperienceForIntelligenceUp())
+            while (CurrentIntelligenceExperiencePoints >= GetExperienceForIntelligenceUp())
             {
                 CurrentIntelligenceExperiencePoints -= GetExperienceForIntelligenceUp();
                 GetIntelligenceUp();
@@ -251,7 +251,7 @@ namespace DC_ARPG
 
             CurrentMagicResistExperiencePoints += magicResistExperience;
 
-            if (CurrentMagicResistExperiencePoints >= GetExperienceForMagicResistUp())
+            while (CurrentMagicResistExperiencePoints >= GetExperienceForMagicResistUp())
             {
                 CurrentMagicResistExperiencePoints -= GetExperienceForMagicResistUp();
                 GetMagicResistUp();

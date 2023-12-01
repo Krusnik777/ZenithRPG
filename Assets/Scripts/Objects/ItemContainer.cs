@@ -20,6 +20,7 @@ namespace DC_ARPG
 
             if (player.Character.Inventory.TryToAddItem(this, m_item) == true)
             {
+                ShortMessage.Instance.ShowMessage("Добавлено в инвентарь: " + m_item.Info.Title + ".");
                 base.OnInspection(player);
 
                 Destroy(gameObject);

@@ -176,6 +176,8 @@ MonoBehaviour:
   m_specificKeyItemInfo: {fileID: 0}
   m_forwardPositionTrigger: {fileID: 7999012506349261603}
   m_backwardPositionTrigger: {fileID: 6136834741319281676}
+  m_forwardRoomCeiling: {fileID: 0}
+  m_backwardRoomCeiling: {fileID: 0}
 --- !u!1 &6538535201639556456
 GameObject:
   m_ObjectHideFlags: 0

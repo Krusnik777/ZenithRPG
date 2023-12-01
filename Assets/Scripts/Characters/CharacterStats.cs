@@ -2,6 +2,13 @@ using UnityEngine.Events;
 
 namespace DC_ARPG
 {
+    public enum DamageType
+    {
+        None,
+        Physic,
+        Magic
+    }
+
     public abstract class CharacterStats<T> where T : CharacterStatsInfo
     {
         #region BaseStats
@@ -27,7 +34,7 @@ namespace DC_ARPG
         #region BaseEvents
 
         public event UnityAction EventOnHitPointsChange;
-        public event UnityAction EventOnDeath;
+        public event UnityAction<object> EventOnDeath;
         public event UnityAction EventOnMagicPointsChange;
 
         #endregion
@@ -55,8 +62,15 @@ namespace DC_ARPG
         /// Change current HP. Damage or Heal based on parameter.
         /// </summary>
         /// <param name="change">Parameter with minus = damage to HP</param>
-        public void ChangeCurrentHitPoints(int change)
+        /// <param name="damageType">DamageType.None(default),DamageType.Physic,DamageType.Magic</param>
+        public void ChangeCurrentHitPoints(object sender, int change, DamageType damageType = DamageType.None)
         {
+            if (change < 0)
+            {
+                if (damageType == DamageType.Physic) change += Defense;
+                if (damageType == DamageType.Magic) change += MagicResist;
+            }
+
             CurrentHitPoints += change;
 
             if (CurrentHitPoints >= HitPoints)
@@ -68,7 +82,7 @@ namespace DC_ARPG
             {
                 CurrentHitPoints = 0;
 
-                EventOnDeath?.Invoke();
+                EventOnDeath?.Invoke(sender);
             }
 
             EventOnHitPointsChange?.Invoke();

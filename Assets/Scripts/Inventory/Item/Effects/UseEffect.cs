@@ -23,7 +23,7 @@ namespace DC_ARPG
 
         private void Heal(Player player, IItem item)
         {
-            player.Character.PlayerStats.ChangeCurrentHitPoints(9999);
+            player.Character.PlayerStats.ChangeCurrentHitPoints(this, 9999);
             item.Amount--;
         }
 
@@ -44,7 +44,8 @@ namespace DC_ARPG
                     }
                     else
                     {
-                        ShortMessage.Instance.ShowMessage("Похоже, здесь нужен особый ключ.");
+                        if (chest.SpecificKeyItemInfo != null) ShortMessage.Instance.ShowMessage("Похоже, здесь нужен особый ключ.");
+                        else ShortMessage.Instance.ShowMessage("Похоже, открывается не ключем.");
                     }
                 }
             }
@@ -62,7 +63,8 @@ namespace DC_ARPG
                     }
                     else
                     {
-                        ShortMessage.Instance.ShowMessage("Похоже, здесь нужен особый ключ.");
+                        if (door.SpecificKeyItemInfo != null) ShortMessage.Instance.ShowMessage("Похоже, здесь нужен особый ключ.");
+                        else ShortMessage.Instance.ShowMessage("Похоже, открывается не ключем.");
                     }
                 }
             }
@@ -103,7 +105,7 @@ namespace DC_ARPG
                     }
                     else
                     {
-                        ShortMessage.Instance.ShowMessage("Похоже, здесь нужен особый ключ.");
+                        ShortMessage.Instance.ShowMessage("Этот ключ сюда не подходит.");
                     }
                 }
             }

@@ -129,8 +129,6 @@ namespace DC_ARPG
 
             EventOnItemAdded?.Invoke(sender, availableSlot);
 
-            ShortMessage.Instance.ShowMessage("Добавлено в инвентарь: " + item.Info.Title + ".");
-
             return true;
         }
 

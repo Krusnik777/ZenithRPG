@@ -6,9 +6,10 @@ namespace DC_ARPG
     {
         [SerializeField] private GameObject m_fireBallPrefab;
 
-        public void CreateFireball(Vector3 position, Quaternion rotation)
+        public void CreateFireball(object parent, Vector3 position, Quaternion rotation)
         {
-            Instantiate(m_fireBallPrefab, position, rotation);
+            var fireBall = Instantiate(m_fireBallPrefab, position, rotation);
+            fireBall.GetComponent<FireBall>().SetParent(parent);
         }
     }
 }
