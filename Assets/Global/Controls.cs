@@ -1433,6 +1433,45 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Event"",
+            ""id"": ""e82c6575-b544-4623-b5e0-bcc661863875"",
+            ""actions"": [
+                {
+                    ""name"": ""Confirm"",
+                    ""type"": ""Button"",
+                    ""id"": ""bbcab348-7671-4cd3-949d-76447acbfbfa"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""ece4468b-cffd-431a-aaae-1a2053a4d15a"",
+                    ""path"": ""<Keyboard>/enter"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Confirm"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0e9a1040-d2e0-470a-b520-1af58d33dde7"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Confirm"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -1470,6 +1509,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         m_Inventory_MoveItem = m_Inventory.FindAction("MoveItem", throwIfNotFound: true);
         m_Inventory_DropItem = m_Inventory.FindAction("DropItem", throwIfNotFound: true);
         m_Inventory_CloseInventory = m_Inventory.FindAction("CloseInventory", throwIfNotFound: true);
+        // Event
+        m_Event = asset.FindActionMap("Event", throwIfNotFound: true);
+        m_Event_Confirm = m_Event.FindAction("Confirm", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -1857,6 +1899,52 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         }
     }
     public InventoryActions @Inventory => new InventoryActions(this);
+
+    // Event
+    private readonly InputActionMap m_Event;
+    private List<IEventActions> m_EventActionsCallbackInterfaces = new List<IEventActions>();
+    private readonly InputAction m_Event_Confirm;
+    public struct EventActions
+    {
+        private @Controls m_Wrapper;
+        public EventActions(@Controls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Confirm => m_Wrapper.m_Event_Confirm;
+        public InputActionMap Get() { return m_Wrapper.m_Event; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(EventActions set) { return set.Get(); }
+        public void AddCallbacks(IEventActions instance)
+        {
+            if (instance == null || m_Wrapper.m_EventActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_EventActionsCallbackInterfaces.Add(instance);
+            @Confirm.started += instance.OnConfirm;
+            @Confirm.performed += instance.OnConfirm;
+            @Confirm.canceled += instance.OnConfirm;
+        }
+
+        private void UnregisterCallbacks(IEventActions instance)
+        {
+            @Confirm.started -= instance.OnConfirm;
+            @Confirm.performed -= instance.OnConfirm;
+            @Confirm.canceled -= instance.OnConfirm;
+        }
+
+        public void RemoveCallbacks(IEventActions instance)
+        {
+            if (m_Wrapper.m_EventActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(IEventActions instance)
+        {
+            foreach (var item in m_Wrapper.m_EventActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_EventActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public EventActions @Event => new EventActions(this);
     public interface IGameplayActions
     {
         void OnMovement(InputAction.CallbackContext context);
@@ -1892,5 +1980,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         void OnMoveItem(InputAction.CallbackContext context);
         void OnDropItem(InputAction.CallbackContext context);
         void OnCloseInventory(InputAction.CallbackContext context);
+    }
+    public interface IEventActions
+    {
+        void OnConfirm(InputAction.CallbackContext context);
     }
 }

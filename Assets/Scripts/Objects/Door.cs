@@ -6,6 +6,7 @@ namespace DC_ARPG
     public class Door : InspectableObject
     {
         [SerializeField] private Collider m_collider;
+        [SerializeField] private bool m_openableDirectly;
         [SerializeField] private bool m_locked;
         [SerializeField] private bool m_requireSpecialKey;
         [SerializeField] private UsableItemInfo m_specificKeyItemInfo;
@@ -53,6 +54,8 @@ namespace DC_ARPG
                 else ShortMessage.Instance.ShowMessage("Закрыто на необычный замок.");
                 return;
             }
+
+            if (!m_openableDirectly && StandingInFrontOfDoor) return;
 
             if (inClosedState) Open();
             if (inOpenedState) Close();

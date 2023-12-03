@@ -69,6 +69,8 @@ namespace DC_ARPG
             {
                 if (damageType == DamageType.Physic) change += Defense;
                 if (damageType == DamageType.Magic) change += MagicResist;
+
+                if (change > 0) change = -1;
             }
 
             CurrentHitPoints += change;

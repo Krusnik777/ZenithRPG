@@ -23,7 +23,7 @@ namespace DC_ARPG
         {
             if (!item.HasInfiniteUses)
             {
-                player.Character.AvailableMagic.CreateFireball(player, player.transform.position, player.transform.rotation);
+                player.Character.AvailableMagic.CreateFireball(player.gameObject, player.transform.position, player.transform.rotation);
 
                 item.Uses--;
 
@@ -33,7 +33,7 @@ namespace DC_ARPG
             {
                 if (player.Character.PlayerStats.TryUseMagicPoints(item.MagicPointsForUse))
                 {
-                    player.Character.AvailableMagic.CreateFireball(player, player.transform.position, player.transform.rotation);
+                    player.Character.AvailableMagic.CreateFireball(player.gameObject, player.transform.position, player.transform.rotation);
                 }
                 else
                 {

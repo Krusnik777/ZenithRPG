@@ -68,9 +68,9 @@ namespace DC_ARPG
             Debug.DrawRay(directionRay.origin, directionRay.direction, Color.red);
             #endif
 
-            if (Physics.Raycast(directionRay, out hit, 1f))
+            if (Physics.Raycast(directionRay, out hit, 1f, 1, QueryTriggerInteraction.Ignore))
             {
-                if (hit.collider && !hit.collider.isTrigger) return;
+                if (hit.collider) return;
             }
 
             StartCoroutine(MoveTo(direction));
@@ -109,7 +109,7 @@ namespace DC_ARPG
             Debug.DrawRay(jumpRay.origin, jumpRay.direction, Color.yellow);
             #endif
 
-            if (Physics.Raycast(jumpRay, out hit, 2.0f,1,QueryTriggerInteraction.Ignore))
+            if (Physics.Raycast(jumpRay, out hit, 2.0f, 1, QueryTriggerInteraction.Ignore))
             {
                 if (hit.collider)
                 {

@@ -5,6 +5,8 @@ namespace DC_ARPG
 {
     public class ButtonPressTrigger : MonoBehaviour
     {
+        [SerializeField] private bool m_hasSpring;
+
         private Animator m_animator;
 
         public UnityEvent OnButtonPressed;
@@ -39,6 +41,11 @@ namespace DC_ARPG
         private void OnTriggerEnter(Collider other)
         {
             PressButton();
+        }
+
+        private void OnTriggerExit(Collider other)
+        {
+            if (m_hasSpring) UnpressButton();
         }
     }
 }
