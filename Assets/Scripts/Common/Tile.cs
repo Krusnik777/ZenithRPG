@@ -49,9 +49,7 @@ namespace DC_ARPG
                 Tile tile = collider.GetComponentInParent<Tile>();
                 if (tile != null)
                 {
-                    RaycastHit hit;
-
-                    if (!Physics.Raycast(tile.transform.position, Vector3.up, out hit, 1))
+                    if (!Physics.Raycast(tile.transform.position, Vector3.up, 1f, 1, QueryTriggerInteraction.Ignore))
                     {
                         NeighborTiles.Add(tile);
                     }

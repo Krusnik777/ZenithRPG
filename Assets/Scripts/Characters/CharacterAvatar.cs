@@ -36,6 +36,7 @@ namespace DC_ARPG
         protected AudioSource m_audioSource;
 
         protected Animator m_animator;
+        public Animator Animator => m_animator;
 
         private bool GetIsGrounded()
         {
