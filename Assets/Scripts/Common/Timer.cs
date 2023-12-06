@@ -23,5 +23,10 @@ namespace DC_ARPG
             m_currentTime -= deltaTime;
         }
 
+        public void ResetTimer()
+        {
+            m_currentTime = 0;
+        }
+
     }
 }

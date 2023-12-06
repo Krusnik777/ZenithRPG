@@ -6,15 +6,20 @@ namespace DC_ARPG
     public class EnemyAIController : MonoBehaviour
     {
         [SerializeField] private Tile[] m_patrolField;
-        [SerializeField] private Tile[] m_allField;
-        [SerializeField] private float m_restTime = 5.0f;
+        //[SerializeField] private Tile[] m_allField;
+        [SerializeField] private float m_chaseRange = 8.0f;
+        [SerializeField] private float m_patrolRestTime = 5.0f;
+        [SerializeField] private float m_chaseDurationTime = 20.0f;
+        [SerializeField] private float m_attackMinDelayTime = 1.0f;
+        [SerializeField] private float m_attackMaxDelayTime = 3.0f;
 
         private Enemy m_enemy;
-
-        private List<Tile> selectableTiles = new List<Tile>();
+        private bool SeePlayer => m_enemy.CheckForPlayerInSightRange();
 
         private Stack<Tile> path = new Stack<Tile>();
         private Tile currentTile;
+        private Tile targetTile;
+        private Tile playerTile => GetTargetTile(m_enemy.PlayerGameObject);
 
         private Vector3 currentDirection;
         private Vector3 headingDirection;
@@ -24,11 +29,33 @@ namespace DC_ARPG
         private bool isMoving = false;
         private bool isTurning = false;
         private bool isChasing = false;
+        private bool isStopped = false;
 
         private float moveSpeed = 1f;
         private float turnSpeed = 5f;
 
-        private Timer m_restTimer;
+        private Timer m_patrolRestTimer;
+        private Timer m_chaseTimer;
+        private Timer m_attackTimer;
+
+        private void GetCurrentTile() => currentTile = GetTargetTile(gameObject);
+        private void CalculateHeadingDirection(Vector3 targetPosition) => headingDirection = (targetPosition - transform.position).normalized;
+        private void SetHorizontalVelocity() => velocity = headingDirection * moveSpeed;
+
+        private bool CheckChaseRange() => Vector3.Distance(transform.position, m_enemy.PlayerGameObject.transform.position) < m_chaseRange ? true : false;
+
+        public void StopActivity()
+        {
+            isStopped = true;
+
+            StopMoving();
+            isChasing = false;
+        }
+
+        public void ResumeActivity()
+        {
+            isStopped = false;
+        }
 
         private void Start()
         {
@@ -41,6 +68,8 @@ namespace DC_ARPG
 
         private void Update()
         {
+            if (isStopped) return;
+
             UpdateTimers();
 
             ChooseAction();
@@ -48,7 +77,7 @@ namespace DC_ARPG
 
         private void ChooseAction()
         {
-            if (m_enemy.State == EnemyState.Patrol) if (m_restTimer.IsFinished) Patrol();
+            if (m_enemy.State == EnemyState.Patrol) if (m_patrolRestTimer.IsFinished) Patrol();
 
             if (m_enemy.State == EnemyState.Chase) Chase();
 
@@ -59,14 +88,8 @@ namespace DC_ARPG
         {
             if (!isMoving)
             {
-                FindSelectableTiles(m_allField);
-                /*
-                 int index = Random.Range(0, m_patrolField.Length);
-                 SetTarget(m_patrolField[index]);*/
-
-                int index = Random.Range(0, selectableTiles.Count);
-                SetTarget(selectableTiles[index]);
-
+                int index = Random.Range(0, m_patrolField.Length);
+                CalculatePath(m_patrolField[index]);
             }
             else
             {
@@ -74,100 +97,80 @@ namespace DC_ARPG
                 else Turn();
             }
 
-            if (!isTurning) m_enemy.CheckForPlayerInSightRange();
+            if (!isTurning)
+            {
+                if (SeePlayer)
+                {
+                    m_enemy.StartChase();
+                    StopMoving();
+
+                    Debug.Log("Started Chase");
+
+                    m_chaseTimer.Start(m_chaseDurationTime);
+                }
+            }
         }
 
         private void Chase()
         {
-            if (!isChasing)
+            if (!m_chaseTimer.IsFinished || CheckChaseRange())
             {
-                StopMoving();
-                FindSelectableTiles(m_allField);
-
-                var playerTile = GetTargetTile(m_enemy.PlayerGameObject);
-                playerTile.FindNeighbors();
-
-                if (playerTile.NeighborTiles == null)
+                if (!isChasing)
                 {
-                    RemoveSelectableTiles();
-                    m_enemy.CheckForPlayerInSightRange();
-                    return;
+                    CalculatePath(playerTile);
+
+                    if (targetTile == currentTile) return;
+
+                    isChasing = true;
                 }
-
-                var shortestDistance = playerTile.NeighborTiles[0].Distance;
-                int closestTileIndex = 0;
-
-                for(int i = 1; i < playerTile.NeighborTiles.Count; i++)
+                else
                 {
-                    if (playerTile.NeighborTiles[i].Distance < shortestDistance)
-                    {
-                        shortestDistance = playerTile.NeighborTiles[i].Distance;
-                        closestTileIndex = i;
-                    }
+                    if (!isTurning) Move();
+                    else Turn();
                 }
-
-                SetTarget(playerTile.NeighborTiles[closestTileIndex]);
-                isChasing = true;
-
             }
             else
             {
-                if (!isTurning) Move();
-                else Turn();
-            }  
+                StopMoving();
+                isChasing = false;
+
+                Debug.Log("Started Patrol");
+
+                m_enemy.StartPatrol();
+            }
         }
 
         private void Fight()
         {
-            m_enemy.Attack();
-            m_enemy.CheckForPlayerInAttackRange();
-        }
-
-        private void FindSelectableTiles(Tile[] tileField)
-        {
-            ComputeAdjacencyList(tileField);
-            GetCurrentTile();
-
-            Queue<Tile> process = new Queue<Tile>();
-
-            process.Enqueue(currentTile);
-            currentTile.Visited = true;
-
-            while (process.Count > 0)
+            if (m_attackTimer.IsFinished)
             {
-                Tile t = process.Dequeue();
+                m_enemy.Attack();
 
-                selectableTiles.Add(t);
-                t.Selectable = true;
-
-                foreach (var tile in t.NeighborTiles)
-                {
-                    if (!tile.Visited)
-                    {
-                        tile.ParentTile = t;
-                        tile.Visited = true;
-                        tile.Distance = 1 + t.Distance;
-                        process.Enqueue(tile);
-                    }
-                }
+                m_attackTimer.Start(Random.Range(m_attackMinDelayTime, m_attackMaxDelayTime));
             }
 
-            Debug.Log(selectableTiles.Count);
+            if (!m_enemy.IsAttacking)
+            {
+                if (m_enemy.CheckForPlayerInAttackRange() == false)
+                {
+                    m_enemy.StartChase();
+
+                    m_chaseTimer.Start(m_chaseDurationTime);
+                }
+            }
         }
 
-        private void ComputeAdjacencyList(Tile[] tileField)
+        // ???
+
+        private void ComputeAdjacencyList(Tile[] tileField, Tile target)
         {
             foreach (var tile in tileField)
             {
-                tile.FindNeighbors();
+                tile.FindNeighbors(target);
             }
         }
 
-        private void GetCurrentTile()
-        {
-            currentTile = GetTargetTile(gameObject);
-            currentTile.Current = true;
-        }
+        // ???
 
         private Tile GetTargetTile(GameObject target)
         {
@@ -184,19 +187,10 @@ namespace DC_ARPG
             return tile;
         }
 
-        private void SetTarget(Tile target)
-        {
-            if (target.Selectable)
-            {
-                MoveToTile(target);
-            }
-        }
-
         private void MoveToTile(Tile tile)
         {
             path.Clear();
 
-            tile.Target = true;
             isMoving = true;
 
             Tile next = tile;
@@ -240,8 +234,10 @@ namespace DC_ARPG
                 else
                 {
                     // tile center reached
+
                     transform.position = targetPosition;
                     path.Pop();
+
                 }
             }
             else
@@ -250,20 +246,21 @@ namespace DC_ARPG
 
                 if (isChasing)
                 {
-                    CalculateHeadingDirection(m_enemy.PlayerGameObject.transform.position);
-
-                    if (currentDirection != headingDirection)
+                    if (playerTile != null)
                     {
-                        isTurning = true;
-                        return;
+                        CalculateHeadingDirection(m_enemy.PlayerGameObject.transform.position);  // TEMP
+
+                        if (currentDirection != headingDirection)
+                        {
+                            isTurning = true;
+                            return;
+                        }
                     }
 
-                    m_enemy.CheckForPlayerInAttackRange();
-
-                    isChasing = false;
+                    StopChasing();
                 }
 
-                m_restTimer.Start(m_restTime);
+                m_patrolRestTimer.Start(m_patrolRestTime);
             }
         }
 
@@ -282,23 +279,198 @@ namespace DC_ARPG
             }
         }
 
-        private void CalculateHeadingDirection(Vector3 targetPosition)
-        {
-            headingDirection = targetPosition - transform.position;
-            headingDirection.Normalize();
-        }
-
-        private void SetHorizontalVelocity()
-        {
-            velocity = headingDirection * moveSpeed;
-        }
-
         private void StopMoving()
         {
             m_enemy.Animator.SetBool("Forward", false);
 
-            RemoveSelectableTiles();
+            ClearCurrentTile();
             isMoving = false;
+        }
+
+        private void StopChasing()
+        {
+            if (m_enemy.CheckForPlayerInAttackRange() == true) m_enemy.StartAttack();
+
+            isChasing = false;
+        }
+
+        private void ClearCurrentTile()
+        {
+            if (currentTile != null)
+            {
+                currentTile.Current = false;
+                currentTile = null;
+            }
+        }
+
+        private void CalculatePath(Tile target)
+        {
+            if (target == null) return;
+
+            ComputeAdjacencyList(LevelState.Instance.LevelTileField, target);
+            GetCurrentTile();
+
+            List<Tile> openList = new List<Tile>();
+            List<Tile> closedList = new List<Tile>();
+
+            openList.Add(currentTile);
+            currentTile.h = Vector3.Distance(currentTile.transform.position, target.transform.position);
+            currentTile.f = currentTile.h;
+
+            while(openList.Count > 0)
+            {
+                Tile t = FindLowestF(openList);
+
+                closedList.Add(t);
+
+                if (t == target)
+                {
+                    targetTile = FindEndTile(t);
+                    MoveToTile(targetTile);
+
+                    return;
+                }
+
+                foreach (var tile in t.NeighborTiles)
+                {
+                    if (closedList.Contains(tile))
+                    {
+                        // Do nothing, already processed
+                    }
+                    else if (openList.Contains(tile))
+                    {
+                        float tempG = t.g + Vector3.Distance(tile.transform.position, t.transform.position);
+
+                        if (tempG < tile.g)
+                        {
+                            tile.ParentTile = t;
+
+                            tile.g = tempG;
+                            tile.f = tile.g + tile.h;
+                        }
+                    }
+                    else
+                    {
+                        tile.ParentTile = t;
+                        tile.g = t.g + Vector3.Distance(tile.transform.position, t.transform.position);
+                        tile.h = Vector3.Distance(tile.transform.position, target.transform.position);
+                        tile.f = tile.g + tile.h;
+
+                        openList.Add(tile);
+                    }
+                }
+            }
+
+            // what to do if no path to target
+            Debug.Log("Path not found");
+        }
+
+        private Tile FindLowestF(List<Tile> list)
+        {
+            Tile lowest = list[0];
+
+            foreach (var t in list)
+            {
+                if (t.f < lowest.f)
+                {
+                    lowest = t;
+                }
+            }
+
+            list.Remove(lowest);
+
+            return lowest;
+        }
+
+        private Tile FindEndTile(Tile t)
+        {
+            Stack<Tile> tempPath = new Stack<Tile>();
+
+            Tile next = t.ParentTile;
+
+            while (next != null)
+            {
+                tempPath.Push(next);
+                next = next.ParentTile;
+            }
+
+            return t.ParentTile;
+
+            /*
+            if (tempPath.Count <= chaseRange)
+            {
+                return t.ParentTile;
+            }
+
+            Tile endTile = null;
+            for (int i = 0; i <= chaseRange; i++)
+            {
+                endTile = tempPath.Pop();
+            }
+
+            return endTile;*/
+        }
+
+        #region Timers
+
+        private void InitTimers()
+        {
+            m_patrolRestTimer = new Timer(m_patrolRestTime);
+            m_chaseTimer = new Timer(m_chaseDurationTime);
+            m_attackTimer = new Timer(m_attackMaxDelayTime);
+        }
+
+        private void UpdateTimers()
+        {
+            m_patrolRestTimer.RemoveTime(Time.deltaTime);
+            m_chaseTimer.RemoveTime(Time.deltaTime);
+            m_attackTimer.RemoveTime(Time.deltaTime);
+        }
+
+        #endregion
+
+        #region OBSOLETE
+
+        private List<Tile> selectableTiles = new List<Tile>();
+
+        private void FindSelectableTiles(Tile[] tileField)
+        {
+            ComputeAdjacencyList(tileField, null);
+            GetCurrentTile();
+
+            Queue<Tile> process = new Queue<Tile>();
+
+            process.Enqueue(currentTile);
+            currentTile.Visited = true;
+
+            while (process.Count > 0)
+            {
+                Tile t = process.Dequeue();
+
+                selectableTiles.Add(t);
+                t.Selectable = true;
+
+                foreach (var tile in t.NeighborTiles)
+                {
+                    if (!tile.Visited)
+                    {
+                        tile.ParentTile = t;
+                        tile.Visited = true;
+                        tile.Distance = 1 + t.Distance;
+                        process.Enqueue(tile);
+                    }
+                }
+            }
+
+            Debug.Log(selectableTiles.Count);
+        }
+
+        private void SetTarget(Tile target)
+        {
+            if (target.Selectable)
+            {
+                MoveToTile(target);
+            }
         }
 
         private void RemoveSelectableTiles()
@@ -308,6 +480,7 @@ namespace DC_ARPG
                 currentTile.Current = false;
                 currentTile = null;
             }
+            Debug.Log("selectableTiles - " + selectableTiles);
 
             foreach (var tile in selectableTiles)
             {
@@ -315,18 +488,6 @@ namespace DC_ARPG
             }
 
             selectableTiles.Clear();
-        }
-
-        #region Timers
-
-        private void InitTimers()
-        {
-            m_restTimer = new Timer(m_restTime);
-        }
-
-        private void UpdateTimers()
-        {
-            m_restTimer.RemoveTime(Time.deltaTime);
         }
 
         #endregion

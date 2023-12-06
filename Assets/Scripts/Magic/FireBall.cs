@@ -27,7 +27,7 @@ namespace DC_ARPG
 
         private void Update()
         {
-            transform.position = Vector3.MoveTowards(transform.position, transform.forward*100, m_velocity * Time.deltaTime); 
+            transform.position += transform.forward * m_velocity * Time.deltaTime;
         }
 
         private void OnCollisionEnter(Collision collision)

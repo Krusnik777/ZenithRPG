@@ -127,7 +127,7 @@ namespace DC_ARPG
             if (!inIdleState && !isAttacking) return;
 
             if (
-                (m_animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.8f || m_animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 0.35f)
+                (m_animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.8f || m_animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 0.5f)
                 && m_animator.GetCurrentAnimatorStateInfo(0).IsName("Attack" + hitCount)
                 ) return;
 

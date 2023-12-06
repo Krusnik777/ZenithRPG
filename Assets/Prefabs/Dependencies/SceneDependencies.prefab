@@ -45,6 +45,94 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_fireBallPrefab: {fileID: 6504091377025521423, guid: 5bd85481b69615d4c9146872fe290af5, type: 3}
+--- !u!1 &2637519846307614642
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4147903068311746488}
+  - component: {fileID: 4848120079496406147}
+  m_Layer: 0
+  m_Name: StoryEventInputController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4147903068311746488
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2637519846307614642}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4079432220239866631}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4848120079496406147
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2637519846307614642}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 395cb77cd62af6041b28c42bc3112322, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &2668169625815832972
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2871610625096780962}
+  - component: {fileID: 3912319532912052127}
+  m_Layer: 0
+  m_Name: LevelStateBeholder
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2871610625096780962
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2668169625815832972}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4079432220239866631}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3912319532912052127
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2668169625815832972}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 618cb8a363114fb418e069389c443f9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4149430568273459097
 GameObject:
   m_ObjectHideFlags: 0
@@ -79,6 +167,8 @@ Transform:
   - {fileID: 5944080953770289058}
   - {fileID: 7525051855034734277}
   - {fileID: 35800482980028778}
+  - {fileID: 4147903068311746488}
+  - {fileID: 2871610625096780962}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &19995450889100463
@@ -96,6 +186,7 @@ MonoBehaviour:
   m_player: {fileID: 0}
   m_playerCharacter: {fileID: 1090631830285505044}
   m_controlsManager: {fileID: 9094901245772451090}
+  m_levelStateBeholder: {fileID: 3912319532912052127}
 --- !u!1 &5689747224736265268
 GameObject:
   m_ObjectHideFlags: 0
@@ -189,6 +280,7 @@ MonoBehaviour:
   m_playerInputController: {fileID: 0}
   m_menuInputController: {fileID: 1980352695751081415}
   m_inventoryInputController: {fileID: 5095803029973833651}
+  m_storyEventInputController: {fileID: 4848120079496406147}
 --- !u!1 &7928839396790486712
 GameObject:
   m_ObjectHideFlags: 0
@@ -280,7 +372,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_playerStatsInfo: {fileID: 11400000, guid: fd46a6466bdcabb4cb5d41de891b793c, type: 2}
-  m_magic: {fileID: 3554854585991305212}
+  m_availableMagic: {fileID: 3554854585991305212}
   notUsableItems:
   - m_itemInfo: {fileID: 11400000, guid: cf2f4a2b8c48efd429d56e8e72931749, type: 2}
     m_amount: 3

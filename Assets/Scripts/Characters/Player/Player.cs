@@ -9,11 +9,9 @@ namespace DC_ARPG
         public void Construct(PlayerCharacter character) => m_character = character;
         public PlayerCharacter Character => m_character;
 
-        #region Parameters
+        private bool isChased; // Test
 
         private Ray m_lookRay;
-
-        #endregion
 
         #region PlayerActions
 
@@ -114,10 +112,6 @@ namespace DC_ARPG
         private void Update()
         {
             m_lookRay = new Ray(transform.position + new Vector3(0, 0.1f, 0), transform.forward);
-
-            #if UNITY_EDITOR
-            Debug.DrawRay(m_lookRay.origin, m_lookRay.direction, Color.green);
-            #endif
         }
 
         #region Coroutines

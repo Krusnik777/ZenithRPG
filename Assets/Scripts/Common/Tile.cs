@@ -7,6 +7,8 @@ namespace DC_ARPG
     {
         public List<Tile> NeighborTiles = new List<Tile>();
 
+        [SerializeField] private bool m_walkable = true;
+        public bool Walkable { get => m_walkable; set => m_walkable = value; }
         public bool Current { get; set; }
         public bool Target { get; set; }
         public bool Selectable { get; set; }
@@ -16,14 +18,19 @@ namespace DC_ARPG
         public Tile ParentTile { get; set; }
         public int Distance { get; set; }
 
-        public void FindNeighbors()
+        // A*
+        public float f { get; set; }
+        public float g { get; set; }
+        public float h { get; set; }
+
+        public void FindNeighbors(Tile target)
         {
             Reset();
 
-            CheckTile(Vector3.forward);
-            CheckTile(-Vector3.forward);
-            CheckTile(Vector3.right);
-            CheckTile(-Vector3.right);
+            CheckTile(Vector3.forward, target);
+            CheckTile(-Vector3.forward, target);
+            CheckTile(Vector3.right, target);
+            CheckTile(-Vector3.right, target);
         }
 
         public void Reset()
@@ -37,9 +44,11 @@ namespace DC_ARPG
             Visited = false;
             ParentTile = null;
             Distance = 0;
+
+            f = g = h = 0;
         }
 
-        private void CheckTile(Vector3 direction)
+        private void CheckTile(Vector3 direction, Tile target)
         {
             Vector3 halfExtents = new Vector3(0.25f, 0.25f, 0.25f);
             Collider[] colliders = Physics.OverlapBox(transform.position + direction, halfExtents);
@@ -47,9 +56,9 @@ namespace DC_ARPG
             foreach (var collider in colliders)
             {
                 Tile tile = collider.GetComponentInParent<Tile>();
-                if (tile != null)
+                if (tile != null && tile.m_walkable)
                 {
-                    if (!Physics.Raycast(tile.transform.position, Vector3.up, 1f, 1, QueryTriggerInteraction.Ignore))
+                    if (!Physics.Raycast(tile.transform.position, Vector3.up, 1f, 1, QueryTriggerInteraction.Ignore) || tile == target)
                     {
                         NeighborTiles.Add(tile);
                     }

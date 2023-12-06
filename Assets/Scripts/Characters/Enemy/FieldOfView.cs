@@ -9,12 +9,11 @@ namespace DC_ARPG
         public float Radius => m_radius;
         [SerializeField] [Range(0,360)] private float m_angle;
         public float Angle => m_angle;
+        [SerializeField] private LayerMask m_targetMask;
+        [SerializeField] private LayerMask m_obstructionMask;
 
         private GameObject m_playerGameObject;
         public GameObject PlayerGameObject => m_playerGameObject;
-
-        [SerializeField] private LayerMask m_targetMask;
-        [SerializeField] private LayerMask m_obstructionMask;
 
         private bool canSeePlayer;
         public bool CanSeePlayer => canSeePlayer;
@@ -47,8 +46,6 @@ namespace DC_ARPG
                 else canSeePlayer = false;
             }
             else if (canSeePlayer) canSeePlayer = false;
-
-            // CheckColliders 1f distance???
         }
 
         private IEnumerator FOVRoutine()
