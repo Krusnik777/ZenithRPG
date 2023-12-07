@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace DC_ARPG
 {
@@ -19,6 +20,9 @@ namespace DC_ARPG
         public bool Locked => m_locked;
         public bool RequireSpecialKey => m_requireSpecialKey;
         public UsableItemInfo SpecificKeyItemInfo => m_specificKeyItemInfo;
+
+        public event UnityAction EventOnDoorOpened;
+        public event UnityAction EventOnDoorClosed;
 
         public bool StandingInFrontOfDoor => m_forwardPositionTrigger.InRightPosition || m_backwardPositionTrigger.InRightPosition;
 
@@ -78,6 +82,8 @@ namespace DC_ARPG
                 if (m_forwardPositionTrigger.InRightPosition) m_forwardRoomCeiling.SetActive(false);
                 if (m_backwardPositionTrigger.InRightPosition) m_backwardRoomCeiling.SetActive(false);
             }
+
+            EventOnDoorOpened?.Invoke();
         }
 
         private void Close()
@@ -90,6 +96,8 @@ namespace DC_ARPG
                 if (m_forwardPositionTrigger.InRightPosition) m_forwardRoomCeiling.SetActive(true);
                 if (m_backwardPositionTrigger.InRightPosition) m_backwardRoomCeiling.SetActive(true);
             }
+
+            EventOnDoorClosed?.Invoke();
         }
     }
 }

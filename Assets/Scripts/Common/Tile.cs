@@ -5,9 +5,12 @@ namespace DC_ARPG
 {
     public class Tile : MonoBehaviour
     {
-        public List<Tile> NeighborTiles = new List<Tile>();
+        private List<Tile> neighborTiles = new List<Tile>();
+        public List<Tile> NeighborTiles { get => neighborTiles; set => neighborTiles = value; }
 
         [SerializeField] private bool m_walkable = true;
+        [SerializeField] private Collider m_targetCollider;
+
         public bool Walkable { get => m_walkable; set => m_walkable = value; }
         public bool Current { get; set; }
         public bool Target { get; set; }
@@ -23,6 +26,11 @@ namespace DC_ARPG
         public float g { get; set; }
         public float h { get; set; }
 
+        public void SetTargetTileCollider(bool state)
+        {
+            m_targetCollider.enabled = state;
+        }
+
         public void FindNeighbors(Tile target)
         {
             Reset();
@@ -35,7 +43,9 @@ namespace DC_ARPG
 
         public void Reset()
         {
-            NeighborTiles.Clear();
+            neighborTiles.Clear();
+
+            m_targetCollider.enabled = false;
 
             Current = false;
             Target = false;
@@ -56,11 +66,12 @@ namespace DC_ARPG
             foreach (var collider in colliders)
             {
                 Tile tile = collider.GetComponentInParent<Tile>();
-                if (tile != null && tile.m_walkable)
+
+                if (tile != null && tile.Walkable)
                 {
                     if (!Physics.Raycast(tile.transform.position, Vector3.up, 1f, 1, QueryTriggerInteraction.Ignore) || tile == target)
                     {
-                        NeighborTiles.Add(tile);
+                        neighborTiles.Add(tile);
                     }
                 }   
             }

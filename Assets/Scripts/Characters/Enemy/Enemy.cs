@@ -17,26 +17,36 @@ namespace DC_ARPG
         private FieldOfView enemyFOV;
         public FieldOfView EnemyFieldOfView => enemyFOV;
 
-        private EnemyAIController enemyAI;
-        public EnemyAIController EnemyAI => enemyAI;
-
         private EnemyCharacter m_character;
         public EnemyCharacter Character => m_character;
 
-        public GameObject PlayerGameObject => enemyFOV?.PlayerGameObject;
+        public GameObject DetectedPlayerGameObject => enemyFOV?.PlayerGameObject;
 
         public bool CheckForPlayerInSightRange() => enemyFOV.CanSeePlayer;
 
         public bool CheckForPlayerInAttackRange()
         {
-            Ray attackRay = new Ray(transform.position + new Vector3(0, 0.5f, 0), transform.forward);
-            RaycastHit hit;
+            Ray attackRay = new Ray(transform.position + new Vector3(0, 0.25f, 0), transform.forward);
 
-            if (Physics.Raycast(attackRay, out hit, 1f))
+            if (Physics.Raycast(attackRay, 1f, enemyFOV.TargetMask))
             {
-                if (hit.collider.GetComponentInParent<Player>())
+                return true;
+            }
+
+            return false;
+        }
+
+        public bool CheckForwardGridForObstacle()
+        {
+            Ray checkRay = new Ray(transform.position + new Vector3(0, 0.25f, 0), transform.forward);
+
+            // TEMP CHECK -> MAYBE DO LAYER MASK FOR SPECIFIC OBSCTACLES
+
+            if (Physics.Raycast(checkRay, out RaycastHit hit, 1f, 1, QueryTriggerInteraction.Ignore))
+            {
+                if (hit.collider.transform.parent.TryGetComponent(out Door door))
                 {
-                    return true;
+                    if (hit.collider) return true;
                 }
             }
 
@@ -53,7 +63,6 @@ namespace DC_ARPG
         {
             m_character = GetComponent<EnemyCharacter>();
             enemyFOV = GetComponent<FieldOfView>();
-            enemyAI = GetComponent<EnemyAIController>();
         }
 
         private void StartState(EnemyState state)

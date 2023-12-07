@@ -9,8 +9,6 @@ namespace DC_ARPG
         public void Construct(PlayerCharacter character) => m_character = character;
         public PlayerCharacter Character => m_character;
 
-        private bool isChased; // Test
-
         private Ray m_lookRay;
 
         #region PlayerActions

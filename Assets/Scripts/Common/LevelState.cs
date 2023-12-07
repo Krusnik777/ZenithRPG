@@ -7,29 +7,88 @@ namespace DC_ARPG
         private Tile[] m_levelTileField;
         public Tile[] LevelTileField => m_levelTileField;
 
-        private Enemy[] m_allEnemies;
-        public Enemy[] AllEnemies => m_allEnemies;
+        private EnemyAIController[] m_allEnemies;
+        public EnemyAIController[] AllEnemies => m_allEnemies;
+
+        private Door[] m_allDoorsOnLevel;
+        public Door[] AllDoorsOnLevel => m_allDoorsOnLevel;
 
         private Player m_player;
         public void Construct(Player player) => m_player = player;
+        public Player Player => m_player;
+
+        public void StopAllActivity()
+        {
+            foreach(var enemy in m_allEnemies)
+            {
+                enemy.StopActivity();
+            }
+        }
+
+        public void ResumeAllActivity()
+        {
+            foreach (var enemy in m_allEnemies)
+            {
+                enemy.ResumeActivity();
+            }
+        }
+
+        public void ComputeAdjacencyList(Tile target)
+        {
+            foreach (var tile in m_levelTileField)
+            {
+                tile.FindNeighbors(target);
+            }
+        }
 
         private void Start()
         {
             m_levelTileField = FindObjectsOfType<Tile>();
-            //ComputeAdjacencyList(m_levelTileField, null);
+            m_allEnemies = FindObjectsOfType<EnemyAIController>();
+            m_allDoorsOnLevel = FindObjectsOfType<Door>();
+
+            StoryEventManager.Instance.EventOnStoryEventStarted += OnStoryEventStarted;
+            StoryEventManager.Instance.EventOnStoryEventEnded += OnStoryEventEnded;
+
+            foreach(var door in m_allDoorsOnLevel)
+            {
+                door.EventOnDoorOpened += OnAnyDoorStateChanged;
+                door.EventOnDoorClosed += OnAnyDoorStateChanged;
+            }
+        }
+        private void OnDestroy()
+        {
+            StoryEventManager.Instance.EventOnStoryEventStarted -= OnStoryEventStarted;
+            StoryEventManager.Instance.EventOnStoryEventEnded -= OnStoryEventEnded;
+
+            foreach (var door in m_allDoorsOnLevel)
+            {
+                door.EventOnDoorOpened -= OnAnyDoorStateChanged;
+                door.EventOnDoorClosed -= OnAnyDoorStateChanged;
+            }
+        }
+
+        private void OnStoryEventStarted()
+        {
+            StopAllActivity();
+        }
+
+        private void OnStoryEventEnded()
+        {
+            ResumeAllActivity();
+        }
+
+        private void OnAnyDoorStateChanged()
+        {
+            foreach (var enemy in m_allEnemies)
+            {
+                enemy.UpdateActivity();
+            }
         }
 
         private void Update()
         {
             //ComputeAdjacencyList(m_levelTileField, null);
-        }
-
-        private void ComputeAdjacencyList(Tile[] tileField, Tile target)
-        {
-            foreach (var tile in tileField)
-            {
-                tile.FindNeighbors(target);
-            }
         }
     }
 }

@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.Events;
 
 namespace DC_ARPG
 {
@@ -19,6 +20,9 @@ namespace DC_ARPG
         [SerializeField] private GameObject m_messageBoxNamePanel;
         [SerializeField] private TextMeshProUGUI m_messageBoxNameText;
         [SerializeField] private Image m_messageImage;
+
+        public event UnityAction EventOnStoryEventStarted;
+        public event UnityAction EventOnStoryEventEnded;
 
         private ControlsManager m_controlsManager;
         public void Construct(ControlsManager controlsManager) => m_controlsManager = controlsManager;
@@ -52,6 +56,8 @@ namespace DC_ARPG
                 m_imageBoxText.enabled = true;
                 SetupCurrentPlaqueEventSegment();
             }
+
+            EventOnStoryEventStarted?.Invoke();
         }
 
         public void EndEvent()
@@ -64,6 +70,8 @@ namespace DC_ARPG
 
             currentStorySegments = null;
             currentStorySegmentNumber = 0;
+
+            EventOnStoryEventEnded?.Invoke();
         }
 
         public void ContinueEvent()

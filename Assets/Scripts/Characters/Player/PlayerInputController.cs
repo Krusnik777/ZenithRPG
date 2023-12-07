@@ -167,7 +167,6 @@ namespace DC_ARPG
             m_controlsManager.SetPlayerControlsActive(false);
 
             m_controlsManager.SetInventoryControlsActive(true);
-            
         }
 
         private void OnUseItem(InputAction.CallbackContext obj)

@@ -7,7 +7,11 @@ namespace DC_ARPG
     {
         [SerializeField] private Tile[] m_patrolField;
         //[SerializeField] private Tile[] m_allField;
-        [SerializeField] private float m_chaseRange = 8.0f;
+        [SerializeField] private float m_chaseRange = 6.0f;
+        [SerializeField] private int m_chaseMovesToCheck = 1;
+        [SerializeField] private float m_closeRange = 1.5f;
+
+        [Header("ForTimers")]
         [SerializeField] private float m_patrolRestTime = 5.0f;
         [SerializeField] private float m_chaseDurationTime = 20.0f;
         [SerializeField] private float m_attackMinDelayTime = 1.0f;
@@ -19,7 +23,8 @@ namespace DC_ARPG
         private Stack<Tile> path = new Stack<Tile>();
         private Tile currentTile;
         private Tile targetTile;
-        private Tile playerTile => GetTargetTile(m_enemy.PlayerGameObject);
+        private Tile playerTile => GetTargetTile(m_enemy.DetectedPlayerGameObject);
+        private Tile targetedPlayerTile;
 
         private Vector3 currentDirection;
         private Vector3 headingDirection;
@@ -38,11 +43,21 @@ namespace DC_ARPG
         private Timer m_chaseTimer;
         private Timer m_attackTimer;
 
+        private int currentChaseMove = 0;
+
         private void GetCurrentTile() => currentTile = GetTargetTile(gameObject);
         private void CalculateHeadingDirection(Vector3 targetPosition) => headingDirection = (targetPosition - transform.position).normalized;
         private void SetHorizontalVelocity() => velocity = headingDirection * moveSpeed;
 
-        private bool CheckChaseRange() => Vector3.Distance(transform.position, m_enemy.PlayerGameObject.transform.position) < m_chaseRange ? true : false;
+        private bool CheckPlayerInChaseRange() => Vector3.Distance(transform.position, m_enemy.DetectedPlayerGameObject.transform.position) < m_chaseRange ? true : false;
+        private bool CheckCloseRange() => Vector3.Distance(transform.position, m_enemy.DetectedPlayerGameObject.transform.position) < m_closeRange ? true : false;
+
+        public void UpdateActivity()
+        {
+            StopMoving();
+            isChasing = false;
+            LevelState.Instance.ComputeAdjacencyList(targetTile);
+        }
 
         public void StopActivity()
         {
@@ -77,7 +92,7 @@ namespace DC_ARPG
 
         private void ChooseAction()
         {
-            if (m_enemy.State == EnemyState.Patrol) if (m_patrolRestTimer.IsFinished) Patrol();
+            if (m_enemy.State == EnemyState.Patrol) Patrol();
 
             if (m_enemy.State == EnemyState.Chase) Chase();
 
@@ -86,20 +101,23 @@ namespace DC_ARPG
 
         private void Patrol()
         {
-            if (!isMoving)
+            if (m_patrolRestTimer.IsFinished)
             {
-                int index = Random.Range(0, m_patrolField.Length);
-                CalculatePath(m_patrolField[index]);
-            }
-            else
-            {
-                if (!isTurning) Move();
-                else Turn();
+                if (!isMoving)
+                {
+                    int index = Random.Range(0, m_patrolField.Length);
+                    CalculatePath(m_patrolField[index]);
+                }
+                else
+                {
+                    if (!isTurning) Move();
+                    else Turn();
+                }
             }
 
             if (!isTurning)
             {
-                if (SeePlayer)
+                if (SeePlayer || CheckCloseRange() == true)
                 {
                     m_enemy.StartChase();
                     StopMoving();
@@ -113,15 +131,17 @@ namespace DC_ARPG
 
         private void Chase()
         {
-            if (!m_chaseTimer.IsFinished || CheckChaseRange())
+            if (!m_chaseTimer.IsFinished)
             {
                 if (!isChasing)
                 {
-                    CalculatePath(playerTile);
+                    targetedPlayerTile = playerTile;
 
-                    if (targetTile == currentTile) return;
+                    CalculatePath(targetedPlayerTile);
 
                     isChasing = true;
+
+                    currentChaseMove = 0;
                 }
                 else
                 {
@@ -131,12 +151,19 @@ namespace DC_ARPG
             }
             else
             {
-                StopMoving();
-                isChasing = false;
+                if (CheckPlayerInChaseRange() == true)
+                {
+                    m_chaseTimer.Start(m_chaseDurationTime);
+                }
+                else
+                {
+                    StopMoving();
+                    isChasing = false;
 
-                Debug.Log("Started Patrol");
+                    Debug.Log("Started Patrol");
 
-                m_enemy.StartPatrol();
+                    m_enemy.StartPatrol();
+                } 
             }
         }
 
@@ -159,18 +186,6 @@ namespace DC_ARPG
                 }
             }
         }
-
-        // ???
-
-        private void ComputeAdjacencyList(Tile[] tileField, Tile target)
-        {
-            foreach (var tile in tileField)
-            {
-                tile.FindNeighbors(target);
-            }
-        }
-
-        // ???
 
         private Tile GetTargetTile(GameObject target)
         {
@@ -209,6 +224,7 @@ namespace DC_ARPG
             {
                 Tile t = path.Peek();
                 Vector3 targetPosition = t.transform.position;
+                t.SetTargetTileCollider(true);
 
                 m_enemy.Animator.SetBool("Forward", true);
 
@@ -235,9 +251,32 @@ namespace DC_ARPG
                 {
                     // tile center reached
 
-                    transform.position = targetPosition;
-                    path.Pop();
+                    t.SetTargetTileCollider(false);
 
+                    transform.position = targetPosition;
+
+                    if (isChasing)
+                    {
+                        currentChaseMove++;
+
+                        if ((currentChaseMove >= m_chaseMovesToCheck && targetedPlayerTile != playerTile) || LevelState.Instance.Player.InMovement)
+                        {
+                            StopMoving();
+                            StopChasing();
+                            return;
+                        }
+
+                        Debug.Log(m_enemy.CheckForwardGridForObstacle());
+
+                        if (m_enemy.CheckForwardGridForObstacle())
+                        {
+                            StopMoving();
+                            StopChasing();
+                            return;
+                        }
+                    }
+                    
+                    path.Pop();
                 }
             }
             else
@@ -248,7 +287,7 @@ namespace DC_ARPG
                 {
                     if (playerTile != null)
                     {
-                        CalculateHeadingDirection(m_enemy.PlayerGameObject.transform.position);  // TEMP
+                        CalculateHeadingDirection(m_enemy.DetectedPlayerGameObject.transform.position);
 
                         if (currentDirection != headingDirection)
                         {
@@ -260,7 +299,7 @@ namespace DC_ARPG
                     StopChasing();
                 }
 
-                m_patrolRestTimer.Start(m_patrolRestTime);
+                if (m_enemy.State == EnemyState.Patrol) m_patrolRestTimer.Start(m_patrolRestTime);
             }
         }
 
@@ -299,6 +338,7 @@ namespace DC_ARPG
             if (currentTile != null)
             {
                 currentTile.Current = false;
+                currentTile.SetTargetTileCollider(false);
                 currentTile = null;
             }
         }
@@ -307,8 +347,10 @@ namespace DC_ARPG
         {
             if (target == null) return;
 
-            ComputeAdjacencyList(LevelState.Instance.LevelTileField, target);
+            LevelState.Instance.ComputeAdjacencyList(target);
+
             GetCurrentTile();
+            currentTile.SetTargetTileCollider(true);
 
             List<Tile> openList = new List<Tile>();
             List<Tile> closedList = new List<Tile>();
@@ -433,6 +475,14 @@ namespace DC_ARPG
 
         private List<Tile> selectableTiles = new List<Tile>();
 
+        private void ComputeAdjacencyList(Tile[] tileField, Tile target)
+        {
+            foreach (var tile in tileField)
+            {
+                tile.FindNeighbors(target);
+            }
+        }
+
         private void FindSelectableTiles(Tile[] tileField)
         {
             ComputeAdjacencyList(tileField, null);
@@ -480,7 +530,6 @@ namespace DC_ARPG
                 currentTile.Current = false;
                 currentTile = null;
             }
-            Debug.Log("selectableTiles - " + selectableTiles);
 
             foreach (var tile in selectableTiles)
             {

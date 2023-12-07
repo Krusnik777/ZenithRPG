@@ -213,6 +213,8 @@ namespace DC_ARPG
 
             transform.position = targetPosition;
 
+            yield return null;
+
             inMovement = false;
 
             yield return null;

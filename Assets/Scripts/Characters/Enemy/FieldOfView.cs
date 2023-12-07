@@ -10,6 +10,7 @@ namespace DC_ARPG
         [SerializeField] [Range(0,360)] private float m_angle;
         public float Angle => m_angle;
         [SerializeField] private LayerMask m_targetMask;
+        public LayerMask TargetMask => m_targetMask;
         [SerializeField] private LayerMask m_obstructionMask;
 
         private GameObject m_playerGameObject;
