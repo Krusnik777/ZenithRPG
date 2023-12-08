@@ -119,11 +119,8 @@ namespace DC_ARPG
 
         public bool TryToAddItem(object sender, IItem item)
         {
-            if (MainPocket.IsFull)
-            {
-                ShortMessage.Instance.ShowMessage("Нет места в инвентаре.");
-                return false;
-            }
+            if (MainPocket.IsFull) return false;
+
             var availableSlot = MainPocket.GetEmptySlot();
             availableSlot.TrySetItemInSlot(item.Clone());
 

@@ -9,6 +9,7 @@ namespace DC_ARPG
         [SerializeField] private MenuInputController m_menuInputController;
         [SerializeField] private InventoryInputController m_inventoryInputController;
         [SerializeField] private StoryEventInputController m_storyEventInputController;
+        [SerializeField] private ShopInputController m_shopInputController;
 
         private Controls _controls;
         public Controls Controls => _controls;
@@ -33,6 +34,11 @@ namespace DC_ARPG
             m_storyEventInputController.enabled = state;
         }
 
+        public void SetShopControlsActive(bool state)
+        {
+            m_shopInputController.enabled = state;
+        }
+
         protected override void Awake()
         {
             base.Awake();
@@ -43,6 +49,7 @@ namespace DC_ARPG
             SetMenuControlsActive(false);
             SetInventoryControlsActive(false);
             SetStoryEventControlsActive(false);
+            SetShopControlsActive(false);
         }
 
         private void OnDisable()

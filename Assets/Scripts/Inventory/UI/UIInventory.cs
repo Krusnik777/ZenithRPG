@@ -8,6 +8,7 @@ namespace DC_ARPG
     {
         [SerializeField] private GameObject m_inventoryPanel;
         [SerializeField] private ItemsPanel m_itemsPanel;
+        [SerializeField] private TextMeshProUGUI m_moneyValueText;
         [Header("Equipment")]
         [SerializeField] private UIInventorySlot m_weaponSlot;
         [SerializeField] private UIInventorySlot m_magicSlot;
@@ -103,10 +104,15 @@ namespace DC_ARPG
 
             m_itemsPanel.SetPanel(this);
 
+            UpdateMoneyInfo();
+
             m_inventory.EventOnItemAdded += OnItemAdded;
             m_inventory.EventOnItemRemoved += OnItemRemoved;
             m_inventory.EventOnItemUsed += OnItemUsed;
             m_inventory.EventOnTransitCompleted += OnTransitCompleted;
+
+            m_player.Character.EventOnMoneySpend += UpdateMoneyInfo;
+            m_player.Character.EventOnMoneyAdded += UpdateMoneyInfo;
         }
 
         private void OnDestroy()
@@ -115,6 +121,9 @@ namespace DC_ARPG
             m_inventory.EventOnItemRemoved -= OnItemRemoved;
             m_inventory.EventOnItemUsed -= OnItemUsed;
             m_inventory.EventOnTransitCompleted -= OnTransitCompleted;
+
+            m_player.Character.EventOnMoneyAdded -= UpdateMoneyInfo;
+            m_player.Character.EventOnMoneySpend -= UpdateMoneyInfo;
         }
 
         private void SetInventory()
@@ -205,6 +214,11 @@ namespace DC_ARPG
             defenseAmount += m_inventory.ArmorItemSlot.IsEmpty ? 0 : (m_inventory.ArmorItemSlot.Item as EquipItem).DefenseIncrease;
 
             m_defenseAmountText.text = defenseAmount.ToString();
+        }
+
+        private void UpdateMoneyInfo()
+        {
+            m_moneyValueText.text = m_player.Character.Money.ToString();
         }
 
     }

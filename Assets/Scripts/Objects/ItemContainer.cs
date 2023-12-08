@@ -2,10 +2,36 @@ using UnityEngine;
 
 namespace DC_ARPG
 {
+    [System.Serializable]
+    public class ItemData
+    {
+        public ItemInfo ItemInfo;
+        /// <summary>
+        /// For some items Amount = Uses
+        /// </summary>
+        public int Amount;
+
+        public IItem CreateItem()
+        {
+            if (Amount <= 0) Amount = 1;
+
+            if (ItemInfo is UsableItemInfo) return new UsableItem(ItemInfo as UsableItemInfo, Amount);
+
+            if (ItemInfo is NotUsableItemInfo) return new NotUsableItem(ItemInfo as NotUsableItemInfo, Amount);
+
+            if (ItemInfo is EquipItemInfo) return new EquipItem(ItemInfo as EquipItemInfo);
+
+            if (ItemInfo is WeaponItemInfo) return new WeaponItem(ItemInfo as WeaponItemInfo, Amount);
+
+            if (ItemInfo is MagicItemInfo) return new MagicItem(ItemInfo as MagicItemInfo, Amount);
+
+            return null;
+        }
+    }
+
     public class ItemContainer : InspectableObject
     {
-        [SerializeField] private ItemInfo m_itemInfo;
-        [SerializeField] private int m_amount;
+        [SerializeField] private ItemData m_itemData;
 
         protected IItem m_item;
 
@@ -25,6 +51,7 @@ namespace DC_ARPG
 
                 Destroy(gameObject);
             }
+            else ShortMessage.Instance.ShowMessage("Нет места в инвентаре.");
         }
 
         public void AssignItem(IItem item)
@@ -34,27 +61,7 @@ namespace DC_ARPG
 
         private void Start()
         {
-            if (m_item == null) m_item = CreateItem();
+            if (m_item == null) m_item = m_itemData.CreateItem();
         }
-
-        private IItem CreateItem()
-        {
-            if (m_itemInfo == null) return null;
-
-            if (m_amount <= 0) m_amount = 1;
-
-            if (m_itemInfo is UsableItemInfo) return new UsableItem(m_itemInfo as UsableItemInfo, m_amount);
-
-            if (m_itemInfo is NotUsableItemInfo) return new NotUsableItem(m_itemInfo as NotUsableItemInfo, m_amount);
-
-            if (m_itemInfo is EquipItemInfo) return new EquipItem(m_itemInfo as EquipItemInfo);
-
-            if (m_itemInfo is WeaponItemInfo) return new WeaponItem(m_itemInfo as WeaponItemInfo, m_amount);
-
-            if (m_itemInfo is MagicItemInfo) return new MagicItem(m_itemInfo as MagicItemInfo, m_amount);
-
-            return null;
-        }
-
     }
 }

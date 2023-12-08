@@ -48,6 +48,8 @@ namespace DC_ARPG
         {
             if (!StandingInFrontOfDoor)
             {
+                // Not Possible but just to be sure
+
                 ShortMessage.Instance.ShowMessage("Дверь. С этой стороны не открыть.");
                 return;
             }

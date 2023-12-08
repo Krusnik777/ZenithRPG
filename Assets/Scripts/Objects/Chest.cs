@@ -77,6 +77,7 @@ namespace DC_ARPG
 
                 EventOnInspection?.Invoke();
             }
+            else ShortMessage.Instance.ShowMessage("Нет места в инвентаре.");
         }
 
         private void Close()

@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace DC_ARPG
 {
@@ -17,6 +18,12 @@ namespace DC_ARPG
         private Player m_player;
         public void Construct(Player player) => m_player = player;
 
+        private int m_money;
+        public int Money => m_money;
+
+        public event UnityAction EventOnMoneyAdded;
+        public event UnityAction EventOnMoneySpend;
+
         // TEST
         [SerializeField] private NotUsableItem[] notUsableItems;
         [SerializeField] private UsableItem[] usableItems;
@@ -24,6 +31,20 @@ namespace DC_ARPG
         [SerializeField] private EquipItem[] shieldItems;
         [SerializeField] private WeaponItem[] weaponItems;
         [SerializeField] private MagicItem[] magicItems;
+
+        public void AddMoney(int amount)
+        {
+            m_money += amount;
+
+            EventOnMoneyAdded?.Invoke();
+        }
+
+        public void SpendMoney(int amount)
+        {
+            m_money -= amount;
+
+            EventOnMoneySpend?.Invoke();
+        }
 
         private void Awake()
         {
@@ -52,7 +73,6 @@ namespace DC_ARPG
 
             Debug.Log("Game Over");
         }
-
 
         private void Start()
         {
@@ -92,6 +112,8 @@ namespace DC_ARPG
 
             inventory.TryToAddItem(this, magicItems[0]);
             inventory.TransitFromSlotToSlot(this, inventory.MainPocket.ItemSlots[8], inventory.ExtraPockets[2].ItemSlots[7]);
+
+            AddMoney(1000);
         }
 
     }

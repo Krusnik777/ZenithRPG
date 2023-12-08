@@ -235,14 +235,14 @@ namespace DC_ARPG
                     CalculateHeadingDirection(targetPosition);
                     SetHorizontalVelocity();
 
-                    // Moving
-
                     if (currentDirection != headingDirection)
                     {
                         isTurning = true;
                         m_enemy.Animator.SetBool("Forward", false);
                         return;
                     }
+
+                    // Moving
 
                     //transform.forward = headingDirection;
                     transform.position += velocity * Time.deltaTime;
