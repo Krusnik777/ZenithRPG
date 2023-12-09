@@ -2504,6 +2504,8 @@ MonoBehaviour:
   m_useButtonIcon: {fileID: 7895338933261656458}
   m_useText: {fileID: 1939781313379524910}
   m_removeButtonIcon: {fileID: 1031063454830591472}
+  m_removeButtonIconImage: {fileID: 21300000, guid: 51a90ede64cb5ff4290be913569d8a7b, type: 3}
+  m_backButtonIconImage: {fileID: 21300000, guid: 6d75bf6e1df7b474887cb945d2513737, type: 3}
   m_removeText: {fileID: 5853688395054992103}
   m_moveButtonIcon: {fileID: 2192992820760320362}
   m_moveText: {fileID: 5636544020366494927}

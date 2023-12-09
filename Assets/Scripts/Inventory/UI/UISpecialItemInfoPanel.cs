@@ -63,7 +63,7 @@ namespace DC_ARPG
                 {
                     m_specialInfoParamName.text = "Расход маны";
 
-                    m_specialInfoParamText.text = magicItem.MagicPointsForUse.ToString() + " MP";
+                    m_specialInfoParamText.text = magicItem.MagicPointsForUse.ToString();
                     m_specialInfoParamText.gameObject.SetActive(true);
 
                     m_amountText.gameObject.SetActive(false);

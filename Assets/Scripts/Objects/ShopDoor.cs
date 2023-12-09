@@ -6,6 +6,8 @@ namespace DC_ARPG
     [RequireComponent(typeof(Animator))]
     public class ShopDoor : InspectableObject
     {
+        private Shop m_shop;
+
         private PositionTrigger m_positionTrigger;
 
         public event UnityAction EventOnShopEntered;
@@ -37,21 +39,34 @@ namespace DC_ARPG
         private void Awake()
         {
             m_animator = GetComponent<Animator>();
+            m_shop = GetComponent<Shop>();
             m_positionTrigger = GetComponentInChildren<PositionTrigger>();
+        }
+
+        private void Start()
+        {
+            UIShop.Instance.EventOnShopExit += OnShopExited;
+        }
+
+        private void OnDestroy()
+        {
+            UIShop.Instance.EventOnShopExit -= OnShopExited;
         }
 
         private void EnterShop()
         {
             m_animator.SetTrigger("Open");
 
-            EventOnShopEntered?.Invoke(); // -> startShop
+            UIShop.Instance.ShowShop(m_shop);
+
+            EventOnShopEntered?.Invoke(); // For LevelState??
         }
 
         private void OnShopExited()
         {
             m_animator.SetTrigger("Close");
 
-            EventOnShopExited?.Invoke();
+            EventOnShopExited?.Invoke(); // For LevelState??
         }
     }
 }

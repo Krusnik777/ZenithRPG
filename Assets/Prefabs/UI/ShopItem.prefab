@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2466434609959959901}
   - component: {fileID: 8261484104342273623}
   m_Layer: 5
-  m_Name: Amount
+  m_Name: Value
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -354,6 +354,8 @@ GameObject:
   - component: {fileID: 3180707042055064512}
   - component: {fileID: 813151026880434950}
   - component: {fileID: 8429460556934019171}
+  - component: {fileID: 7259178839153268325}
+  - component: {fileID: 2238285779666694045}
   m_Layer: 5
   m_Name: ShopItem
   m_TagString: Untagged
@@ -421,6 +423,44 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &7259178839153268325
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6293646695292047116}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0951f8db7236e945bef0c2148862303, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_itemIcon: {fileID: 5037773619967979411}
+  m_itemAmountText: {fileID: 2572462789899120864}
+  m_priceValue: {fileID: 8261484104342273623}
+--- !u!114 &2238285779666694045
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6293646695292047116}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 622d1d2b869ca544085555c72877b370, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_interactable: 1
+  OnClick:
+    m_PersistentCalls:
+      m_Calls: []
+  m_selectImage: {fileID: 43245383545404902}
+  OnSelect:
+    m_PersistentCalls:
+      m_Calls: []
+  OnUnselect:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &7201951683752728231
 GameObject:
   m_ObjectHideFlags: 0
@@ -508,7 +548,7 @@ GameObject:
   - component: {fileID: 5547086917186430231}
   - component: {fileID: 2610655928020499969}
   m_Layer: 5
-  m_Name: GolIcon
+  m_Name: GoldIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

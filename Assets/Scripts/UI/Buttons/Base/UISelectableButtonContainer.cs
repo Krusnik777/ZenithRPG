@@ -21,11 +21,13 @@ namespace DC_ARPG
 
         #region Public
 
+        public void SetButton(int index = 0) => SelectButton(buttons[index]);
+
         public void SelectNext()
         {
             var newButtonIndex = selectButtonIndex;
             newButtonIndex++;
-            if (newButtonIndex >= buttons.Length) newButtonIndex = 0;
+            if (newButtonIndex >= buttons.Length) return;
             SelectButton(buttons[newButtonIndex]);
         }
 
@@ -33,7 +35,7 @@ namespace DC_ARPG
         {
             var newButtonIndex = selectButtonIndex;
             newButtonIndex--;
-            if (newButtonIndex < 0) newButtonIndex = buttons.Length - 1;
+            if (newButtonIndex < 0) return;
             SelectButton(buttons[newButtonIndex]);
         }
 
@@ -101,9 +103,12 @@ namespace DC_ARPG
 
             if (tempButtons.Length != buttons?.Length)
             {
-                for (int i = 0; i < buttons.Length; i++)
+                if (buttons != null)
                 {
-                    buttons[i].EventOnPointerEnter -= OnPointerEnter;
+                    for (int i = 0; i < buttons.Length; i++)
+                    {
+                        buttons[i].EventOnPointerEnter -= OnPointerEnter;
+                    }
                 }
 
                 buttons = tempButtons;
@@ -129,7 +134,7 @@ namespace DC_ARPG
 
         #region Private
 
-        private void Start()
+        private void OnEnable()
         {
             buttons = m_buttonsContainer.GetComponentsInChildren<UISelectableButton>();
 
@@ -149,12 +154,14 @@ namespace DC_ARPG
             buttons[selectButtonIndex].SetFocus();
         }
 
-        private void OnDestroy()
+        private void OnDisable()
         {
             for (int i = 0; i < buttons.Length; i++)
             {
                 buttons[i].EventOnPointerEnter -= OnPointerEnter;
             }
+
+            buttons[selectButtonIndex].UnsetFocus();
         }
 
         private void OnPointerEnter(UIButton button)

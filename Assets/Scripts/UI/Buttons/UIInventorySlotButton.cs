@@ -49,7 +49,7 @@ namespace DC_ARPG
 
             uiSlot.UIInventory.InfoPanelController.ShowInfoPanel(uiSlot.InventorySlot);
 
-            uiSlot.UIInventory.ButtonsInfoPanel.UpdateButtonsPanel(uiSlot.InventorySlot);
+            uiSlot.UIInventory.ButtonsInfoPanel.UpdateButtonsPanel(uiSlot.UIInventory, uiSlot.InventorySlot);
         }
 
         public override void UnsetFocus()
@@ -72,7 +72,7 @@ namespace DC_ARPG
             uiSlot.UseItem();
 
             uiSlot.UIInventory.InfoPanelController.ShowInfoPanel(uiSlot.InventorySlot);
-            uiSlot.UIInventory.ButtonsInfoPanel.UpdateButtonsPanel(uiSlot.InventorySlot);
+            uiSlot.UIInventory.ButtonsInfoPanel.UpdateButtonsPanel(uiSlot.UIInventory, uiSlot.InventorySlot);
 
             OnButtonUseClick?.Invoke();
         }
@@ -83,7 +83,7 @@ namespace DC_ARPG
 
             uiSlot.RemoveItem();
 
-            uiSlot.UIInventory.ButtonsInfoPanel.UpdateButtonsPanel(uiSlot.InventorySlot);
+            uiSlot.UIInventory.ButtonsInfoPanel.UpdateButtonsPanel(uiSlot.UIInventory, uiSlot.InventorySlot);
 
             OnButtonRemoveClick?.Invoke();
         }
@@ -115,7 +115,7 @@ namespace DC_ARPG
                 uiSlot.UIInventory.InfoPanelController.ShowInfoPanel(uiSlot.InventorySlot);
             }
 
-            uiSlot.UIInventory.ButtonsInfoPanel.UpdateButtonsPanel(uiSlot.InventorySlot);
+            uiSlot.UIInventory.ButtonsInfoPanel.UpdateButtonsPanel(uiSlot.UIInventory, uiSlot.InventorySlot);
 
             OnButtonMoveClick?.Invoke();
         }

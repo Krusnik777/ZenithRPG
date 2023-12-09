@@ -21,7 +21,7 @@ namespace DC_ARPG
         public int AttackIncrease => m_itemInfo.AttackIncrease;
         public bool HasInfiniteUses => m_itemInfo.HasInfiniteUses;
 
-        public int Price => m_itemInfo.Price;
+        public int Price => HasInfiniteUses ? m_itemInfo.Price : m_itemInfo.Price * Uses;
 
         public WeaponItem(WeaponItemInfo info, int uses)
         {

@@ -12,7 +12,7 @@ namespace DC_ARPG
 
         private Controls _controls;
 
-        private UISelectableButtonContainer m_buttonContainer;
+        private UISelectableButtonContainer m_buttonContainer => UIShop.Instance.ActiveButtonContainer;
 
         private void OnEnable()
         {
@@ -20,11 +20,7 @@ namespace DC_ARPG
 
             _controls.Shop.Enable();
 
-            m_buttonContainer = m_uIInventory.UISlotButtonsContainer;
-
-            m_uIInventory.ShowInventory();
-
-            _controls.Shop.Cancel.performed += CloseInventory;
+            _controls.Shop.Cancel.performed += BackToSelection;
 
             _controls.Shop.MoveCursor.performed += OnMoveCursor;
 
@@ -34,7 +30,7 @@ namespace DC_ARPG
 
         private void OnDisable()
         {
-            _controls.Shop.Cancel.performed -= CloseInventory;
+            _controls.Shop.Cancel.performed -= BackToSelection;
 
             _controls.Shop.MoveCursor.performed -= OnMoveCursor;
 
@@ -44,52 +40,90 @@ namespace DC_ARPG
             _controls.Shop.Disable();
         }
 
-        // TEMP
-
-        private void CloseInventory(InputAction.CallbackContext obj)
+        private void BackToSelection(InputAction.CallbackContext obj)
         {
-            if (UIInventorySlotButton.InTransit)
+            if (UIShop.Instance.State == UIShop.ShopState.Sell)
             {
-                UIInventorySlotButton.ResetInTransit();
-                if (m_buttonContainer.SelectedButton is UIInventorySlotButton)
+                if (UIInventorySlotButton.InTransit)
                 {
-                    (m_buttonContainer.SelectedButton as UIInventorySlotButton).ResetTransitSelectImage();
-                    m_uIInventory.ButtonsInfoPanel.UpdateButtonsPanel((m_buttonContainer.SelectedButton as UIInventorySlotButton).UISlot.InventorySlot);
+                    UIInventorySlotButton.ResetInTransit();
+                    if (m_buttonContainer.SelectedButton is UIInventorySlotButton)
+                    {
+                        (m_buttonContainer.SelectedButton as UIInventorySlotButton).ResetTransitSelectImage();
+                        m_uIInventory.ButtonsInfoPanel.UpdateButtonsPanel(m_uIInventory,(m_buttonContainer.SelectedButton as UIInventorySlotButton).UISlot.InventorySlot);
+                    }
                 }
             }
 
-            m_uIInventory.HideInventory();
-
-            m_controlsManager.SetPlayerControlsActive(true);
-            m_controlsManager.SetInventoryControlsActive(false);
+            UIShop.Instance.ReturnToSelection();
         }
 
         private void OnMoveCursor(InputAction.CallbackContext obj)
         {
-            var value = _controls.Inventory.MoveCursor.ReadValue<Vector2>();
+            if (UIShop.Instance.State == UIShop.ShopState.Talk) return;
 
-            if (value.x == 1) m_buttonContainer.SelectRight();
-            if (value.x == -1) m_buttonContainer.SelectLeft();
-            if (value.y == 1) m_buttonContainer.SelectUp();
-            if (value.y == -1) m_buttonContainer.SelectDown();
+            var value = _controls.Shop.MoveCursor.ReadValue<Vector2>();
+
+            if (UIShop.Instance.State == UIShop.ShopState.Selection)
+            {
+                if (value.x == 1) m_buttonContainer.SelectNext();
+                if (value.x == -1) m_buttonContainer.SelectPrevious();
+            }
+
+            if (UIShop.Instance.State == UIShop.ShopState.Buy)
+            {
+                if (value.y == 1) m_buttonContainer.SelectPrevious();
+                if (value.y == -1) m_buttonContainer.SelectNext();
+            }
+
+            if (UIShop.Instance.State == UIShop.ShopState.Sell)
+            {
+                if (value.x == 1) m_buttonContainer.SelectRight();
+                if (value.x == -1) m_buttonContainer.SelectLeft();
+                if (value.y == 1) m_buttonContainer.SelectUp();
+                if (value.y == -1) m_buttonContainer.SelectDown();
+            }
         }
 
         private void OnConfirm(InputAction.CallbackContext obj)
         {
-            if (m_buttonContainer.SelectedButton is UIInventorySlotButton)
+            if (UIShop.Instance.State == UIShop.ShopState.Selection)
             {
-                (m_buttonContainer.SelectedButton as UIInventorySlotButton).OnButtonUse();
+                m_buttonContainer.SelectedButton.OnButtonClick();
                 return;
             }
 
-            if (m_buttonContainer.SelectedButton is UIExtraPocketButton)
+            if (UIShop.Instance.State == UIShop.ShopState.Buy)
             {
                 m_buttonContainer.SelectedButton.OnButtonClick();
+                return;
+            }
+
+            if (UIShop.Instance.State == UIShop.ShopState.Sell)
+            {
+                if (m_buttonContainer.SelectedButton is UIInventorySlotButton)
+                {
+                    (m_buttonContainer.SelectedButton as UIInventorySlotButton).OnButtonUse();
+                    return;
+                }
+
+                if (m_buttonContainer.SelectedButton is UIExtraPocketButton)
+                {
+                    m_buttonContainer.SelectedButton.OnButtonClick();
+                    return;
+                }
+            }
+
+            if (UIShop.Instance.State == UIShop.ShopState.Talk)
+            {
+                UIShop.Instance.ShopkeeperSpeech.ContinueSpeech();
             }
         }
 
         private void OnMoveItem(InputAction.CallbackContext obj)
         {
+            if (UIShop.Instance.State != UIShop.ShopState.Sell) return;
+
             if (!(m_buttonContainer.SelectedButton is UIInventorySlotButton)) return;
 
             (m_buttonContainer.SelectedButton as UIInventorySlotButton).OnButtonMove();

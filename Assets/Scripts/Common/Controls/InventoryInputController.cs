@@ -56,7 +56,7 @@ namespace DC_ARPG
                 if (m_buttonContainer.SelectedButton is UIInventorySlotButton)
                 {
                     (m_buttonContainer.SelectedButton as UIInventorySlotButton).ResetTransitSelectImage();
-                    m_uIInventory.ButtonsInfoPanel.UpdateButtonsPanel((m_buttonContainer.SelectedButton as UIInventorySlotButton).UISlot.InventorySlot);
+                    m_uIInventory.ButtonsInfoPanel.UpdateButtonsPanel(m_uIInventory,(m_buttonContainer.SelectedButton as UIInventorySlotButton).UISlot.InventorySlot);
                 }
             }
 

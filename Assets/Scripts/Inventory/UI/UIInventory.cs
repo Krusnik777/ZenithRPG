@@ -6,6 +6,12 @@ namespace DC_ARPG
 {
     public class UIInventory : MonoBehaviour, IDependency<Player>
     {
+        public enum InteractionState
+        {
+            Normal,
+            Shop
+        }
+
         [SerializeField] private GameObject m_inventoryPanel;
         [SerializeField] private ItemsPanel m_itemsPanel;
         [SerializeField] private TextMeshProUGUI m_moneyValueText;
@@ -27,7 +33,9 @@ namespace DC_ARPG
         [Header("EquipInfo")]
         [SerializeField] private TextMeshProUGUI m_defenseAmountText;
         [SerializeField] private TextMeshProUGUI m_attackAmountText;
-        
+
+        private InteractionState m_interactionState;
+        public InteractionState State => m_interactionState;
         public UIItemInfoPanelController InfoPanelController => m_uiItemInfoPanelController;
         public UIInventoryButtonsPanel ButtonsInfoPanel => m_uIInventoryButtonsPanel;
 
@@ -43,6 +51,10 @@ namespace DC_ARPG
         private UISelectableButtonContainer m_uiSlotButtonsContainer;
         public UISelectableButtonContainer UISlotButtonsContainer => m_uiSlotButtonsContainer;
 
+        public void SetInventoryButtonContainer(bool state) => m_uiSlotButtonsContainer.enabled = state;
+        public void SetInventoryButtonsInfoPanel(bool state) => m_uIInventoryButtonsPanel.gameObject.SetActive(state);
+        public void SetState(InteractionState state) => m_interactionState = state;
+
         public void ShowInventory()
         {
             m_itemsPanel.TurnPanel(false);
@@ -52,6 +64,8 @@ namespace DC_ARPG
             SetInventory();
 
             GetAllUIInventorySlots();
+
+            m_uiSlotButtonsContainer.enabled = true;
         }
 
         public void HideInventory()
@@ -59,6 +73,8 @@ namespace DC_ARPG
             m_inventoryPanel.SetActive(false);
 
             m_itemsPanel.TurnPanel(true);
+
+            m_uiSlotButtonsContainer.enabled = false;
         }
 
         public void HideExtraPocket()
@@ -105,6 +121,8 @@ namespace DC_ARPG
             m_itemsPanel.SetPanel(this);
 
             UpdateMoneyInfo();
+
+            m_interactionState = InteractionState.Normal;
 
             m_inventory.EventOnItemAdded += OnItemAdded;
             m_inventory.EventOnItemRemoved += OnItemRemoved;

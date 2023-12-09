@@ -11,12 +11,14 @@ namespace DC_ARPG
         [SerializeField] private TextMeshProUGUI m_useText;
         [Header("Remove")]
         [SerializeField] private Image m_removeButtonIcon;
+        [SerializeField] private Sprite m_removeButtonIconImage;
+        [SerializeField] private Sprite m_backButtonIconImage;
         [SerializeField] private TextMeshProUGUI m_removeText;
         [Header("Move")]
         [SerializeField] private Image m_moveButtonIcon;
         [SerializeField] private TextMeshProUGUI m_moveText;
 
-        public void UpdateButtonsPanel(IItemSlot slot)
+        public void UpdateButtonsPanel(UIInventory uIInventory, IItemSlot slot)
         {
             if (UIInventorySlotButton.InTransit == true)
             {
@@ -28,8 +30,21 @@ namespace DC_ARPG
             }
             else
             {
-                UpdateUseInfo(slot);
+                UpdateUseInfo(uIInventory, slot);
                 m_moveText.text = "Двигать";
+
+                if (uIInventory.State == UIInventory.InteractionState.Normal)
+                {
+                    m_removeButtonIcon.sprite = m_removeButtonIconImage;
+                    m_removeText.text = "Бросить";
+                }
+
+                if (uIInventory.State == UIInventory.InteractionState.Shop)
+                {
+                    
+                    m_removeButtonIcon.sprite = m_backButtonIconImage;
+                    m_removeText.text = "Назад";
+                }
 
                 if (slot.IsEmpty)
                 {
@@ -105,25 +120,42 @@ namespace DC_ARPG
             m_useText.color = tempColor;
         }
 
-        private void UpdateUseInfo(IItemSlot slot)
+        private void UpdateUseInfo(UIInventory uIInventory, IItemSlot slot)
         {
-            if (!(slot is AnyItemSlot || slot is UsableItemSlot) || slot.Item is NotUsableItem || slot.IsEmpty)
+            if (uIInventory.State == UIInventory.InteractionState.Normal)
             {
-                ChangeUseInfoTransparency();
-            }
-            else
-            {
-                SetUseInfoTransparencyToDefault();
+                if (!(slot is AnyItemSlot || slot is UsableItemSlot) || slot.Item is NotUsableItem || slot.IsEmpty)
+                {
+                    ChangeUseInfoTransparency();
+                }
+                else
+                {
+                    SetUseInfoTransparencyToDefault();
+                }
+
+                if (slot.Item is UsableItem || slot.Item is NotUsableItem || slot.IsEmpty)
+                {
+                    m_useText.text = "Использовать";
+                }
+
+                if (slot.Item is WeaponItem || slot.Item is MagicItem || slot.Item is EquipItem)
+                {
+                    m_useText.text = "Экипировать";
+                }
             }
 
-            if (slot.Item is UsableItem || slot.Item is NotUsableItem || slot.IsEmpty)
+            if (uIInventory.State == UIInventory.InteractionState.Shop)
             {
-                m_useText.text = "Использовать";
-            }
+                m_useText.text = "Продать";
 
-            if (slot.Item is WeaponItem || slot.Item is MagicItem || slot.Item is EquipItem)
-            {
-                m_useText.text = "Экипировать";
+                if (slot.IsEmpty)
+                {
+                    ChangeUseInfoTransparency();
+                }
+                else
+                {
+                    SetUseInfoTransparencyToDefault();
+                }
             }
         }
     }

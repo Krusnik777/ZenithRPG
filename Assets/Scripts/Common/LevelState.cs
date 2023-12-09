@@ -13,6 +13,9 @@ namespace DC_ARPG
         private Door[] m_allDoorsOnLevel;
         public Door[] AllDoorsOnLevel => m_allDoorsOnLevel;
 
+        private ShopDoor[] m_allShops;
+        public ShopDoor[] AllShops => m_allShops;
+
         private Player m_player;
         public void Construct(Player player) => m_player = player;
         public Player Player => m_player;
@@ -46,36 +49,39 @@ namespace DC_ARPG
             m_levelTileField = FindObjectsOfType<Tile>();
             m_allEnemies = FindObjectsOfType<EnemyAIController>();
             m_allDoorsOnLevel = FindObjectsOfType<Door>();
+            m_allShops = FindObjectsOfType<ShopDoor>();
 
-            StoryEventManager.Instance.EventOnStoryEventStarted += OnStoryEventStarted;
-            StoryEventManager.Instance.EventOnStoryEventEnded += OnStoryEventEnded;
+            StoryEventManager.Instance.EventOnStoryEventStarted += StopAllActivity;
+            StoryEventManager.Instance.EventOnStoryEventEnded += ResumeAllActivity;
 
             foreach(var door in m_allDoorsOnLevel)
             {
                 door.EventOnDoorOpened += OnAnyDoorStateChanged;
                 door.EventOnDoorClosed += OnAnyDoorStateChanged;
             }
+
+            foreach(var shop in m_allShops)
+            {
+                shop.EventOnShopEntered += StopAllActivity;
+                shop.EventOnShopExited += ResumeAllActivity;
+            }
         }
         private void OnDestroy()
         {
-            StoryEventManager.Instance.EventOnStoryEventStarted -= OnStoryEventStarted;
-            StoryEventManager.Instance.EventOnStoryEventEnded -= OnStoryEventEnded;
+            StoryEventManager.Instance.EventOnStoryEventStarted -= StopAllActivity;
+            StoryEventManager.Instance.EventOnStoryEventEnded -= ResumeAllActivity;
 
             foreach (var door in m_allDoorsOnLevel)
             {
                 door.EventOnDoorOpened -= OnAnyDoorStateChanged;
                 door.EventOnDoorClosed -= OnAnyDoorStateChanged;
             }
-        }
 
-        private void OnStoryEventStarted()
-        {
-            StopAllActivity();
-        }
-
-        private void OnStoryEventEnded()
-        {
-            ResumeAllActivity();
+            foreach (var shop in m_allShops)
+            {
+                shop.EventOnShopEntered -= StopAllActivity;
+                shop.EventOnShopExited -= ResumeAllActivity;
+            }
         }
 
         private void OnAnyDoorStateChanged()

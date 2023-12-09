@@ -60,7 +60,14 @@ namespace DC_ARPG
             EventOnStoryEventStarted?.Invoke();
         }
 
-        public void EndEvent()
+        public void ContinueEvent()
+        {
+            if (currentStoryType == StoryEventType.Dialogue) DoDialogue();
+
+            if (currentStoryType == StoryEventType.Plaque) DoPlaqueEvent();
+        }
+
+        private void EndEvent()
         {
             m_controlsManager.SetStoryEventControlsActive(false);
             m_controlsManager.SetPlayerControlsActive(true);
@@ -72,13 +79,6 @@ namespace DC_ARPG
             currentStorySegmentNumber = 0;
 
             EventOnStoryEventEnded?.Invoke();
-        }
-
-        public void ContinueEvent()
-        {
-            if (currentStoryType == StoryEventType.Dialogue) DoDialogue();
-
-            if (currentStoryType == StoryEventType.Plaque) DoPlaqueEvent();
         }
 
         private void SetupCurrentDialogueSegment()

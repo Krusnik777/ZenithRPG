@@ -18,7 +18,9 @@ namespace DC_ARPG
 
         public void UseItem()
         {
-            Inventory.UseItem(this, m_inventorySlot);
+            if (m_uiInventory.State == UIInventory.InteractionState.Normal) Inventory.UseItem(this, m_inventorySlot);
+
+            if (m_uiInventory.State == UIInventory.InteractionState.Shop) UIShop.Instance.SellItem(this, m_uiInventory.Player.Character, m_inventorySlot);
         }
 
         public void RemoveItem()

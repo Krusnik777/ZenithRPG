@@ -21,7 +21,7 @@ namespace DC_ARPG
         public int MagicPointsForUse => m_itemInfo.MagicPointsForUse;
         public bool HasInfiniteUses => m_itemInfo.HasInfiniteUses;
 
-        public int Price => m_itemInfo.Price;
+        public int Price => HasInfiniteUses ? m_itemInfo.Price : m_itemInfo.Price * Uses;
 
         public MagicItem(MagicItemInfo info, int uses)
         {

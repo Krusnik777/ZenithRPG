@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.Events;
 
 namespace DC_ARPG
 {
@@ -8,29 +7,13 @@ namespace DC_ARPG
         [SerializeField] private ShopInfo m_shopInfo;
         public ShopInfo ShopInfo => m_shopInfo;
 
+        private ShopInfo clonedShopInfo;
+
+        private Shopkeeper shopkeeper;
+        public Shopkeeper Shopkeeper => shopkeeper;
+
         private IItem[] m_shopItems;
         public IItem[] ShopItems => m_shopItems;
-
-        public event UnityAction EventOnNotEnoughMoneyForItem;
-        public event UnityAction EventOnNotHavingPlaceForItem;
-        public event UnityAction EventOnItemPurchaseCompleted;
-
-        public void BuyItem(object sender, PlayerCharacter playerCharacter, IItem item)
-        {
-            if (playerCharacter.Money < item.Price)
-            {
-                EventOnNotEnoughMoneyForItem?.Invoke();
-                return;
-            }
-            if (playerCharacter.Inventory.TryToAddItem(sender, item) == false)
-            {
-                EventOnNotHavingPlaceForItem?.Invoke();
-                return;
-            }
-
-            playerCharacter.SpendMoney(item.Price);
-            EventOnItemPurchaseCompleted?.Invoke();
-        }
 
         private void Start()
         {
@@ -40,6 +23,10 @@ namespace DC_ARPG
             {
                 m_shopItems[i] = m_shopInfo.ShopItemsData[i].CreateItem();
             }
+
+            clonedShopInfo = Instantiate(m_shopInfo);
+
+            shopkeeper = clonedShopInfo.Shopkeeper;
         }
     }
 }
