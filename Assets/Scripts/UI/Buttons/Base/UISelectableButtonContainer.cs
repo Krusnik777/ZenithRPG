@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace DC_ARPG
 {
@@ -10,14 +11,18 @@ namespace DC_ARPG
         public void SetInteractable(bool interactable) => Interactable = interactable;
 
         private UISelectableButton[] buttons;
+        public UISelectableButton[] Buttons => buttons;
 
         private RectTransform[] buttonsTransforms;
 
         private int selectButtonIndex = 0;
+        public int SelectedButtonIndex => selectButtonIndex;
 
         public UISelectableButton SelectedButton => buttons[selectButtonIndex];
 
         public Transform ButtonsContainer => m_buttonsContainer;
+
+        public event UnityAction EventOnButtonsCollected;
 
         #region Public
 
@@ -152,6 +157,8 @@ namespace DC_ARPG
             if (!Interactable) return;
 
             buttons[selectButtonIndex].SetFocus();
+
+            EventOnButtonsCollected?.Invoke();
         }
 
         private void OnDisable()

@@ -184,7 +184,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c364ea0e71b8264cbc2dabb473d783e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NeighborTiles: []
   m_walkable: 1
   m_targetCollider: {fileID: 914160480169792895}
 --- !u!1 &8642863819109690539

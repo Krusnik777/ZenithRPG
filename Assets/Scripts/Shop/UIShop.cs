@@ -50,7 +50,7 @@ namespace DC_ARPG
 
         public UISelectableButtonContainer ActiveButtonContainer { get; private set; }
 
-        private UIShopItem[] m_shopItems;
+        private UIShopItem[] m_uIShopItems;
 
         private Coroutine exitCoroutine;
 
@@ -104,9 +104,9 @@ namespace DC_ARPG
 
             m_shopButtonsPanel.SetActive(true);
 
-            for (int i = 0; i < m_shopItems.Length; i++)
+            for (int i = 0; i < m_uIShopItems.Length; i++)
             {
-                m_shopItems[i].SetShopItem(shop.ShopItems[i]);
+                m_uIShopItems[i].SetShopItem(shop.ShopItems[i]);
             }
 
             m_buttonsInfoPanel.SetActive(false);
@@ -208,7 +208,7 @@ namespace DC_ARPG
         {
             m_baseShopButtonContainer = m_shopButtonsPanel.GetComponent<UISelectableButtonContainer>();
             m_shopItemsButtonContainer = m_shopItemsPanel.GetComponent<UISelectableButtonContainer>();
-            m_shopItems = m_shopItemsPanel.GetComponentsInChildren<UIShopItem>();
+            m_uIShopItems = m_shopItemsPanel.GetComponentsInChildren<UIShopItem>();
 
             ActiveButtonContainer = m_baseShopButtonContainer;
         }
