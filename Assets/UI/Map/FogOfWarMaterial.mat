@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: FogOfWar
-  m_Shader: {fileID: 4800000, guid: 65dced07aa8fc7d4daf35477502b98e4, type: 3}
+  m_Name: FogOfWarMaterial
+  m_Shader: {fileID: 4800000, guid: 6dd096d17117c114a97871b68f3cf0af, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -24,14 +24,12 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _MainTex:
-        m_Texture: {fileID: 8400000, guid: b8e72ed403919e54d8620b45576e68bc, type: 2}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _SecondaryTex:
-        m_Texture: {fileID: 8400000, guid: f942a1aa480f1f74eb37f597e00499d3, type: 2}
+        m_Texture: {fileID: 8400000, guid: 9e8ec6b539a833c488ac143f8738f72b, type: 2}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Ints: []
-    m_Floats: []
-    m_Colors: []
+    m_Floats:
+    - _Smoothness: 0.005
+    m_Colors:
+    - _Color: {r: 0, g: 0, b: 0, a: 1}
   m_BuildTextureStacks: []
