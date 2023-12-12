@@ -266,8 +266,6 @@ namespace DC_ARPG
                             return;
                         }
 
-                        Debug.Log(m_enemy.CheckForwardGridForObstacle());
-
                         if (m_enemy.CheckForwardGridForObstacle())
                         {
                             StopMoving();

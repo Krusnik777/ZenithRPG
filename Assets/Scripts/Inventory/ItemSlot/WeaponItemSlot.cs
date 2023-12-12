@@ -1,3 +1,5 @@
+using UnityEngine.Events;
+
 namespace DC_ARPG
 {
     public class WeaponItemSlot : IItemSlot
@@ -10,6 +12,8 @@ namespace DC_ARPG
 
         public bool IsEmpty => Item == null;
         public bool IsFull => !IsEmpty && Amount >= Capacity;
+
+        public event UnityAction<object> EventOnAttack;
 
         public bool TrySetItemInSlot(IItem item)
         {
@@ -44,6 +48,24 @@ namespace DC_ARPG
             ClearSlot();
 
             return TrySetItemInSlot(item);
+        }
+
+        public void UseWeapon(object sender, Player player)
+        {
+            var weaponItem = Item as WeaponItem;
+
+            weaponItem.Uses--;
+
+            if (weaponItem.Uses <= 0)
+            {
+                player.Character.Inventory.RemoveItemFromInventory(sender, player.Character.Inventory.WeaponItemSlot);
+                player.Character.Inventory.SetBrokenWeapon(sender, player.Character.BrokenWeapon);
+
+                UnityEngine.Debug.Log("WeaponBroken");
+                // change Weapon to broken
+            }
+
+            EventOnAttack?.Invoke(sender);
         }
     }
 }

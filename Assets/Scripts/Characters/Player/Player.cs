@@ -1,17 +1,31 @@
-using System.Collections;
 using UnityEngine;
 
 namespace DC_ARPG
 {
     public class Player : CharacterAvatar, IDependency<PlayerCharacter>
     {
+        public enum PlayerState
+        {
+            Active,
+            Rest
+        }
+
         private PlayerCharacter m_character;
         public void Construct(PlayerCharacter character) => m_character = character;
         public PlayerCharacter Character => m_character;
 
         private Ray m_lookRay;
 
+        private PlayerState m_playerState;
+        public PlayerState State => m_playerState;
+
         #region PlayerActions
+
+        public override void Attack()
+        {
+            if (Character.Inventory.WeaponItemSlot.IsEmpty) return;
+            base.Attack();
+        }
 
         public void Inspect()
         {
@@ -42,7 +56,21 @@ namespace DC_ARPG
         {
             if (!inIdleState) return;
 
-            Debug.Log("Rest");
+            if (m_playerState == PlayerState.Active)
+            {
+                m_playerState = PlayerState.Rest;
+
+                RestState.Instance.StartRest();
+
+                return;
+            }
+
+            if (m_playerState == PlayerState.Rest)
+            {
+                RestState.Instance.EndRest();
+
+                m_playerState = PlayerState.Active;
+            }
         }
 
         public void UseActiveItem()
@@ -80,6 +108,23 @@ namespace DC_ARPG
                     if (hit.collider.transform.parent.TryGetComponent(out InspectableObject inspectableObject))
                     {
                         return inspectableObject;
+                    }
+                }
+            }
+            return null;
+        }
+
+        public Enemy CheckForwardGridForEnemy()
+        {
+            RaycastHit hit;
+
+            if (Physics.Raycast(m_lookRay, out hit, 1f, 1, QueryTriggerInteraction.Ignore))
+            {
+                if (hit.collider != null)
+                {
+                    if (hit.collider.transform.parent.TryGetComponent(out Enemy enemy))
+                    {
+                        return enemy;
                     }
                 }
             }

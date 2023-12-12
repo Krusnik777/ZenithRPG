@@ -100,5 +100,14 @@ namespace DC_ARPG
 
             return true;
         }
+
+        public void RecoverMagicPoints(object sender, int change)
+        {
+            if (CurrentMagicPoints >= MagicPoints) return;
+
+            CurrentMagicPoints += change;
+
+            EventOnMagicPointsChange?.Invoke();
+        }
     }
 }

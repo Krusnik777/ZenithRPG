@@ -44,6 +44,9 @@ namespace DC_ARPG
         private int equippedShieldDefense = 0;
         private float defenseMultiplier;
 
+        public float HitPointsRecoveryRate { get; protected set; }
+        public float MagicPointsRecoveryRate { get; protected set; }
+
         #endregion
 
         #region Events
@@ -87,6 +90,9 @@ namespace DC_ARPG
 
             attackMultiplier = playerInfo.AttackMultiplier;
             defenseMultiplier = playerInfo.DefenseMultiplier;
+
+            HitPointsRecoveryRate = playerInfo.HitPointsRecoveryRate;
+            MagicPointsRecoveryRate = playerInfo.MagicPointsRecoveryRate;
 
             SetAttack();
             SetDefense();

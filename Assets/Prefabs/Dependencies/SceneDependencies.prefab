@@ -421,6 +421,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_playerStatsInfo: {fileID: 11400000, guid: fd46a6466bdcabb4cb5d41de891b793c, type: 2}
   m_availableMagic: {fileID: 3554854585991305212}
+  m_brokenWeapon:
+    m_itemInfo: {fileID: 11400000, guid: 3fae1436d81c79847a9ecd17419bc27e, type: 2}
+    m_uses: 0
   notUsableItems:
   - m_itemInfo: {fileID: 11400000, guid: cf2f4a2b8c48efd429d56e8e72931749, type: 2}
     m_amount: 3
@@ -441,7 +444,7 @@ MonoBehaviour:
   - m_itemInfo: {fileID: 11400000, guid: 3fae1436d81c79847a9ecd17419bc27e, type: 2}
     m_uses: 0
   - m_itemInfo: {fileID: 11400000, guid: 7f57e2742bb0dd64db0025146b35863e, type: 2}
-    m_uses: 40
+    m_uses: 20
   magicItems:
   - m_itemInfo: {fileID: 11400000, guid: 60e68b13b98adce439adff0fcc276610, type: 2}
     m_uses: 22

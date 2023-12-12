@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace DC_ARPG
 {
@@ -11,6 +12,8 @@ namespace DC_ARPG
 
     public class Enemy : CharacterAvatar
     {
+        public event UnityAction<Enemy> EventOnDeath;
+
         private EnemyState state;
         public EnemyState State => state;
 
@@ -19,6 +22,9 @@ namespace DC_ARPG
 
         private EnemyCharacter m_character;
         public EnemyCharacter Character => m_character;
+
+        private EnemyAIController enemyAI;
+        public EnemyAIController EnemyAI => enemyAI;
 
         public GameObject DetectedPlayerGameObject => enemyFOV?.PlayerGameObject;
 
@@ -63,11 +69,21 @@ namespace DC_ARPG
         {
             m_character = GetComponent<EnemyCharacter>();
             enemyFOV = GetComponent<FieldOfView>();
+            enemyAI = GetComponent<EnemyAIController>();
+
+            m_character.EnemyStats.EventOnDeath += EventOnDeathEnemyCharacter;
+        }
+
+        private void OnDestroy()
+        {
+            m_character.EnemyStats.EventOnDeath -= EventOnDeathEnemyCharacter;
         }
 
         private void StartState(EnemyState state)
         {
             this.state = state;
         }
+
+        private void EventOnDeathEnemyCharacter(object sender) => EventOnDeath?.Invoke(this);
     }
 }

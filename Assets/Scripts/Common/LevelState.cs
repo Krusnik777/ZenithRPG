@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace DC_ARPG
@@ -7,8 +8,8 @@ namespace DC_ARPG
         private Tile[] m_levelTileField;
         public Tile[] LevelTileField => m_levelTileField;
 
-        private EnemyAIController[] m_allEnemies;
-        public EnemyAIController[] AllEnemies => m_allEnemies;
+        private List<Enemy> m_allEnemies;
+        public List<Enemy> AllEnemies => m_allEnemies;
 
         private Door[] m_allDoorsOnLevel;
         public Door[] AllDoorsOnLevel => m_allDoorsOnLevel;
@@ -24,7 +25,7 @@ namespace DC_ARPG
         {
             foreach(var enemy in m_allEnemies)
             {
-                enemy.StopActivity();
+                if (enemy.EnemyAI != null) enemy.EnemyAI.StopActivity();
             }
         }
 
@@ -32,7 +33,7 @@ namespace DC_ARPG
         {
             foreach (var enemy in m_allEnemies)
             {
-                enemy.ResumeActivity();
+                if (enemy.EnemyAI != null) enemy.EnemyAI.ResumeActivity();
             }
         }
 
@@ -47,12 +48,20 @@ namespace DC_ARPG
         private void Start()
         {
             m_levelTileField = FindObjectsOfType<Tile>();
-            m_allEnemies = FindObjectsOfType<EnemyAIController>();
+
+            m_allEnemies = new List<Enemy>();
+            m_allEnemies.AddRange(FindObjectsOfType<Enemy>());
+
             m_allDoorsOnLevel = FindObjectsOfType<Door>();
             m_allShops = FindObjectsOfType<ShopDoor>();
 
             StoryEventManager.Instance.EventOnStoryEventStarted += StopAllActivity;
             StoryEventManager.Instance.EventOnStoryEventEnded += ResumeAllActivity;
+            
+            foreach (var enemy in m_allEnemies)
+            {
+                enemy.EventOnDeath += OnEnemyDeath;
+            }
 
             foreach(var door in m_allDoorsOnLevel)
             {
@@ -66,6 +75,7 @@ namespace DC_ARPG
                 shop.EventOnShopExited += ResumeAllActivity;
             }
         }
+
         private void OnDestroy()
         {
             StoryEventManager.Instance.EventOnStoryEventStarted -= StopAllActivity;
@@ -88,9 +98,16 @@ namespace DC_ARPG
         {
             foreach (var enemy in m_allEnemies)
             {
-                enemy.UpdateActivity();
+                if (enemy.EnemyAI != null) enemy.EnemyAI.UpdateActivity();
             }
         }
+
+        private void OnEnemyDeath(Enemy enemy)
+        {
+            m_allEnemies.Remove(enemy);
+        }
+
+
 
         private void Update()
         {

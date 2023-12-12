@@ -29,7 +29,9 @@ namespace DC_ARPG
         private Animator m_animator;
 
         private bool inClosedState => m_animator != null ? m_animator.GetCurrentAnimatorStateInfo(0).IsName("ClosedState") : true;
+        public bool Closed => inClosedState;
         private bool inOpenedState => m_animator != null ? m_animator.GetCurrentAnimatorStateInfo(0).IsName("OpenedState") : false;
+        public bool Opened => inOpenedState;
 
         public void Lock()
         {

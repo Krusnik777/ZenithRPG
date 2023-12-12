@@ -59,7 +59,7 @@ namespace DC_ARPG
             m_playerCharacter.PlayerStats.EventOnMagicResistUp -= SetMagicResistValue;
         }
 
-        public void FillLevelBar() => m_levelFillImage.fillAmount = m_playerCharacter.PlayerStats.Level >= m_playerCharacter.PlayerStats.MaxLevel ? 1 : m_levelFillImage.fillAmount = (float) m_playerCharacter.PlayerStats.CurrentExperiencePoints / (float) m_playerCharacter.PlayerStats.GetExperienceForLevelUp();
+        public void FillLevelBar() => m_levelFillImage.fillAmount = m_playerCharacter.PlayerStats.Level >= m_playerCharacter.PlayerStats.MaxLevel ? 1 : (float) m_playerCharacter.PlayerStats.CurrentExperiencePoints / (float) m_playerCharacter.PlayerStats.GetExperienceForLevelUp();
         public void FillStrengthBar() => m_strengthFillImage.fillAmount = m_playerCharacter.PlayerStats.Strength >= m_playerCharacter.PlayerStats.MaxStatLevel ? 1 : (float) m_playerCharacter.PlayerStats.CurrentStrengthExperiencePoints / (float) m_playerCharacter.PlayerStats.GetExperienceForStrengthUp();
         public void FillIntelligenceBar() => m_intelligenceFillImage.fillAmount = m_playerCharacter.PlayerStats.Intelligence >= m_playerCharacter.PlayerStats.MaxStatLevel ? 1 : (float) m_playerCharacter.PlayerStats.CurrentIntelligenceExperiencePoints / (float) m_playerCharacter.PlayerStats.GetExperienceForIntelligenceUp();
         public void FillMagicResistBar() => m_magicResistFillImage.fillAmount = m_playerCharacter.PlayerStats.MagicResist >= m_playerCharacter.PlayerStats.MaxStatLevel ? 1 : (float) m_playerCharacter.PlayerStats.CurrentMagicResistExperiencePoints / (float) m_playerCharacter.PlayerStats.GetExperienceForMagicResistUp();

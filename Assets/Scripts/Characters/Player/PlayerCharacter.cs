@@ -7,7 +7,9 @@ namespace DC_ARPG
     {
         [SerializeField] private PlayerStatsInfo m_playerStatsInfo;
         [SerializeField] private Magic m_availableMagic;
+        [SerializeField] private WeaponItem m_brokenWeapon;
         public Magic AvailableMagic => m_availableMagic;
+        public WeaponItem BrokenWeapon => m_brokenWeapon;
 
         private PlayerStats playerStats;
         public PlayerStats PlayerStats => playerStats;
@@ -54,24 +56,9 @@ namespace DC_ARPG
             inventory = new Inventory(3, 9, 3);
 
             playerStats.EventOnDeath += OnDeath;
-        }
 
-        private void OnDestroy()
-        {
-            playerStats.EventOnDeath -= OnDeath;
-        }
-
-        private void OnDeath(object sender)
-        {
-            var slot = inventory.MainPocket.FindSlot(PassiveEffect.PassiveType.Revival);
-
-            if (slot != null)
-            {
-                (slot.ItemInfo as NotUsableItemInfo).PassiveEffect.GetEffect(m_player, slot);
-                return;
-            }
-
-            Debug.Log("Game Over");
+            inventory.EventOnTransitCompleted += OnEquipItemChange;
+            inventory.EventOnItemRemoved += OnEquipItemRemoved;
         }
 
         private void Start()
@@ -113,7 +100,71 @@ namespace DC_ARPG
             inventory.TryToAddItem(this, magicItems[0]);
             inventory.TransitFromSlotToSlot(this, inventory.MainPocket.ItemSlots[8], inventory.ExtraPockets[2].ItemSlots[7]);
 
-            AddMoney(1000);
+            AddMoney(999);
+        }
+
+        private void OnDestroy()
+        {
+            playerStats.EventOnDeath -= OnDeath;
+
+            inventory.EventOnTransitCompleted -= OnEquipItemChange;
+            inventory.EventOnItemRemoved -= OnEquipItemRemoved;
+        }
+
+        private void OnDeath(object sender)
+        {
+            var slot = inventory.MainPocket.FindSlot(PassiveEffect.PassiveType.Revival);
+
+            if (slot != null)
+            {
+                (slot.ItemInfo as NotUsableItemInfo).PassiveEffect.GetEffect(m_player, slot);
+                return;
+            }
+
+            Debug.Log("Game Over");
+        }
+
+        private void OnEquipItemRemoved(object sender, IItemSlot slot)
+        {
+            if (slot == inventory.WeaponItemSlot) UpdateAttack(slot);
+            if (slot == inventory.ArmorItemSlot) UpdateArmorDefense(slot);
+            if (slot == inventory.ShieldItemSlot) UpdateShieldDefense(slot);
+        }
+
+        private void OnEquipItemChange(object sender, IItemSlot fromSlot, IItemSlot toSlot)
+        {
+            if (fromSlot == inventory.WeaponItemSlot)
+                UpdateAttack(fromSlot);
+            if (toSlot == inventory.WeaponItemSlot)
+                UpdateAttack(toSlot);
+
+            if (fromSlot == inventory.ArmorItemSlot)
+                UpdateArmorDefense(fromSlot);
+            if (toSlot == inventory.ArmorItemSlot)
+                UpdateArmorDefense(toSlot);
+
+            if (fromSlot == inventory.ShieldItemSlot)
+                UpdateShieldDefense(fromSlot);
+            if (toSlot == inventory.ShieldItemSlot)
+                UpdateShieldDefense(toSlot);
+        }
+
+        private void UpdateAttack(IItemSlot slot)
+        {
+            if (!slot.IsEmpty) playerStats.SetWeaponDamage((slot.Item as WeaponItem).AttackIncrease);
+            else playerStats.SetWeaponDamage(0);
+        }
+
+        private void UpdateArmorDefense(IItemSlot slot)
+        {
+            if (!slot.IsEmpty) playerStats.SetArmorDefense((slot.Item as EquipItem).DefenseIncrease);
+            else playerStats.SetArmorDefense(0);
+        }
+
+        private void UpdateShieldDefense(IItemSlot slot)
+        {
+            if (!slot.IsEmpty) playerStats.SetShieldDefense((slot.Item as EquipItem).DefenseIncrease);
+            else playerStats.SetShieldDefense(0);
         }
 
     }

@@ -50,7 +50,7 @@ namespace DC_ARPG
             return TrySetItemInSlot(item);
         }
 
-        public void UseMagic(object sender,Player player)
+        public void UseMagic(object sender, Player player)
         {
             (ItemInfo as MagicItemInfo).Magic.Use(player, Item as MagicItem);
 

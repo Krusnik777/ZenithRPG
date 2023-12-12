@@ -35,6 +35,7 @@ namespace DC_ARPG
             m_magicSlot.SetSlot(m_uiInventory, m_uiInventory.Inventory.MagicItemSlot);
 
             m_uiInventory.Inventory.MagicItemSlot.EventOnMagicUsed += OnMagicUsed;
+            m_uiInventory.Inventory.WeaponItemSlot.EventOnAttack += OnAttack;
 
             for (int i = 0; i < m_uiInventory.Inventory.UsableItemSlots.Length; i++)
             {
@@ -52,6 +53,7 @@ namespace DC_ARPG
         private void OnDestroy()
         {
             m_uiInventory.Inventory.MagicItemSlot.EventOnMagicUsed -= OnMagicUsed;
+            m_uiInventory.Inventory.WeaponItemSlot.EventOnAttack -= OnAttack;
 
             m_uiInventory.Inventory.EventOnActiveItemChanged -= OnActiveItemChanged;
             m_uiInventory.Inventory.EventOnItemUsed -= OnItemUsed;
@@ -62,6 +64,11 @@ namespace DC_ARPG
         private void OnMagicUsed(object sender, MagicItem magicItem)
         {
             m_magicSlot.SetSlot(m_uiInventory, m_uiInventory.Inventory.MagicItemSlot);
+        }
+
+        private void OnAttack(object sender)
+        {
+            m_weaponSlot.SetSlot(m_uiInventory, m_uiInventory.Inventory.WeaponItemSlot);
         }
 
         private void OnActiveItemChanged(object sender, int number)

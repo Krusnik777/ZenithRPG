@@ -122,7 +122,7 @@ namespace DC_ARPG
             StartCoroutine(JumpTo(distance));
         }
 
-        public void Attack()
+        public virtual void Attack()
         {
             if (!inIdleState && !isAttacking) return;
 

@@ -65,6 +65,11 @@ namespace DC_ARPG
             EventOnActiveItemChanged?.Invoke(sender, slotNumber);
         }
 
+        public void SetBrokenWeapon(object sender, IItem brokenWeapon)
+        {
+            WeaponItemSlot.TrySetItemInSlot(brokenWeapon.Clone());
+        }
+
         #endregion
 
         public Inventory(int extraPocketsAmount = 3, int itemSlotsAmountInPocket = 9, int usableItemSlotsAmount = 3)

@@ -7,6 +7,7 @@ namespace DC_ARPG
     public class LevelArm : InspectableObject
     {
         [SerializeField] private bool m_canReset;
+        public bool CanReset => m_canReset;
 
         public UnityEvent OnUsed;
         public UnityEvent OnReseted;
@@ -14,8 +15,8 @@ namespace DC_ARPG
         private Animator m_animator;
 
         private bool inUpperState => m_animator != null ? m_animator.GetCurrentAnimatorStateInfo(0).IsName("UpperState") : true;
+        public bool Unused => inUpperState;
         private bool inLoweredState => m_animator != null ? m_animator.GetCurrentAnimatorStateInfo(0).IsName("LoweredState") : false;
-
 
         public override void OnInspection(Player player)
         {

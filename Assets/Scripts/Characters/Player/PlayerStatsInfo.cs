@@ -28,6 +28,10 @@ namespace DC_ARPG
         [Header("PassiveStatsMultipliers")]
         public float AttackMultiplier = 1.1f;
         public float DefenseMultiplier = 0.8f;
+
+        [Header("RecoveryRates")]
+        public float HitPointsRecoveryRate = 1.0f;
+        public float MagicPointsRecoveryRate = 5.0f;
     }
 }
 

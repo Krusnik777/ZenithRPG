@@ -86,7 +86,7 @@ namespace DC_ARPG
 
         private void OnMovement()
         {
-            if (!player.IsGrounded) return;
+            if (!player.IsGrounded || player.State != Player.PlayerState.Active) return;
 
             Vector2 directionV2 = _controls.Gameplay.Movement.ReadValue<Vector2>();
 
@@ -109,51 +109,71 @@ namespace DC_ARPG
 
         private void OnRotateLeft(InputAction.CallbackContext obj)
         {
+            if (player.State != Player.PlayerState.Active) return;
+
             player.Turn(-90);
         }
 
         private void OnRotateRight(InputAction.CallbackContext obj)
         {
+            if (player.State != Player.PlayerState.Active) return;
+
             player.Turn(90);
         }
 
         private void OnRotateBack(InputAction.CallbackContext obj)
         {
+            if (player.State != Player.PlayerState.Active) return;
+
             player.Turn(180);
         }
 
         private void OnJump(InputAction.CallbackContext obj)
         {
+            if (player.State != Player.PlayerState.Active) return;
+
             player.Jump();
         }
 
         private void OnUse(InputAction.CallbackContext obj)
         {
+            if (player.State != Player.PlayerState.Active) return;
+
             player.Inspect();
         }
 
         private void OnAttack(InputAction.CallbackContext obj)
         {
+            if (player.State != Player.PlayerState.Active) return;
+
             player.Attack();
         }
 
         private void OnBlockStarted(InputAction.CallbackContext obj)
         {
+            if (player.State != Player.PlayerState.Active) return;
+
             player.Block("BlockStart");
         }
 
         private void OnBlockHolded(InputAction.CallbackContext obj)
         {
+            if (player.State != Player.PlayerState.Active) return;
+
             //player.Block("BlockHold");
         }
 
         private void OnBlockCanceled(InputAction.CallbackContext obj)
         {
+            if (player.State != Player.PlayerState.Active) return;
+
             player.Block("BlockEnd");
         }
 
         private void OnUseMagic(InputAction.CallbackContext obj)
         {
+            if (player.State != Player.PlayerState.Active) return;
+
             player.UseMagic();
         }
 
@@ -164,6 +184,8 @@ namespace DC_ARPG
 
         private void OnCheckInventory(InputAction.CallbackContext obj)
         {
+            if (player.State != Player.PlayerState.Active) return;
+
             m_controlsManager.SetPlayerControlsActive(false);
 
             m_controlsManager.SetInventoryControlsActive(true);
@@ -171,26 +193,36 @@ namespace DC_ARPG
 
         private void OnUseItem(InputAction.CallbackContext obj)
         {
+            if (player.State != Player.PlayerState.Active) return;
+
             player.UseActiveItem();
         }
 
         private void OnLeftItem(InputAction.CallbackContext obj)
         {
+            if (player.State != Player.PlayerState.Active) return;
+
             player.ChooseLeftActiveItem();
         }
 
         private void OnMiddleItem(InputAction.CallbackContext obj)
         {
+            if (player.State != Player.PlayerState.Active) return;
+
             player.ChooseMiddleActiveItem();
         }
 
         private void OnRightItem(InputAction.CallbackContext obj)
         {
+            if (player.State != Player.PlayerState.Active) return;
+
             player.ChooseRightActiveItem();
         }
 
         private void OnPause(InputAction.CallbackContext obj)
         {
+            if (player.State != Player.PlayerState.Active) return;
+
             // DEBUG
 
             m_controlsManager.SetPlayerControlsActive(false);

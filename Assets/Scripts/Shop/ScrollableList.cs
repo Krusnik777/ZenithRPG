@@ -40,10 +40,13 @@ namespace DC_ARPG
         {
             m_buttonContrainer.EventOnButtonsCollected -= OnButtonsCollected;
 
-            foreach (var button in m_buttonContrainer.Buttons)
+            if (m_buttonContrainer.Buttons != null)
             {
-                button.OnSelect.RemoveListener(ChangePosition);
-            } 
+                foreach (var button in m_buttonContrainer.Buttons)
+                {
+                    button.OnSelect.RemoveListener(ChangePosition);
+                }
+            }
         }
 
         private void ChangePosition()
