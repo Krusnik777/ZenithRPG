@@ -14,7 +14,6 @@ namespace DC_ARPG
 
         public IItem Item => m_item;
 
-
         private PositionTrigger m_positionTrigger;
         public bool StandingInFrontOfChest => m_positionTrigger != null ? m_positionTrigger.InRightPosition : false;
 

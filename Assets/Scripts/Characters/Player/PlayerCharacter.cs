@@ -23,6 +23,8 @@ namespace DC_ARPG
         private int m_money;
         public int Money => m_money;
 
+        public float DropItemBooster => (float) playerStats.Luck / playerStats.MaxStatLevel;
+
         public event UnityAction EventOnMoneyAdded;
         public event UnityAction EventOnMoneySpend;
 

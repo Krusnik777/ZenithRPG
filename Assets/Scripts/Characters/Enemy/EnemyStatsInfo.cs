@@ -2,6 +2,13 @@ using UnityEngine;
 
 namespace DC_ARPG
 {
+    [System.Serializable]
+    public class DroppedItem
+    {
+        public ItemData DroppedItemData;
+        [Range(0, 1)] public float ItemDropChance;
+    }
+
     [CreateAssetMenu(fileName = "EnemyStatsInfo", menuName = "ScriptableObjects/CharacterStatsInfo/EnemyStatsInfo")]
     public class EnemyStatsInfo : CharacterStatsInfo
     {
@@ -11,7 +18,6 @@ namespace DC_ARPG
         [Header("Drops")]
         public int ExperiencePoints;
         public int DroppedGold;
-        // DroppedItem
-        // Chance For ItemDrop
+        public DroppedItem[] DroppedItems;
     }
 }

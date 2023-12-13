@@ -5,6 +5,8 @@ namespace DC_ARPG
         public int ExperiencePoints { get; private set; }
         public int DroppedGold { get; private set; }
 
+        public DroppedItem[] DroppedItems { get; private set; }
+
         public override void InitStats(EnemyStatsInfo enemyInfo)
         {
             base.InitStats(enemyInfo);
@@ -13,7 +15,7 @@ namespace DC_ARPG
             Defense = enemyInfo.Defense;
             ExperiencePoints = enemyInfo.ExperiencePoints;
             DroppedGold = enemyInfo.DroppedGold;
+            DroppedItems = enemyInfo.DroppedItems;
         }
-
     }
 }

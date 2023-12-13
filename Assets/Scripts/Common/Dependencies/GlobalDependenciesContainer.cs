@@ -7,7 +7,7 @@ namespace DC_ARPG
     {
         //[SerializeField] private Pauser m_pauser;
         //[SerializeField] private GameCompletion m_gameCompletion;
-        //[SerializeField] private SettingLoader m_settingLoader;
+        [SerializeField] private SettingLoader m_settingLoader;
 
         private static GlobalDependenciesContainer instance;
 
@@ -35,7 +35,7 @@ namespace DC_ARPG
         {
             //Bind<Pauser>(m_pauser, monoBehaviourInScene);
             //Bind<GameCompletion>(m_gameCompletion, monoBehaviourInScene);
-            //Bind<SettingLoader>(m_settingLoader, monoBehaviourInScene);
+            Bind<SettingLoader>(m_settingLoader, monoBehaviourInScene);
         }
 
         private void OnSceneLoaded(Scene arg0, LoadSceneMode arg1)

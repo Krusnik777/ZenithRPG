@@ -5,12 +5,14 @@ namespace DC_ARPG
 {
     public class MenuInputController : MonoBehaviour, IDependency<ControlsManager>
     {
-        [SerializeField] private UIStatsTest m_uiStatsTest;
+        //[SerializeField] private UIStatsTest m_uiStatsTest;
 
         private ControlsManager m_controlsManager;
         public void Construct(ControlsManager controlsManager) => m_controlsManager = controlsManager;
 
         private Controls _controls;
+
+        private UISelectableButtonContainer m_buttonContainer => PauseMenu.Instance.ActiveButtonContainer;
 
         private void OnEnable()
         {
@@ -18,10 +20,11 @@ namespace DC_ARPG
 
             _controls.Menu.Enable();
 
-            m_uiStatsTest.TurnStatsPanel(true);
+            //m_uiStatsTest.TurnStatsPanel(true);
 
-            _controls.Menu.Cancel.performed += OnUnpause;
-            _controls.Menu.CloseMenu.performed += OnUnpause;
+            _controls.Menu.Confirm.performed += OnConfirm;
+            _controls.Menu.Cancel.performed += OnCancel;
+            _controls.Menu.CloseMenu.performed += OnCloseMenu;
 
             _controls.Menu.Move.performed += OnMove;
             _controls.Menu.ChangeParameters.performed += OnChangeParameters;
@@ -29,8 +32,9 @@ namespace DC_ARPG
 
         private void OnDisable()
         {
-            _controls.Menu.Cancel.performed -= OnUnpause;
-            _controls.Menu.CloseMenu.performed -= OnUnpause;
+            _controls.Menu.Confirm.performed -= OnConfirm;
+            _controls.Menu.Cancel.performed -= OnCancel;
+            _controls.Menu.CloseMenu.performed -= OnCloseMenu;
 
             _controls.Menu.Move.performed -= OnMove;
             _controls.Menu.ChangeParameters.performed -= OnChangeParameters;
@@ -38,29 +42,105 @@ namespace DC_ARPG
             _controls.Menu.Disable();
         }
 
-        private void OnUnpause(InputAction.CallbackContext obj)
+        private void OnConfirm(InputAction.CallbackContext obj)
         {
-            // DEBUG
+            m_buttonContainer.SelectedButton.OnButtonClick();
+        }
 
-            m_uiStatsTest.TurnStatsPanel(false);
+        private void OnCancel(InputAction.CallbackContext obj)
+        {
+            if (PauseMenu.Instance.State == PauseMenu.MenuState.Selection)
+            {
+                PauseMenu.Instance.HidePauseMenu();
+                return;
+            }
+
+            if (PauseMenu.Instance.State == PauseMenu.MenuState.Status)
+            {
+                PauseMenu.Instance.ShowStatus(false);
+                return;
+            }
+
+            if (PauseMenu.Instance.State == PauseMenu.MenuState.Map)
+            {
+                PauseMenu.Instance.ShowMap(false);
+                return;
+            }
+
+            if (PauseMenu.Instance.State == PauseMenu.MenuState.Settings)
+            {
+                PauseMenu.Instance.ShowSettings(false);
+                return;
+            }
+
+            if (PauseMenu.Instance.State == PauseMenu.MenuState.Data)
+            {
+                PauseMenu.Instance.ShowDataButtons(false);
+                return;
+            }
+
+            if (PauseMenu.Instance.State == PauseMenu.MenuState.Quit)
+            {
+                if (PauseMenu.Instance.RequireConfirm == PauseMenu.ConfirmationState.None)
+                {
+                    PauseMenu.Instance.ShowQuitButtons(false);
+                    return;
+                }
+
+                if (PauseMenu.Instance.RequireConfirm == PauseMenu.ConfirmationState.Require)
+                {
+                    PauseMenu.Instance.HideConfirmPanel();
+                    return;
+                }
+            }
+
+            /*m_uiStatsTest.TurnStatsPanel(false);
 
             m_controlsManager.SetPlayerControlsActive(true);
-            m_controlsManager.SetMenuControlsActive(false);
+            m_controlsManager.SetMenuControlsActive(false);*/
+        }
+
+        private void OnCloseMenu(InputAction.CallbackContext obj)
+        {
+            if (PauseMenu.Instance.State == PauseMenu.MenuState.Selection)
+            {
+                PauseMenu.Instance.HidePauseMenu();
+            }
         }
 
         private void OnMove(InputAction.CallbackContext obj)
         {
+            if ((PauseMenu.Instance.State == PauseMenu.MenuState.Quit && PauseMenu.Instance.RequireConfirm == PauseMenu.ConfirmationState.Require) ||
+                PauseMenu.Instance.State == PauseMenu.MenuState.Status || PauseMenu.Instance.State == PauseMenu.MenuState.Map) return;
+
             var value = _controls.Menu.Move.ReadValue<float>();
 
-            if (value == 1) { /*MoveUp*/ }
-            if (value == -1) { /*MoveDown*/ }
+            if (value == 1) m_buttonContainer.SelectPrevious();
+            if (value == -1) m_buttonContainer.SelectNext();
         }
         private void OnChangeParameters(InputAction.CallbackContext obj)
         {
             var value = _controls.Menu.ChangeParameters.ReadValue<float>();
 
-            if (value == 1) { /*MoveRight*/ }
-            if (value == -1) { /*MoveLeft*/ }
+            if (PauseMenu.Instance.State == PauseMenu.MenuState.Settings)
+            {
+                if (value == 1)
+                {
+                    if (m_buttonContainer.SelectedButton is UISettingButton) (m_buttonContainer.SelectedButton as UISettingButton).SetNextValueSetting();
+                }
+
+                if (value == -1)
+                {
+                    if (m_buttonContainer.SelectedButton is UISettingButton) (m_buttonContainer.SelectedButton as UISettingButton).SetPreviousValueSetting();
+                }
+                return;
+            }
+
+            if (PauseMenu.Instance.State == PauseMenu.MenuState.Quit && PauseMenu.Instance.RequireConfirm == PauseMenu.ConfirmationState.Require)
+            {
+                if (value == 1) m_buttonContainer.SelectNext();
+                if (value == -1) m_buttonContainer.SelectPrevious();
+            }
         }
     }
 }

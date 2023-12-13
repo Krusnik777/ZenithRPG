@@ -225,10 +225,7 @@ namespace DC_ARPG
 
             // DEBUG
 
-            m_controlsManager.SetPlayerControlsActive(false);
-
-            m_controlsManager.SetMenuControlsActive(true);
-            
+            PauseMenu.Instance.ShowPauseMenu();
         }
     }
 }
