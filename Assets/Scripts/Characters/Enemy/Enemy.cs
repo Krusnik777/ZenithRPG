@@ -24,7 +24,7 @@ namespace DC_ARPG
         public EnemyCharacter Character => m_character;
 
         private EnemyAIController enemyAI;
-        public EnemyAIController EnemyAI => enemyAI;
+        public EnemyAIController EnemyAI => enemyAI == null ? GetComponent<EnemyAIController>() : enemyAI;
 
         public GameObject DetectedPlayerGameObject => enemyFOV?.PlayerGameObject;
 
@@ -48,11 +48,28 @@ namespace DC_ARPG
 
             // TEMP CHECK -> MAYBE DO LAYER MASK FOR SPECIFIC OBSCTACLES
 
-            if (Physics.Raycast(checkRay, out RaycastHit hit, 1f, 1, QueryTriggerInteraction.Ignore))
+            if (Physics.Raycast(checkRay, out RaycastHit hit, 1.2f, 1, QueryTriggerInteraction.Ignore))
             {
                 if (hit.collider.transform.parent.TryGetComponent(out Door door))
                 {
-                    if (hit.collider) return true;
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        public bool CheckForwardGridForAlly()
+        {
+            Ray checkRay = new Ray(transform.position + new Vector3(0, 0.25f, 0), transform.forward);
+
+            // TEMP CHECK -> MAYBE DO LAYER MASK FOR SPECIFIC OBSCTACLES
+
+            if (Physics.Raycast(checkRay, out RaycastHit hit, 1.2f, 1, QueryTriggerInteraction.Ignore))
+            {
+                if (hit.collider.transform.parent.TryGetComponent(out Enemy comrade))
+                {
+                    return true;
                 }
             }
 

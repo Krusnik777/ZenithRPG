@@ -9,7 +9,6 @@ namespace DC_ARPG
         public List<Tile> NeighborTiles { get => neighborTiles; set => neighborTiles = value; }
 
         [SerializeField] private bool m_walkable = true;
-        [SerializeField] private Collider m_targetCollider;
 
         public bool Walkable { get => m_walkable; set => m_walkable = value; }
         public bool Current { get; set; }
@@ -26,12 +25,7 @@ namespace DC_ARPG
         public float g { get; set; }
         public float h { get; set; }
 
-        public void SetTargetTileCollider(bool state)
-        {
-            m_targetCollider.enabled = state;
-        }
-
-        public void FindNeighbors(Tile target)
+        public void FindNeighbors(Tile target = null)
         {
             Reset();
 
@@ -44,8 +38,6 @@ namespace DC_ARPG
         public void Reset()
         {
             neighborTiles.Clear();
-
-            m_targetCollider.enabled = false;
 
             Current = false;
             Target = false;

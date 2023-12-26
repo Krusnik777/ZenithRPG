@@ -11,6 +11,9 @@ namespace DC_ARPG
         private List<Enemy> m_allEnemies;
         public List<Enemy> AllEnemies => m_allEnemies;
 
+        private List<EnemyAIController> m_chasingEnemies;
+        public List<EnemyAIController> ChasingEnemies => m_chasingEnemies;
+
         private Door[] m_allDoorsOnLevel;
         public Door[] AllDoorsOnLevel => m_allDoorsOnLevel;
 
@@ -37,11 +40,21 @@ namespace DC_ARPG
             }
         }
 
-        public void ComputeAdjacencyList(Tile target)
+        public void ComputeAdjacencyList(Tile target, Tile[] tileField = null)
         {
-            foreach (var tile in m_levelTileField)
+            if (tileField == null)
             {
-                tile.FindNeighbors(target);
+                foreach (var tile in m_levelTileField)
+                {
+                    tile.FindNeighbors(target);
+                }
+            }
+            else
+            {
+                foreach (var tile in tileField)
+                {
+                    tile.FindNeighbors(target);
+                }
             }
         }
 
@@ -52,6 +65,8 @@ namespace DC_ARPG
             m_allEnemies = new List<Enemy>();
             m_allEnemies.AddRange(FindObjectsOfType<Enemy>());
 
+            m_chasingEnemies = new List<EnemyAIController>();
+
             m_allDoorsOnLevel = FindObjectsOfType<Door>();
             m_allShops = FindObjectsOfType<ShopDoor>();
 
@@ -61,6 +76,9 @@ namespace DC_ARPG
             foreach (var enemy in m_allEnemies)
             {
                 enemy.EventOnDeath += OnEnemyDeath;
+
+                enemy.EnemyAI.EventOnChaseStarted += AddChasingEnemyToList;
+                enemy.EnemyAI.EventOnChaseStopped += RemoveChasingEnemyToList;
             }
 
             foreach(var door in m_allDoorsOnLevel)
@@ -104,14 +122,26 @@ namespace DC_ARPG
 
         private void OnEnemyDeath(Enemy enemy)
         {
+            enemy.EventOnDeath -= OnEnemyDeath;
+            enemy.EnemyAI.EventOnChaseStarted -= AddChasingEnemyToList;
+            enemy.EnemyAI.EventOnChaseStopped -= RemoveChasingEnemyToList;
+
+            RemoveChasingEnemyToList(enemy.EnemyAI);
+
             m_allEnemies.Remove(enemy);
         }
 
-
-
-        private void Update()
+        private void AddChasingEnemyToList(EnemyAIController chasingEnemyAI)
         {
-            //ComputeAdjacencyList(m_levelTileField, null);
+            m_chasingEnemies.Add(chasingEnemyAI);
+        }
+
+        private void RemoveChasingEnemyToList(EnemyAIController chasingEnemyAI)
+        {
+            if (m_chasingEnemies.Contains(chasingEnemyAI))
+            {
+                m_chasingEnemies.Remove(chasingEnemyAI);
+            }
         }
     }
 }

@@ -61,7 +61,7 @@ namespace DC_ARPG
 
             Debug.DrawRay(directionRay.origin, directionRay.direction, Color.red);
 
-            if (Physics.Raycast(directionRay, out hit, 1f, 1, QueryTriggerInteraction.Ignore))
+            if (Physics.Raycast(directionRay, out hit, 1.1f, 1, QueryTriggerInteraction.Ignore))
             {
                 if (hit.collider) return;
             }
