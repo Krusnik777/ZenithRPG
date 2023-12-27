@@ -356,14 +356,7 @@ namespace DC_ARPG
         {
             if (target == null) return;
 
-            if (m_enemy.State == EnemyState.Patrol)
-            {
-                LevelState.Instance.ComputeAdjacencyList(target, m_patrolField);
-            }
-            else
-            {
-                LevelState.Instance.ComputeAdjacencyList(target);
-            }
+            LevelState.Instance.ComputeAdjacencyList(target);
 
             GetCurrentTile();
 

@@ -40,21 +40,11 @@ namespace DC_ARPG
             }
         }
 
-        public void ComputeAdjacencyList(Tile target, Tile[] tileField = null)
+        public void ComputeAdjacencyList(Tile target)
         {
-            if (tileField == null)
+            foreach (var tile in m_levelTileField)
             {
-                foreach (var tile in m_levelTileField)
-                {
-                    tile.FindNeighbors(target);
-                }
-            }
-            else
-            {
-                foreach (var tile in tileField)
-                {
-                    tile.FindNeighbors(target);
-                }
+                tile.FindNeighbors(target);
             }
         }
 
