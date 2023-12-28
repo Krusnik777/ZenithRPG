@@ -6,7 +6,7 @@ namespace DC_ARPG
     {
         [SerializeField] private int m_damage;
 
-        private void OnTriggerEnter(Collider other)
+        protected virtual void OnTriggerEnter(Collider other)
         {
             if (other.transform.parent.TryGetComponent(out Player player))
             {
@@ -15,7 +15,7 @@ namespace DC_ARPG
 
             if (other.transform.parent.TryGetComponent(out Enemy enemy))
             {
-                enemy.Character.EnemyStats.ChangeCurrentHitPoints(this, -m_damage);
+                if (enemy.State != EnemyState.Patrol) enemy.Character.EnemyStats.ChangeCurrentHitPoints(this, -m_damage);
             }
         }
     }

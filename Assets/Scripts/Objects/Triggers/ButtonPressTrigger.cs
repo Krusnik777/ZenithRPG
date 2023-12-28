@@ -40,11 +40,21 @@ namespace DC_ARPG
 
         private void OnTriggerEnter(Collider other)
         {
+            if (other.transform.parent.TryGetComponent(out Enemy enemy))
+            {
+                if (enemy.State == EnemyState.Patrol) return;
+            }
+
             PressButton();
         }
 
         private void OnTriggerExit(Collider other)
         {
+            if (other.transform.parent.TryGetComponent(out Enemy enemy))
+            {
+                if (enemy.State == EnemyState.Patrol) return;
+            }
+
             if (m_hasSpring) UnpressButton();
         }
     }
