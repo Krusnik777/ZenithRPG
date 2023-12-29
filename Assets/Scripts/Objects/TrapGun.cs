@@ -8,7 +8,7 @@ namespace DC_ARPG
         [SerializeField] private Magic m_magic;
         public override void OnInspection(Player player)
         {
-            ShortMessage.Instance.ShowMessage("Подозрительная щель.");
+            ShortMessage.Instance.ShowMessage("Подозрительное отверстие.");
 
             base.OnInspection(player);
         }
