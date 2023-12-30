@@ -6,6 +6,7 @@ namespace DC_ARPG
     public class ButtonPressTrigger : MonoBehaviour
     {
         [SerializeField] private bool m_hasSpring;
+        [SerializeField] private AudioSource m_audioSFX;
 
         private Animator m_animator;
 
@@ -20,6 +21,7 @@ namespace DC_ARPG
             if (inUnpressedState)
             {
                 m_animator.SetTrigger("Press");
+                m_audioSFX.Play();
                 OnButtonPressed?.Invoke();
             }
         }
@@ -29,6 +31,7 @@ namespace DC_ARPG
             if (inPressedState)
             {
                 m_animator.SetTrigger("Unpress");
+                m_audioSFX.Play();
                 OnButtonUnpressed?.Invoke();
             }
         }

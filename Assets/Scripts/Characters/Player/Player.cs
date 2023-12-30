@@ -148,7 +148,6 @@ namespace DC_ARPG
 
         private void Awake()
         {
-            m_audioSource = GetComponent<AudioSource>();
             m_animator = GetComponentInChildren<Animator>();
         }
 

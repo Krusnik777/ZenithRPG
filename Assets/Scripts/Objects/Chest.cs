@@ -18,6 +18,7 @@ namespace DC_ARPG
         public bool StandingInFrontOfChest => m_positionTrigger != null ? m_positionTrigger.InRightPosition : false;
 
         private Animator m_animator;
+        private ChestSFX m_chestSFX;
 
         private bool inClosedState => m_animator != null ? m_animator.GetCurrentAnimatorStateInfo(0).IsName("ClosedState") : true;
         public bool Closed => inClosedState;
@@ -33,6 +34,9 @@ namespace DC_ARPG
         public void Unlock()
         {
             m_locked = false;
+
+            m_chestSFX.PlayUnlockedSound();
+
             if (StandingInFrontOfChest) ShortMessage.Instance.ShowMessage("Открыто.");
         }
 
@@ -48,6 +52,9 @@ namespace DC_ARPG
             {
                 if (!m_requireSpecialKey) ShortMessage.Instance.ShowMessage("Закрыто.");
                 else ShortMessage.Instance.ShowMessage("Закрыто на необычный замок.");
+
+                m_chestSFX.PlayLockedSound();
+
                 return;
             }
 
@@ -58,12 +65,14 @@ namespace DC_ARPG
         private void Awake()
         {
             m_animator = GetComponent<Animator>();
+            m_chestSFX = GetComponentInChildren<ChestSFX>();
             m_positionTrigger = GetComponentInChildren<PositionTrigger>();
         }
 
         private void Open(Player player)
         {
             m_animator.SetTrigger("Open");
+            m_chestSFX.PlayOpenSound();
 
             if (m_item == null)
             {
@@ -78,12 +87,17 @@ namespace DC_ARPG
 
                 EventOnInspection?.Invoke();
             }
-            else ShortMessage.Instance.ShowMessage("Нет места в инвентаре.");
+            else
+            {
+                ShortMessage.Instance.ShowMessage("Нет места в инвентаре.");
+                Close();
+            }
         }
 
         private void Close()
         {
             m_animator.SetTrigger("Close");
+            m_chestSFX.PlayCloseSound();
         }
     }
 }

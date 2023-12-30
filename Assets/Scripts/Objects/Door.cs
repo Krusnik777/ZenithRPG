@@ -27,6 +27,7 @@ namespace DC_ARPG
         public bool StandingInFrontOfDoor => m_forwardPositionTrigger.InRightPosition || m_backwardPositionTrigger.InRightPosition;
 
         private Animator m_animator;
+        private DoorSFX m_doorSFX;
 
         private bool inClosedState => m_animator != null ? m_animator.GetCurrentAnimatorStateInfo(0).IsName("ClosedState") : true;
         public bool Closed => inClosedState;
@@ -42,6 +43,9 @@ namespace DC_ARPG
         public void Unlock()
         {
             m_locked = false;
+
+            m_doorSFX.PlayUnlockedSound();
+
             if (StandingInFrontOfDoor) ShortMessage.Instance.ShowMessage("Открыто.");
             if (inClosedState) Open();
         }
@@ -60,6 +64,9 @@ namespace DC_ARPG
             {
                 if (!m_requireSpecialKey) ShortMessage.Instance.ShowMessage("Закрыто.");
                 else ShortMessage.Instance.ShowMessage("Закрыто на необычный замок.");
+
+                m_doorSFX.PlayLockedSound();
+
                 return;
             }
 
@@ -74,11 +81,13 @@ namespace DC_ARPG
         private void Awake()
         {
             m_animator = GetComponent<Animator>();
+            m_doorSFX = GetComponentInChildren<DoorSFX>();
         }
 
         private void Open()
         {
             m_animator.SetTrigger("Open");
+            m_doorSFX.PlayUseSound();
             m_collider.isTrigger = true;
 
             if (StandingInFrontOfDoor)
@@ -93,6 +102,7 @@ namespace DC_ARPG
         private void Close()
         {
             m_animator.SetTrigger("Close");
+            m_doorSFX.PlayUseSound();
             m_collider.isTrigger = false;
 
             if (StandingInFrontOfDoor)

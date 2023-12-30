@@ -27,7 +27,13 @@ namespace DC_ARPG
             {
                 if (other.transform.parent.TryGetComponent(out Player player))
                 {
-                    if (player.IsBlocking && player.CheckForwardGridForEnemy() != null) return;
+                    if (player.IsBlocking && player.CheckForwardGridForEnemy() != null)
+                    {
+                        // Play BlockSound
+                        // Show BlockEffect
+
+                        return;
+                    }
 
                     player.Character.PlayerStats.ChangeCurrentHitPoints(m_parent, -parentEnemy.Character.EnemyStats.Attack, DamageType.Physic);
                 }

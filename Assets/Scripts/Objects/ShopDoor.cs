@@ -3,7 +3,7 @@ using UnityEngine.Events;
 
 namespace DC_ARPG
 {
-    [RequireComponent(typeof(Animator))]
+    [RequireComponent(typeof(Animator),typeof(AudioSource))]
     public class ShopDoor : InspectableObject
     {
         private Shop m_shop;
@@ -16,6 +16,7 @@ namespace DC_ARPG
         public bool StandingInFrontOfShopDoor => m_positionTrigger != null ? m_positionTrigger.InRightPosition : false;
 
         private Animator m_animator;
+        private AudioSource m_audio;
 
         private bool inClosedState => m_animator != null ? m_animator.GetCurrentAnimatorStateInfo(0).IsName("ClosedState") : true;
         private bool inOpenedState => m_animator != null ? m_animator.GetCurrentAnimatorStateInfo(0).IsName("OpenedState") : false;
@@ -31,7 +32,7 @@ namespace DC_ARPG
             }
 
             if (inClosedState) EnterShop();
-            if (inOpenedState) return; // TEMP
+            if (inOpenedState) return; // just to be safe
 
             EventOnInspection?.Invoke();
         }
@@ -39,6 +40,7 @@ namespace DC_ARPG
         private void Awake()
         {
             m_animator = GetComponent<Animator>();
+            m_audio = GetComponent<AudioSource>();
             m_shop = GetComponent<Shop>();
             m_positionTrigger = GetComponentInChildren<PositionTrigger>();
         }
@@ -56,6 +58,7 @@ namespace DC_ARPG
         private void EnterShop()
         {
             m_animator.SetTrigger("Open");
+            m_audio.Play();
 
             UIShop.Instance.ShowShop(m_shop);
 
@@ -65,6 +68,7 @@ namespace DC_ARPG
         private void OnShopExited()
         {
             m_animator.SetTrigger("Close");
+            m_audio.Play();
 
             EventOnShopExited?.Invoke(); // For LevelState??
         }

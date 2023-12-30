@@ -9,6 +9,8 @@ namespace DC_ARPG
         [SerializeField] protected float m_transitionMoveSpeed = 0.5f;
         [SerializeField] protected float m_transitionJumpSpeed = 0.3f;
         [SerializeField] protected float m_transitionRotateSpeed = 0.25f;
+        [Header("SFX")]
+        [SerializeField] protected CharacterSFX m_characterSFX;
 
         #region Parameters
 
@@ -32,8 +34,6 @@ namespace DC_ARPG
 
         protected bool inIdleState => !(inMovement || isJumping || isAttacking || isBlocking);
         public bool InIdleState => inIdleState;
-
-        protected AudioSource m_audioSource;
 
         protected Animator m_animator;
         public Animator Animator => m_animator;
@@ -176,7 +176,6 @@ namespace DC_ARPG
 
         private void Awake()
         {
-            m_audioSource = GetComponent<AudioSource>();
             m_animator = GetComponentInChildren<Animator>();
         }
 
@@ -199,7 +198,7 @@ namespace DC_ARPG
 
             var elapsed = 0.0f;
 
-            //m_audioSource.Play();
+            m_characterSFX.PlayFootstepSound();
 
             SetMovementAnimations(direction, true);
 
@@ -252,6 +251,8 @@ namespace DC_ARPG
                 yield return new WaitUntil(() => m_animator.GetCurrentAnimatorStateInfo(0).IsName("Turn180"));
             }
 
+            m_characterSFX.PlayFootstepSound();
+
             while (elapsed < m_transitionRotateSpeed)
             {
                 transform.rotation = Quaternion.Slerp(startRotation, targetRotation, elapsed / m_transitionRotateSpeed);
@@ -277,8 +278,9 @@ namespace DC_ARPG
             var elapsed = 0.0f;
             var time = m_transitionJumpSpeed;
 
-            //m_audioSource.Play();
             m_animator.Play("Jump");
+
+            m_characterSFX.PlayJumpSound();
 
             yield return new WaitUntil(() => m_animator.GetCurrentAnimatorStateInfo(0).IsName("Jump"));
 
@@ -325,9 +327,13 @@ namespace DC_ARPG
                 }
 
                 transform.position = targetPosition;
+
+                m_characterSFX.PlayLandSound();
             }
 
             yield return new WaitWhile(() => m_animator.GetCurrentAnimatorStateInfo(0).IsName("Jump"));
+
+            if (distance == Vector3.zero) m_characterSFX.PlayLandSound();
 
             //yield return new WaitForSeconds(0.1f);
 
@@ -343,8 +349,8 @@ namespace DC_ARPG
 
             var elapsed = 0.0f;
 
-            //m_audioSource.Play();
             m_animator.Play("Jump");
+            m_characterSFX.PlayJumpSound();
 
             while (transform.position != targetPosition)
             {
@@ -368,6 +374,8 @@ namespace DC_ARPG
             }
 
             transform.position = targetPosition;
+
+            m_characterSFX.PlayLandSound();
 
             yield return new WaitWhile(() => m_animator.GetCurrentAnimatorStateInfo(0).IsName("Jump"));
 
@@ -393,6 +401,8 @@ namespace DC_ARPG
 
                 yield return new WaitUntil(() => m_animator.GetCurrentAnimatorStateInfo(0).IsName("Attack" + attackCount));
             }
+
+            m_characterSFX.PlayAttackSound();
 
             yield return new WaitWhile(() => m_animator.GetCurrentAnimatorStateInfo(0).IsName("Attack" + attackCount));
 
