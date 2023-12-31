@@ -49,6 +49,8 @@ namespace DC_ARPG
 
         private void OnCancel(InputAction.CallbackContext obj)
         {
+            UISounds.Instance.PlayBackSound();
+
             if (PauseMenu.Instance.State == PauseMenu.MenuState.Selection)
             {
                 PauseMenu.Instance.HidePauseMenu();

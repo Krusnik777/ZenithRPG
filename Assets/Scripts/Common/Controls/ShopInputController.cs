@@ -42,6 +42,8 @@ namespace DC_ARPG
 
         private void BackToSelection(InputAction.CallbackContext obj)
         {
+            if (UIShop.Instance.State == UIShop.ShopState.Selection) return;
+
             if (UIShop.Instance.State == UIShop.ShopState.Sell)
             {
                 if (UIInventorySlotButton.InTransit)
@@ -54,6 +56,8 @@ namespace DC_ARPG
                     }
                 }
             }
+
+            UISounds.Instance.PlayBackSound();
 
             UIShop.Instance.ReturnToSelection();
         }

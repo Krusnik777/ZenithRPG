@@ -36,7 +36,7 @@ namespace DC_ARPG
             m_playerCharacter.PlayerStats.EventOnLevelUp -= SetBothPoints;
         }
 
-        private void SetHitPoints()
+        private void SetHitPoints(int change = 0)
         {
             m_hitPointsValueText.text = $"{m_playerCharacter.PlayerStats.CurrentHitPoints}/{m_playerCharacter.PlayerStats.HitPoints}";
             m_hitPointsFillImage.fillAmount = (float) m_playerCharacter.PlayerStats.CurrentHitPoints / (float) m_playerCharacter.PlayerStats.HitPoints;

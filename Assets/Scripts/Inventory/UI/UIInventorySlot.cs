@@ -31,6 +31,8 @@ namespace DC_ARPG
                 itemContainer.GetComponent<ItemContainer>().AssignItem(m_inventorySlot.Item);
 
                 Inventory.RemoveItemFromInventory(this, m_inventorySlot);
+
+                UISounds.Instance.PlayItemRemovedSound();
             }
             else
             {
@@ -43,17 +45,26 @@ namespace DC_ARPG
                     if (chest.Item != null)
                     {
                         ShortMessage.Instance.ShowMessage("Больше нет места.");
+
+                        UISounds.Instance.PlayInventoryActionFailureSound();
+
                         return;
                     }
 
                     chest.AssignItem(m_inventorySlot.Item);
 
+                    if (chest.Opened) chest.Close();
+
                     Inventory.RemoveItemFromInventory(this, m_inventorySlot);
+
+                    UISounds.Instance.PlayItemRemovedSound();
 
                     return;
                 }
 
                 ShortMessage.Instance.ShowMessage("Некуда класть.");
+
+                UISounds.Instance.PlayInventoryActionFailureSound();
             }  
         }
 

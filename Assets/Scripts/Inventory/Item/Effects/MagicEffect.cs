@@ -27,7 +27,12 @@ namespace DC_ARPG
 
                 item.Uses--;
 
-                if (item.Uses <= 0) player.Character.Inventory.RemoveItemFromInventory(this, player.Character.Inventory.MagicItemSlot);
+                if (item.Uses <= 0)
+                {
+                    player.Character.Inventory.RemoveItemFromInventory(this, player.Character.Inventory.MagicItemSlot);
+
+                    UISounds.Instance.PlayMagicItemDisappearSound();
+                }
             }
             else
             {

@@ -13,6 +13,7 @@ namespace DC_ARPG
         }
 
         [SerializeField] private UseType m_useEffect;
+        [SerializeField] private AudioClip m_useSound;
 
         public void Use(Player player, IItem item)
         {
@@ -25,6 +26,7 @@ namespace DC_ARPG
         {
             player.Character.PlayerStats.ChangeCurrentHitPoints(this, 9999);
             item.Amount--;
+            UISounds.Instance.PlayItemUsedSound(m_useSound);
         }
 
         private void Unlock(Player player, IItem item)

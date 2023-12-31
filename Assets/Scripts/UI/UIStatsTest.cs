@@ -159,7 +159,7 @@ namespace DC_ARPG
             m_luckValue.text = m_character.PlayerStats.Luck.ToString();
         }
 
-        private void OnHitPointsChange()
+        private void OnHitPointsChange(int change)
         {
             m_hitPointsValue.text = $"{m_character.PlayerStats.CurrentHitPoints}/{m_character.PlayerStats.HitPoints}";
         }

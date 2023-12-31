@@ -47,11 +47,18 @@ namespace DC_ARPG
             if (player.Character.Inventory.TryToAddItem(this, m_item) == true)
             {
                 ShortMessage.Instance.ShowMessage("Добавлено в инвентарь: " + m_item.Info.Title + ".");
+
+                UISounds.Instance.PlayItemCollectedSound();
+
                 base.OnInspection(player);
 
                 Destroy(gameObject);
             }
-            else ShortMessage.Instance.ShowMessage("Нет места в инвентаре.");
+            else
+            {
+                ShortMessage.Instance.ShowMessage("Нет места в инвентаре.");
+                UISounds.Instance.PlayInventoryActionFailureSound();
+            }
         }
 
         public void AssignItem(IItem item)

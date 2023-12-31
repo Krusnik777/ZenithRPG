@@ -60,6 +60,8 @@ namespace DC_ARPG
                 }
             }
 
+            UISounds.Instance.PlayBackSound();
+
             m_uIInventory.HideInventory();
 
             m_controlsManager.SetPlayerControlsActive(true);

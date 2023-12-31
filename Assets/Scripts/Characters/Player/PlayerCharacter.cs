@@ -57,6 +57,7 @@ namespace DC_ARPG
 
             inventory = new Inventory(3, 9, 3);
 
+            playerStats.EventOnHitPointsChange += OnHitPointsChange;
             playerStats.EventOnDeath += OnDeath;
 
             inventory.EventOnTransitCompleted += OnEquipItemChange;
@@ -107,10 +108,21 @@ namespace DC_ARPG
 
         private void OnDestroy()
         {
+            playerStats.EventOnHitPointsChange -= OnHitPointsChange;
             playerStats.EventOnDeath -= OnDeath;
 
             inventory.EventOnTransitCompleted -= OnEquipItemChange;
             inventory.EventOnItemRemoved -= OnEquipItemRemoved;
+        }
+
+        private void OnHitPointsChange(int change)
+        {
+            if (change < 0 && playerStats.CurrentHitPoints != 0)
+            {
+                m_player.CharacterSFX.PlayGetHitSound();
+
+                // Show Damage Effect
+            }
         }
 
         private void OnDeath(object sender)
@@ -122,6 +134,10 @@ namespace DC_ARPG
                 (slot.ItemInfo as NotUsableItemInfo).PassiveEffect.GetEffect(m_player, slot);
                 return;
             }
+
+            m_player.CharacterSFX.PlayDeathSound();
+
+            // Show Death
 
             Debug.Log("Game Over");
         }

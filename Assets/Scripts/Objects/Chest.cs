@@ -40,6 +40,12 @@ namespace DC_ARPG
             if (StandingInFrontOfChest) ShortMessage.Instance.ShowMessage("Открыто.");
         }
 
+        public void Close()
+        {
+            m_animator.SetTrigger("Close");
+            m_chestSFX.PlayCloseSound();
+        }
+
         public override void OnInspection(Player player)
         {
             if (!StandingInFrontOfChest)
@@ -83,6 +89,9 @@ namespace DC_ARPG
             if (player.Character.Inventory.TryToAddItem(this, m_item) == true)
             {
                 ShortMessage.Instance.ShowMessage("Добавлено в инвентарь: " + m_item.Info.Title + ".");
+
+                UISounds.Instance.PlayItemCollectedSound();
+
                 m_item = null;
 
                 EventOnInspection?.Invoke();
@@ -90,14 +99,10 @@ namespace DC_ARPG
             else
             {
                 ShortMessage.Instance.ShowMessage("Нет места в инвентаре.");
+                UISounds.Instance.PlayInventoryActionFailureSound();
                 Close();
             }
         }
 
-        private void Close()
-        {
-            m_animator.SetTrigger("Close");
-            m_chestSFX.PlayCloseSound();
-        }
     }
 }

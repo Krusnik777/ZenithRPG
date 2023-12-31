@@ -24,3 +24,4 @@ MonoBehaviour:
   MaxAmount: 99
   UseEffect:
     m_useEffect: 0
+    m_useSound: {fileID: 8300000, guid: 06a7f68c37c74e9488332e21563c9d63, type: 3}

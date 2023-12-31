@@ -62,6 +62,9 @@ namespace DC_ARPG
             {
                 index = Random.Range(0, m_shop.ShopInfo.Shopkeeper.NotEnoughMoneyLines.Count);
                 m_shopkeeperSpeech.ShowShortPhrase(m_shop.ShopInfo.Shopkeeper.NotEnoughMoneyLines[index]);
+
+                UISounds.Instance.PlayPurchaseFailureSound();
+
                 return;
             }
 
@@ -69,6 +72,9 @@ namespace DC_ARPG
             {
                 index = Random.Range(0, m_shop.ShopInfo.Shopkeeper.NoPlaceLines.Count);
                 m_shopkeeperSpeech.ShowShortPhrase(m_shop.ShopInfo.Shopkeeper.NoPlaceLines[index]);
+
+                UISounds.Instance.PlayPurchaseFailureSound();
+
                 return;
             }
 
@@ -76,6 +82,8 @@ namespace DC_ARPG
 
             index = Random.Range(0, m_shop.ShopInfo.Shopkeeper.PurchaseLines.Count);
             m_shopkeeperSpeech.ShowShortPhrase(m_shop.ShopInfo.Shopkeeper.PurchaseLines[index]);
+
+            UISounds.Instance.PlayPurchaseSound();
         }
 
         public void SellItem(object sender, PlayerCharacter playerCharacter, IItemSlot slot)
@@ -87,6 +95,8 @@ namespace DC_ARPG
 
             int index = Random.Range(0, m_shop.ShopInfo.Shopkeeper.SellLines.Count);
             m_shopkeeperSpeech.ShowShortPhrase(m_shop.ShopInfo.Shopkeeper.SellLines[index]);
+
+            UISounds.Instance.PlayPurchaseSound();
         }
 
         public void ShowShop(Shop shop)

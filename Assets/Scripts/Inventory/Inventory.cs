@@ -185,11 +185,16 @@ namespace DC_ARPG
 
         public void UseItem(object sender, IItemSlot slot)
         {
-            if (slot.IsEmpty) return;
+            if (slot.IsEmpty)
+            {
+                UISounds.Instance.PlayInventoryActionFailureSound();
+                return;
+            }
 
             if (slot.Item is NotUsableItem)
             {
                 Debug.Log("NotUsable");
+                UISounds.Instance.PlayInventoryActionFailureSound();
                 return;
             }
 
@@ -325,6 +330,8 @@ namespace DC_ARPG
                 if (item.EquipType == EquipItemType.Shield)
                     TransitFromSlotToSlot(sender, slot, ShieldItemSlot);
             }
+
+            UISounds.Instance.PlayItemEquipSound();
         }
 
         #endregion

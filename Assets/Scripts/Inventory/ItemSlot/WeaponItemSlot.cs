@@ -61,8 +61,7 @@ namespace DC_ARPG
                 player.Character.Inventory.RemoveItemFromInventory(sender, player.Character.Inventory.WeaponItemSlot);
                 player.Character.Inventory.SetBrokenWeapon(sender, player.Character.BrokenWeapon);
 
-                UnityEngine.Debug.Log("WeaponBroken");
-                // change Weapon to broken
+                UISounds.Instance.PlaySwordBreakSound();
             }
 
             EventOnAttack?.Invoke(sender);

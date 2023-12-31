@@ -13,12 +13,28 @@ namespace DC_ARPG
             enemyStats = new EnemyStats();
             enemyStats.InitStats(m_enemyStatsInfo);
 
+            enemyStats.EventOnHitPointsChange += OnHitPointsChange;
             enemyStats.EventOnDeath += OnDeath;
         }
 
         private void OnDestroy()
         {
+            enemyStats.EventOnHitPointsChange -= OnHitPointsChange;
             enemyStats.EventOnDeath -= OnDeath;
+        }
+
+        private void OnHitPointsChange(int change)
+        {
+            if (change < 0 && enemyStats.CurrentHitPoints != 0)
+            {
+                Enemy enemy = GetComponent<Enemy>();
+                if (enemy != null)
+                {
+                    enemy.CharacterSFX.PlayGetHitSound();
+
+                    // Show Damage Effect
+                }
+            }
         }
 
         private void OnDeath(object sender)
@@ -46,6 +62,16 @@ namespace DC_ARPG
                     }
                 }
             }
+
+            Enemy enemy = GetComponent<Enemy>();
+            if (enemy != null)
+            {
+                enemy.CharacterSFX.PlayDeathSound();
+
+                // Show Death Animation
+            }
+
+            // WAIT FOR SOUND and ANIMATION END => Coroutine?
 
             Destroy(gameObject);
         }

@@ -11,6 +11,7 @@ namespace DC_ARPG
         [SerializeField] protected float m_transitionRotateSpeed = 0.25f;
         [Header("SFX")]
         [SerializeField] protected CharacterSFX m_characterSFX;
+        public CharacterSFX CharacterSFX => m_characterSFX;
 
         #region Parameters
 

@@ -33,7 +33,7 @@ namespace DC_ARPG
 
         #region BaseEvents
 
-        public event UnityAction EventOnHitPointsChange;
+        public event UnityAction<int> EventOnHitPointsChange;
         public event UnityAction<object> EventOnDeath;
         public event UnityAction EventOnMagicPointsChange;
 
@@ -87,7 +87,7 @@ namespace DC_ARPG
                 EventOnDeath?.Invoke(sender);
             }
 
-            EventOnHitPointsChange?.Invoke();
+            EventOnHitPointsChange?.Invoke(change);
         }
 
         public bool TryUseMagicPoints(int magicPoints)
