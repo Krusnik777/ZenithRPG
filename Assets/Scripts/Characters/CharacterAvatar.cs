@@ -15,8 +15,6 @@ namespace DC_ARPG
 
         #region Parameters
 
-        protected Vector3 currentDirection;
-
         protected bool inMovement;
         public bool InMovement => inMovement;
 
@@ -51,11 +49,11 @@ namespace DC_ARPG
 
         #region AvatarActions
 
-        public void Move(Vector3 direction)
+        public void Move(Vector2 inputDirection)
         {
             if (!inIdleState) return;
 
-            if (currentDirection != direction) currentDirection = direction;
+            Vector3 direction = GetDirection(inputDirection);
 
             Ray directionRay = new Ray(transform.position + new Vector3(0, 0.5f, 0), direction);
             RaycastHit hit;
@@ -66,6 +64,9 @@ namespace DC_ARPG
             {
                 if (hit.collider) return;
             }
+
+            m_animator.SetFloat("MovementX", inputDirection.x);
+            m_animator.SetFloat("MovementZ", inputDirection.y);
 
             StartCoroutine(MoveTo(direction));
         }
@@ -128,8 +129,8 @@ namespace DC_ARPG
             if (!inIdleState && !isAttacking) return;
 
             if (
-                (m_animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.8f || m_animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 0.5f)
-                && m_animator.GetCurrentAnimatorStateInfo(0).IsName("Attack" + hitCount)
+                (m_animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.7f || m_animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 0.5f)
+                && m_animator.GetCurrentAnimatorStateInfo(0).IsName("AttackState.Attack" + hitCount)
                 ) return;
 
             hitCount++;
@@ -180,12 +181,21 @@ namespace DC_ARPG
             m_animator = GetComponentInChildren<Animator>();
         }
 
-        private void SetMovementAnimations(Vector3 direction, bool value)
+        private Vector3 GetDirection(Vector2 inputDirection)
         {
-            if (direction == transform.forward) m_animator.SetBool("Forward", value);
-            if (direction == -transform.forward) m_animator.SetBool("Backward", value);
-            if (direction == transform.right) m_animator.SetBool("Right", value);
-            if (direction == -transform.right) m_animator.SetBool("Left", value);
+            Vector3 direction = new Vector3(0, 0, 0);
+
+            if (inputDirection.x != 0)
+            {
+                direction = transform.right * Mathf.Sign(inputDirection.x);
+            }
+
+            if (inputDirection.y != 0)
+            {
+                direction = transform.forward * Mathf.Sign(inputDirection.y);
+            }
+
+            return direction;
         }
 
         #region Coroutines
@@ -200,8 +210,6 @@ namespace DC_ARPG
             var elapsed = 0.0f;
 
             m_characterSFX.PlayFootstepSound();
-
-            SetMovementAnimations(direction, true);
 
             while (elapsed < m_transitionMoveSpeed)
             {
@@ -219,8 +227,13 @@ namespace DC_ARPG
 
             yield return null;
             //yield return new WaitForSeconds(0.1f);
-
-            if (!inMovement || currentDirection != direction) SetMovementAnimations(direction, false);
+            
+            if (!inMovement)
+            {
+                m_animator.SetFloat("MovementX", 0);
+                m_animator.SetFloat("MovementZ", 0);
+                m_animator.SetTrigger("IdleTrigger");
+            }
         }
 
         private IEnumerator RotateAt(float angle)
@@ -393,19 +406,19 @@ namespace DC_ARPG
             {
                 m_animator.SetTrigger("Attack1");
 
-                yield return new WaitUntil(() => m_animator.GetCurrentAnimatorStateInfo(0).IsName("Attack1"));
+                yield return new WaitUntil(() => m_animator.GetCurrentAnimatorStateInfo(0).IsName("AttackState.Attack1"));
             }
 
             if (attackCount == 2)
             {
                 m_animator.SetTrigger("Attack" + attackCount);
 
-                yield return new WaitUntil(() => m_animator.GetCurrentAnimatorStateInfo(0).IsName("Attack" + attackCount));
+                yield return new WaitUntil(() => m_animator.GetCurrentAnimatorStateInfo(0).IsName("AttackState.Attack" + attackCount));
             }
 
             m_characterSFX.PlayAttackSound();
 
-            yield return new WaitWhile(() => m_animator.GetCurrentAnimatorStateInfo(0).IsName("Attack" + attackCount));
+            yield return new WaitWhile(() => m_animator.GetCurrentAnimatorStateInfo(0).IsName("AttackState.Attack" + attackCount));
 
             isAttacking = false;
             hitCount = 0;
@@ -416,9 +429,9 @@ namespace DC_ARPG
         {
             m_animator.SetBool("BlockHold", false);
 
-            yield return new WaitUntil(() => m_animator.GetCurrentAnimatorStateInfo(0).IsName("BlockEnd"));
+            yield return new WaitUntil(() => m_animator.GetCurrentAnimatorStateInfo(0).IsName("BlockState.BlockEnd"));
 
-            yield return new WaitWhile(() => m_animator.GetCurrentAnimatorStateInfo(0).IsName("BlockEnd"));
+            yield return new WaitWhile(() => m_animator.GetCurrentAnimatorStateInfo(0).IsName("BlockState.BlockEnd"));
 
             isBlocking = false;
         }

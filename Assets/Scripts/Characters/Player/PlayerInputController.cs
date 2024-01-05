@@ -88,23 +88,11 @@ namespace DC_ARPG
         {
             if (!player.IsGrounded || player.State != Player.PlayerState.Active) return;
 
-            Vector2 directionV2 = _controls.Gameplay.Movement.ReadValue<Vector2>();
+            Vector2 inputDirection = _controls.Gameplay.Movement.ReadValue<Vector2>();
 
-            if (directionV2 == Vector2.zero) return;
+            if (inputDirection == Vector2.zero) return;
 
-            Vector3 direction = new Vector3(0, 0, 0);
-
-            if (directionV2.x != 0)
-            {
-                direction = player.transform.right * Mathf.Sign(directionV2.x);
-            }
-
-            if (directionV2.y != 0)
-            {
-                direction = player.transform.forward * Mathf.Sign(directionV2.y);
-            }
-
-            player.Move(direction);
+            player.Move(inputDirection);
         }
 
         private void OnRotateLeft(InputAction.CallbackContext obj)

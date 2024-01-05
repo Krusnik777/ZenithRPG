@@ -41,7 +41,6 @@ namespace DC_ARPG
 
                 if (uIInventory.State == UIInventory.InteractionState.Shop)
                 {
-                    
                     m_removeButtonIcon.sprite = m_backButtonIconImage;
                     m_removeText.text = "Назад";
                 }
@@ -49,7 +48,7 @@ namespace DC_ARPG
                 if (slot.IsEmpty)
                 {
                     ChangeMoveInfoTransparency();
-                    ChangeRemoveInfoTransparency();
+                    if (uIInventory.State == UIInventory.InteractionState.Normal) ChangeRemoveInfoTransparency();
                 }
                 else
                 {
@@ -59,11 +58,11 @@ namespace DC_ARPG
             }
         }
 
-        public void UnsetButtonPanel()
+        public void UnsetButtonPanel(UIInventory uIInventory)
         {
             ChangeUseInfoTransparency();
             ChangeMoveInfoTransparency();
-            ChangeRemoveInfoTransparency();
+            if (uIInventory.State == UIInventory.InteractionState.Normal) ChangeRemoveInfoTransparency();
         }
 
         private void SetMoveInfoTransparencyToDefault()

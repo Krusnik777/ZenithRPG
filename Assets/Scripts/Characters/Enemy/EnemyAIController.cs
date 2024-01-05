@@ -225,7 +225,7 @@ namespace DC_ARPG
                 Tile t = path.Peek();
                 Vector3 targetPosition = t.transform.position;
 
-                m_enemy.Animator.SetBool("Forward", true);
+                m_enemy.Animator.SetFloat("MovementZ", 1);
 
                 // Calculate unit position on top of target tile
 
@@ -237,7 +237,8 @@ namespace DC_ARPG
                     if (currentDirection != headingDirection)
                     {
                         isTurning = true;
-                        m_enemy.Animator.SetBool("Forward", false);
+                        m_enemy.Animator.SetTrigger("IdleTrigger");
+                        m_enemy.Animator.SetFloat("MovementZ", 0);
                         return;
                     }
 
@@ -325,7 +326,8 @@ namespace DC_ARPG
 
         private void StopMoving()
         {
-            m_enemy.Animator.SetBool("Forward", false);
+            m_enemy.Animator.SetTrigger("IdleTrigger");
+            m_enemy.Animator.SetFloat("MovementZ", 0);
 
             ClearCurrentTile();
             isMoving = false;

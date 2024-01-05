@@ -62,7 +62,7 @@ namespace DC_ARPG
             OnUnselect?.Invoke();
 
             uiSlot.UIInventory.InfoPanelController.HideInfoPanel();
-            uiSlot.UIInventory.ButtonsInfoPanel.UnsetButtonPanel();
+            uiSlot.UIInventory.ButtonsInfoPanel.UnsetButtonPanel(uiSlot.UIInventory);
         }
 
         public void OnButtonUse()
