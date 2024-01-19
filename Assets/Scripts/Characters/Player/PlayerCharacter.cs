@@ -8,6 +8,8 @@ namespace DC_ARPG
         [SerializeField] private PlayerStatsInfo m_playerStatsInfo;
         [SerializeField] private Magic m_availableMagic;
         [SerializeField] private WeaponItem m_brokenWeapon;
+        [Header("Effects")]
+        [SerializeField] private GameObject m_hitEffectPrefab;
         public Magic AvailableMagic => m_availableMagic;
         public WeaponItem BrokenWeapon => m_brokenWeapon;
 
@@ -121,7 +123,9 @@ namespace DC_ARPG
             {
                 m_player.CharacterSFX.PlayGetHitSound();
 
-                // Show Damage Effect
+                var hitEffect = Instantiate(m_hitEffectPrefab, m_player.transform.position, Quaternion.identity);
+
+                Destroy(hitEffect, 1f);
             }
         }
 
@@ -132,14 +136,19 @@ namespace DC_ARPG
             if (slot != null)
             {
                 (slot.ItemInfo as NotUsableItemInfo).PassiveEffect.GetEffect(m_player, slot);
+
+                // Effect?
+                // Broken Item Sound?
+
                 return;
             }
 
             m_player.CharacterSFX.PlayDeathSound();
 
-            // Show Death
+            m_player.Animator.Play("Death");
 
             Debug.Log("Game Over");
+            // And turn off everything
         }
 
         private void OnEquipItemRemoved(object sender, IItemSlot slot)

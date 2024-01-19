@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 namespace DC_ARPG
@@ -8,8 +9,13 @@ namespace DC_ARPG
         private EnemyStats enemyStats;
         public EnemyStats EnemyStats => enemyStats;
 
+        private Enemy enemy;
+        public Enemy Enemy => enemy;
+
         private void Awake()
         {
+            enemy = GetComponent<Enemy>();
+
             enemyStats = new EnemyStats();
             enemyStats.InitStats(m_enemyStatsInfo);
 
@@ -39,6 +45,30 @@ namespace DC_ARPG
 
         private void OnDeath(object sender)
         {
+            StartCoroutine(PlayDeath(sender));
+        }
+
+        private void DropItem(int index)
+        {
+            var item = enemyStats.DroppedItems[index].DroppedItemData.CreateItem();
+            var itemContainer = Instantiate(enemyStats.DroppedItems[index].DroppedItemData.ItemInfo.Prefab, transform.position, Quaternion.identity);
+            itemContainer.GetComponent<ItemContainer>().AssignItem(item);
+        }
+
+        private IEnumerator PlayDeath(object sender)
+        {
+            enemy.EnemyAI.StopActivity();
+
+            enemy.CharacterSFX.PlayDeathSound();
+
+            enemy.Animator.Play("Death");
+
+            yield return new WaitUntil(() => enemy.Animator.GetCurrentAnimatorStateInfo(0).IsName("Death"));
+
+            // Effect of Death?
+
+            yield return new WaitForSeconds(1.5f);
+
             if (sender is Player)
             {
                 (sender as Player).Character.PlayerStats.AddExperience(enemyStats.ExperiencePoints);
@@ -63,24 +93,7 @@ namespace DC_ARPG
                 }
             }
 
-            Enemy enemy = GetComponent<Enemy>();
-            if (enemy != null)
-            {
-                enemy.CharacterSFX.PlayDeathSound();
-
-                // Show Death Animation
-            }
-
-            // WAIT FOR SOUND and ANIMATION END => Coroutine?
-
             Destroy(gameObject);
-        }
-
-        private void DropItem(int index)
-        {
-            var item = enemyStats.DroppedItems[index].DroppedItemData.CreateItem();
-            var itemContainer = Instantiate(enemyStats.DroppedItems[index].DroppedItemData.ItemInfo.Prefab, transform.position, Quaternion.identity);
-            itemContainer.GetComponent<ItemContainer>().AssignItem(item);
         }
     }
 }

@@ -31,7 +31,7 @@ namespace DC_ARPG
 
         protected Coroutine attackRoutine;
 
-        protected bool inIdleState => !(inMovement || isJumping || isAttacking || isBlocking);
+        protected virtual bool inIdleState => !(inMovement || isJumping || isAttacking || isBlocking);
         public bool InIdleState => inIdleState;
 
         protected Animator m_animator;
@@ -63,6 +63,14 @@ namespace DC_ARPG
             if (Physics.Raycast(directionRay, out hit, 1.1f, 1, QueryTriggerInteraction.Ignore))
             {
                 if (hit.collider) return;
+            }
+
+            if (direction == Vector3.zero)
+            {
+                m_animator.SetFloat("MovementX", 0);
+                m_animator.SetFloat("MovementZ", 0);
+
+                return;
             }
 
             m_animator.SetFloat("MovementX", inputDirection.x);
@@ -183,14 +191,14 @@ namespace DC_ARPG
 
         private Vector3 GetDirection(Vector2 inputDirection)
         {
-            Vector3 direction = new Vector3(0, 0, 0);
+            Vector3 direction = Vector3.zero;
 
-            if (inputDirection.x != 0)
+            if (inputDirection.x != 0 && inputDirection.y == 0)
             {
                 direction = transform.right * Mathf.Sign(inputDirection.x);
             }
 
-            if (inputDirection.y != 0)
+            if (inputDirection.y != 0 && inputDirection.x == 0)
             {
                 direction = transform.forward * Mathf.Sign(inputDirection.y);
             }

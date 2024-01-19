@@ -17965,6 +17965,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 95749789}
     - target: {fileID: 6766054219301148474, guid: 6d9d2a695028a324ebb44d3d583ffc36, type: 3}
+      propertyPath: m_castDelay
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 6766054219301148474, guid: 6d9d2a695028a324ebb44d3d583ffc36, type: 3}
       propertyPath: m_audioSource
       value: 
       objectReference: {fileID: 1881943281}
@@ -32929,6 +32933,10 @@ PrefabInstance:
       propertyPath: m_player
       value: 
       objectReference: {fileID: 2118670823}
+    - target: {fileID: 1090631830285505044, guid: bcbec74888b5ac64ab9f1c75d062c007, type: 3}
+      propertyPath: m_hitEffectPrefab
+      value: 
+      objectReference: {fileID: 8930956242732954108, guid: 6008416044a24174b8617f23bc9728fb, type: 3}
     - target: {fileID: 1090631830285505044, guid: bcbec74888b5ac64ab9f1c75d062c007, type: 3}
       propertyPath: weaponItems.Array.data[1].m_uses
       value: 10

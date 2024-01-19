@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 namespace DC_ARPG
@@ -10,6 +11,9 @@ namespace DC_ARPG
             Rest
         }
 
+        [Header("Magic")]
+        [SerializeField] private float m_castDelay = 1.0f;
+
         private PlayerCharacter m_character;
         public void Construct(PlayerCharacter character) => m_character = character;
         public PlayerCharacter Character => m_character;
@@ -18,6 +22,11 @@ namespace DC_ARPG
 
         private PlayerState m_playerState;
         public PlayerState State => m_playerState;
+
+        private bool isCasting;
+        public bool IsCasting => isCasting;
+
+        protected override bool inIdleState => !(inMovement || isJumping || isAttacking || isBlocking || isCasting);
 
         #region PlayerActions
 
@@ -49,7 +58,7 @@ namespace DC_ARPG
 
             if (Character.Inventory.MagicItemSlot.IsEmpty) return;
 
-            Character.Inventory.MagicItemSlot.UseMagic(this, this);
+            StartCoroutine(CastMagic());
         }
 
         public void Rest()
@@ -158,7 +167,29 @@ namespace DC_ARPG
 
         #region Coroutines
 
+        private IEnumerator CastMagic()
+        {
+            isCasting = true;
 
+            m_animator.SetTrigger("CastMagic");
+
+            var elapsed = 0.0f;
+
+            yield return new WaitUntil(() => m_animator.GetCurrentAnimatorStateInfo(0).IsName("CastMagic"));
+
+            while(elapsed < m_castDelay)
+            {
+                elapsed += Time.deltaTime;
+
+                yield return null;
+            }
+
+            Character.Inventory.MagicItemSlot.UseMagic(this, this);
+
+            yield return new WaitWhile(() => m_animator.GetCurrentAnimatorStateInfo(0).IsName("CastMagic"));
+
+            isCasting = false;
+        }
 
         #endregion
     }
