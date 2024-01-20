@@ -8,8 +8,6 @@ namespace DC_ARPG
         [SerializeField] private PlayerStatsInfo m_playerStatsInfo;
         [SerializeField] private Magic m_availableMagic;
         [SerializeField] private WeaponItem m_brokenWeapon;
-        [Header("Effects")]
-        [SerializeField] private GameObject m_hitEffectPrefab;
         public Magic AvailableMagic => m_availableMagic;
         public WeaponItem BrokenWeapon => m_brokenWeapon;
 
@@ -121,11 +119,7 @@ namespace DC_ARPG
         {
             if (change < 0 && playerStats.CurrentHitPoints != 0)
             {
-                m_player.CharacterSFX.PlayGetHitSound();
-
-                var hitEffect = Instantiate(m_hitEffectPrefab, m_player.transform.position, Quaternion.identity);
-
-                Destroy(hitEffect, 1f);
+                m_player.CharacterSFX.PlayGetHitSFX(m_player.transform.position);
             }
         }
 
@@ -135,10 +129,16 @@ namespace DC_ARPG
 
             if (slot != null)
             {
-                (slot.ItemInfo as NotUsableItemInfo).PassiveEffect.GetEffect(m_player, slot);
+                var revivalItem = slot.ItemInfo as NotUsableItemInfo;
 
-                // Effect?
-                // Broken Item Sound?
+                revivalItem.PassiveEffect.GetEffect(m_player, slot);
+
+                if (revivalItem.PassiveEffect.SFX != null)
+                {
+                    var sfx = Instantiate(revivalItem.PassiveEffect.SFX, m_player.transform.position, Quaternion.identity);
+
+                    Destroy(sfx, 1.0f);
+                }
 
                 return;
             }

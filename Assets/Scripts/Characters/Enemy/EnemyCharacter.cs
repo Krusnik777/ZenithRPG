@@ -36,9 +36,7 @@ namespace DC_ARPG
                 Enemy enemy = GetComponent<Enemy>();
                 if (enemy != null)
                 {
-                    enemy.CharacterSFX.PlayGetHitSound();
-
-                    // Show Damage Effect
+                    enemy.CharacterSFX.PlayGetHitSFX(enemy.transform.position);
                 }
             }
         }

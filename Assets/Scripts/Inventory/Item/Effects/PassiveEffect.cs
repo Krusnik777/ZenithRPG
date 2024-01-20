@@ -13,6 +13,8 @@ namespace DC_ARPG
 
         [SerializeField] private PassiveType m_passiveEffect;
         public PassiveType EffectType => m_passiveEffect;
+        [SerializeField] private GameObject m_sFXPrefab;
+        public GameObject SFX => m_sFXPrefab;
 
         public void GetEffect(Player player, IItemSlot slot)
         {

@@ -24,3 +24,4 @@ MonoBehaviour:
   MaxAmount: 1
   PassiveEffect:
     m_passiveEffect: 1
+    m_sFXPrefab: {fileID: 4671104871228174247, guid: 231ff9b8191b2d540a5ffd603e6b826b, type: 3}

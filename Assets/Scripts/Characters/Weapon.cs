@@ -29,9 +29,7 @@ namespace DC_ARPG
                 {
                     if (player.IsBlocking && player.CheckForwardGridForEnemy() != null)
                     {
-                        player.CharacterSFX.PlayBlockSound();
-
-                        // Show BlockEffect
+                        player.CharacterSFX.PlayBlockSFX();
 
                         return;
                     }

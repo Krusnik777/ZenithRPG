@@ -10,6 +10,7 @@ namespace DC_ARPG
         [SerializeField] protected float m_lifeTime;
         [SerializeField] protected int m_damage;
         [SerializeField] private int m_experienceForHit = 3; // TEMP BALANCE
+        [SerializeField] private GameObject m_hitPrefab;
 
         private GameObject m_parent;
 
@@ -49,6 +50,13 @@ namespace DC_ARPG
                     player.Character.PlayerStats.ChangeCurrentHitPoints(m_parent, -m_damage, DamageType.Magic);
                     player.Character.PlayerStats.AddMagicResistExperience(m_experienceForHit);
                 }
+            }
+
+            if (m_hitPrefab != null)
+            {
+                var hitEffect = Instantiate(m_hitPrefab, collision.transform.position, Quaternion.identity);
+
+                Destroy(hitEffect, 0.5f);
             }
 
             Destroy(gameObject);
