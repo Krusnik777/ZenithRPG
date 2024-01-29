@@ -143,7 +143,7 @@ namespace DC_ARPG
                 return;
             }
 
-            m_player.CharacterSFX.PlayDeathSound();
+            m_player.CharacterSFX.PlayDeathSFX(m_player.transform.position);
 
             m_player.Animator.Play("Death");
 

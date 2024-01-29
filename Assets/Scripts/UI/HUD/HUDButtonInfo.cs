@@ -18,7 +18,7 @@ namespace DC_ARPG
 
         private void UpdateButtonInfo(InspectableObject inspectableObject)
         {
-            if (inspectableObject != null)
+            if (inspectableObject != null && GameState.State == GameState.GameplayState.Active)
             {
                 if (inspectableObject is InfoPlaque)
                 {

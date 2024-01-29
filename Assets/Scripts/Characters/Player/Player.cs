@@ -13,6 +13,8 @@ namespace DC_ARPG
 
         [Header("Magic")]
         [SerializeField] private float m_castDelay = 1.0f;
+        [Header("Weapon")]
+        [SerializeField] private Weapon m_weapon;
 
         private PlayerCharacter m_character;
         public void Construct(PlayerCharacter character) => m_character = character;
@@ -105,6 +107,11 @@ namespace DC_ARPG
         }
 
         #endregion
+
+        public void ShowSwordBreakEffect()
+        {
+            CharacterSFX.PlayBrokenSwordEffect(m_weapon.transform.position);
+        }
 
         public InspectableObject CheckForwardGridForInsectableObject()
         {

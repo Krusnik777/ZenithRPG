@@ -33,7 +33,6 @@ namespace DC_ARPG
         {
             if (change < 0 && enemyStats.CurrentHitPoints != 0)
             {
-                Enemy enemy = GetComponent<Enemy>();
                 if (enemy != null)
                 {
                     enemy.CharacterSFX.PlayGetHitSFX(enemy.transform.position);
@@ -57,7 +56,10 @@ namespace DC_ARPG
         {
             enemy.EnemyAI.StopActivity();
 
-            enemy.CharacterSFX.PlayDeathSound();
+            if (enemy != null)
+            {
+                enemy.CharacterSFX.PlayDeathSFX(enemy.transform.position);
+            }
 
             enemy.Animator.Play("Death");
 
