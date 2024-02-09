@@ -136,7 +136,14 @@ namespace DC_ARPG
             {
                 if (!isChasing)
                 {
-                    CalculatePath(playerTile);
+                    if (LevelState.Instance.ChasingEnemies.Count > 1)
+                    {
+                        CalculatePath(LevelState.Instance.GetTargetNearPlayer(this));
+                    }
+                    else
+                    {
+                        CalculatePath(playerTile);
+                    }
 
                     isChasing = true;
                 }
@@ -253,36 +260,7 @@ namespace DC_ARPG
 
                     transform.position = targetPosition;
 
-                    if (isChasing)
-                    {
-                        if (m_enemy.CheckForwardGridForObstacle())
-                        {
-                            StopMoving();
-                            StopChasing();
-                            return;
-                        }
-
-                        if (m_enemy.CheckForwardGridForAlly())
-                        {
-                            Debug.Log("here");
-
-                            StopMoving();
-                            StopChasing();
-                            return;
-                        }
-                    }
-
                     path.Pop();
-                }
-
-                if (m_enemy.State == EnemyState.Chase)
-                {
-                    if (LevelState.Instance.Player.InMovement)
-                    {
-                        StopMoving();
-                        StopChasing();
-                        return;
-                    }
                 }
             }
             else
@@ -358,7 +336,8 @@ namespace DC_ARPG
         {
             if (target == null) return;
 
-            LevelState.Instance.ComputeAdjacencyList(target);
+            //LevelState.Instance.ComputeAdjacencyList(target);
+            LevelState.Instance.ComputeAdjacencyList();
 
             GetCurrentTile();
 
@@ -377,7 +356,7 @@ namespace DC_ARPG
 
                 if (t == target)
                 {
-                    if (m_enemy.State == EnemyState.Chase)
+                    if (m_enemy.State == EnemyState.Chase && LevelState.Instance.ChasingEnemies.Count == 1)
                     {
                         targetTile = FindEndTile(t);
                         MoveToTile(targetTile);
@@ -527,8 +506,6 @@ namespace DC_ARPG
                     }
                 }
             }
-
-            Debug.Log(selectableTiles.Count);
         }
 
         private void SetTarget(Tile target)

@@ -12,6 +12,8 @@ namespace DC_ARPG
         {
             if (collision.gameObject.TryGetComponent(out Player player))
             {
+                if (player.IsJumping && !player.JumpedAndLanded) return;
+
                 Destroy(gameObject, m_destroyTime);
                 m_audioSource.Play();
                 if (m_floorBreakEffectPrefab != null)

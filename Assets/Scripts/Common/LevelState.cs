@@ -24,6 +24,25 @@ namespace DC_ARPG
         public void Construct(Player player) => m_player = player;
         public Player Player => m_player;
 
+        public List<Tile> GetNeighborsTilesToPlayer()
+        {
+            Tile playerTile = null;
+
+            Ray ray = new Ray(m_player.transform.position + new Vector3(0, 0.1f, 0), -Vector3.up);
+            RaycastHit hit;
+
+            if (Physics.Raycast(ray, out hit, 1f, 1, QueryTriggerInteraction.Ignore))
+            {
+                playerTile = hit.collider.GetComponentInParent<Tile>();
+            }
+
+            if (playerTile == null) return null;
+
+            if (playerTile.NeighborTiles == null) playerTile.FindNeighbors();
+
+            return playerTile.NeighborTiles;
+        }
+
         public void StopAllActivity()
         {
             foreach(var enemy in m_allEnemies)
@@ -40,12 +59,39 @@ namespace DC_ARPG
             }
         }
 
+        public void ComputeAdjacencyList()
+        {
+            foreach (var tile in m_levelTileField)
+            {
+                tile.FindNeighbors();
+            }
+        }
+
         public void ComputeAdjacencyList(Tile target)
         {
             foreach (var tile in m_levelTileField)
             {
                 tile.FindNeighbors(target);
             }
+        }
+
+        public Tile GetTargetNearPlayer(EnemyAIController chasingEnemyAI)
+        {
+            if (!m_chasingEnemies.Contains(chasingEnemyAI)) return null;
+
+            var possibleTargetTiles = GetNeighborsTilesToPlayer();
+
+            if (possibleTargetTiles == null) return null;
+
+            for (int i = 0; i < possibleTargetTiles.Count; i++)
+            {
+                if (m_chasingEnemies.IndexOf(chasingEnemyAI) == i)
+                {
+                    return possibleTargetTiles[i];
+                }
+            }
+
+            return null;
         }
 
         private void Start()

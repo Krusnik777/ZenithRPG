@@ -9,6 +9,7 @@ namespace DC_ARPG
         [SerializeField] protected float m_transitionMoveSpeed = 0.5f;
         [SerializeField] protected float m_transitionJumpSpeed = 0.3f;
         [SerializeField] protected float m_transitionRotateSpeed = 0.25f;
+        [SerializeField] protected float m_afterJumpDelay = 0.1f;
         [Header("SFX")]
         [SerializeField] protected CharacterSFX m_characterSFX;
         public CharacterSFX CharacterSFX => m_characterSFX;
@@ -18,21 +19,31 @@ namespace DC_ARPG
         protected bool inMovement;
         public bool InMovement => inMovement;
 
+
         protected bool isJumping;
         public bool IsJumping => isJumping;
 
+        protected bool landedAfterJump = false;
+        public bool LandedAfterJump => landedAfterJump;
+
+        public bool JumpedAndLanded => isJumping && landedAfterJump;
+
+
         protected bool isAttacking;
         public bool IsAttacking => isAttacking;
-
-        protected bool isBlocking;
-        public bool IsBlocking => isBlocking;
 
         protected int hitCount = 0;
 
         protected Coroutine attackRoutine;
 
+
+        protected bool isBlocking;
+        public bool IsBlocking => isBlocking;
+
+
         protected virtual bool inIdleState => !(inMovement || isJumping || isAttacking || isBlocking);
         public bool InIdleState => inIdleState;
+
 
         protected Animator m_animator;
         public Animator Animator => m_animator;
@@ -206,6 +217,12 @@ namespace DC_ARPG
             return direction;
         }
 
+        private void LandAfterJump()
+        {
+            landedAfterJump = true;
+            m_characterSFX.PlayLandSound();
+        }
+
         #region Coroutines
 
         private IEnumerator MoveTo(Vector3 direction)
@@ -293,7 +310,9 @@ namespace DC_ARPG
 
         private IEnumerator JumpTo(Vector3 distance)
         {
+            landedAfterJump = false;
             isJumping = true;
+
             var startPosition = transform.position;
             Vector3 targetPosition;
 
@@ -323,8 +342,9 @@ namespace DC_ARPG
                 }
                 else
                 {
-                    targetPosition = distance / 2 + startPosition;
-                    targetPosition.y = 0.5f;
+                    targetPosition = distance + startPosition;
+                    //targetPosition = distance / 2 + startPosition;
+                    //targetPosition.y = 0.5f;
 
                     while (elapsed < time || transform.position != targetPosition)
                     {
@@ -333,10 +353,10 @@ namespace DC_ARPG
 
                         yield return null;
                     }
-
+                    /*
                     startPosition = transform.position;
                     targetPosition = startPosition + distance / 2;
-                    targetPosition.y = 0;
+                    //targetPosition.y = 0;
                     elapsed = 0.0f;
 
                     while (elapsed < time || transform.position != targetPosition)
@@ -345,19 +365,19 @@ namespace DC_ARPG
                         elapsed += Time.deltaTime;
 
                         yield return null;
-                    }
+                    }*/
                 }
 
                 transform.position = targetPosition;
 
-                m_characterSFX.PlayLandSound();
+                LandAfterJump();
             }
 
             yield return new WaitWhile(() => m_animator.GetCurrentAnimatorStateInfo(0).IsName("Jump"));
 
-            if (distance == Vector3.zero) m_characterSFX.PlayLandSound();
+            if (distance == Vector3.zero) LandAfterJump();
 
-            //yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSeconds(m_afterJumpDelay);
 
             isJumping = false;
         }
@@ -397,11 +417,11 @@ namespace DC_ARPG
 
             transform.position = targetPosition;
 
-            m_characterSFX.PlayLandSound();
+            LandAfterJump();
 
             yield return new WaitWhile(() => m_animator.GetCurrentAnimatorStateInfo(0).IsName("Jump"));
 
-            //yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSeconds(m_afterJumpDelay);
 
             isJumping = false;
         }

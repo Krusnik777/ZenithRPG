@@ -59,23 +59,6 @@ namespace DC_ARPG
             return false;
         }
 
-        public bool CheckForwardGridForAlly()
-        {
-            Ray checkRay = new Ray(transform.position + new Vector3(0, 0.25f, 0), transform.forward);
-
-            // TEMP CHECK -> MAYBE DO LAYER MASK FOR SPECIFIC OBSCTACLES
-
-            if (Physics.Raycast(checkRay, out RaycastHit hit, 1.2f, 1, QueryTriggerInteraction.Ignore))
-            {
-                if (hit.collider.transform.parent.TryGetComponent(out Enemy comrade))
-                {
-                    return true;
-                }
-            }
-
-            return false;
-        }
-
         public void StartChase() => StartState(EnemyState.Chase);
 
         public void StartPatrol() => StartState(EnemyState.Patrol);

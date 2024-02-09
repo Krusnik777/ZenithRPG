@@ -9,6 +9,12 @@ namespace DC_ARPG
 
         private AudioSource m_audioSource;
 
+        private bool activated;
+
+        private Collider enteredCollider;
+
+        private void SetEnteredCollider(Collider other) => enteredCollider = other;
+
         private void Awake()
         {
             m_audioSource = GetComponent<AudioSource>();
@@ -16,19 +22,63 @@ namespace DC_ARPG
 
         protected override void OnTriggerEnter(Collider other)
         {
-            base.OnTriggerEnter(other);
+            if (activated) return;
 
-            // Maybe TEMP
+            CheckForPlayer(other);
 
             if (other.transform.parent.TryGetComponent(out Enemy enemy))
             {
                 if (enemy.State == EnemyState.Patrol) return;
+
+                enemy.Character.EnemyStats.ChangeCurrentHitPoints(this, -m_damage);
+
+                activated = true;
+
+                SetEnteredCollider(other);
             }
 
-            //
+            SetAnimationAndSound();
+        }
 
-            m_animator.SetTrigger("Activate");
-            m_audioSource.Play();
+        private void OnTriggerStay(Collider other)
+        {
+            if (activated) return;
+
+            CheckForPlayer(other);
+
+            SetAnimationAndSound();
+        }
+
+        private void OnTriggerExit(Collider other)
+        {
+            if (activated && other == enteredCollider)
+            {
+                activated = false;
+                enteredCollider = null;
+            }
+        }
+
+        private void CheckForPlayer(Collider other)
+        {
+            if (other.transform.parent.TryGetComponent(out Player player))
+            {
+                if (player.IsJumping && !player.JumpedAndLanded) return;
+
+                player.Character.PlayerStats.ChangeCurrentHitPoints(this, -m_damage);
+
+                activated = true;
+
+                SetEnteredCollider(other);
+            }
+        }
+
+        private void SetAnimationAndSound()
+        {
+            if (activated)
+            {
+                m_animator.SetTrigger("Activate");
+                m_audioSource.Play();
+            }
         }
     }
 }

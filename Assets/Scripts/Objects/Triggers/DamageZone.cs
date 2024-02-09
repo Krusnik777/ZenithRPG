@@ -4,7 +4,7 @@ namespace DC_ARPG
 {
     public class DamageZone : MonoBehaviour
     {
-        [SerializeField] private int m_damage;
+        [SerializeField] protected int m_damage;
 
         protected virtual void OnTriggerEnter(Collider other)
         {

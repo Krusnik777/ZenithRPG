@@ -25,6 +25,18 @@ namespace DC_ARPG
         public float g { get; set; }
         public float h { get; set; }
 
+        public bool CheckTileOccupied()
+        {
+            Collider[] colliders = Physics.OverlapSphere(transform.position + Vector3.up * 0.6f, 0.45f);
+
+            foreach (var collider in colliders)
+            {
+                if (!collider.isTrigger && !collider.transform.parent.GetComponent<Player>()) return true;
+            }
+
+            return false;
+        }
+
         public void FindNeighbors(Tile target = null)
         {
             Reset();
@@ -59,7 +71,7 @@ namespace DC_ARPG
             {
                 Tile tile = collider.GetComponentInParent<Tile>();
 
-                if (tile != null && tile.Walkable)
+                if (tile != null && tile.Walkable && tile.CheckTileOccupied() == false)
                 {
                     if (!Physics.Raycast(tile.transform.position, Vector3.up, 1f, 1, QueryTriggerInteraction.Ignore) || tile == target)
                     {
@@ -69,5 +81,11 @@ namespace DC_ARPG
             }
         }
 
+        #if UNITY_EDITOR
+        private void OnDrawGizmosSelected()
+        {
+            Gizmos.DrawWireSphere(transform.position + Vector3.up * 0.6f, 0.45f);
+        }
+        #endif
     }
 }

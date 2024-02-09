@@ -232,7 +232,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0e4b9fc80141d64aa883bebf2da8566, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_destroyTime: 0.25
+  m_destroyTime: 0.2
   m_audioSource: {fileID: 1719689351628313676}
   m_floorBreakEffectPrefab: {fileID: 2331595999424382646, guid: 72dc221004752ad49b32cba20f77d438, type: 3}
 --- !u!1 &2518968459588610814

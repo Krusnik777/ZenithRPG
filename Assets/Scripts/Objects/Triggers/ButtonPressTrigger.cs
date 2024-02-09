@@ -41,14 +41,21 @@ namespace DC_ARPG
             m_animator = GetComponentInParent<Animator>();
         }
 
-        private void OnTriggerEnter(Collider other)
+        private void OnTriggerStay(Collider other)
         {
             if (other.transform.parent.TryGetComponent(out Enemy enemy))
             {
                 if (enemy.State == EnemyState.Patrol) return;
+
+                PressButton();
             }
 
-            PressButton();
+            if (other.transform.parent.TryGetComponent(out Player player))
+            {
+                if (player.IsJumping && !player.JumpedAndLanded) return;
+
+                PressButton();
+            }
         }
 
         private void OnTriggerExit(Collider other)
@@ -56,9 +63,15 @@ namespace DC_ARPG
             if (other.transform.parent.TryGetComponent(out Enemy enemy))
             {
                 if (enemy.State == EnemyState.Patrol) return;
+
+                if (m_hasSpring) UnpressButton();
             }
 
-            if (m_hasSpring) UnpressButton();
+            if (other.transform.parent.TryGetComponent(out Player player))
+            {
+                if (m_hasSpring) UnpressButton();
+            }
+
         }
     }
 }
