@@ -8,24 +8,45 @@ namespace DC_ARPG
         [SerializeField] private float m_posYOffset;
         [SerializeField] private float m_jumpTimeUpdate;
 
-        private float timer = 0;
+        private float jumpTimer = 0;
+        private float movementTimer = 0;
 
         private void Update()
         {
             if (m_player.IsJumping)
             {
-                if (timer > m_jumpTimeUpdate)
+                if (m_player.JumpedAndLanded)
                 {
                     transform.position = new Vector3(m_player.transform.position.x, m_posYOffset, m_player.transform.position.z);
-                    timer = 0;
+                    jumpTimer = 0;
+                    return;
                 }
-                else timer += Time.deltaTime;
+
+                if (jumpTimer > m_jumpTimeUpdate)
+                {
+                    transform.position = new Vector3(m_player.transform.position.x, m_posYOffset, m_player.transform.position.z);
+                    jumpTimer = 0;
+                }
+                else jumpTimer += Time.deltaTime;
+
+                return;
             }
-            else timer = 0;
+            else jumpTimer = 0;
 
-            if (!m_player.InIdleState) return;
+            if (m_player.InMovement)
+            {
+                if (movementTimer > 0.55f)
+                {
+                    transform.position = new Vector3(m_player.transform.position.x, m_posYOffset, m_player.transform.position.z);
+                    movementTimer = 0;
+                }
+                else movementTimer += Time.deltaTime;
 
-            transform.position = new Vector3(m_player.transform.position.x, m_posYOffset, m_player.transform.position.z);
+                return;
+            }
+            else movementTimer = 0;
+
+            if (m_player.InIdleState) transform.position = new Vector3(m_player.transform.position.x, m_posYOffset, m_player.transform.position.z);
         }
 
     }

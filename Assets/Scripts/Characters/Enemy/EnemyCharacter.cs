@@ -12,6 +12,8 @@ namespace DC_ARPG
         private Enemy enemy;
         public Enemy Enemy => enemy;
 
+        private Coroutine deathRoutine;
+
         private void Awake()
         {
             enemy = GetComponent<Enemy>();
@@ -42,7 +44,9 @@ namespace DC_ARPG
 
         private void OnDeath(object sender)
         {
-            StartCoroutine(PlayDeath(sender));
+            if (deathRoutine != null) return;
+
+            deathRoutine = StartCoroutine(PlayDeath(sender));
         }
 
         private void DropItem(int index)

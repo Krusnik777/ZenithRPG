@@ -27,7 +27,7 @@ namespace DC_ARPG
             {
                 if (other.transform.parent.TryGetComponent(out Player player))
                 {
-                    if (player.IsBlocking && player.CheckForwardGridForEnemy() != null)
+                    if (player.IsBlocking && player.CheckForwardGridForEnemy() == parentEnemy)
                     {
                         player.CharacterSFX.PlayBlockSFX();
 

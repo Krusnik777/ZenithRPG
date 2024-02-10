@@ -337,7 +337,11 @@ namespace DC_ARPG
             if (target == null) return;
 
             //LevelState.Instance.ComputeAdjacencyList(target);
-            LevelState.Instance.ComputeAdjacencyList();
+
+            if (m_enemy.State == EnemyState.Chase && LevelState.Instance.ChasingEnemies.Count > 1)
+                LevelState.Instance.ComputeAdjacencyList(false);
+            else
+                LevelState.Instance.ComputeAdjacencyList();
 
             GetCurrentTile();
 

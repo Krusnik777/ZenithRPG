@@ -59,11 +59,11 @@ namespace DC_ARPG
             }
         }
 
-        public void ComputeAdjacencyList()
+        public void ComputeAdjacencyList(bool notIncludeTileWithPlayer = true)
         {
             foreach (var tile in m_levelTileField)
             {
-                tile.FindNeighbors();
+                tile.FindNeighbors(null, notIncludeTileWithPlayer);
             }
         }
 
