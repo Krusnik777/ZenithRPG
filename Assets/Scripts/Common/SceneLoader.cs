@@ -4,7 +4,7 @@ namespace DC_ARPG
 {
     public class SceneLoader
     {
-        private const string MainMenuSceneName = "MainMenu";
+        public const string MainMenuSceneName = "MainMenu";
         public static void LoadMainMenu()
         {
             SceneManager.LoadScene(MainMenuSceneName);

@@ -14,9 +14,6 @@ namespace DC_ARPG
         [Header("PositionTriggers")]
         [SerializeField] private PositionTrigger m_forwardPositionTrigger;
         [SerializeField] private PositionTrigger m_backwardPositionTrigger;
-        [Header("Ceilings")]
-        [SerializeField] private GameObject m_forwardRoomCeiling;
-        [SerializeField] private GameObject m_backwardRoomCeiling;
         public bool Locked => m_locked;
         public bool RequireSpecialKey => m_requireSpecialKey;
         public UsableItemInfo SpecificKeyItemInfo => m_specificKeyItemInfo;
@@ -90,12 +87,6 @@ namespace DC_ARPG
             m_doorSFX.PlayUseSound();
             m_collider.isTrigger = true;
 
-            if (StandingInFrontOfDoor)
-            {
-                if (m_forwardPositionTrigger.InRightPosition) m_forwardRoomCeiling.SetActive(false);
-                if (m_backwardPositionTrigger.InRightPosition) m_backwardRoomCeiling.SetActive(false);
-            }
-
             EventOnDoorOpened?.Invoke();
         }
 
@@ -104,12 +95,6 @@ namespace DC_ARPG
             m_animator.SetTrigger("Close");
             m_doorSFX.PlayUseSound();
             m_collider.isTrigger = false;
-
-            if (StandingInFrontOfDoor)
-            {
-                if (m_forwardPositionTrigger.InRightPosition) m_forwardRoomCeiling.SetActive(true);
-                if (m_backwardPositionTrigger.InRightPosition) m_backwardRoomCeiling.SetActive(true);
-            }
 
             EventOnDoorClosed?.Invoke();
         }

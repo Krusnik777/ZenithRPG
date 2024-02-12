@@ -7,6 +7,7 @@ namespace DC_ARPG
         [SerializeField] private Player m_player;
         [SerializeField] private float m_posYOffset;
         [SerializeField] private float m_jumpTimeUpdate;
+        [SerializeField] private float m_movemntTimeUpdate = 0.55f;
 
         private float jumpTimer = 0;
         private float movementTimer = 0;
@@ -35,7 +36,7 @@ namespace DC_ARPG
 
             if (m_player.InMovement)
             {
-                if (movementTimer > 0.55f)
+                if (movementTimer > m_movemntTimeUpdate)
                 {
                     transform.position = new Vector3(m_player.transform.position.x, m_posYOffset, m_player.transform.position.z);
                     movementTimer = 0;

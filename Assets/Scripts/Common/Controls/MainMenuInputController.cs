@@ -3,14 +3,17 @@ using UnityEngine.InputSystem;
 
 namespace DC_ARPG
 {
-    public class MenuInputController : MonoBehaviour, IDependency<ControlsManager>
+    public class MainMenuInputController : MonoBehaviour, IDependency<ControlsManager>
     {
+        [SerializeField] private MainMenu m_mainMenu;
+        [SerializeField] private UIMainMenuSounds m_mainMenuSounds;
+
         private ControlsManager m_controlsManager;
         public void Construct(ControlsManager controlsManager) => m_controlsManager = controlsManager;
 
         private Controls _controls;
 
-        private UISelectableButtonContainer m_buttonContainer => PauseMenu.Instance.ActiveButtonContainer;
+        private UISelectableButtonContainer m_buttonContainer => m_mainMenu.ActiveButtonContainer;
 
         private void OnEnable()
         {
@@ -20,7 +23,6 @@ namespace DC_ARPG
 
             _controls.Menu.Confirm.performed += OnConfirm;
             _controls.Menu.Cancel.performed += OnCancel;
-            _controls.Menu.CloseMenu.performed += OnCloseMenu;
 
             _controls.Menu.Move.performed += OnMove;
             _controls.Menu.ChangeParameters.performed += OnChangeParameters;
@@ -30,7 +32,6 @@ namespace DC_ARPG
         {
             _controls.Menu.Confirm.performed -= OnConfirm;
             _controls.Menu.Cancel.performed -= OnCancel;
-            _controls.Menu.CloseMenu.performed -= OnCloseMenu;
 
             _controls.Menu.Move.performed -= OnMove;
             _controls.Menu.ChangeParameters.performed -= OnChangeParameters;
@@ -45,66 +46,42 @@ namespace DC_ARPG
 
         private void OnCancel(InputAction.CallbackContext obj)
         {
-            UISounds.Instance.PlayBackSound();
+            m_mainMenuSounds.PlayBackSound();
 
-            if (PauseMenu.Instance.State == PauseMenu.MenuState.Selection)
+            if (m_mainMenu.State == MainMenu.MenuState.Selection)
             {
-                PauseMenu.Instance.HidePauseMenu();
+                // Nothing or return to "Press Start Button"
                 return;
             }
 
-            if (PauseMenu.Instance.State == PauseMenu.MenuState.Status)
+            if (m_mainMenu.State == MainMenu.MenuState.Load)
             {
-                PauseMenu.Instance.ShowStatus(false);
+                // Return from LoadPanel to Default Title screen
                 return;
             }
 
-            if (PauseMenu.Instance.State == PauseMenu.MenuState.Map)
+            if (m_mainMenu.State == MainMenu.MenuState.Settings)
             {
-                PauseMenu.Instance.ShowMap(false);
+                m_mainMenu.ShowSettings(false);
                 return;
             }
 
-            if (PauseMenu.Instance.State == PauseMenu.MenuState.Settings)
+            if (m_mainMenu.State == MainMenu.MenuState.Credits)
             {
-                PauseMenu.Instance.ShowSettings(false);
+                // Return from CreditsPage to Default Title screen
                 return;
             }
 
-            if (PauseMenu.Instance.State == PauseMenu.MenuState.Data)
+            if (m_mainMenu.State == MainMenu.MenuState.Quit)
             {
-                PauseMenu.Instance.ShowDataButtons(false);
+                m_mainMenu.HideConfirmPanel();
                 return;
-            }
-
-            if (PauseMenu.Instance.State == PauseMenu.MenuState.Quit)
-            {
-                if (PauseMenu.Instance.RequireConfirm == PauseMenu.ConfirmationState.None)
-                {
-                    PauseMenu.Instance.ShowQuitButtons(false);
-                    return;
-                }
-
-                if (PauseMenu.Instance.RequireConfirm == PauseMenu.ConfirmationState.Require)
-                {
-                    PauseMenu.Instance.HideConfirmPanel();
-                    return;
-                }
-            }
-        }
-
-        private void OnCloseMenu(InputAction.CallbackContext obj)
-        {
-            if (PauseMenu.Instance.State == PauseMenu.MenuState.Selection)
-            {
-                PauseMenu.Instance.HidePauseMenu();
             }
         }
 
         private void OnMove(InputAction.CallbackContext obj)
         {
-            if ((PauseMenu.Instance.State == PauseMenu.MenuState.Quit && PauseMenu.Instance.RequireConfirm == PauseMenu.ConfirmationState.Require) ||
-                PauseMenu.Instance.State == PauseMenu.MenuState.Status || PauseMenu.Instance.State == PauseMenu.MenuState.Map) return;
+            if (m_mainMenu.State == MainMenu.MenuState.Quit) return;
 
             var value = _controls.Menu.Move.ReadValue<float>();
 
@@ -115,7 +92,7 @@ namespace DC_ARPG
         {
             var value = _controls.Menu.ChangeParameters.ReadValue<float>();
 
-            if (PauseMenu.Instance.State == PauseMenu.MenuState.Settings)
+            if (m_mainMenu.State == MainMenu.MenuState.Settings)
             {
                 if (value == 1)
                 {
@@ -129,7 +106,7 @@ namespace DC_ARPG
                 return;
             }
 
-            if (PauseMenu.Instance.State == PauseMenu.MenuState.Quit && PauseMenu.Instance.RequireConfirm == PauseMenu.ConfirmationState.Require)
+            if (m_mainMenu.State == MainMenu.MenuState.Quit)
             {
                 if (value == 1) m_buttonContainer.SelectNext();
                 if (value == -1) m_buttonContainer.SelectPrevious();

@@ -1488,7 +1488,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_buttonsContainer: {fileID: 3506234113236551101}
-  Interactable: 0
+  Interactable: 1
 --- !u!1 &5889614167297291470
 GameObject:
   m_ObjectHideFlags: 0
