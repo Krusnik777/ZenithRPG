@@ -41,38 +41,51 @@ namespace DC_ARPG
         {
             m_locked = false;
 
-            m_doorSFX.PlayUnlockedSound();
+            if (m_openableDirectly)
+            {
+                m_doorSFX.PlayUnlockedSound();
+                if (StandingInFrontOfDoor) ShortMessage.Instance.ShowMessage("Открыто.");
+            }
 
-            if (StandingInFrontOfDoor) ShortMessage.Instance.ShowMessage("Открыто.");
             if (inClosedState) Open();
         }
 
         public override void OnInspection(Player player)
         {
-            if (!StandingInFrontOfDoor)
+            if (m_openableDirectly)
             {
-                // Not Possible but just to be sure
+                if (!StandingInFrontOfDoor)
+                {
+                    // Not Possible but just to be sure
 
-                ShortMessage.Instance.ShowMessage("Дверь. С этой стороны не открыть.");
-                return;
+                    ShortMessage.Instance.ShowMessage("Дверь. С этой стороны не открыть.");
+                    return;
+                }
+
+                if (m_locked)
+                {
+                    if (!m_requireSpecialKey) ShortMessage.Instance.ShowMessage("Закрыто на замок.");
+                    else ShortMessage.Instance.ShowMessage("Закрыто на необычный замок.");
+
+                    m_doorSFX.PlayLockedSound();
+                }
+                else
+                {
+                    if (inClosedState) Open();
+                    if (inOpenedState) Close();
+
+                    EventOnInspection?.Invoke();
+                }
             }
-
-            if (m_locked)
+            else
             {
-                if (!m_requireSpecialKey) ShortMessage.Instance.ShowMessage("Закрыто.");
-                else ShortMessage.Instance.ShowMessage("Закрыто на необычный замок.");
+                if (StandingInFrontOfDoor)
+                {
+                    ShortMessage.Instance.ShowMessage("Не поддается.");
 
-                m_doorSFX.PlayLockedSound();
-
-                return;
+                    m_doorSFX.PlayLockedSound();
+                }
             }
-
-            if (!m_openableDirectly && StandingInFrontOfDoor) return;
-
-            if (inClosedState) Open();
-            if (inOpenedState) Close();
-
-            EventOnInspection?.Invoke();
         }
 
         private void Awake()
