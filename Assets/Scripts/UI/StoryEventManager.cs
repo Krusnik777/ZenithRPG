@@ -31,6 +31,27 @@ namespace DC_ARPG
         private StoryEventType currentStoryType;
         private int currentLineNumber;
         private int currentStorySegmentNumber;
+        private bool hasFollowupMicroEvent;
+
+        public void StartMicroEvent()
+        {
+            m_controlsManager.SetPlayerControlsActive(false);
+            m_controlsManager.SetStoryEventControlsActive(true);
+
+            m_HUD.SetActive(false);
+            m_displayBoundsAnimator.SetTrigger("Appear");
+        }
+
+        public void EndMicroEvent()
+        {
+            m_controlsManager.SetStoryEventControlsActive(false);
+            m_controlsManager.SetPlayerControlsActive(true);
+
+            m_displayBoundsAnimator.SetTrigger("Disappear");
+            m_HUD.SetActive(true);
+
+            hasFollowupMicroEvent = false; // Just to be safe
+        }
 
         public void StartEvent(StoryEventInfo storyEventInfo)
         {
@@ -43,6 +64,7 @@ namespace DC_ARPG
             currentStorySegmentNumber = 0;
             currentStorySegments = storyEventInfo.StorySegments;
             currentStoryType = storyEventInfo.StoryEventType;
+            hasFollowupMicroEvent = storyEventInfo.HasFollowupMicroEvent;
 
             if (currentStoryType == StoryEventType.Dialogue)
             {
@@ -69,11 +91,14 @@ namespace DC_ARPG
 
         private void EndEvent()
         {
-            m_controlsManager.SetStoryEventControlsActive(false);
-            m_controlsManager.SetPlayerControlsActive(true);
+            if (!hasFollowupMicroEvent)
+            {
+                m_controlsManager.SetStoryEventControlsActive(false);
+                m_controlsManager.SetPlayerControlsActive(true);
 
-            m_displayBoundsAnimator.SetTrigger("Disappear");
-            m_HUD.SetActive(true);
+                m_displayBoundsAnimator.SetTrigger("Disappear");
+                m_HUD.SetActive(true);
+            }
 
             currentStorySegments = null;
             currentStorySegmentNumber = 0;
