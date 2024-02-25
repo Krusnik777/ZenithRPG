@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace DC_ARPG
 {
-    public class Player : CharacterAvatar, IDependency<PlayerCharacter>
+    public class Player : CharacterAvatar, IDependency<PlayerCharacter>, IDataPersistence
     {
         public enum PlayerState
         {
@@ -216,6 +216,43 @@ namespace DC_ARPG
             yield return new WaitWhile(() => m_animator.GetCurrentAnimatorStateInfo(0).IsName("CastMagic"));
 
             isCasting = false;
+        }
+
+        #endregion
+
+        #region Serialize
+
+        [System.Serializable]
+        public class DataState
+        {
+            public Vector3 position;
+
+            public DataState() { }
+        }
+
+        [Header("Serialize")]
+        [SerializeField] private int m_id;
+        public long EntityId => m_id;
+
+        public bool IsSerializable()
+        {
+            return false;
+        }
+
+        public string SerializeState()
+        {
+            DataState s = new DataState();
+
+            s.position = transform.position;
+
+            return JsonUtility.ToJson(s);
+        }
+
+        public void DeserializeState(string state)
+        {
+            DataState s = JsonUtility.FromJson<DataState>(state);
+
+            transform.position = s.position;
         }
 
         #endregion

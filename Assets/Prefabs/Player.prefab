@@ -441,6 +441,7 @@ MonoBehaviour:
   m_characterSFX: {fileID: 1526247927414751933}
   m_castDelay: 0.25
   m_weapon: {fileID: 8394968033912865626}
+  m_id: 123
 --- !u!114 &5324224649033330002
 MonoBehaviour:
   m_ObjectHideFlags: 0
