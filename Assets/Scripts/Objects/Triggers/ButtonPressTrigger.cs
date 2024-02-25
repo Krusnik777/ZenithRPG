@@ -45,7 +45,7 @@ namespace DC_ARPG
         {
             if (other.transform.parent.TryGetComponent(out Enemy enemy))
             {
-                if (enemy.State == EnemyState.Patrol) return;
+                if (enemy.EnemyAI.State == EnemyState.Patrol) return;
 
                 PressButton();
             }
@@ -53,6 +53,8 @@ namespace DC_ARPG
             if (other.transform.parent.TryGetComponent(out Player player))
             {
                 if (player.IsJumping && !player.JumpedAndLanded) return;
+
+                player.RestIsAvailable = false;
 
                 PressButton();
             }
@@ -62,7 +64,7 @@ namespace DC_ARPG
         {
             if (other.transform.parent.TryGetComponent(out Enemy enemy))
             {
-                if (enemy.State == EnemyState.Patrol) return;
+                if (enemy.EnemyAI.State == EnemyState.Patrol) return;
 
                 if (m_hasSpring) UnpressButton();
             }
@@ -70,6 +72,7 @@ namespace DC_ARPG
             if (other.transform.parent.TryGetComponent(out Player player))
             {
                 if (m_hasSpring) UnpressButton();
+                player.RestIsAvailable = true;
             }
 
         }

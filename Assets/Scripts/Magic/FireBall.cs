@@ -39,6 +39,11 @@ namespace DC_ARPG
             {
                 if (collision.gameObject.TryGetComponent(out Enemy enemy))
                 {
+                    if (enemy.EnemyAI.State != EnemyState.Chase || enemy.EnemyAI.State != EnemyState.Battle)
+                    {
+                        enemy.EnemyAI.StartChaseState();
+                    }
+
                     enemy.Character.EnemyStats.ChangeCurrentHitPoints(parentPlayer, -m_damage, DamageType.Magic);
                     parentPlayer.Character.PlayerStats.AddIntelligenceExperience(m_experienceForHit);
                 }
@@ -47,8 +52,18 @@ namespace DC_ARPG
             {
                 if (collision.gameObject.TryGetComponent(out Player player))
                 {
-                    player.Character.PlayerStats.ChangeCurrentHitPoints(m_parent, -m_damage, DamageType.Magic);
-                    player.Character.PlayerStats.AddMagicResistExperience(m_experienceForHit);
+                    if (player.State == Player.PlayerState.Rest)
+                    {
+                        player.Character.PlayerStats.ChangeCurrentHitPoints(m_parent, -m_damage*2, DamageType.Magic); // Damage x2
+                        player.Character.PlayerStats.AddMagicResistExperience(m_experienceForHit);
+
+                        player.ChangeRestState();
+                    }
+                    else
+                    {
+                        player.Character.PlayerStats.ChangeCurrentHitPoints(m_parent, -m_damage, DamageType.Magic);
+                        player.Character.PlayerStats.AddMagicResistExperience(m_experienceForHit);
+                    }
                 }
             }
 

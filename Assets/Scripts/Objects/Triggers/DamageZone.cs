@@ -11,11 +11,20 @@ namespace DC_ARPG
             if (other.transform.parent.TryGetComponent(out Player player))
             {
                 player.Character.PlayerStats.ChangeCurrentHitPoints(this, -m_damage);
+                player.RestIsAvailable = false;
             }
 
             if (other.transform.parent.TryGetComponent(out Enemy enemy))
             {
-                if (enemy.State != EnemyState.Patrol) enemy.Character.EnemyStats.ChangeCurrentHitPoints(this, -m_damage);
+                if (enemy.EnemyAI.State != EnemyState.Patrol) enemy.Character.EnemyStats.ChangeCurrentHitPoints(this, -m_damage);
+            }
+        }
+
+        private void OnTriggerExit(Collider other)
+        {
+            if (other.transform.parent.TryGetComponent(out Player player))
+            {
+                player.RestIsAvailable = true;
             }
         }
     }

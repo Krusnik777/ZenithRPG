@@ -60,6 +60,8 @@ namespace DC_ARPG
 
         public void SetActiveItemSlot(object sender, int slotNumber)
         {
+            if (ActiveItemSlot == UsableItemSlots[slotNumber]) return;
+
             ActiveItemSlot = UsableItemSlots[slotNumber];
 
             EventOnActiveItemChanged?.Invoke(sender, slotNumber);
@@ -258,21 +260,25 @@ namespace DC_ARPG
 
             if (!toSlot.IsEmpty && toSlot.ItemInfo == fromSlot.ItemInfo)
             {
-                var slotCapacity = toSlot.Capacity;
-                bool fits = fromSlot.Amount + toSlot.Amount <= slotCapacity;
-                var amountToAdd = fits ? fromSlot.Amount : slotCapacity - toSlot.Amount;
-                var amountLeft = fromSlot.Amount - amountToAdd;
-
-                if (amountToAdd != 0)
+                if (toSlot.ItemInfo is UsableItemInfo || toSlot.ItemInfo is NotUsableItemInfo)
                 {
-                    toSlot.Item.Amount += amountToAdd;
+                    var slotCapacity = toSlot.Capacity;
+                    bool fits = fromSlot.Amount + toSlot.Amount <= slotCapacity;
+                    var amountToAdd = fits ? fromSlot.Amount : slotCapacity - toSlot.Amount;
+                    var amountLeft = fromSlot.Amount - amountToAdd;
 
-                    if (fits) fromSlot.ClearSlot();
-                    else fromSlot.Item.Amount = amountLeft;
+                    if (amountToAdd != 0)
+                    {
+                        toSlot.Item.Amount += amountToAdd;
 
-                    EventOnTransitCompleted?.Invoke(sender, fromSlot, toSlot);
+                        if (fits) fromSlot.ClearSlot();
+                        else fromSlot.Item.Amount = amountLeft;
+
+                        EventOnTransitCompleted?.Invoke(sender, fromSlot, toSlot);
+                    }
+                    return;
                 }
-                return;
+                else SwapItemsInSlots(sender, fromSlot, toSlot);
             }
 
             if (!toSlot.IsEmpty && toSlot.ItemInfo != fromSlot.ItemInfo)

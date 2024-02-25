@@ -34,6 +34,14 @@ namespace DC_ARPG
                         return;
                     }
 
+                    if (player.State == Player.PlayerState.Rest)
+                    {
+                        player.Character.PlayerStats.ChangeCurrentHitPoints(m_parent, -parentEnemy.Character.EnemyStats.Attack * 2, DamageType.Physic); // Damage x2
+                        player.ChangeRestState();
+
+                        return;
+                    }
+
                     player.Character.PlayerStats.ChangeCurrentHitPoints(m_parent, -parentEnemy.Character.EnemyStats.Attack, DamageType.Physic);
                 }
             }

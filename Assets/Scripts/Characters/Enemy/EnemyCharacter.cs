@@ -1,11 +1,15 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace DC_ARPG
 {
     public class EnemyCharacter : MonoBehaviour
     {
         [SerializeField] private EnemyStatsInfo m_enemyStatsInfo;
+        [Space]
+        public UnityEvent OnEnemyDeath;
+
         private EnemyStats enemyStats;
         public EnemyStats EnemyStats => enemyStats;
 
@@ -69,8 +73,6 @@ namespace DC_ARPG
 
             yield return new WaitUntil(() => enemy.Animator.GetCurrentAnimatorStateInfo(0).IsName("Death"));
 
-            // Effect of Death?
-
             yield return new WaitForSeconds(1.5f);
 
             if (sender is Player)
@@ -96,6 +98,8 @@ namespace DC_ARPG
                     }
                 }
             }
+
+            OnEnemyDeath?.Invoke();
 
             Destroy(gameObject);
         }

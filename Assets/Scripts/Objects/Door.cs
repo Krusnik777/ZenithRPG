@@ -31,7 +31,15 @@ namespace DC_ARPG
         private bool inOpenedState => m_animator != null ? m_animator.GetCurrentAnimatorStateInfo(0).IsName("OpenedState") : false;
         public bool Opened => inOpenedState;
 
-        public void ChangeOpenableDirectly(bool state) => m_openableDirectly = state;
+        public void ChangeOpenableDirectly(bool state)
+        {
+            m_openableDirectly = state;
+            if (state) m_doorSFX.PlayUnlockedSound();
+            else
+            {
+                if (inOpenedState) Close();
+            }
+        }
 
         public void Lock()
         {

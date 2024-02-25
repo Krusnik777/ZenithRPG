@@ -14,7 +14,7 @@ namespace DC_ARPG
         [SerializeField] private LayerMask m_obstructionMask;
 
         private GameObject m_playerGameObject;
-        public GameObject PlayerGameObject => m_playerGameObject;
+        public GameObject PlayerGameObject => m_playerGameObject == null ? GameObject.FindGameObjectWithTag("Player") : m_playerGameObject;
 
         private bool canSeePlayer;
         public bool CanSeePlayer => canSeePlayer;

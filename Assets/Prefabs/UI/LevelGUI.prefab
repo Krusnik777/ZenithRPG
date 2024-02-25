@@ -155,6 +155,7 @@ MonoBehaviour:
   m_inventoryActionFailureSound: {fileID: 8300000, guid: 58fd5be593241a241a6e2f6a8fcf1819, type: 3}
   m_swordBreakSound: {fileID: 8300000, guid: 80b3ff7ac3de80b4585f26ffe3a62836, type: 3}
   m_magicItemDisappearSound: {fileID: 8300000, guid: b2d5191691f9673489d3abaf99515827, type: 3}
+  m_activeItemChangeSound: {fileID: 8300000, guid: 5288281b7b5e9a14d8338e1794bb915d, type: 3}
 --- !u!1 &7800042044601106398
 GameObject:
   m_ObjectHideFlags: 0

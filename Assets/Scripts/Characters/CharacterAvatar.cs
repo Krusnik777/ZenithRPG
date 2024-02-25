@@ -168,7 +168,7 @@ namespace DC_ARPG
             attackRoutine = StartCoroutine(SetAttack(hitCount));
         }
 
-        public void Block(string name)
+        public virtual void Block(string name)
         {
             if (!inIdleState && !isBlocking) return;
 

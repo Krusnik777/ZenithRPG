@@ -22,6 +22,5 @@ namespace DC_ARPG
     {
         public StoryEventType StoryEventType;
         public StorySegment[] StorySegments;
-        public bool HasFollowupMicroEvent;
     }
 }

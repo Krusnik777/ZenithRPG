@@ -9,7 +9,6 @@ namespace DC_ARPG
         [SerializeField] private Camera m_camera;
         [SerializeField] private GameObject m_appearEffectPrefab;
         [SerializeField] private float m_showTime = 2.0f;
-        [SerializeField] private bool m_isFollowup;
 
         public void Show()
         {
@@ -22,12 +21,9 @@ namespace DC_ARPG
 
         private IEnumerator AppearRoutine()
         {
-            if (!m_isFollowup)
-            {
-                StoryEventManager.Instance.StartMicroEvent();
+            StoryEventManager.Instance.StartMicroEvent();
 
-                yield return new WaitForSeconds(0.5f);
-            }
+            yield return new WaitForSeconds(0.5f);
 
             if (PlayerCamera.Instance != null)
                 PlayerCamera.Instance.Camera.SetActive(false);

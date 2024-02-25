@@ -13,6 +13,8 @@ namespace DC_ARPG
 
         private void Update()
         {
+            if (GameState.State != GameState.GameplayState.Active) return;
+
             UpdateEnemyHealthBar(m_player.CheckForwardGridForEnemy());
         }
 

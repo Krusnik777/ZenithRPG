@@ -16,6 +16,8 @@ namespace DC_ARPG
         [Header("Weapon")]
         [SerializeField] private Weapon m_weapon;
 
+        public bool RestIsAvailable { get; set; }
+
         private PlayerCharacter m_character;
         public void Construct(PlayerCharacter character) => m_character = character;
         public PlayerCharacter Character => m_character;
@@ -36,6 +38,12 @@ namespace DC_ARPG
         {
             if (Character.Inventory.WeaponItemSlot.IsEmpty) return;
             base.Attack();
+        }
+
+        public override void Block(string name)
+        {
+            if (Character.Inventory.ShieldItemSlot.IsEmpty) return;
+            base.Block(name);
         }
 
         public void Inspect()
@@ -63,15 +71,24 @@ namespace DC_ARPG
             StartCoroutine(CastMagic());
         }
 
-        public void Rest()
+        public void ChangeRestState()
         {
             if (!inIdleState) return;
 
+            if (!RestIsAvailable)
+            {
+                ShortMessage.Instance.ShowMessage("Здесь не получится отдохнуть.");
+
+                return;
+            }
+
             if (m_playerState == PlayerState.Active)
             {
+                RestState.Instance.StartRest();
+
                 m_playerState = PlayerState.Rest;
 
-                RestState.Instance.StartRest();
+                GameState.State = GameState.GameplayState.NotActive;
 
                 return;
             }
@@ -81,6 +98,8 @@ namespace DC_ARPG
                 RestState.Instance.EndRest();
 
                 m_playerState = PlayerState.Active;
+
+                GameState.State = GameState.GameplayState.Active;
             }
         }
 
@@ -165,6 +184,7 @@ namespace DC_ARPG
         private void Awake()
         {
             m_animator = GetComponentInChildren<Animator>();
+            RestIsAvailable = true;
         }
 
         private void Update()

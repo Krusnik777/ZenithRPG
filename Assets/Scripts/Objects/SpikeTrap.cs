@@ -28,7 +28,7 @@ namespace DC_ARPG
 
             if (other.transform.parent.TryGetComponent(out Enemy enemy))
             {
-                if (enemy.State == EnemyState.Patrol) return;
+                if (enemy.EnemyAI.State == EnemyState.Patrol) return;
 
                 enemy.Character.EnemyStats.ChangeCurrentHitPoints(this, -m_damage);
 
@@ -53,6 +53,9 @@ namespace DC_ARPG
         {
             if (activated && other == enteredCollider)
             {
+                if (enteredCollider.transform.parent.TryGetComponent(out Player player))
+                    player.RestIsAvailable = true;
+
                 activated = false;
                 enteredCollider = null;
             }
@@ -65,6 +68,7 @@ namespace DC_ARPG
                 if (player.IsJumping && !player.JumpedAndLanded) return;
 
                 player.Character.PlayerStats.ChangeCurrentHitPoints(this, -m_damage);
+                player.RestIsAvailable = false;
 
                 activated = true;
 

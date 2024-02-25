@@ -5,9 +5,26 @@ namespace DC_ARPG
 {
     public class PlayerCharacter : MonoBehaviour, IDependency<Player>
     {
+        [System.Serializable]
+        public class EquippedItems
+        {
+            public EquipItem Armor;
+            public EquipItem Shield;
+            public WeaponItem Weapon;
+            public MagicItem Magic;
+        }
+
         [SerializeField] private PlayerStatsInfo m_playerStatsInfo;
+        [SerializeField] private int m_startedMoney = 999;
         [SerializeField] private Magic m_availableMagic;
         [SerializeField] private WeaponItem m_brokenWeapon;
+        [Header("Inventory Start State")]
+        [SerializeField] private int m_unlockedPockets;
+        [SerializeField] private EquippedItems m_equippedItems;
+        [SerializeField] private ItemData[] m_items;
+        [Space]
+        public UnityEvent OnPlayerDeath;
+
         public Magic AvailableMagic => m_availableMagic;
         public WeaponItem BrokenWeapon => m_brokenWeapon;
 
@@ -27,14 +44,6 @@ namespace DC_ARPG
 
         public event UnityAction EventOnMoneyAdded;
         public event UnityAction EventOnMoneySpend;
-
-        // TEST
-        [SerializeField] private NotUsableItem[] notUsableItems;
-        [SerializeField] private UsableItem[] usableItems;
-        [SerializeField] private EquipItem[] armorItems;
-        [SerializeField] private EquipItem[] shieldItems;
-        [SerializeField] private WeaponItem[] weaponItems;
-        [SerializeField] private MagicItem[] magicItems;
 
         public void AddMoney(int amount)
         {
@@ -56,6 +65,7 @@ namespace DC_ARPG
             playerStats.InitStats(m_playerStatsInfo);
 
             inventory = new Inventory(3, 9, 3);
+            inventory.UnlockedPockets = m_unlockedPockets;
 
             playerStats.EventOnHitPointsChange += OnHitPointsChange;
             playerStats.EventOnDeath += OnDeath;
@@ -66,44 +76,9 @@ namespace DC_ARPG
 
         private void Start()
         {
-            // TEST
+            SetupStartInventoryItems();
 
-            inventory.TryToAddItem(this, armorItems[0]);
-            inventory.TransitFromSlotToSlot(this, inventory.MainPocket.ItemSlots[0], inventory.ArmorItemSlot);
-            inventory.TryToAddItem(this, armorItems[1]); //1
-
-            inventory.TryToAddItem(this, shieldItems[0]);
-            inventory.TransitFromSlotToSlot(this, inventory.MainPocket.ItemSlots[1], inventory.ShieldItemSlot);
-            inventory.TryToAddItem(this, shieldItems[1]); //2
-
-            inventory.TryToAddItem(this, weaponItems[0]);
-            inventory.TransitFromSlotToSlot(this, inventory.MainPocket.ItemSlots[2], inventory.WeaponItemSlot);
-            inventory.TryToAddItem(this, weaponItems[1]);  //3
-
-            inventory.TryToAddItem(this, magicItems[0]);
-            inventory.TransitFromSlotToSlot(this, inventory.MainPocket.ItemSlots[3], inventory.MagicItemSlot);
-            inventory.TryToAddItem(this, magicItems[1]); //4
-
-            inventory.TryToAddItem(this, notUsableItems[0]); //5
-            inventory.TryToAddItem(this, notUsableItems[1]); //6
-
-            inventory.TryToAddItem(this, usableItems[0]); //7
-            inventory.TryToAddItem(this, usableItems[1]); //8
-            inventory.TransitFromSlotToSlot(this, inventory.MainPocket.ItemSlots[7], inventory.UsableItemSlots[0]);
-            inventory.TryToAddItem(this, usableItems[0]);
-            inventory.TransitFromSlotToSlot(this, inventory.MainPocket.ItemSlots[7], inventory.UsableItemSlots[1]);
-            inventory.TryToAddItem(this, usableItems[1]);
-
-            inventory.TryToAddItem(this, notUsableItems[0]);
-            inventory.TransitFromSlotToSlot(this, inventory.MainPocket.ItemSlots[8], inventory.ExtraPockets[0].ItemSlots[5]);
-
-            inventory.TryToAddItem(this, usableItems[0]);
-            inventory.TransitFromSlotToSlot(this, inventory.MainPocket.ItemSlots[8], inventory.ExtraPockets[1].ItemSlots[2]);
-
-            inventory.TryToAddItem(this, magicItems[0]);
-            inventory.TransitFromSlotToSlot(this, inventory.MainPocket.ItemSlots[8], inventory.ExtraPockets[2].ItemSlots[7]);
-
-            AddMoney(999);
+            AddMoney(m_startedMoney);
         }
 
         private void OnDestroy()
@@ -113,6 +88,44 @@ namespace DC_ARPG
 
             inventory.EventOnTransitCompleted -= OnEquipItemChange;
             inventory.EventOnItemRemoved -= OnEquipItemRemoved;
+        }
+
+        private void SetupStartInventoryItems()
+        {
+            // Initialize Start Equipped Items
+            {
+                if (m_equippedItems.Armor.Info != null)
+                {
+                    inventory.TryToAddItem(this, m_equippedItems.Armor);
+                    inventory.TransitFromSlotToSlot(this, inventory.MainPocket.ItemSlots[0], inventory.ArmorItemSlot);
+                }
+
+                if (m_equippedItems.Shield.Info != null)
+                {
+                    inventory.TryToAddItem(this, m_equippedItems.Shield);
+                    inventory.TransitFromSlotToSlot(this, inventory.MainPocket.ItemSlots[0], inventory.ShieldItemSlot);
+                }
+
+                if (m_equippedItems.Weapon.Info != null)
+                {
+                    inventory.TryToAddItem(this, m_equippedItems.Weapon);
+                    inventory.TransitFromSlotToSlot(this, inventory.MainPocket.ItemSlots[0], inventory.WeaponItemSlot);
+                }
+
+                if (m_equippedItems.Magic.Info != null)
+                {
+                    inventory.TryToAddItem(this, m_equippedItems.Magic);
+                    inventory.TransitFromSlotToSlot(this, inventory.MainPocket.ItemSlots[0], inventory.MagicItemSlot);
+                }
+            }
+
+            // Initialize Start Inventory Items
+            {
+                foreach (var itemData in m_items)
+                {
+                    inventory.TryToAddItem(this, itemData.CreateItem());
+                }
+            }
         }
 
         private void OnHitPointsChange(int change)
@@ -147,6 +160,7 @@ namespace DC_ARPG
 
             m_player.Animator.Play("Death");
 
+            OnPlayerDeath?.Invoke();
             Debug.Log("Game Over");
             // And turn off everything
         }

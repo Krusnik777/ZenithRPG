@@ -19,6 +19,7 @@ namespace DC_ARPG
         [SerializeField] private AudioClip m_inventoryActionFailureSound;
         [SerializeField] private AudioClip m_swordBreakSound;
         [SerializeField] private AudioClip m_magicItemDisappearSound;
+        [SerializeField] private AudioClip m_activeItemChangeSound;
 
         private AudioSource m_audioSource;
 
@@ -38,6 +39,7 @@ namespace DC_ARPG
         public void PlayInventoryActionFailureSound() => m_audioSource.PlayOneShot(m_inventoryActionFailureSound);
         public void PlaySwordBreakSound() => m_audioSource.PlayOneShot(m_swordBreakSound);
         public void PlayMagicItemDisappearSound() => m_audioSource.PlayOneShot(m_magicItemDisappearSound);
+        public void PlayActiveItemChangeSound() => m_audioSource.PlayOneShot(m_activeItemChangeSound);
 
         private void Start()
         {

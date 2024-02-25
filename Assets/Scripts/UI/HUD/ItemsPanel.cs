@@ -76,6 +76,8 @@ namespace DC_ARPG
             TurnOffSelectImages();
 
             m_activeUsableItems[number].SelectImage.enabled = true;
+
+            UISounds.Instance.PlayActiveItemChangeSound();
         }
 
         private void OnItemUsed(object sender, IItemSlot slot)

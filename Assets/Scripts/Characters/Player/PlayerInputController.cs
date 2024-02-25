@@ -167,7 +167,7 @@ namespace DC_ARPG
 
         private void OnRest(InputAction.CallbackContext obj)
         {
-            player.Rest();
+            player.ChangeRestState();
         }
 
         private void OnCheckInventory(InputAction.CallbackContext obj)

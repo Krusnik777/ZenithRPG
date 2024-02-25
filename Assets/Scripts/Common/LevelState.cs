@@ -47,7 +47,8 @@ namespace DC_ARPG
         {
             foreach(var enemy in m_allEnemies)
             {
-                if (enemy.EnemyAI != null) enemy.EnemyAI.StopActivity();
+                if (enemy.gameObject.activeInHierarchy)
+                    if (enemy.EnemyAI != null) enemy.EnemyAI.StopActivity();
             }
         }
 
@@ -55,7 +56,8 @@ namespace DC_ARPG
         {
             foreach (var enemy in m_allEnemies)
             {
-                if (enemy.EnemyAI != null) enemy.EnemyAI.ResumeActivity();
+                if (enemy.gameObject.activeInHierarchy)
+                    if (enemy.EnemyAI != null) enemy.EnemyAI.ResumeActivity();
             }
         }
 
@@ -99,7 +101,7 @@ namespace DC_ARPG
             m_levelTileField = FindObjectsOfType<Tile>();
 
             m_allEnemies = new List<Enemy>();
-            m_allEnemies.AddRange(FindObjectsOfType<Enemy>());
+            m_allEnemies.AddRange(FindObjectsOfType<Enemy>(true));
 
             m_chasingEnemies = new List<EnemyAIController>();
 
@@ -114,7 +116,7 @@ namespace DC_ARPG
                 enemy.EventOnDeath += OnEnemyDeath;
 
                 enemy.EnemyAI.EventOnChaseStarted += AddChasingEnemyToList;
-                enemy.EnemyAI.EventOnChaseStopped += RemoveChasingEnemyToList;
+                enemy.EnemyAI.EventOnChaseEnded += RemoveChasingEnemyFromList;
             }
 
             foreach(var door in m_allDoorsOnLevel)
@@ -152,7 +154,8 @@ namespace DC_ARPG
         {
             foreach (var enemy in m_allEnemies)
             {
-                if (enemy.EnemyAI != null) enemy.EnemyAI.UpdateActivity();
+                if (enemy.gameObject.activeInHierarchy)
+                    if (enemy.EnemyAI != null) enemy.EnemyAI.UpdateActivity();
             }
         }
 
@@ -160,9 +163,9 @@ namespace DC_ARPG
         {
             enemy.EventOnDeath -= OnEnemyDeath;
             enemy.EnemyAI.EventOnChaseStarted -= AddChasingEnemyToList;
-            enemy.EnemyAI.EventOnChaseStopped -= RemoveChasingEnemyToList;
+            enemy.EnemyAI.EventOnChaseEnded -= RemoveChasingEnemyFromList;
 
-            RemoveChasingEnemyToList(enemy.EnemyAI);
+            RemoveChasingEnemyFromList(enemy.EnemyAI);
 
             m_allEnemies.Remove(enemy);
         }
@@ -172,7 +175,7 @@ namespace DC_ARPG
             m_chasingEnemies.Add(chasingEnemyAI);
         }
 
-        private void RemoveChasingEnemyToList(EnemyAIController chasingEnemyAI)
+        private void RemoveChasingEnemyFromList(EnemyAIController chasingEnemyAI)
         {
             if (m_chasingEnemies.Contains(chasingEnemyAI))
             {

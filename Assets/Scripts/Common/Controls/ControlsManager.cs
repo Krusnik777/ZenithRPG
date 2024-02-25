@@ -69,6 +69,9 @@ namespace DC_ARPG
 
         private void Start()
         {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+
             _controls = new Controls();
             _controls.Enable();
 

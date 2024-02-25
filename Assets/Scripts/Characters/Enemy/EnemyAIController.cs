@@ -4,13 +4,21 @@ using UnityEngine.Events;
 
 namespace DC_ARPG
 {
+    public enum EnemyState
+    {
+        Patrol,
+        Chase,
+        Battle
+    }
+
     public class EnemyAIController : MonoBehaviour
     {
+        [SerializeField] private Enemy m_enemy;
+        [SerializeField] private FieldOfView m_enemyFOV;
+        [Header("AIParameters")]
         [SerializeField] private Tile[] m_patrolField;
-        //[SerializeField] private Tile[] m_allField;
         [SerializeField] private float m_chaseRange = 6.0f;
         [SerializeField] private float m_closeRange = 1.5f;
-
         [Header("ForTimers")]
         [SerializeField] private float m_patrolRestTime = 5.0f;
         [SerializeField] private float m_chaseDurationTime = 20.0f;
@@ -18,16 +26,19 @@ namespace DC_ARPG
         [SerializeField] private float m_attackMaxDelayTime = 3.0f;
 
         public event UnityAction<EnemyAIController> EventOnChaseStarted;
-        public event UnityAction<EnemyAIController> EventOnChaseStopped;
+        public event UnityAction<EnemyAIController> EventOnChaseEnded;
 
-        private Enemy m_enemy;
-        private bool SeePlayer => m_enemy.CheckForPlayerInSightRange();
+        public FieldOfView EnemyFieldOfView => m_enemyFOV;
+        public bool SeePlayer => m_enemyFOV.CanSeePlayer;
 
         private Stack<Tile> path = new Stack<Tile>();
         private Tile currentTile;
         private Tile targetTile;
         public Tile TargetTile => targetTile;
-        private Tile playerTile => GetTargetTile(m_enemy.DetectedPlayerGameObject);
+        private Tile playerTile => GetTargetTile(m_enemyFOV.PlayerGameObject);
+
+        private EnemyState m_state;
+        public EnemyState State => m_state;
 
         private Vector3 currentDirection;
         private Vector3 headingDirection;
@@ -50,13 +61,46 @@ namespace DC_ARPG
         private void CalculateHeadingDirection(Vector3 targetPosition) => headingDirection = (targetPosition - transform.position).normalized;
         private void SetHorizontalVelocity() => velocity = headingDirection * moveSpeed;
 
-        private bool CheckPlayerInChaseRange() => Vector3.Distance(transform.position, m_enemy.DetectedPlayerGameObject.transform.position) < m_chaseRange ? true : false;
-        private bool CheckCloseRange() => Vector3.Distance(transform.position, m_enemy.DetectedPlayerGameObject.transform.position) < m_closeRange ? true : false;
+        private bool CheckPlayerInChaseRange() => Vector3.Distance(transform.position, m_enemyFOV.PlayerGameObject.transform.position) < m_chaseRange ? true : false;
+        private bool CheckCloseRange() => Vector3.Distance(transform.position, m_enemyFOV.PlayerGameObject.transform.position) < m_closeRange ? true : false;
+
+        public bool CheckForPlayerInAttackRange()
+        {
+            Ray attackRay = new Ray(transform.position + new Vector3(0, 0.25f, 0), transform.forward);
+
+            if (Physics.Raycast(attackRay, 1f, m_enemyFOV.TargetMask))
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        public void StartChaseState()
+        {
+            StartState(EnemyState.Chase);
+
+            EventOnChaseStarted?.Invoke(this);
+
+            m_chaseTimer.Start(m_chaseDurationTime);
+
+            Debug.Log("Started Chase");
+        }
+
+        public void StartPatrolState()
+        {
+            StartState(EnemyState.Patrol);
+        }
+
+        public void StartBattleState()
+        { 
+            StartState(EnemyState.Battle); 
+        }
 
         public void UpdateActivity()
         {
             StopMoving();
-            if (m_enemy.State == EnemyState.Chase) StopChasing();
+            if (m_state == EnemyState.Chase) StopChasing();
         }
 
         public void StopActivity()
@@ -72,10 +116,13 @@ namespace DC_ARPG
             isStopped = false;
         }
 
+        private void StartState(EnemyState state)
+        {
+            m_state = state;
+        }
+
         private void Start()
         {
-            m_enemy = GetComponent<Enemy>();
-
             InitTimers();
 
             currentDirection = transform.forward;
@@ -92,11 +139,11 @@ namespace DC_ARPG
 
         private void ChooseAction()
         {
-            if (m_enemy.State == EnemyState.Patrol) Patrol();
+            if (m_state == EnemyState.Patrol) Patrol();
 
-            if (m_enemy.State == EnemyState.Chase) Chase();
+            if (m_state == EnemyState.Chase) Chase();
 
-            if (m_enemy.State == EnemyState.Battle) Fight();
+            if (m_state == EnemyState.Battle) Fight();
         }
 
         private void Patrol()
@@ -119,13 +166,8 @@ namespace DC_ARPG
             {
                 if (SeePlayer || CheckCloseRange() == true)
                 {
-                    m_enemy.StartChase();
+                    StartChaseState();
                     StopMoving();
-
-                    Debug.Log("Started Chase");
-                    EventOnChaseStarted?.Invoke(this);
-
-                    m_chaseTimer.Start(m_chaseDurationTime);
                 }
             }
         }
@@ -165,9 +207,9 @@ namespace DC_ARPG
                     isChasing = false;
 
                     Debug.Log("Started Patrol");
-                    EventOnChaseStopped?.Invoke(this);
+                    EventOnChaseEnded?.Invoke(this);
 
-                    m_enemy.StartPatrol();
+                    StartPatrolState();
                 } 
             }
         }
@@ -183,14 +225,8 @@ namespace DC_ARPG
 
             if (!m_enemy.IsAttacking)
             {
-                if (m_enemy.CheckForPlayerInAttackRange() == false)
-                {
-                    m_enemy.StartChase();
-
-                    EventOnChaseStarted?.Invoke(this);
-
-                    m_chaseTimer.Start(m_chaseDurationTime);
-                }
+                if (CheckForPlayerInAttackRange() == false)
+                    StartChaseState();
             }
         }
 
@@ -271,7 +307,7 @@ namespace DC_ARPG
                 {
                     if (playerTile != null)
                     {
-                        CalculateHeadingDirection(m_enemy.DetectedPlayerGameObject.transform.position);
+                        CalculateHeadingDirection(m_enemyFOV.PlayerGameObject.transform.position);
 
                         if (currentDirection != headingDirection)
                         {
@@ -283,7 +319,7 @@ namespace DC_ARPG
                     StopChasing();
                 }
 
-                if (m_enemy.State == EnemyState.Patrol) m_patrolRestTimer.Start(m_patrolRestTime);
+                if (m_state == EnemyState.Patrol) m_patrolRestTimer.Start(m_patrolRestTime);
             }
         }
 
@@ -313,11 +349,11 @@ namespace DC_ARPG
 
         private void StopChasing()
         {
-            if (m_enemy.CheckForPlayerInAttackRange() == true)
+            if (CheckForPlayerInAttackRange() == true)
             {
-                m_enemy.StartAttack();
+                StartBattleState();
 
-                EventOnChaseStopped?.Invoke(this);
+                EventOnChaseEnded?.Invoke(this);
             }
 
             isChasing = false;
@@ -338,7 +374,7 @@ namespace DC_ARPG
 
             //LevelState.Instance.ComputeAdjacencyList(target);
 
-            if (m_enemy.State == EnemyState.Chase && LevelState.Instance.ChasingEnemies.Count > 1)
+            if (m_state == EnemyState.Chase && LevelState.Instance.ChasingEnemies.Count > 1)
                 LevelState.Instance.ComputeAdjacencyList(false);
             else
                 LevelState.Instance.ComputeAdjacencyList();
@@ -360,7 +396,7 @@ namespace DC_ARPG
 
                 if (t == target)
                 {
-                    if (m_enemy.State == EnemyState.Chase && LevelState.Instance.ChasingEnemies.Count == 1)
+                    if (m_state == EnemyState.Chase && LevelState.Instance.ChasingEnemies.Count == 1)
                     {
                         targetTile = FindEndTile(t);
                         MoveToTile(targetTile);
