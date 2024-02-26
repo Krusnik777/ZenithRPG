@@ -2,7 +2,7 @@ namespace DC_ARPG
 {
     public interface IDataPersistence
     {
-        public long EntityId { get; }
+        public string EntityId { get; }
 
         public bool IsSerializable();
         public string SerializeState();

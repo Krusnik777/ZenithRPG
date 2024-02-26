@@ -22,9 +22,11 @@ namespace DC_ARPG
 
     public class SceneSerializer : MonoSingleton<SceneSerializer>
     {
+        [Header("File Storage Config")]
         [SerializeField] private string m_fileName;
+        [SerializeField] private bool m_useEncryption;
 
-        private FileDataHandler m_dataHandler;
+        private FileDataHandler<SceneData> m_dataHandler;
 
         private SceneData m_sceneData;
 
@@ -39,14 +41,14 @@ namespace DC_ARPG
                 m_sceneData.SceneObjects.Add(sceneObject);
             }
 
-            m_dataHandler.SaveSceneData(m_sceneData);
+            m_dataHandler.Save(m_sceneData);
 
             Debug.Log("Saved");
         }
 
         public void LoadSceneData()
         {
-            m_sceneData = m_dataHandler.LoadSceneData();
+            m_sceneData = m_dataHandler.Load();
 
             if (m_sceneData == null)
             {
@@ -78,14 +80,14 @@ namespace DC_ARPG
 
         public List<IDataPersistence> FindAllDataPersistenceObjects()
         {
-            var dataPersistenceObjects = FindObjectsOfType<MonoBehaviour>().OfType<IDataPersistence>();
+            var dataPersistenceObjects = FindObjectsOfType<MonoBehaviour>(true).OfType<IDataPersistence>();
 
             return new List<IDataPersistence>(dataPersistenceObjects);
         }
 
         private void Start()
         {
-            m_dataHandler = new FileDataHandler(Application.persistentDataPath, m_fileName);
+            m_dataHandler = new FileDataHandler<SceneData>(Application.persistentDataPath, m_fileName, m_useEncryption);
             LoadSceneData();
         }
 

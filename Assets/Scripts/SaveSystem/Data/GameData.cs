@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,10 +6,10 @@ namespace DC_ARPG
     [System.Serializable]
     public class SceneObject
     {
-        public long EntityId;
+        public string EntityId;
         public string State;
 
-        public SceneObject(long id, string state)
+        public SceneObject(string id, string state)
         {
             EntityId = id;
             State = state;
@@ -21,14 +20,12 @@ namespace DC_ARPG
     public class SceneState
     {
         public int SceneId;
-        public bool IsActiveScene;
         // MAP_OPENED_STATE -> here OR to SceneObjects?
         public List<SceneObject> SceneObjects;
 
-        public SceneState(int id, bool isActive)
+        public SceneState(int id)
         {
             SceneId = id;
-            IsActiveScene = isActive;
             SceneObjects = new List<SceneObject>();
         }
 
@@ -76,18 +73,21 @@ namespace DC_ARPG
     [System.Serializable]
     public class GameData
     {
-        
+        // ALL TEMP
 
         // params
+        public long LastUpdated;
+        public SceneState ActiveScene;
         public List<SceneState> SavedScenes;
         // PlayerProgress : Stats, Inventory
+        // PlayTime
 
         public GameData()
         {
             SavedScenes = new List<SceneState>();
         }
 
-        public void Save(int currentSceneId, bool isActive)
+        public void Save(int currentSceneId)
         {
             bool notExist = true;
 
@@ -95,7 +95,6 @@ namespace DC_ARPG
             {
                 if (scene.SceneId == currentSceneId)
                 {
-                    scene.IsActiveScene = isActive;
                     scene.SaveSceneObjects();
                     notExist = false;
                 }
@@ -103,7 +102,7 @@ namespace DC_ARPG
 
             if (notExist)
             {
-                var sceneForSave = new SceneState(currentSceneId, isActive);
+                var sceneForSave = new SceneState(currentSceneId);
                 sceneForSave.SaveSceneObjects();
                 SavedScenes.Add(sceneForSave);
             }
@@ -113,13 +112,7 @@ namespace DC_ARPG
 
         public void Load()
         {
-            foreach(var scene in SavedScenes)
-            {
-                if (scene.IsActiveScene)
-                {
-                    scene.LoadSceneObjects();
-                }
-            }
+            ActiveScene.LoadSceneObjects();
 
             // Load Player Progress
         }

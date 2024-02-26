@@ -20,6 +20,8 @@ namespace DC_ARPG
 
             _controls.Inventory.Enable();
 
+            if (m_uIInventory == null) m_uIInventory = FindObjectOfType<UIInventory>(true);
+
             m_buttonContainer = m_uIInventory.UISlotButtonsContainer;
 
             m_uIInventory.ShowInventory();

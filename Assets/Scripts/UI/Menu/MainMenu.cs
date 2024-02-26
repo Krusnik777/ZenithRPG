@@ -22,11 +22,14 @@ namespace DC_ARPG
         private MenuState m_menuState;
         public MenuState State => m_menuState;
 
-        private void Start()
+        public void StartNewGame()
         {
-            ActiveButtonContainer = m_baseButtons;
 
-            m_menuState = MenuState.Selection;
+        }
+
+        public void ShowLoadMenu(bool state)
+        {
+
         }
 
         public void ShowSettings(bool state)
@@ -61,6 +64,13 @@ namespace DC_ARPG
             m_confirmPanel.HideConfirmPanel();
 
             m_baseButtons.SetInteractable(true);
+            ActiveButtonContainer = m_baseButtons;
+
+            m_menuState = MenuState.Selection;
+        }
+
+        private void Start()
+        {
             ActiveButtonContainer = m_baseButtons;
 
             m_menuState = MenuState.Selection;

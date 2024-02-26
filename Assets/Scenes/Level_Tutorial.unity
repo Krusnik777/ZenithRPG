@@ -1398,6 +1398,10 @@ PrefabInstance:
       value: StoryEventTrigger_03
       objectReference: {fileID: 0}
     - target: {fileID: 9163327731581949549, guid: 07164f1f8e3ac7c41ac14784fdbe674e, type: 3}
+      propertyPath: m_id
+      value: Scene_StoryEventTrigger_003
+      objectReference: {fileID: 0}
+    - target: {fileID: 9163327731581949549, guid: 07164f1f8e3ac7c41ac14784fdbe674e, type: 3}
       propertyPath: m_storyEventInfo
       value: 
       objectReference: {fileID: 11400000, guid: 446b2cebf24776a408c91ecbc35678ae, type: 2}
@@ -6103,6 +6107,10 @@ PrefabInstance:
     - target: {fileID: 5290279252369326875, guid: 07164f1f8e3ac7c41ac14784fdbe674e, type: 3}
       propertyPath: m_Name
       value: StoryEventTrigger_04
+      objectReference: {fileID: 0}
+    - target: {fileID: 9163327731581949549, guid: 07164f1f8e3ac7c41ac14784fdbe674e, type: 3}
+      propertyPath: m_id
+      value: Scene_StoryEventTrigger_004
       objectReference: {fileID: 0}
     - target: {fileID: 9163327731581949549, guid: 07164f1f8e3ac7c41ac14784fdbe674e, type: 3}
       propertyPath: m_storyEventInfo
@@ -11809,6 +11817,10 @@ PrefabInstance:
     - target: {fileID: 5290279252369326875, guid: 07164f1f8e3ac7c41ac14784fdbe674e, type: 3}
       propertyPath: m_Name
       value: StoryEventTrigger_00
+      objectReference: {fileID: 0}
+    - target: {fileID: 9163327731581949549, guid: 07164f1f8e3ac7c41ac14784fdbe674e, type: 3}
+      propertyPath: m_id
+      value: Scene_StoryEventTrigger_000
       objectReference: {fileID: 0}
     - target: {fileID: 9163327731581949549, guid: 07164f1f8e3ac7c41ac14784fdbe674e, type: 3}
       propertyPath: m_storyEventInfo
@@ -18017,6 +18029,10 @@ PrefabInstance:
       value: StoryEventTrigger_06
       objectReference: {fileID: 0}
     - target: {fileID: 9163327731581949549, guid: 07164f1f8e3ac7c41ac14784fdbe674e, type: 3}
+      propertyPath: m_id
+      value: Scene_StoryEventTrigger_006
+      objectReference: {fileID: 0}
+    - target: {fileID: 9163327731581949549, guid: 07164f1f8e3ac7c41ac14784fdbe674e, type: 3}
       propertyPath: m_storyEventInfo
       value: 
       objectReference: {fileID: 11400000, guid: 1c6ed0aa967b54b459658c0d8aed29ff, type: 2}
@@ -20138,6 +20154,10 @@ PrefabInstance:
       value: StoryEventTrigger_02
       objectReference: {fileID: 0}
     - target: {fileID: 9163327731581949549, guid: 07164f1f8e3ac7c41ac14784fdbe674e, type: 3}
+      propertyPath: m_id
+      value: Scene_StoryEventTrigger_002
+      objectReference: {fileID: 0}
+    - target: {fileID: 9163327731581949549, guid: 07164f1f8e3ac7c41ac14784fdbe674e, type: 3}
       propertyPath: m_storyEventInfo
       value: 
       objectReference: {fileID: 11400000, guid: c5b216acfa50d944bb542616cf26b8af, type: 2}
@@ -21919,6 +21939,10 @@ PrefabInstance:
       value: StoryEventTrigger_05
       objectReference: {fileID: 0}
     - target: {fileID: 9163327731581949549, guid: 07164f1f8e3ac7c41ac14784fdbe674e, type: 3}
+      propertyPath: m_id
+      value: Scene_StoryEventTrigger_005
+      objectReference: {fileID: 0}
+    - target: {fileID: 9163327731581949549, guid: 07164f1f8e3ac7c41ac14784fdbe674e, type: 3}
       propertyPath: m_storyEventInfo
       value: 
       objectReference: {fileID: 11400000, guid: 64ef3c78aa68db745a96b900b16963c1, type: 2}
@@ -22896,51 +22920,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 489459555325452488, guid: 49a2ba884993f2b4283e2cbabf66e153, type: 3}
   m_PrefabInstance: {fileID: 1943802927}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1948495725
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1948495727}
-  - component: {fileID: 1948495726}
-  m_Layer: 0
-  m_Name: SceneSerializer
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1948495726
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1948495725}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e7d5486a8b5bd5b43a514bc61cab5f46, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_fileName: TestTutorial.scene
---- !u!4 &1948495727
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1948495725}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1950211188
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -25184,6 +25163,10 @@ PrefabInstance:
       value: StoryEventTrigger_01
       objectReference: {fileID: 0}
     - target: {fileID: 9163327731581949549, guid: 07164f1f8e3ac7c41ac14784fdbe674e, type: 3}
+      propertyPath: m_id
+      value: Scene_StoryEventTrigger_001
+      objectReference: {fileID: 0}
+    - target: {fileID: 9163327731581949549, guid: 07164f1f8e3ac7c41ac14784fdbe674e, type: 3}
       propertyPath: m_storyEventInfo
       value: 
       objectReference: {fileID: 11400000, guid: 9ae5d55d23907cd4eb3effe880ec2543, type: 2}
@@ -25228,13 +25211,13 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1065417157}
   - {fileID: 2119828997}
   - {fileID: 1751386924}
   - {fileID: 92020473}
   - {fileID: 481531534}
   - {fileID: 1898770572}
   - {fileID: 1634832525}
-  - {fileID: 1065417157}
   m_Father: {fileID: 676519136}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!483693784 &2120081598
@@ -25937,4 +25920,3 @@ SceneRoots:
   - {fileID: 501736528}
   - {fileID: 450987895}
   - {fileID: 1673402998}
-  - {fileID: 1948495727}

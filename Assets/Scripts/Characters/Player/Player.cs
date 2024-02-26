@@ -226,13 +226,14 @@ namespace DC_ARPG
         public class DataState
         {
             public Vector3 position;
+            public Quaternion rotation;
 
             public DataState() { }
         }
 
         [Header("Serialize")]
-        [SerializeField] private int m_id;
-        public long EntityId => m_id;
+        [SerializeField] private string m_id;
+        public string EntityId => m_id;
 
         public bool IsSerializable()
         {
@@ -244,6 +245,7 @@ namespace DC_ARPG
             DataState s = new DataState();
 
             s.position = transform.position;
+            s.rotation = transform.rotation;
 
             return JsonUtility.ToJson(s);
         }
@@ -253,6 +255,7 @@ namespace DC_ARPG
             DataState s = JsonUtility.FromJson<DataState>(state);
 
             transform.position = s.position;
+            transform.rotation = s.rotation;
         }
 
         #endregion

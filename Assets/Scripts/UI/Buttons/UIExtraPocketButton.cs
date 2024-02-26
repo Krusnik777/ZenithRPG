@@ -22,7 +22,11 @@ namespace DC_ARPG
 
         public override void OnButtonClick()
         {
-            if (!m_interactable) return;
+            if (!m_interactable)
+            {
+                UISounds.Instance.PlayInventoryActionFailureSound();
+                return;
+            }
 
             if (!isPressed)
             {

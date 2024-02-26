@@ -18,6 +18,8 @@ namespace DC_ARPG
         {
             if (_controls == null) _controls = m_controlsManager.Controls;
 
+            if (m_uIInventory == null) m_uIInventory = FindObjectOfType<UIInventory>(true);
+
             _controls.Shop.Enable();
 
             _controls.Shop.Cancel.performed += BackToSelection;

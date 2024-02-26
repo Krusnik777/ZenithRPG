@@ -6,6 +6,7 @@ namespace DC_ARPG
     public class ButtonPlate : InspectableObject
     {
         private ButtonPressTrigger m_buttonPressTrigger;
+        public ButtonPressTrigger PressTrigger => m_buttonPressTrigger;
 
         public void PressButton() => m_buttonPressTrigger.PressButton();
 

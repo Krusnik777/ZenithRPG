@@ -67,7 +67,7 @@ namespace DC_ARPG
             m_shopInputController.enabled = state;
         }
 
-        private void Start()
+        private void OnEnable()
         {
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
@@ -75,7 +75,32 @@ namespace DC_ARPG
             _controls = new Controls();
             _controls.Enable();
 
-            if (SceneManager.GetActiveScene().name == SceneLoader.MainMenuSceneName)
+            SetMenuControlsActive(false);
+            SetInventoryControlsActive(false);
+            SetStoryEventControlsActive(false);
+            SetShopControlsActive(false);
+
+            SceneManager.sceneLoaded += OnSceneLoaded;
+        }
+
+        private void OnDisable()
+        {
+            _controls.Disable();
+        }
+
+        private void OnDestroy()
+        {
+            SceneManager.sceneLoaded -= OnSceneLoaded;
+        }
+
+        private void OnSceneLoaded(Scene scene, LoadSceneMode loadSceneMode)
+        {
+            UpdateStartActiveControls(scene);
+        }
+
+        private void UpdateStartActiveControls(Scene scene)
+        {
+            if (scene.name == SceneLoader.MainMenuSceneName)
             {
                 m_mainMenuInputController = FindObjectOfType<MainMenuInputController>(true);
 
@@ -89,16 +114,6 @@ namespace DC_ARPG
                 SetMainMenuControlsActive(false);
                 SetPlayerControlsActive(true);
             }
-
-            SetMenuControlsActive(false);
-            SetInventoryControlsActive(false);
-            SetStoryEventControlsActive(false);
-            SetShopControlsActive(false);
-        }
-
-        private void OnDisable()
-        {
-            _controls.Disable();
         }
     }
 }

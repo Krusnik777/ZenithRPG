@@ -70,3 +70,4 @@ MonoBehaviour:
   EventOnStoryEventEnd:
     m_PersistentCalls:
       m_Calls: []
+  m_id: Scene_StoryEventTrigger_9999
