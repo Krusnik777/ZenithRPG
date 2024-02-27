@@ -16,7 +16,7 @@ namespace DC_ARPG
         [Header("Weapon")]
         [SerializeField] private Weapon m_weapon;
 
-        public bool RestIsAvailable { get; set; }
+        public bool ActionsIsAvailable { get; set; }
 
         private PlayerCharacter m_character;
         public void Construct(PlayerCharacter character) => m_character = character;
@@ -37,12 +37,14 @@ namespace DC_ARPG
         public override void Attack()
         {
             if (Character.Inventory.WeaponItemSlot.IsEmpty) return;
+
             base.Attack();
         }
 
         public override void Block(string name)
         {
             if (Character.Inventory.ShieldItemSlot.IsEmpty) return;
+
             base.Block(name);
         }
 
@@ -75,7 +77,7 @@ namespace DC_ARPG
         {
             if (!inIdleState) return;
 
-            if (!RestIsAvailable)
+            if (!ActionsIsAvailable)
             {
                 ShortMessage.Instance.ShowMessage("Здесь не получится отдохнуть.");
 
@@ -184,7 +186,7 @@ namespace DC_ARPG
         private void Awake()
         {
             m_animator = GetComponentInChildren<Animator>();
-            RestIsAvailable = true;
+            ActionsIsAvailable = true;
         }
 
         private void Update()
@@ -232,13 +234,14 @@ namespace DC_ARPG
         }
 
         [Header("Serialize")]
+        [SerializeField] private string m_prefabId;
         [SerializeField] private string m_id;
+        [SerializeField] private bool m_isSerializable = true;
+        public string PrefabId => m_prefabId;
         public string EntityId => m_id;
+        public bool IsCreated => false;
 
-        public bool IsSerializable()
-        {
-            return false;
-        }
+        public bool IsSerializable() => m_isSerializable;
 
         public string SerializeState()
         {
@@ -257,6 +260,8 @@ namespace DC_ARPG
             transform.position = s.position;
             transform.rotation = s.rotation;
         }
+
+        public void SetupCreatedDataPersistenceObject(string entityId, bool isCreated, string state) { }
 
         #endregion
     }

@@ -181,7 +181,7 @@ namespace DC_ARPG
 
         private void OnCheckInventory(InputAction.CallbackContext obj)
         {
-            if (player.State != Player.PlayerState.Active) return;
+            if (player.State != Player.PlayerState.Active || !player.ActionsIsAvailable) return;
 
             m_controlsManager.SetPlayerControlsActive(false);
 
@@ -218,7 +218,7 @@ namespace DC_ARPG
 
         private void OnPause(InputAction.CallbackContext obj)
         {
-            if (player.State != Player.PlayerState.Active) return;
+            if (player.State != Player.PlayerState.Active || !player.ActionsIsAvailable) return;
 
             // DEBUG
 

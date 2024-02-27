@@ -7,6 +7,8 @@ namespace DC_ARPG
 {
     public class DataPersistenceManager : MonoSingleton<DataPersistenceManager>
     {
+        [Header("Prefabs DataBase")]
+        [SerializeField] private PrefabsDataBase m_prefabsDataBase;
         [Header("File Storage Config")]
         [SerializeField] private string m_fileName;
         [SerializeField] private bool m_useEncryption;

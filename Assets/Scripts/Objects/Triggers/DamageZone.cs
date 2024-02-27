@@ -11,7 +11,7 @@ namespace DC_ARPG
             if (other.transform.parent.TryGetComponent(out Player player))
             {
                 player.Character.PlayerStats.ChangeCurrentHitPoints(this, -m_damage);
-                player.RestIsAvailable = false;
+                player.ActionsIsAvailable = false;
             }
 
             if (other.transform.parent.TryGetComponent(out Enemy enemy))
@@ -24,7 +24,7 @@ namespace DC_ARPG
         {
             if (other.transform.parent.TryGetComponent(out Player player))
             {
-                player.RestIsAvailable = true;
+                player.ActionsIsAvailable = true;
             }
         }
     }

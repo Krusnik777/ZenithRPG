@@ -317,6 +317,9 @@ MonoBehaviour:
   m_transitionRotateSpeed: 0.25
   m_afterJumpDelay: 0.1
   m_characterSFX: {fileID: 5654172165861338612}
+  m_prefabId: EnemyKnightPrefab_Default
+  m_id: 
+  m_isSerializable: 1
 --- !u!114 &4915202404410297225
 MonoBehaviour:
   m_ObjectHideFlags: 0

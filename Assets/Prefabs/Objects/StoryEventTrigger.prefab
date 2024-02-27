@@ -70,4 +70,6 @@ MonoBehaviour:
   EventOnStoryEventEnd:
     m_PersistentCalls:
       m_Calls: []
-  m_id: Scene_StoryEventTrigger_9999
+  m_prefabId: StoryEventTriggerPrefab_Default
+  m_id: 
+  m_isSerializable: 1

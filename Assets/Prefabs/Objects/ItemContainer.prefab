@@ -84,6 +84,9 @@ MonoBehaviour:
   m_itemData:
     ItemInfo: {fileID: 0}
     Amount: 0
+  m_prefabId: ItemContainerPrefab_Default
+  m_id: 
+  m_isSerializable: 1
 --- !u!1 &8164118953297443614
 GameObject:
   m_ObjectHideFlags: 0

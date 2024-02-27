@@ -54,7 +54,7 @@ namespace DC_ARPG
             if (activated && other == enteredCollider)
             {
                 if (enteredCollider.transform.parent.TryGetComponent(out Player player))
-                    player.RestIsAvailable = true;
+                    player.ActionsIsAvailable = true;
 
                 activated = false;
                 enteredCollider = null;
@@ -68,7 +68,7 @@ namespace DC_ARPG
                 if (player.IsJumping && !player.JumpedAndLanded) return;
 
                 player.Character.PlayerStats.ChangeCurrentHitPoints(this, -m_damage);
-                player.RestIsAvailable = false;
+                player.ActionsIsAvailable = false;
 
                 activated = true;
 

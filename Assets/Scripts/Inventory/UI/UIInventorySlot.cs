@@ -28,6 +28,7 @@ namespace DC_ARPG
             if (m_uiInventory.Player.CheckForwardGridIsEmpty() == true)
             {
                 var itemContainer = Instantiate(m_inventorySlot.Item.Info.Prefab, m_uiInventory.Player.transform.position + m_uiInventory.Player.transform.forward, Quaternion.identity);
+                itemContainer.GetComponent<ItemContainer>().SetupCreatedContainer();
                 itemContainer.GetComponent<ItemContainer>().AssignItem(m_inventorySlot.Item);
 
                 Inventory.RemoveItemFromInventory(this, m_inventorySlot);

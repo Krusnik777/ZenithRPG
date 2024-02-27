@@ -136,6 +136,10 @@ MonoBehaviour:
   EventOnInspection:
     m_PersistentCalls:
       m_Calls: []
+  m_buttonPressTrigger: {fileID: 3050365442374123343}
+  m_prefabId: ButtonPlatePrefab_Default
+  m_id: 
+  m_isSerializable: 1
 --- !u!95 &4445595956617294467
 Animator:
   serializedVersion: 5
@@ -385,6 +389,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_hasSpring: 0
   m_audioSFX: {fileID: 2672163300166075676}
+  m_animator: {fileID: 4445595956617294467}
   OnButtonPressed:
     m_PersistentCalls:
       m_Calls: []

@@ -442,7 +442,9 @@ MonoBehaviour:
   m_characterSFX: {fileID: 1526247927414751933}
   m_castDelay: 0.25
   m_weapon: {fileID: 8394968033912865626}
-  m_id: PlayerAvatar
+  m_prefabId: PlayerPrefab_Default
+  m_id: PlayerAvatar_001
+  m_isSerializable: 1
 --- !u!114 &5324224649033330002
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -651,6 +653,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_doNotDestroyOnLoad: 0
+  m_prefabsDataBase: {fileID: 11400000, guid: a82177e70128d0e4ea45b4c23a9b92e6, type: 2}
   m_fileName: Checkpoints.save
   m_useEncryption: 0
 --- !u!1 &8825842381150657653

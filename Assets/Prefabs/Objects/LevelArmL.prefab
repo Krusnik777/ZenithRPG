@@ -89,6 +89,9 @@ MonoBehaviour:
   OnReseted:
     m_PersistentCalls:
       m_Calls: []
+  m_prefabId: LeavelArmPrefab_Default
+  m_id: 
+  m_isSerializable: 1
 --- !u!95 &9120895313891661057
 Animator:
   serializedVersion: 5

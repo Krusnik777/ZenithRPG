@@ -7,8 +7,9 @@ namespace DC_ARPG
     {
         [SerializeField] private bool m_hasSpring;
         [SerializeField] private AudioSource m_audioSFX;
-
-        private Animator m_animator;
+        [SerializeField] private Animator m_animator;
+        public bool HasSpring => m_hasSpring;
+        public Animator Animator => m_animator;
 
         public UnityEvent OnButtonPressed;
         public UnityEvent OnButtonUnpressed;
@@ -36,11 +37,6 @@ namespace DC_ARPG
             }
         }
 
-        private void Start()
-        {
-            m_animator = GetComponentInParent<Animator>();
-        }
-
         private void OnTriggerStay(Collider other)
         {
             if (other.transform.parent.TryGetComponent(out Enemy enemy))
@@ -54,7 +50,7 @@ namespace DC_ARPG
             {
                 if (player.IsJumping && !player.JumpedAndLanded) return;
 
-                player.RestIsAvailable = false;
+                player.ActionsIsAvailable = false;
 
                 PressButton();
             }
@@ -72,7 +68,7 @@ namespace DC_ARPG
             if (other.transform.parent.TryGetComponent(out Player player))
             {
                 if (m_hasSpring) UnpressButton();
-                player.RestIsAvailable = true;
+                player.ActionsIsAvailable = true;
             }
 
         }

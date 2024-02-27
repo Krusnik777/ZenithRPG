@@ -57,6 +57,7 @@ namespace DC_ARPG
         {
             var item = enemyStats.DroppedItems[index].DroppedItemData.CreateItem();
             var itemContainer = Instantiate(enemyStats.DroppedItems[index].DroppedItemData.ItemInfo.Prefab, transform.position, Quaternion.identity);
+            itemContainer.GetComponent<ItemContainer>().SetupCreatedContainer();
             itemContainer.GetComponent<ItemContainer>().AssignItem(item);
         }
 

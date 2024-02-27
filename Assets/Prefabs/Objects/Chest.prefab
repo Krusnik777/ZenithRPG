@@ -225,6 +225,9 @@ MonoBehaviour:
   m_itemData:
     ItemInfo: {fileID: 0}
     Amount: 0
+  m_prefabId: ChestPrefab_Default
+  m_id: 
+  m_isSerializable: 1
   m_locked: 0
   m_requireSpecialKey: 0
   m_specificKeyItemInfo: {fileID: 0}

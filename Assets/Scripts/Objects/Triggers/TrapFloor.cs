@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace DC_ARPG
 {
-    public class TrapFloor : MonoBehaviour
+    public class TrapFloor : MonoBehaviour, IDataPersistence
     {
         [SerializeField] private float m_destroyTime = 0.2f;
         [SerializeField] private AudioSource m_audioSource;
@@ -14,14 +14,55 @@ namespace DC_ARPG
             {
                 if (player.IsJumping && !player.JumpedAndLanded) return;
 
-                Destroy(gameObject, m_destroyTime);
                 m_audioSource.Play();
                 if (m_floorBreakEffectPrefab != null)
                 {
                     var effect = Instantiate(m_floorBreakEffectPrefab, transform.position, Quaternion.identity);
                     Destroy(effect, m_destroyTime+0.1f);
                 }
+
+                Destroy(gameObject, m_destroyTime);
             }
         }
+
+        #region Serialize
+
+        [System.Serializable]
+        public class DataState
+        {
+            public bool enabled;
+
+            public DataState() { }
+        }
+
+        [Header("Serialize")]
+        [SerializeField] private string m_prefabId;
+        [SerializeField] private string m_id;
+        [SerializeField] private bool m_isSerializable = true;
+        public string PrefabId => m_prefabId;
+        public string EntityId => m_id;
+        public bool IsCreated => false;
+
+        public bool IsSerializable() => m_isSerializable;
+
+        public string SerializeState()
+        {
+            DataState s = new DataState();
+
+            s.enabled = gameObject.activeInHierarchy;
+
+            return JsonUtility.ToJson(s);
+        }
+
+        public void DeserializeState(string state)
+        {
+            DataState s = JsonUtility.FromJson<DataState>(state);
+
+            gameObject.SetActive(s.enabled);
+        }
+
+        public void SetupCreatedDataPersistenceObject(string entityId, bool isCreated, string state) { }
+
+        #endregion
     }
 }

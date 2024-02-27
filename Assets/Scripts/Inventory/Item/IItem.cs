@@ -9,6 +9,18 @@ namespace DC_ARPG
         /// </summary>
         public int Amount;
 
+        public ItemData(ItemInfo itemInfo, int amount)
+        {
+            ItemInfo = itemInfo;
+            Amount = amount;
+        }
+
+        public ItemData(ItemData itemData)
+        {
+            ItemInfo = itemData.ItemInfo;
+            Amount = itemData.Amount;
+        }
+
         public IItem CreateItem()
         {
             if (Amount <= 0) Amount = 1;

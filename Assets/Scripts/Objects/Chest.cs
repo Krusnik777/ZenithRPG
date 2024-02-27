@@ -5,6 +5,7 @@ namespace DC_ARPG
     [RequireComponent(typeof(Animator))]
     public class Chest : ItemContainer
     {
+        [Header("Chest")]
         [SerializeField] private bool m_locked;
         [SerializeField] private bool m_requireSpecialKey;
         [SerializeField] private UsableItemInfo m_specificKeyItemInfo;
@@ -92,6 +93,8 @@ namespace DC_ARPG
 
                 UISounds.Instance.PlayItemCollectedSound();
 
+                m_itemData.ItemInfo = null;
+                m_itemData.Amount = 0;
                 m_item = null;
 
                 EventOnInspection?.Invoke();
@@ -103,6 +106,47 @@ namespace DC_ARPG
                 Close();
             }
         }
+
+        #region Serialize
+
+        [System.Serializable]
+        public class ChestDataState
+        {
+            public bool enabled;
+            public bool locked;
+            public ItemData itemData;
+            public int animatorState;
+
+            public ChestDataState() { }
+        }
+        public override bool IsCreated => false;
+
+        public override string SerializeState()
+        {
+            ChestDataState s = new ChestDataState();
+
+            s.enabled = gameObject.activeInHierarchy;
+            s.locked = m_locked;
+            s.itemData = new ItemData(m_itemData);
+            if (gameObject.activeInHierarchy)
+                s.animatorState = m_animator.GetCurrentAnimatorStateInfo(0).shortNameHash;
+
+            return JsonUtility.ToJson(s);
+        }
+
+        public override void DeserializeState(string state)
+        {
+            ChestDataState s = JsonUtility.FromJson<ChestDataState>(state);
+
+            gameObject.SetActive(s.enabled);
+            m_locked = s.locked;
+            m_itemData = new ItemData(s.itemData);
+            m_item = m_itemData.CreateItem();
+            if (s.enabled)
+                m_animator.Play(s.animatorState);
+        }
+
+        #endregion
 
     }
 }

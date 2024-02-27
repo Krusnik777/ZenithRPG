@@ -2327,7 +2327,7 @@ GameObject:
   - component: {fileID: 147140985}
   - component: {fileID: 147140986}
   m_Layer: 0
-  m_Name: Condition (2)
+  m_Name: Condition_03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2363,6 +2363,9 @@ MonoBehaviour:
   OnTrigger:
     m_PersistentCalls:
       m_Calls: []
+  m_prefabId: ConditionTriggerPrefab_Default
+  m_id: Door_05_UnlockCondition_003
+  m_isSerializable: 1
 --- !u!1001 &148202100
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2779,8 +2782,8 @@ Transform:
   m_Children:
   - {fileID: 1932782362}
   - {fileID: 1643700569}
-  - {fileID: 1794702500}
   - {fileID: 1242394611}
+  - {fileID: 1794702500}
   - {fileID: 879024034}
   - {fileID: 1008133056}
   - {fileID: 2104207312}
@@ -5244,6 +5247,10 @@ PrefabInstance:
       value: DoorL_02
       objectReference: {fileID: 0}
     - target: {fileID: 7545055123025963328, guid: 7e5ed5991c43f6346a4d37c1d3b20e14, type: 3}
+      propertyPath: m_id
+      value: DoorL_002
+      objectReference: {fileID: 0}
+    - target: {fileID: 7545055123025963328, guid: 7e5ed5991c43f6346a4d37c1d3b20e14, type: 3}
       propertyPath: m_locked
       value: 1
       objectReference: {fileID: 0}
@@ -5526,7 +5533,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3700599518249305028, guid: 6a4eaf30a68e2424d85431c5fdd70034, type: 3}
       propertyPath: m_Name
-      value: EnemyKnight
+      value: EnemyKnight_01
       objectReference: {fileID: 0}
     - target: {fileID: 3700599518249305028, guid: 6a4eaf30a68e2424d85431c5fdd70034, type: 3}
       propertyPath: m_IsActive
@@ -5736,6 +5743,14 @@ PrefabInstance:
       propertyPath: m_patrolField.Array.data[42]
       value: 
       objectReference: {fileID: 798918650}
+    - target: {fileID: 5625230263563871144, guid: 6a4eaf30a68e2424d85431c5fdd70034, type: 3}
+      propertyPath: m_id
+      value: Scene_EnemyKnight_001
+      objectReference: {fileID: 0}
+    - target: {fileID: 5625230263563871144, guid: 6a4eaf30a68e2424d85431c5fdd70034, type: 3}
+      propertyPath: m_isSerializable
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -6283,6 +6298,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7565788147585606165, guid: abd3612ab1634d64bb4a9188eba2be48, type: 3}
+      propertyPath: m_id
+      value: Scene_ButtonPlate_001
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -6444,6 +6463,10 @@ PrefabInstance:
     - target: {fileID: 6822851689026922055, guid: cff5d86f44ccd164b9a4e0dd99bd0f22, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7769838929219067508, guid: cff5d86f44ccd164b9a4e0dd99bd0f22, type: 3}
+      propertyPath: m_id
+      value: Scene_LevelArm_001
       objectReference: {fileID: 0}
     - target: {fileID: 7769838929219067508, guid: cff5d86f44ccd164b9a4e0dd99bd0f22, type: 3}
       propertyPath: m_canReset
@@ -6752,6 +6775,10 @@ PrefabInstance:
     - target: {fileID: 3796913609631046454, guid: 7e5ed5991c43f6346a4d37c1d3b20e14, type: 3}
       propertyPath: m_Name
       value: DoorL_06
+      objectReference: {fileID: 0}
+    - target: {fileID: 7545055123025963328, guid: 7e5ed5991c43f6346a4d37c1d3b20e14, type: 3}
+      propertyPath: m_id
+      value: DoorL_006
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -7890,6 +7917,10 @@ PrefabInstance:
     - target: {fileID: 3796913609631046454, guid: 7e5ed5991c43f6346a4d37c1d3b20e14, type: 3}
       propertyPath: m_Name
       value: DoorL_04
+      objectReference: {fileID: 0}
+    - target: {fileID: 7545055123025963328, guid: 7e5ed5991c43f6346a4d37c1d3b20e14, type: 3}
+      propertyPath: m_id
+      value: DoorL_004
       objectReference: {fileID: 0}
     - target: {fileID: 7545055123025963328, guid: 7e5ed5991c43f6346a4d37c1d3b20e14, type: 3}
       propertyPath: m_locked
@@ -9832,6 +9863,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2999589642607726072, guid: 46b82607ee66fd34fad608322138db8d, type: 3}
+      propertyPath: m_id
+      value: ChestWithSword_001
+      objectReference: {fileID: 0}
+    - target: {fileID: 2999589642607726072, guid: 46b82607ee66fd34fad608322138db8d, type: 3}
       propertyPath: m_itemData.Amount
       value: 99
       objectReference: {fileID: 0}
@@ -9869,7 +9904,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3796913609631046454, guid: 46b82607ee66fd34fad608322138db8d, type: 3}
       propertyPath: m_Name
-      value: Chest
+      value: ChestWithSword_001
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -11214,6 +11249,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2999589642607726072, guid: 46b82607ee66fd34fad608322138db8d, type: 3}
+      propertyPath: m_id
+      value: ChestWithShield_001
+      objectReference: {fileID: 0}
+    - target: {fileID: 2999589642607726072, guid: 46b82607ee66fd34fad608322138db8d, type: 3}
       propertyPath: m_itemData.ItemInfo
       value: 
       objectReference: {fileID: 11400000, guid: ec650bce1f75fb64fb96da30f9708c00, type: 2}
@@ -11247,7 +11286,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3796913609631046454, guid: 46b82607ee66fd34fad608322138db8d, type: 3}
       propertyPath: m_Name
-      value: Chest
+      value: ChestWithShield_001
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -11847,7 +11886,7 @@ GameObject:
   - component: {fileID: 1066899106}
   - component: {fileID: 1066899107}
   m_Layer: 0
-  m_Name: Condition (1)
+  m_Name: Condition_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11883,6 +11922,9 @@ MonoBehaviour:
   OnTrigger:
     m_PersistentCalls:
       m_Calls: []
+  m_prefabId: ConditionTriggerPrefab_Default
+  m_id: Door_06_UnlockCondition_002
+  m_isSerializable: 1
 --- !u!1001 &1067617789
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12266,7 +12308,7 @@ GameObject:
   - component: {fileID: 1091802227}
   - component: {fileID: 1091802228}
   m_Layer: 0
-  m_Name: Condition
+  m_Name: Condition_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12302,6 +12344,9 @@ MonoBehaviour:
   OnTrigger:
     m_PersistentCalls:
       m_Calls: []
+  m_prefabId: ConditionTriggerPrefab_Default
+  m_id: Door_05_UnlockCondition_001
+  m_isSerializable: 1
 --- !u!1001 &1099073910
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12874,6 +12919,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+  m_prefabId: FewConditionTriggerPrefab_Default
+  m_id: Door_06_UnlockTrigger
+  m_isSerializable: 1
 --- !u!1001 &1156261805
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13515,7 +13563,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5010736486517576525, guid: 3ca53e71b8431dd49a556a2c40d4d54d, type: 3}
       propertyPath: m_Name
-      value: ItemContainer
+      value: ItemContainerPotion_003
+      objectReference: {fileID: 0}
+    - target: {fileID: 5128590638175710160, guid: 3ca53e71b8431dd49a556a2c40d4d54d, type: 3}
+      propertyPath: m_id
+      value: ItemContainerPotion_003
       objectReference: {fileID: 0}
     - target: {fileID: 5128590638175710160, guid: 3ca53e71b8431dd49a556a2c40d4d54d, type: 3}
       propertyPath: m_itemData.Amount
@@ -14394,6 +14446,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6822851689026922055, guid: e9811423ae8ca414ea13da10962c2417, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7257414308247267870, guid: e9811423ae8ca414ea13da10962c2417, type: 3}
+      propertyPath: m_id
+      value: Scene_InfoPlaqueL_001
+      objectReference: {fileID: 0}
+    - target: {fileID: 7257414308247267870, guid: e9811423ae8ca414ea13da10962c2417, type: 3}
+      propertyPath: m_isSerializable
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7257414308247267870, guid: e9811423ae8ca414ea13da10962c2417, type: 3}
@@ -16014,7 +16074,7 @@ GameObject:
   - component: {fileID: 1434799681}
   - component: {fileID: 1434799682}
   m_Layer: 0
-  m_Name: Condition (1)
+  m_Name: Condition_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -16050,6 +16110,9 @@ MonoBehaviour:
   OnTrigger:
     m_PersistentCalls:
       m_Calls: []
+  m_prefabId: ConditionTriggerPrefab_Default
+  m_id: Door_05_UnlockCondition_002
+  m_isSerializable: 1
 --- !u!1001 &1438105232
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16101,6 +16164,10 @@ PrefabInstance:
     - target: {fileID: 3796913609631046454, guid: 7e5ed5991c43f6346a4d37c1d3b20e14, type: 3}
       propertyPath: m_Name
       value: DoorL_03
+      objectReference: {fileID: 0}
+    - target: {fileID: 7545055123025963328, guid: 7e5ed5991c43f6346a4d37c1d3b20e14, type: 3}
+      propertyPath: m_id
+      value: DoorL_003
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -18264,7 +18331,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5010736486517576525, guid: 3ca53e71b8431dd49a556a2c40d4d54d, type: 3}
       propertyPath: m_Name
-      value: ItemContainer
+      value: ItemContainerPotion_002
+      objectReference: {fileID: 0}
+    - target: {fileID: 5128590638175710160, guid: 3ca53e71b8431dd49a556a2c40d4d54d, type: 3}
+      propertyPath: m_id
+      value: ItemContainerPotion_002
       objectReference: {fileID: 0}
     - target: {fileID: 5128590638175710160, guid: 3ca53e71b8431dd49a556a2c40d4d54d, type: 3}
       propertyPath: m_itemData.Amount
@@ -18439,6 +18510,14 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7257414308247267870, guid: e9811423ae8ca414ea13da10962c2417, type: 3}
+      propertyPath: m_id
+      value: Scene_InfoPlaqueL_002
+      objectReference: {fileID: 0}
+    - target: {fileID: 7257414308247267870, guid: e9811423ae8ca414ea13da10962c2417, type: 3}
+      propertyPath: m_isSerializable
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7257414308247267870, guid: e9811423ae8ca414ea13da10962c2417, type: 3}
       propertyPath: m_storyEventInfo
       value: 
       objectReference: {fileID: 11400000, guid: 56b7f9808bebf624aa56bec16868c7d7, type: 2}
@@ -18502,7 +18581,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3700599518249305028, guid: 6a4eaf30a68e2424d85431c5fdd70034, type: 3}
       propertyPath: m_Name
-      value: EnemyKnight (1)
+      value: EnemyKnight_02
       objectReference: {fileID: 0}
     - target: {fileID: 3700599518249305028, guid: 6a4eaf30a68e2424d85431c5fdd70034, type: 3}
       propertyPath: m_IsActive
@@ -18712,6 +18791,14 @@ PrefabInstance:
       propertyPath: m_patrolField.Array.data[42]
       value: 
       objectReference: {fileID: 798918650}
+    - target: {fileID: 5625230263563871144, guid: 6a4eaf30a68e2424d85431c5fdd70034, type: 3}
+      propertyPath: m_id
+      value: Scene_EnemyKnight_002
+      objectReference: {fileID: 0}
+    - target: {fileID: 5625230263563871144, guid: 6a4eaf30a68e2424d85431c5fdd70034, type: 3}
+      propertyPath: m_isSerializable
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -18850,6 +18937,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+  m_prefabId: FewConditionTriggerPrefab_Default
+  m_id: Door_05_UnlockTrigger
+  m_isSerializable: 1
 --- !u!1001 &1682027123
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19025,6 +19115,10 @@ PrefabInstance:
     - target: {fileID: 3796913609631046454, guid: 7e5ed5991c43f6346a4d37c1d3b20e14, type: 3}
       propertyPath: m_Name
       value: DoorL_05
+      objectReference: {fileID: 0}
+    - target: {fileID: 7545055123025963328, guid: 7e5ed5991c43f6346a4d37c1d3b20e14, type: 3}
+      propertyPath: m_id
+      value: DoorL_005
       objectReference: {fileID: 0}
     - target: {fileID: 7545055123025963328, guid: 7e5ed5991c43f6346a4d37c1d3b20e14, type: 3}
       propertyPath: m_openableDirectly
@@ -20410,6 +20504,10 @@ PrefabInstance:
       value: DoorL_01
       objectReference: {fileID: 0}
     - target: {fileID: 7545055123025963328, guid: 7e5ed5991c43f6346a4d37c1d3b20e14, type: 3}
+      propertyPath: m_id
+      value: DoorL_001
+      objectReference: {fileID: 0}
+    - target: {fileID: 7545055123025963328, guid: 7e5ed5991c43f6346a4d37c1d3b20e14, type: 3}
       propertyPath: m_openableDirectly
       value: 1
       objectReference: {fileID: 0}
@@ -20730,7 +20828,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5010736486517576525, guid: 3ca53e71b8431dd49a556a2c40d4d54d, type: 3}
       propertyPath: m_Name
-      value: ItemContainer
+      value: ItemContainerKeys_001
+      objectReference: {fileID: 0}
+    - target: {fileID: 5128590638175710160, guid: 3ca53e71b8431dd49a556a2c40d4d54d, type: 3}
+      propertyPath: m_id
+      value: ItemContainerKeys_001
       objectReference: {fileID: 0}
     - target: {fileID: 5128590638175710160, guid: 3ca53e71b8431dd49a556a2c40d4d54d, type: 3}
       propertyPath: m_itemData.Amount
@@ -22307,7 +22409,7 @@ GameObject:
   - component: {fileID: 1922047886}
   - component: {fileID: 1922047887}
   m_Layer: 0
-  m_Name: Condition
+  m_Name: Condition_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -22343,6 +22445,9 @@ MonoBehaviour:
   OnTrigger:
     m_PersistentCalls:
       m_Calls: []
+  m_prefabId: ConditionTriggerPrefab_Default
+  m_id: Door_06_UnlockCondition_001
+  m_isSerializable: 1
 --- !u!1001 &1924187635
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -22477,7 +22582,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5010736486517576525, guid: 3ca53e71b8431dd49a556a2c40d4d54d, type: 3}
       propertyPath: m_Name
-      value: ItemContainer
+      value: ItemContainerPotion_001
+      objectReference: {fileID: 0}
+    - target: {fileID: 5128590638175710160, guid: 3ca53e71b8431dd49a556a2c40d4d54d, type: 3}
+      propertyPath: m_id
+      value: ItemContainerPotion_001
       objectReference: {fileID: 0}
     - target: {fileID: 5128590638175710160, guid: 3ca53e71b8431dd49a556a2c40d4d54d, type: 3}
       propertyPath: m_itemData.Amount
@@ -24915,6 +25024,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2999589642607726072, guid: 46b82607ee66fd34fad608322138db8d, type: 3}
+      propertyPath: m_id
+      value: ChestWithMagicItem_001
+      objectReference: {fileID: 0}
+    - target: {fileID: 2999589642607726072, guid: 46b82607ee66fd34fad608322138db8d, type: 3}
       propertyPath: m_itemData.Amount
       value: 10
       objectReference: {fileID: 0}
@@ -24952,7 +25065,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3796913609631046454, guid: 46b82607ee66fd34fad608322138db8d, type: 3}
       propertyPath: m_Name
-      value: Chest
+      value: ChestWithMagicItem_001
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

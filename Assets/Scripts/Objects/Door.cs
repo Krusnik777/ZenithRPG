@@ -4,7 +4,7 @@ using UnityEngine.Events;
 namespace DC_ARPG
 {
     [RequireComponent(typeof(Animator))]
-    public class Door : InspectableObject
+    public class Door : InspectableObject, IDataPersistence
     {
         [SerializeField] private Collider m_collider;
         [SerializeField] private bool m_openableDirectly;
@@ -121,5 +121,59 @@ namespace DC_ARPG
 
             EventOnDoorClosed?.Invoke();
         }
+
+        #region Serialize
+
+        [System.Serializable]
+        public class DataState
+        {
+            public bool enabled;
+            public bool openableDirectly;
+            public bool locked;
+            public bool colliderState;
+            public int animatorState;
+
+            public DataState() { }
+        }
+
+        [Header("Serialize")]
+        [SerializeField] private string m_prefabId;
+        [SerializeField] private string m_id;
+        [SerializeField] private bool m_isSerializable = true;
+        public string PrefabId => m_prefabId;
+        public string EntityId => m_id;
+        public bool IsCreated => false;
+
+        public bool IsSerializable() => m_isSerializable;
+
+        public string SerializeState()
+        {
+            DataState s = new DataState();
+
+            s.enabled = gameObject.activeInHierarchy;
+            s.openableDirectly = m_openableDirectly;
+            s.locked = m_locked;
+            s.colliderState = m_collider.isTrigger;
+            if (gameObject.activeInHierarchy)
+                s.animatorState = m_animator.GetCurrentAnimatorStateInfo(0).shortNameHash;
+
+            return JsonUtility.ToJson(s);
+        }
+
+        public void DeserializeState(string state)
+        {
+            DataState s = JsonUtility.FromJson<DataState>(state);
+
+            gameObject.SetActive(s.enabled);
+            m_openableDirectly = s.openableDirectly;
+            m_locked = s.locked;
+            m_collider.isTrigger = s.colliderState;
+            if (s.enabled)
+                m_animator.Play(s.animatorState);
+        }
+
+        public void SetupCreatedDataPersistenceObject(string entityId, bool isCreated, string state) { }
+
+        #endregion
     }
 }

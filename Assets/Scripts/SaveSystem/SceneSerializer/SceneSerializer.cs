@@ -22,6 +22,8 @@ namespace DC_ARPG
 
     public class SceneSerializer : MonoSingleton<SceneSerializer>
     {
+        [Header("Prefabs DataBase")]
+        [SerializeField] private PrefabsDataBase m_prefabsDataBase;
         [Header("File Storage Config")]
         [SerializeField] private string m_fileName;
         [SerializeField] private bool m_useEncryption;
@@ -36,9 +38,12 @@ namespace DC_ARPG
 
             foreach (var dataPersistenceObject in FindAllDataPersistenceObjects())
             {
-                var sceneObject = new SceneObject(dataPersistenceObject.EntityId, dataPersistenceObject.SerializeState());
+                if (dataPersistenceObject.IsSerializable())
+                {
+                    var sceneObject = new SceneObject(dataPersistenceObject.PrefabId, dataPersistenceObject.EntityId, dataPersistenceObject.SerializeState(), dataPersistenceObject.IsCreated);
 
-                m_sceneData.SceneObjects.Add(sceneObject);
+                    m_sceneData.SceneObjects.Add(sceneObject);
+                }
             }
 
             m_dataHandler.Save(m_sceneData);
@@ -64,7 +69,8 @@ namespace DC_ARPG
                 {
                     if (dataPersistenceObject.EntityId == loadedObject.EntityId)
                     {
-                        dataPersistenceObject.DeserializeState(loadedObject.State);
+                        if (dataPersistenceObject.IsSerializable())
+                            dataPersistenceObject.DeserializeState(loadedObject.State);
                         isFound = true;
                         break;
                     }
@@ -74,6 +80,18 @@ namespace DC_ARPG
                 {
                     Debug.Log("Not serialized object is found: ID - " + dataPersistenceObject.EntityId + " -> Destroying Object");
                     Destroy((dataPersistenceObject as MonoBehaviour).gameObject);
+                }
+            }
+
+            // Find saved objects which were created in last game session but hadn't existed at start
+
+            foreach (var loadedObject in m_sceneData.SceneObjects)
+            {
+                if (loadedObject.IsCreated)
+                {
+                    Debug.Log("Found created object => " + loadedObject.EntityId);
+                    GameObject createdObject = m_prefabsDataBase.CreateEntityFromId(loadedObject.PrefabId);
+                    createdObject.GetComponent<IDataPersistence>().SetupCreatedDataPersistenceObject(loadedObject.EntityId, loadedObject.IsCreated, loadedObject.State);
                 }
             }
         }

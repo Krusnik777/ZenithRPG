@@ -6,13 +6,17 @@ namespace DC_ARPG
     [System.Serializable]
     public class SceneObject
     {
+        public string PrefabId;
         public string EntityId;
+        public bool IsCreated;
         public string State;
 
-        public SceneObject(string id, string state)
+        public SceneObject(string prefabId, string entityId, string state, bool isCreated)
         {
-            EntityId = id;
+            PrefabId = prefabId;
+            EntityId = entityId;
             State = state;
+            IsCreated = isCreated;
         }
     }
 
@@ -37,9 +41,12 @@ namespace DC_ARPG
 
             foreach (var dataPersistenceObject in dataPersistenceObjects)
             {
-                var sceneObject = new SceneObject(dataPersistenceObject.EntityId, dataPersistenceObject.SerializeState());
+                if (dataPersistenceObject.IsSerializable())
+                {
+                    var sceneObject = new SceneObject(dataPersistenceObject.PrefabId, dataPersistenceObject.EntityId, dataPersistenceObject.SerializeState(), dataPersistenceObject.IsCreated);
 
-                SceneObjects.Add(sceneObject);
+                    SceneObjects.Add(sceneObject);
+                }
             }
         }
 
@@ -55,7 +62,8 @@ namespace DC_ARPG
                 {
                     if (dataPersistenceObject.EntityId == sceneObject.EntityId)
                     {
-                        dataPersistenceObject.DeserializeState(sceneObject.State);
+                        if (dataPersistenceObject.IsSerializable())
+                            dataPersistenceObject.DeserializeState(sceneObject.State);
                         isFound = true;
                         break;
                     }

@@ -82,6 +82,12 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_storyEventInfo: {fileID: 0}
+  EventOnInspectionEnd:
+    m_PersistentCalls:
+      m_Calls: []
+  m_prefabId: InfoPlaquePrefab_Default
+  m_id: 
+  m_isSerializable: 0
 --- !u!1 &5664529840729574975
 GameObject:
   m_ObjectHideFlags: 0

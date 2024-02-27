@@ -40,13 +40,14 @@ namespace DC_ARPG
         }
 
         [Header("Serialize")]
+        [SerializeField] private string m_prefabId;
         [SerializeField] private string m_id;
+        [SerializeField] private bool m_isSerializable = true;
+        public string PrefabId => m_prefabId;
         public string EntityId => m_id;
+        public bool IsCreated => false;
 
-        public bool IsSerializable()
-        {
-            return false;
-        }
+        public bool IsSerializable() => m_isSerializable;
 
         public string SerializeState()
         {
@@ -63,6 +64,8 @@ namespace DC_ARPG
 
             gameObject.SetActive(s.enabled);
         }
+
+        public void SetupCreatedDataPersistenceObject(string entityId, bool isCreated, string state) { }
 
         #endregion
     }
