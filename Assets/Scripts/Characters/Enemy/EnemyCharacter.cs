@@ -50,6 +50,12 @@ namespace DC_ARPG
         {
             if (deathRoutine != null) return;
 
+            if (sender is Player)
+            {
+                (sender as Player).Character.PlayerStats.AddExperience(enemyStats.ExperiencePoints);
+                (sender as Player).Character.AddMoney(enemyStats.DroppedGold);
+            }
+
             deathRoutine = StartCoroutine(PlayDeath(sender));
         }
 
@@ -78,9 +84,6 @@ namespace DC_ARPG
 
             if (sender is Player)
             {
-                (sender as Player).Character.PlayerStats.AddExperience(enemyStats.ExperiencePoints);
-                (sender as Player).Character.AddMoney(enemyStats.DroppedGold);
-
                 for (int i = 0; i < enemyStats.DroppedItems.Length; i++)
                 {
                     if (Random.value + (sender as Player).Character.DropItemBooster > 1 - enemyStats.DroppedItems[i].ItemDropChance)

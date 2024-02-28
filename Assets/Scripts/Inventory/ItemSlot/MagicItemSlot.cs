@@ -17,6 +17,8 @@ namespace DC_ARPG
 
         public bool TrySetItemInSlot(IItem item)
         {
+            if (item == null) return false;
+
             if (!(item is MagicItem))
             {
                 UnityEngine.Debug.Log("WrongTypeOfItem");
@@ -39,6 +41,8 @@ namespace DC_ARPG
 
         public bool TryClearSlotAndSetItem(IItem item)
         {
+            if (item == null) return false;
+
             if (!(item is MagicItem))
             {
                 UnityEngine.Debug.Log("WrongTypeOfItem");

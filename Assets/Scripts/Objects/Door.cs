@@ -6,6 +6,7 @@ namespace DC_ARPG
     [RequireComponent(typeof(Animator))]
     public class Door : InspectableObject, IDataPersistence
     {
+        [SerializeField] private Animator m_animator;
         [SerializeField] private Collider m_collider;
         [SerializeField] private bool m_openableDirectly;
         [SerializeField] private bool m_locked;
@@ -23,12 +24,12 @@ namespace DC_ARPG
 
         public bool StandingInFrontOfDoor => m_forwardPositionTrigger.InRightPosition || m_backwardPositionTrigger.InRightPosition;
 
-        private Animator m_animator;
+        
         private DoorSFX m_doorSFX;
 
-        private bool inClosedState => m_animator != null ? m_animator.GetCurrentAnimatorStateInfo(0).IsName("ClosedState") : true;
+        private bool inClosedState => m_animator.GetCurrentAnimatorStateInfo(0).IsName("ClosedState");
         public bool Closed => inClosedState;
-        private bool inOpenedState => m_animator != null ? m_animator.GetCurrentAnimatorStateInfo(0).IsName("OpenedState") : false;
+        private bool inOpenedState => m_animator.GetCurrentAnimatorStateInfo(0).IsName("OpenedState");
         public bool Opened => inOpenedState;
 
         public void ChangeOpenableDirectly(bool state)
@@ -100,7 +101,6 @@ namespace DC_ARPG
 
         private void Awake()
         {
-            m_animator = GetComponent<Animator>();
             m_doorSFX = GetComponentInChildren<DoorSFX>();
         }
 

@@ -44,6 +44,8 @@ namespace DC_ARPG
             m_playerCharacter.PlayerStats.EventOnStrengthUp += SetStrengthValue;
             m_playerCharacter.PlayerStats.EventOnIntelligenceUp += SetIntelligenceValue;
             m_playerCharacter.PlayerStats.EventOnMagicResistUp += SetMagicResistValue;
+
+            m_playerCharacter.PlayerStats.EventOnStatsUpdated += UpdateAll;
         }
 
         private void OnDestroy()
@@ -57,6 +59,8 @@ namespace DC_ARPG
             m_playerCharacter.PlayerStats.EventOnStrengthUp -= SetStrengthValue;
             m_playerCharacter.PlayerStats.EventOnIntelligenceUp -= SetIntelligenceValue;
             m_playerCharacter.PlayerStats.EventOnMagicResistUp -= SetMagicResistValue;
+
+            m_playerCharacter.PlayerStats.EventOnStatsUpdated -= UpdateAll;
         }
 
         public void FillLevelBar() => m_levelFillImage.fillAmount = m_playerCharacter.PlayerStats.Level >= m_playerCharacter.PlayerStats.MaxLevel ? 1 : (float) m_playerCharacter.PlayerStats.CurrentExperiencePoints / (float) m_playerCharacter.PlayerStats.GetExperienceForLevelUp();
@@ -68,5 +72,18 @@ namespace DC_ARPG
         public void SetStrengthValue() => m_strengthValueText.text = m_playerCharacter.PlayerStats.Strength.ToString();
         public void SetIntelligenceValue() => m_intelligenceValueText.text = m_playerCharacter.PlayerStats.Intelligence.ToString();
         public void SetMagicResistValue() => m_magicResistValueText.text = m_playerCharacter.PlayerStats.MagicResist.ToString();
+
+        private void UpdateAll()
+        {
+            SetLevelValue();
+            SetStrengthValue();
+            SetIntelligenceValue();
+            SetMagicResistValue();
+
+            FillLevelBar();
+            FillStrengthBar();
+            FillIntelligenceBar();
+            FillMagicResistBar();
+        }
     }
 }

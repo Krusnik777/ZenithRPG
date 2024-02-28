@@ -6,6 +6,8 @@ namespace DC_ARPG
     [RequireComponent(typeof(Animator),typeof(AudioSource))]
     public class ShopDoor : InspectableObject
     {
+        [SerializeField] private Animator m_animator;
+
         private Shop m_shop;
 
         private PositionTrigger m_positionTrigger;
@@ -15,11 +17,10 @@ namespace DC_ARPG
 
         public bool StandingInFrontOfShopDoor => m_positionTrigger != null ? m_positionTrigger.InRightPosition : false;
 
-        private Animator m_animator;
         private AudioSource m_audio;
 
-        private bool inClosedState => m_animator != null ? m_animator.GetCurrentAnimatorStateInfo(0).IsName("ClosedState") : true;
-        private bool inOpenedState => m_animator != null ? m_animator.GetCurrentAnimatorStateInfo(0).IsName("OpenedState") : false;
+        private bool inClosedState => m_animator.GetCurrentAnimatorStateInfo(0).IsName("ClosedState");
+        private bool inOpenedState => m_animator.GetCurrentAnimatorStateInfo(0).IsName("OpenedState");
 
         public override void OnInspection(Player player)
         {
@@ -39,7 +40,6 @@ namespace DC_ARPG
 
         private void Awake()
         {
-            m_animator = GetComponent<Animator>();
             m_audio = GetComponent<AudioSource>();
             m_shop = GetComponent<Shop>();
             m_positionTrigger = GetComponentInChildren<PositionTrigger>();

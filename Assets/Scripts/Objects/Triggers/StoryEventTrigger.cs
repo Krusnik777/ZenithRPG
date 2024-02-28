@@ -10,6 +10,11 @@ namespace DC_ARPG
         [Space]
         public UnityEvent EventOnStoryEventEnd;
 
+        private void OnDestroy()
+        {
+            StoryEventManager.Instance.EventOnStoryEventEnded -= OnStoryEventEnded;
+        }
+
         private void OnTriggerEnter(Collider other)
         {
             if (other.transform.root.GetComponent<Player>())
@@ -23,8 +28,6 @@ namespace DC_ARPG
         private void OnStoryEventEnded()
         {
             EventOnStoryEventEnd?.Invoke();
-
-            StoryEventManager.Instance.EventOnStoryEventEnded -= OnStoryEventEnded;
 
             Destroy(gameObject);
         }

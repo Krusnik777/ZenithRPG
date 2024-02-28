@@ -5,21 +5,6 @@ using UnityEngine.SceneManagement;
 
 namespace DC_ARPG
 {
-    [System.Serializable]
-    public class SceneData
-    {
-        public List<SceneObject> SceneObjects;
-        //public PlayerStats PlayerStats;
-        //public Inventory PlayerInventory;
-
-        public SceneData()
-        {
-            SceneObjects = new List<SceneObject>();
-            //PlayerStats = playerStats;
-            //PlayerInventory = inventory;
-        }
-    }
-
     public class SceneSerializer : MonoSingleton<SceneSerializer>
     {
         [Header("Prefabs DataBase")]
@@ -38,12 +23,18 @@ namespace DC_ARPG
 
             foreach (var dataPersistenceObject in FindAllDataPersistenceObjects())
             {
-                if (dataPersistenceObject.IsSerializable())
-                {
-                    var sceneObject = new SceneObject(dataPersistenceObject.PrefabId, dataPersistenceObject.EntityId, dataPersistenceObject.SerializeState(), dataPersistenceObject.IsCreated);
+                if (!dataPersistenceObject.IsSerializable()) continue;
 
-                    m_sceneData.SceneObjects.Add(sceneObject);
+                var sceneObject = new SceneObject(dataPersistenceObject.PrefabId, dataPersistenceObject.EntityId, dataPersistenceObject.SerializeState(), dataPersistenceObject.IsCreated);
+
+                m_sceneData.SceneObjects.Add(sceneObject);
+
+                if (dataPersistenceObject is Player)
+                {
+                    var playerCharacter = (dataPersistenceObject as Player).Character;
+                    m_sceneData.PlayerData = new PlayerData(playerCharacter.PlayerStats, playerCharacter.Inventory, playerCharacter.Money);
                 }
+
             }
 
             m_dataHandler.Save(m_sceneData);
@@ -63,15 +54,23 @@ namespace DC_ARPG
 
             foreach (var dataPersistenceObject in FindAllDataPersistenceObjects())
             {
+                if (!dataPersistenceObject.IsSerializable()) continue;
+
                 bool isFound = false;
 
                 foreach (var loadedObject in m_sceneData.SceneObjects)
                 {
                     if (dataPersistenceObject.EntityId == loadedObject.EntityId)
                     {
-                        if (dataPersistenceObject.IsSerializable())
-                            dataPersistenceObject.DeserializeState(loadedObject.State);
+                        dataPersistenceObject.DeserializeState(loadedObject.State);
                         isFound = true;
+
+                        if (dataPersistenceObject is Player)
+                        {
+                            var playerCharacter = (dataPersistenceObject as Player).Character;
+                            playerCharacter.UpdatePlayerCharacter(m_sceneData.PlayerData);
+                        }
+
                         break;
                     }
                 }
@@ -103,15 +102,31 @@ namespace DC_ARPG
             return new List<IDataPersistence>(dataPersistenceObjects);
         }
 
-        private void Start()
+        protected override void Awake()
         {
+            base.Awake();
+
             m_dataHandler = new FileDataHandler<SceneData>(Application.persistentDataPath, m_fileName, m_useEncryption);
+        }
+
+        private void OnEnable()
+        {
+            SceneManager.sceneLoaded += OnSceneLoaded;
+        }
+
+        private void OnDisable()
+        {
+            SceneManager.sceneLoaded -= OnSceneLoaded;
+        }
+
+        private void OnSceneLoaded(Scene scene, LoadSceneMode loadSceneMode)
+        {
             LoadSceneData();
         }
 
         // TEMP
 
-        public void Restart() => SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        public void Restart() => SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().name);
 
         public void Save() => SaveSceneData();
     }

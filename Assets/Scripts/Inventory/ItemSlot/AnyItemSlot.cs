@@ -1,6 +1,6 @@
 namespace DC_ARPG
 {
-    public class AnyItemSlot: IItemSlot
+    public class AnyItemSlot : IItemSlot
     {
         public IItem Item { get; protected set; }
         public ItemInfo ItemInfo => Item?.Info;
@@ -17,7 +17,7 @@ namespace DC_ARPG
 
         public bool TrySetItemInSlot(IItem item)
         {
-            if (!IsEmpty) return false;
+            if (!IsEmpty || item == null) return false;
 
             Item = item;
             Capacity = item.MaxAmount;
@@ -33,6 +33,8 @@ namespace DC_ARPG
 
         public bool TryClearSlotAndSetItem(IItem item)
         {
+            if (item == null) return false;
+
             ClearSlot();
 
             return TrySetItemInSlot(item);

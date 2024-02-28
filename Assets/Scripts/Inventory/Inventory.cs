@@ -67,6 +67,17 @@ namespace DC_ARPG
             EventOnActiveItemChanged?.Invoke(sender, slotNumber);
         }
 
+        public int GetActiveItemSlotNumber()
+        {
+            for (int i = 0; i < UsableItemSlots.Length; i++)
+            {
+                if (UsableItemSlots[i] == ActiveItemSlot)
+                    return i;
+            }
+
+            return 0;
+        }
+
         public void SetBrokenWeapon(object sender, IItem brokenWeapon)
         {
             WeaponItemSlot.TrySetItemInSlot(brokenWeapon.Clone());
@@ -95,6 +106,32 @@ namespace DC_ARPG
             for (int i = 0; i < ExtraPockets.Length; i++)
             {
                 ExtraPockets[i] = new InventoryPocket(itemSlotsAmountInPocket, InventoryPocket.PocketType.Extra);
+            }
+        }
+
+        public void FillInventoryByInventoryData(PlayerInventoryData inventoryData)
+        {
+            ClearAllNotEmptySlots();
+
+            UnlockedPockets = inventoryData.UnlockedPockets;
+
+            WeaponItemSlot.TrySetItemInSlot(inventoryData.EquippedWeapon.CreateItem());
+            ArmorItemSlot.TrySetItemInSlot(inventoryData.EquippedArmor.CreateItem());
+            ShieldItemSlot.TrySetItemInSlot(inventoryData.EquippedShield.CreateItem());
+            MagicItemSlot.TrySetItemInSlot(inventoryData.EquippedMagicItem.CreateItem());
+
+            for (int i = 0; i < UsableItemSlots.Length; i++)
+            {
+                UsableItemSlots[i].TrySetItemInSlot(inventoryData.EquippedUsableItems[i].CreateItem());
+            }
+
+            SetActiveItemSlot(this, inventoryData.ActiveItemSlotIdNumber);
+
+            MainPocket.TrySetItemsInSlots(inventoryData.MainPocketData.ItemsData);
+
+            for (int i = 0; i < ExtraPockets.Length; i++)
+            {
+                ExtraPockets[i].TrySetItemsInSlots(inventoryData.ExtraPocketsData[i].ItemsData);
             }
         }
 
@@ -248,6 +285,26 @@ namespace DC_ARPG
                 return null;
             }
             return pocket.FindItem(item);
+        }
+
+        public void ClearAllNotEmptySlots()
+        {
+            if (!WeaponItemSlot.IsEmpty) WeaponItemSlot.ClearSlot();
+            if (!ArmorItemSlot.IsEmpty) ArmorItemSlot.ClearSlot();
+            if (!ShieldItemSlot.IsEmpty) ShieldItemSlot.ClearSlot();
+            if (!MagicItemSlot.IsEmpty) MagicItemSlot.ClearSlot();
+
+            foreach (var usableItemSlot in UsableItemSlots)
+            {
+                if (!usableItemSlot.IsEmpty) usableItemSlot.ClearSlot();
+            }
+
+            MainPocket.ClearAllNotEmptySlots();
+
+            foreach (var extraPocket in ExtraPockets)
+            {
+                extraPocket.ClearAllNotEmptySlots();
+            }
         }
 
         #endregion

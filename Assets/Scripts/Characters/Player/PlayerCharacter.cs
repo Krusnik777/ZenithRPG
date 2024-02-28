@@ -3,7 +3,7 @@ using UnityEngine.Events;
 
 namespace DC_ARPG
 {
-    public class PlayerCharacter : MonoBehaviour, IDependency<Player>
+    public class PlayerCharacter : MonoBehaviour
     {
         [System.Serializable]
         public class EquippedItems
@@ -14,17 +14,19 @@ namespace DC_ARPG
             public MagicItem Magic;
         }
 
+        [SerializeField] private Player m_player;
         [SerializeField] private PlayerStatsInfo m_playerStatsInfo;
         [SerializeField] private int m_startedMoney = 999;
         [SerializeField] private Magic m_availableMagic;
         [SerializeField] private WeaponItem m_brokenWeapon;
-        [Header("Inventory Start State")]
+        [Header("Inventory Initial State")]
         [SerializeField] private int m_unlockedPockets;
         [SerializeField] private EquippedItems m_equippedItems;
         [SerializeField] private ItemData[] m_items;
         [Space]
         public UnityEvent OnPlayerDeath;
 
+        public Player Player => m_player;
         public Magic AvailableMagic => m_availableMagic;
         public WeaponItem BrokenWeapon => m_brokenWeapon;
 
@@ -34,9 +36,6 @@ namespace DC_ARPG
         private Inventory inventory;
         public Inventory Inventory => inventory;
 
-        private Player m_player;
-        public void Construct(Player player) => m_player = player;
-
         private int m_money;
         public int Money => m_money;
 
@@ -44,6 +43,20 @@ namespace DC_ARPG
 
         public event UnityAction EventOnMoneyAdded;
         public event UnityAction EventOnMoneySpend;
+
+        public void UpdatePlayerCharacter(PlayerData playerData)
+        {
+            SetupInitialPlayerStats();
+
+            playerStats.UpdateStats(playerData.PlayerStatsData);
+
+            SetupInitialInventory();
+
+            inventory.FillInventoryByInventoryData(playerData.PlayerInventoryData);
+
+            m_money = 0;
+            AddMoney(playerData.Money);
+        }
 
         public void AddMoney(int amount)
         {
@@ -61,11 +74,9 @@ namespace DC_ARPG
 
         private void Awake()
         {
-            playerStats = new PlayerStats();
-            playerStats.InitStats(m_playerStatsInfo);
+            SetupInitialPlayerStats();
 
-            inventory = new Inventory(3, 9, 3);
-            inventory.UnlockedPockets = m_unlockedPockets;
+            SetupInitialInventory();
 
             playerStats.EventOnHitPointsChange += OnHitPointsChange;
             playerStats.EventOnDeath += OnDeath;
@@ -76,8 +87,6 @@ namespace DC_ARPG
 
         private void Start()
         {
-            SetupStartInventoryItems();
-
             AddMoney(m_startedMoney);
         }
 
@@ -90,9 +99,27 @@ namespace DC_ARPG
             inventory.EventOnItemRemoved -= OnEquipItemRemoved;
         }
 
-        private void SetupStartInventoryItems()
+        private void SetupInitialPlayerStats()
         {
-            // Initialize Start Equipped Items
+            if (playerStats != null) return;
+
+            playerStats = new PlayerStats();
+            playerStats.InitStats(m_playerStatsInfo);
+        }
+
+        private void SetupInitialInventory()
+        {
+            if (inventory != null) return;
+
+            inventory = new Inventory(3, 9, 3);
+            inventory.UnlockedPockets = m_unlockedPockets;
+
+            SetInitialItems();
+        }
+
+        private void SetInitialItems()
+        {
+            // Set Initial Equipped Items
             {
                 if (m_equippedItems.Armor.Info != null)
                 {
@@ -119,7 +146,7 @@ namespace DC_ARPG
                 }
             }
 
-            // Initialize Start Inventory Items
+            // Set Initial Inventory Items
             {
                 foreach (var itemData in m_items)
                 {

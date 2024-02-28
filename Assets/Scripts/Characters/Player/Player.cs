@@ -3,14 +3,15 @@ using UnityEngine;
 
 namespace DC_ARPG
 {
-    public class Player : CharacterAvatar, IDependency<PlayerCharacter>, IDataPersistence
+    public class Player : CharacterAvatar, IDataPersistence
     {
         public enum PlayerState
         {
             Active,
             Rest
         }
-
+        [Header("PlayerCharacter")]
+        [SerializeField] private PlayerCharacter m_character;
         [Header("Magic")]
         [SerializeField] private float m_castDelay = 1.0f;
         [Header("Weapon")]
@@ -18,8 +19,6 @@ namespace DC_ARPG
 
         public bool ActionsIsAvailable { get; set; }
 
-        private PlayerCharacter m_character;
-        public void Construct(PlayerCharacter character) => m_character = character;
         public PlayerCharacter Character => m_character;
 
         private Ray m_lookRay;

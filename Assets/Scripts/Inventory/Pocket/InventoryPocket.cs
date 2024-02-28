@@ -2,6 +2,22 @@ using System.Collections.Generic;
 
 namespace DC_ARPG
 {
+    [System.Serializable]
+    public class InventoryPocketData
+    {
+        public ItemData[] ItemsData;
+
+        public InventoryPocketData(InventoryPocket inventoryPocket) 
+        {
+            ItemsData = new ItemData[inventoryPocket.ItemSlots.Length];
+
+            for (int i = 0; i < ItemsData.Length; i++)
+            {
+                ItemsData[i] = new ItemData(inventoryPocket.ItemSlots[i].Item);
+            }
+        }
+    }
+
     public class InventoryPocket
     {
         public enum PocketType
@@ -113,5 +129,31 @@ namespace DC_ARPG
             return allSameItems.ToArray();
         }
 
+        public void ClearAllNotEmptySlots()
+        {
+            foreach (var slot in ItemSlots)
+            {
+                if (!slot.IsEmpty)
+                {
+                    slot.ClearSlot();
+                }
+            }
+        }
+
+        public void TrySetItemsInSlots(IItem[] items)
+        {
+            for (int i = 0; i < ItemSlots.Length; i++)
+            {
+                ItemSlots[i].TrySetItemInSlot(items[i].Clone());
+            }
+        }
+
+        public void TrySetItemsInSlots(ItemData[] itemsData)
+        {
+            for (int i = 0; i < ItemSlots.Length; i++)
+            {
+                ItemSlots[i].TrySetItemInSlot(itemsData[i].CreateItem());
+            }
+        }
     }
 }

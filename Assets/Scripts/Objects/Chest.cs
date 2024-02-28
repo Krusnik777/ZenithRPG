@@ -6,6 +6,7 @@ namespace DC_ARPG
     public class Chest : ItemContainer
     {
         [Header("Chest")]
+        [SerializeField] private Animator m_animator;
         [SerializeField] private bool m_locked;
         [SerializeField] private bool m_requireSpecialKey;
         [SerializeField] private UsableItemInfo m_specificKeyItemInfo;
@@ -18,12 +19,12 @@ namespace DC_ARPG
         private PositionTrigger m_positionTrigger;
         public bool StandingInFrontOfChest => m_positionTrigger != null ? m_positionTrigger.InRightPosition : false;
 
-        private Animator m_animator;
+        
         private ChestSFX m_chestSFX;
 
-        private bool inClosedState => m_animator != null ? m_animator.GetCurrentAnimatorStateInfo(0).IsName("ClosedState") : true;
+        private bool inClosedState => m_animator.GetCurrentAnimatorStateInfo(0).IsName("ClosedState");
         public bool Closed => inClosedState;
-        private bool inOpenedState => m_animator != null ? m_animator.GetCurrentAnimatorStateInfo(0).IsName("OpenedState") : false;
+        private bool inOpenedState => m_animator.GetCurrentAnimatorStateInfo(0).IsName("OpenedState");
         public bool Opened => inOpenedState;
 
         public void Lock()
@@ -71,7 +72,6 @@ namespace DC_ARPG
 
         private void Awake()
         {
-            m_animator = GetComponent<Animator>();
             m_chestSFX = GetComponentInChildren<ChestSFX>();
             m_positionTrigger = GetComponentInChildren<PositionTrigger>();
         }

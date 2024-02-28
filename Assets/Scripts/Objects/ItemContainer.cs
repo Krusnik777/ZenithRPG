@@ -37,20 +37,8 @@ namespace DC_ARPG
         public void AssignItem(IItem item)
         {
             m_item = item.Clone();
-            m_itemData.ItemInfo = m_item.Info;
 
-            if (m_item is WeaponItem)
-            {
-                m_itemData.Amount = (m_item as WeaponItem).Uses;
-            }
-            else if (m_item is MagicItem)
-            {
-                m_itemData.Amount = (m_item as MagicItem).Uses;
-            }
-            else
-            {
-                m_itemData.Amount = m_item.Amount;
-            }
+            m_itemData = new ItemData(m_item);
         }
 
         private void Start()

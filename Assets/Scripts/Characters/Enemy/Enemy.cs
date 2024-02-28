@@ -70,7 +70,7 @@ namespace DC_ARPG
             transform.rotation = s.rotation;
         }
 
-        public void SetupCreatedDataPersistenceObject(string entityId, bool isCreated, string state) { }
+        public void SetupCreatedDataPersistenceObject(string entityId, bool isCreated, string state) { /*Created By Spawner?*/ }
 
         #endregion
     }

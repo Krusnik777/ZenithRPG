@@ -4,23 +4,6 @@ using UnityEngine;
 namespace DC_ARPG
 {
     [System.Serializable]
-    public class SceneObject
-    {
-        public string PrefabId;
-        public string EntityId;
-        public bool IsCreated;
-        public string State;
-
-        public SceneObject(string prefabId, string entityId, string state, bool isCreated)
-        {
-            PrefabId = prefabId;
-            EntityId = entityId;
-            State = state;
-            IsCreated = isCreated;
-        }
-    }
-
-    [System.Serializable]
     public class SceneState
     {
         public int SceneId;
@@ -41,12 +24,11 @@ namespace DC_ARPG
 
             foreach (var dataPersistenceObject in dataPersistenceObjects)
             {
-                if (dataPersistenceObject.IsSerializable())
-                {
-                    var sceneObject = new SceneObject(dataPersistenceObject.PrefabId, dataPersistenceObject.EntityId, dataPersistenceObject.SerializeState(), dataPersistenceObject.IsCreated);
+                if (!dataPersistenceObject.IsSerializable()) continue;
 
-                    SceneObjects.Add(sceneObject);
-                }
+                var sceneObject = new SceneObject(dataPersistenceObject.PrefabId, dataPersistenceObject.EntityId, dataPersistenceObject.SerializeState(), dataPersistenceObject.IsCreated);
+
+                SceneObjects.Add(sceneObject);
             }
         }
 
@@ -56,14 +38,15 @@ namespace DC_ARPG
 
             foreach (var dataPersistenceObject in dataPersistenceObjects)
             {
+                if (!dataPersistenceObject.IsSerializable()) continue;
+
                 bool isFound = false;
 
                 foreach (var sceneObject in SceneObjects)
                 {
                     if (dataPersistenceObject.EntityId == sceneObject.EntityId)
                     {
-                        if (dataPersistenceObject.IsSerializable())
-                            dataPersistenceObject.DeserializeState(sceneObject.State);
+                        dataPersistenceObject.DeserializeState(sceneObject.State);
                         isFound = true;
                         break;
                     }

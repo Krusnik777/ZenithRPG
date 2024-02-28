@@ -14,8 +14,8 @@ namespace DC_ARPG
         public UnityEvent OnButtonPressed;
         public UnityEvent OnButtonUnpressed;
 
-        private bool inPressedState => m_animator != null ? m_animator.GetCurrentAnimatorStateInfo(0).IsName("PressedState") : false;
-        private bool inUnpressedState => m_animator != null ? m_animator.GetCurrentAnimatorStateInfo(0).IsName("UnpressedState") : true;
+        private bool inPressedState => m_animator.GetCurrentAnimatorStateInfo(0).IsName("PressedState");
+        private bool inUnpressedState => m_animator.GetCurrentAnimatorStateInfo(0).IsName("UnpressedState");
 
         public void PressButton()
         {

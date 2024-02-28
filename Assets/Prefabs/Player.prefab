@@ -227,6 +227,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6eaa7bcc86e98e9478e05ee21b2c8239, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_player: {fileID: 6766054219301148474}
   m_playerStatsInfo: {fileID: 11400000, guid: fd46a6466bdcabb4cb5d41de891b793c, type: 2}
   m_startedMoney: 999
   m_availableMagic: {fileID: 8700071605861731854}
@@ -440,6 +441,7 @@ MonoBehaviour:
   m_transitionRotateSpeed: 0.25
   m_afterJumpDelay: 0.1
   m_characterSFX: {fileID: 1526247927414751933}
+  m_character: {fileID: 1844385430773188566}
   m_castDelay: 0.25
   m_weapon: {fileID: 8394968033912865626}
   m_prefabId: PlayerPrefab_Default

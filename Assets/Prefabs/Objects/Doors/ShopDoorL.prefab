@@ -293,6 +293,7 @@ MonoBehaviour:
   EventOnInspection:
     m_PersistentCalls:
       m_Calls: []
+  m_animator: {fileID: 4289264148175112980}
 --- !u!114 &7599729716025759701
 MonoBehaviour:
   m_ObjectHideFlags: 0

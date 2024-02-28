@@ -42,7 +42,7 @@ namespace DC_ARPG
                 m_activeUsableItems[i].UsableItemSlot.SetSlot(m_uiInventory, m_uiInventory.Inventory.UsableItemSlots[i]);
             }
 
-            m_activeUsableItems[0].SelectImage.enabled = true;
+            m_activeUsableItems[m_uiInventory.Inventory.GetActiveItemSlotNumber()].SelectImage.enabled = true;
 
             m_uiInventory.Inventory.EventOnActiveItemChanged += OnActiveItemChanged;
             m_uiInventory.Inventory.EventOnItemUsed += OnItemUsed;

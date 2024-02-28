@@ -257,6 +257,7 @@ MonoBehaviour:
   EventOnInspection:
     m_PersistentCalls:
       m_Calls: []
+  m_animator: {fileID: 4289264148175112980}
   m_collider: {fileID: 5346726631591803513}
   m_openableDirectly: 0
   m_locked: 0

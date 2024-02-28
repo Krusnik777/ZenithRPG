@@ -228,6 +228,7 @@ MonoBehaviour:
   m_prefabId: ChestPrefab_Default
   m_id: 
   m_isSerializable: 1
+  m_animator: {fileID: 4289264148175112980}
   m_locked: 0
   m_requireSpecialKey: 0
   m_specificKeyItemInfo: {fileID: 0}

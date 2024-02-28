@@ -6,17 +6,18 @@ namespace DC_ARPG
     [RequireComponent(typeof(Animator))]
     public class LevelArm : InspectableObject, IDataPersistence
     {
+        [SerializeField] private Animator m_animator;
         [SerializeField] private bool m_canReset;
         public bool CanReset => m_canReset;
 
         public UnityEvent OnUsed;
         public UnityEvent OnReseted;
 
-        private Animator m_animator;
+        
 
-        private bool inUpperState => m_animator != null ? m_animator.GetCurrentAnimatorStateInfo(0).IsName("UpperState") : true;
+        private bool inUpperState => m_animator.GetCurrentAnimatorStateInfo(0).IsName("UpperState");
         public bool Unused => inUpperState;
-        private bool inLoweredState => m_animator != null ? m_animator.GetCurrentAnimatorStateInfo(0).IsName("LoweredState") : false;
+        private bool inLoweredState => m_animator.GetCurrentAnimatorStateInfo(0).IsName("LoweredState");
 
         public override void OnInspection(Player player)
         {
@@ -38,11 +39,6 @@ namespace DC_ARPG
 
             m_animator.SetTrigger("Reset");
             OnReseted?.Invoke();
-        }
-
-        private void Awake()
-        {
-            m_animator = GetComponent<Animator>();
         }
 
         #region Serialize

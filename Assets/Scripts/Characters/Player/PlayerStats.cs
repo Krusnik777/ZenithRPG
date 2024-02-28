@@ -65,6 +65,8 @@ namespace DC_ARPG
         public event UnityAction EventOnIntelligenceExperienceChange;
         public event UnityAction EventOnMagicResistExperienceChange;
 
+        public event UnityAction EventOnStatsUpdated;
+
         #endregion
 
         public override void InitStats(PlayerStatsInfo playerInfo)
@@ -101,6 +103,32 @@ namespace DC_ARPG
             CurrentStrengthExperiencePoints = 0;
             CurrentIntelligenceExperiencePoints = 0;
             CurrentMagicResistExperiencePoints = 0;
+        }
+
+        public void UpdateStats(PlayerStatsData playerStatsData)
+        {
+            Level = playerStatsData.Level;
+
+            HitPoints = playerStatsData.HitPoints;
+            CurrentHitPoints = playerStatsData.CurrentHitPoints;
+
+            MagicPoints = playerStatsData.MagicPoints;
+            CurrentMagicPoints = playerStatsData.CurrentMagicPoints;
+
+            Strength = playerStatsData.Strength;
+            Intelligence = playerStatsData.Intelligence;
+            MagicResist = playerStatsData.MagicResist;
+            Luck = playerStatsData.Luck;
+
+            CurrentExperiencePoints = playerStatsData.CurrentExperiencePoints;
+            CurrentStrengthExperiencePoints = playerStatsData.CurrentStrengthExperiencePoints;
+            CurrentIntelligenceExperiencePoints = playerStatsData.CurrentIntelligenceExperiencePoints;
+            CurrentMagicResistExperiencePoints = playerStatsData.CurrentMagicResistExperiencePoints;
+
+            SetAttack();
+            SetDefense();
+
+            EventOnStatsUpdated?.Invoke();
         }
 
         #region PassiveStatsSetMethods
@@ -210,6 +238,8 @@ namespace DC_ARPG
         {
             if (Level >= MaxLevel) return;
 
+            if (experience <= 0) return;
+
             CurrentExperiencePoints += experience;
 
             while (CurrentExperiencePoints >= GetExperienceForLevelUp())
@@ -224,6 +254,8 @@ namespace DC_ARPG
         public void AddStrengthExperience(int strengthExperience)
         {
             if (Strength >= MaxStatLevel) return;
+
+            if (strengthExperience <= 0) return;
 
             CurrentStrengthExperiencePoints += strengthExperience;
 
@@ -240,6 +272,8 @@ namespace DC_ARPG
         {
             if (Intelligence >= MaxStatLevel) return;
 
+            if (intelligenceExperience <= 0) return;
+
             CurrentIntelligenceExperiencePoints += intelligenceExperience;
 
             while (CurrentIntelligenceExperiencePoints >= GetExperienceForIntelligenceUp())
@@ -254,6 +288,8 @@ namespace DC_ARPG
         public void AddMagicResistExperience(int magicResistExperience)
         {
             if (MagicResist >= MaxStatLevel) return;
+
+            if (magicResistExperience <= 0) return;
 
             CurrentMagicResistExperiencePoints += magicResistExperience;
 

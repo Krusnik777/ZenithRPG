@@ -15,6 +15,32 @@ namespace DC_ARPG
             Amount = amount;
         }
 
+        public ItemData(IItem item)
+        {
+            if (item != null)
+            {
+                ItemInfo = item.Info;
+
+                if (item is WeaponItem)
+                {
+                    Amount = (item as WeaponItem).Uses;
+                }
+                else if (item is MagicItem)
+                {
+                    Amount = (item as MagicItem).Uses;
+                }
+                else
+                {
+                    Amount = item.Amount;
+                }
+            }
+            else
+            {
+                ItemInfo = null;
+                Amount = 0;
+            }
+        }
+
         public ItemData(ItemData itemData)
         {
             ItemInfo = itemData.ItemInfo;

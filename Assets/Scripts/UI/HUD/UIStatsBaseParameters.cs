@@ -23,6 +23,7 @@ namespace DC_ARPG
             m_playerCharacter.PlayerStats.EventOnIntelligenceUp += SetMagicPoints;
 
             m_playerCharacter.PlayerStats.EventOnLevelUp += SetBothPoints;
+            m_playerCharacter.PlayerStats.EventOnStatsUpdated += SetBothPoints;
 
             SetBothPoints();
         }
@@ -34,6 +35,7 @@ namespace DC_ARPG
             m_playerCharacter.PlayerStats.EventOnIntelligenceUp -= SetMagicPoints;
 
             m_playerCharacter.PlayerStats.EventOnLevelUp -= SetBothPoints;
+            m_playerCharacter.PlayerStats.EventOnStatsUpdated -= SetBothPoints;
         }
 
         private void SetHitPoints(int change = 0)
