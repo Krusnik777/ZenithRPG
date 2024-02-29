@@ -93,7 +93,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 680803538e9d73641a7d4d8ad5397600, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_doNotDestroyOnLoad: 0
+  m_mainMenuInputController: {fileID: 0}
   m_playerInputController: {fileID: 0}
   m_menuInputController: {fileID: 667337294099122474}
   m_inventoryInputController: {fileID: 9206002608772760809}

@@ -205,7 +205,7 @@ namespace DC_ARPG
 
             yield return new WaitUntil(() => m_animator.GetCurrentAnimatorStateInfo(0).IsName("CastMagic"));
 
-            while(elapsed < m_castDelay)
+            while (elapsed < m_castDelay)
             {
                 elapsed += Time.deltaTime;
 
@@ -240,13 +240,24 @@ namespace DC_ARPG
         public string EntityId => m_id;
         public bool IsCreated => false;
 
+        private Vector3 savedPosition;
+        public void SavePosition(Vector3 pos) => savedPosition = pos;
+
         public bool IsSerializable() => m_isSerializable;
 
         public string SerializeState()
         {
             DataState s = new DataState();
 
-            s.position = transform.position;
+            if (savedPosition != Vector3.zero)
+            {
+                s.position = savedPosition;
+            }
+            else
+            {
+                s.position = transform.position;
+            }
+
             s.rotation = transform.rotation;
 
             return JsonUtility.ToJson(s);

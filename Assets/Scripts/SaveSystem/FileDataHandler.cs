@@ -21,6 +21,22 @@ namespace DC_ARPG
             m_useEncryption = useEncryption;
         }
 
+        public bool CheckIfSaveFileExist()
+        {
+            string fullPath = Path.Combine(m_dataDirPath, m_dataFileName);
+
+            return File.Exists(fullPath);
+        }
+
+        public bool CheckIfSaveFileForProfileExist(string profileId)
+        {
+            if (profileId == null) return false;
+
+            string fullPath = Path.Combine(m_dataDirPath, profileId, m_dataFileName);
+
+            return File.Exists(fullPath);
+        }
+
         public Dictionary<string, T> LoadAllProfiles()
         {
             Dictionary<string, T> profileDictionary = new Dictionary<string, T>();

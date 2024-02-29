@@ -4,30 +4,25 @@ using UnityEngine.Events;
 namespace DC_ARPG
 {
     [RequireComponent(typeof(BoxCollider))]
-    public class StoryEventTrigger : MonoBehaviour, IDataPersistence
+    public class Checkpoint : MonoBehaviour, IDataPersistence
     {
-        [SerializeField] private StoryEventInfo m_storyEventInfo;
-        [Space]
-        public UnityEvent EventOnStoryEventEnd;
+        private bool m_used = false;
 
-        private bool m_watched = false;
-
-        private void OnDestroy()
-        {
-            StoryEventManager.Instance.EventOnStoryEventEnded -= OnStoryEventEnded;
-        }
+        private event UnityAction eventOnSaved;
 
         private void OnTriggerEnter(Collider other)
         {
-            if (other.transform.root.GetComponent<Player>())
+            if (other.transform.root.TryGetComponent(out Player player))
             {
-                if (!m_watched)
+                if (!m_used)
                 {
-                    m_watched = true;
+                    m_used = true;
 
-                    StoryEventManager.Instance.StartEvent(m_storyEventInfo);
+                    eventOnSaved += OnSaveCompleted;
 
-                    StoryEventManager.Instance.EventOnStoryEventEnded += OnStoryEventEnded;
+                    player.SavePosition(transform.position);
+
+                    SceneSerializer.Instance.SaveSceneData();
                 }
                 else
                 {
@@ -36,9 +31,9 @@ namespace DC_ARPG
             }
         }
 
-        private void OnStoryEventEnded()
+        private void OnSaveCompleted()
         {
-            EventOnStoryEventEnd?.Invoke();
+            eventOnSaved -= OnSaveCompleted;
 
             Destroy(gameObject);
         }
@@ -49,7 +44,7 @@ namespace DC_ARPG
         public class DataState
         {
             public bool enabled;
-            public bool watched;
+            public bool used;
 
             public DataState() { }
         }
@@ -68,8 +63,10 @@ namespace DC_ARPG
         {
             DataState s = new DataState();
 
-            s.watched = m_watched;
+            s.used = m_used;
             s.enabled = gameObject.activeInHierarchy;
+
+            eventOnSaved?.Invoke();
 
             return JsonUtility.ToJson(s);
         }
@@ -78,7 +75,7 @@ namespace DC_ARPG
         {
             DataState s = JsonUtility.FromJson<DataState>(state);
 
-            m_watched = s.watched;
+            m_used = s.used;
             gameObject.SetActive(s.enabled);
         }
 

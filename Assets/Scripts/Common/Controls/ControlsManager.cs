@@ -25,6 +25,8 @@ namespace DC_ARPG
         [SerializeField] private StoryEventInputController m_storyEventInputController;
         [SerializeField] private ShopInputController m_shopInputController;
 
+        [SerializeField] private SimpleMenuInputController m_simpleMenuInputController;
+
         private Controls _controls;
         public Controls Controls => _controls;
 
@@ -67,6 +69,19 @@ namespace DC_ARPG
             m_shopInputController.enabled = state;
         }
 
+        public void SetSimpleMenuControlsActive(bool state)
+        {
+            if (m_simpleMenuInputController == null)
+            {
+                m_simpleMenuInputController = FindObjectOfType<SimpleMenuInputController>(true);
+
+                if (m_simpleMenuInputController == null) return;
+            }
+
+            if (state == true) GameState.State = GameState.GameplayState.NotActive;
+            m_simpleMenuInputController.enabled = state;
+        }
+
         private void OnEnable()
         {
             Cursor.lockState = CursorLockMode.Locked;
@@ -79,6 +94,7 @@ namespace DC_ARPG
             SetInventoryControlsActive(false);
             SetStoryEventControlsActive(false);
             SetShopControlsActive(false);
+            SetSimpleMenuControlsActive(false);
 
             SceneManager.sceneLoaded += OnSceneLoaded;
         }

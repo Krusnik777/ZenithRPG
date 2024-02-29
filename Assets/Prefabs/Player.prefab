@@ -249,7 +249,19 @@ MonoBehaviour:
   m_items: []
   OnPlayerDeath:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7667306109337942485}
+        m_TargetAssemblyTypeName: DC_ARPG.RestartMenu, Assembly-CSharp
+        m_MethodName: ShowPanel
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &4819952332562705510
 GameObject:
   m_ObjectHideFlags: 0
@@ -1646,3 +1658,14 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 9181233733659814916, guid: 4f3e8235f751ded46817d4ea532ab1e9, type: 3}
   m_PrefabInstance: {fileID: 8619088512307035455}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &7667306109337942485 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2160207327568905450, guid: 4f3e8235f751ded46817d4ea532ab1e9, type: 3}
+  m_PrefabInstance: {fileID: 8619088512307035455}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3c402c37eda04f4ab4d12628d258932, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

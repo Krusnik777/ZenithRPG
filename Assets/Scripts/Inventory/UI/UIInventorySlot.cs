@@ -27,6 +27,17 @@ namespace DC_ARPG
         {
             if (m_uiInventory.Player.CheckForwardGridIsEmpty() == true)
             {
+                if (m_uiInventory.Player.CheckForwardGridForInsectableObject() is Pit)
+                {
+                    ShortMessage.Instance.ShowMessage("Предмет пропал в недрах ямы.");
+
+                    Inventory.RemoveItemFromInventory(this, m_inventorySlot);
+
+                    UISounds.Instance.PlayItemRemovedSound();
+
+                    return;
+                }
+
                 var itemContainer = Instantiate(m_inventorySlot.Item.Info.Prefab, m_uiInventory.Player.transform.position + m_uiInventory.Player.transform.forward, Quaternion.identity);
                 itemContainer.GetComponent<ItemContainer>().SetupCreatedContainer();
                 itemContainer.GetComponent<ItemContainer>().AssignItem(m_inventorySlot.Item);

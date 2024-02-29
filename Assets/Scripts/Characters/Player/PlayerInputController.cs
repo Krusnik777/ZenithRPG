@@ -51,6 +51,7 @@ namespace DC_ARPG
             // TEMP
             _controls.Gameplay.TEMP_Load.performed += Load;
             _controls.Gameplay.TEMP_Save.performed += Save;
+            //
         }
 
         private void OnDisable()
@@ -219,8 +220,6 @@ namespace DC_ARPG
         private void OnPause(InputAction.CallbackContext obj)
         {
             if (player.State != Player.PlayerState.Active || !player.ActionsIsAvailable) return;
-
-            // DEBUG
 
             PauseMenu.Instance.ShowPauseMenu();
         }

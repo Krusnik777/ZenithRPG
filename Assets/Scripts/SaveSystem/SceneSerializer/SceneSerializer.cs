@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
 namespace DC_ARPG
@@ -13,9 +14,18 @@ namespace DC_ARPG
         [SerializeField] private string m_fileName;
         [SerializeField] private bool m_useEncryption;
 
+        public event UnityAction EventOnSaved;
+
         private FileDataHandler<SceneData> m_dataHandler;
 
         private SceneData m_sceneData;
+
+        public bool CheckSaveExists() => m_dataHandler.CheckIfSaveFileExist();
+
+        public void DeleteCheckpoints()
+        {
+            m_dataHandler.Delete();
+        }
 
         public void SaveSceneData()
         {
@@ -39,7 +49,7 @@ namespace DC_ARPG
 
             m_dataHandler.Save(m_sceneData);
 
-            Debug.Log("Saved");
+            EventOnSaved?.Invoke();
         }
 
         public void LoadSceneData()
@@ -124,9 +134,14 @@ namespace DC_ARPG
             LoadSceneData();
         }
 
-        // TEMP
+        // TEMP DEBUG
 
         public void Restart() => SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().name);
+        public void RestartFromStart()
+        {
+            DeleteCheckpoints();
+            SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().name);
+        }
 
         public void Save() => SaveSceneData();
     }
