@@ -91,6 +91,15 @@ namespace DC_ARPG
                     return;
                 }
 
+                if (inspectableObject is Exit)
+                {
+                    m_buttonInfoPanel.SetActive(true);
+
+                    m_useText.text = "Уйти";
+
+                    return;
+                }
+
                 m_buttonInfoPanel.SetActive(false);
                 m_useText.text = "Использовать";
             }

@@ -173,7 +173,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6826658745282541354, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_3ee0384d-3b2f-4f6d-90a5-60bbceb90841
+      value: MinimapIcon_2dbcc4d8-83f9-4476-9be0-756779568dfb
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_Name
@@ -250,7 +250,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4837471904548248550, guid: edd9d584652991f4c945ac07ae3156ea, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_df2a6eca-fdf2-4cde-ade4-5d5281d3c962
+      value: MinimapIcon_70ffabb1-7a95-42bd-8979-9160a058bdfb
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: edd9d584652991f4c945ac07ae3156ea, type: 3}
       propertyPath: m_Name
@@ -316,7 +316,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4837471904548248550, guid: edd9d584652991f4c945ac07ae3156ea, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_2f197f45-49fb-44d2-858c-5170570ef0ec
+      value: MinimapIcon_1274bdb0-c0f2-4dd5-82df-e0603240211e
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: edd9d584652991f4c945ac07ae3156ea, type: 3}
       propertyPath: m_Name
@@ -382,7 +382,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4837471904548248550, guid: edd9d584652991f4c945ac07ae3156ea, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_02191e95-5030-465e-8e88-a34c4a9e0aa7
+      value: MinimapIcon_916cff2e-584c-47fa-ae68-81fc229573d8
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: edd9d584652991f4c945ac07ae3156ea, type: 3}
       propertyPath: m_Name
@@ -448,7 +448,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4837471904548248550, guid: edd9d584652991f4c945ac07ae3156ea, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_61867960-583c-4b0e-8287-46467161ad5c
+      value: MinimapIcon_4e27b483-6517-4d23-a00b-2aba0cb699bf
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: edd9d584652991f4c945ac07ae3156ea, type: 3}
       propertyPath: m_Name
@@ -514,7 +514,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4837471904548248550, guid: edd9d584652991f4c945ac07ae3156ea, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_595c47fc-fdf8-4c1e-9de3-f9080ef19c7b
+      value: MinimapIcon_2e1dcf22-1917-4d03-90ad-dea62b7f73ef
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: edd9d584652991f4c945ac07ae3156ea, type: 3}
       propertyPath: m_Name
@@ -580,7 +580,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6826658745282541354, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_f3189d1d-27fe-461f-8f9b-c0846bede223
+      value: MinimapIcon_d7cc940a-20ab-426c-bfd7-e60539816ad7
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_Name
@@ -646,7 +646,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2409355474575640235, guid: 49a2ba884993f2b4283e2cbabf66e153, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_d9d2cff3-4161-415a-89f2-544d0288e7cb
+      value: MinimapIcon_761812d6-a1b3-415e-b326-9e159883061c
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 49a2ba884993f2b4283e2cbabf66e153, type: 3}
       propertyPath: m_Name
@@ -712,7 +712,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2409355474575640235, guid: 49a2ba884993f2b4283e2cbabf66e153, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_0dcfde5d-0b5b-4403-b83e-92340b992895
+      value: MinimapIcon_f45656d1-4a2b-4b01-b138-c648b434b307
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 49a2ba884993f2b4283e2cbabf66e153, type: 3}
       propertyPath: m_Name
@@ -778,7 +778,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6826658745282541354, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_2904608e-199d-46b3-9787-206be2aa288a
+      value: MinimapIcon_9073f374-d4e7-4a25-beb8-339e3efed728
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_Name
@@ -855,7 +855,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2409355474575640235, guid: 49a2ba884993f2b4283e2cbabf66e153, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_2d96dac1-e264-4df2-8e9c-6a76da4e6690
+      value: MinimapIcon_d1c01cd1-928c-4b76-99b9-c4cf6db8abcb
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 49a2ba884993f2b4283e2cbabf66e153, type: 3}
       propertyPath: m_Name
@@ -921,7 +921,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6826658745282541354, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_15915658-7db9-4ba0-b42e-8f0548cb4c0e
+      value: MinimapIcon_b957b97b-009a-41f0-909c-2befdf5bc5ea
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_Name
@@ -987,7 +987,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6826658745282541354, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_4fd3985d-0dc3-4914-90dc-40f231da48ba
+      value: MinimapIcon_dd44981c-bb98-41ad-b149-5130b05f62ce
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_Name
@@ -1053,7 +1053,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4837471904548248550, guid: edd9d584652991f4c945ac07ae3156ea, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_e7340181-ed64-46ca-a008-72faadf2681b
+      value: MinimapIcon_855c65fa-c857-40d4-a7e5-666bf1e3d582
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: edd9d584652991f4c945ac07ae3156ea, type: 3}
       propertyPath: m_Name
@@ -1119,7 +1119,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4837471904548248550, guid: edd9d584652991f4c945ac07ae3156ea, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_397ab986-8089-476b-a55c-7568fe975a25
+      value: MinimapIcon_b1951475-9135-41fc-ac9d-1e6082c5bd7b
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: edd9d584652991f4c945ac07ae3156ea, type: 3}
       propertyPath: m_Name
@@ -1196,7 +1196,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6826658745282541354, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_616fea15-4f2a-4c6c-ba68-ffb588aba915
+      value: MinimapIcon_fdd89a69-b43b-43da-a347-bf16152a2c55
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_Name
@@ -1262,7 +1262,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6826658745282541354, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_4ae9ad59-29f3-4701-a83c-350c9e1f28af
+      value: MinimapIcon_d1b42e8e-e819-4a42-be93-b11661f055a1
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_Name
@@ -1328,7 +1328,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6826658745282541354, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_e1fe470b-e011-47cb-a9ed-c8a147c5c3ef
+      value: MinimapIcon_125d60b0-09d7-4ca9-bf26-15088a33bf35
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_Name
@@ -1405,7 +1405,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4837471904548248550, guid: edd9d584652991f4c945ac07ae3156ea, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_b3ee7c5c-9dbf-4b9c-aa00-b06c077bedb9
+      value: MinimapIcon_8d758fcb-e7fb-4cd8-af71-dfbdee1f6a67
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: edd9d584652991f4c945ac07ae3156ea, type: 3}
       propertyPath: m_Name
@@ -1573,7 +1573,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2409355474575640235, guid: 49a2ba884993f2b4283e2cbabf66e153, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_994f6f12-55e9-4fcd-ac01-f8226d8e0db2
+      value: MinimapIcon_e5b8b46b-cdf0-4554-9d8b-acfe5c918c95
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 49a2ba884993f2b4283e2cbabf66e153, type: 3}
       propertyPath: m_Name
@@ -1639,7 +1639,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6826658745282541354, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_91acf4e6-6dfc-403c-a0b3-176c7338fb32
+      value: MinimapIcon_f37de6f5-8d9d-4c60-bd0c-679f0ce5d44c
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_Name
@@ -1705,7 +1705,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6826658745282541354, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_ce01e955-931f-46fd-a1a7-d250c19b94b1
+      value: MinimapIcon_36ac65a7-cec2-4a85-bafc-fc1bbdf76e41
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_Name
@@ -1771,7 +1771,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2409355474575640235, guid: 49a2ba884993f2b4283e2cbabf66e153, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_a87a3e7d-6977-4b58-84b2-9710aa9e0b6e
+      value: MinimapIcon_cb5aac8e-14c8-4976-b3da-20c5c1bb4596
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 49a2ba884993f2b4283e2cbabf66e153, type: 3}
       propertyPath: m_Name
@@ -1837,7 +1837,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4837471904548248550, guid: edd9d584652991f4c945ac07ae3156ea, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_9a6b8d47-4443-45fe-afb7-f582328d79ca
+      value: MinimapIcon_a3c60570-621d-4ead-821a-17a07b5de02b
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: edd9d584652991f4c945ac07ae3156ea, type: 3}
       propertyPath: m_Name
@@ -1903,7 +1903,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6826658745282541354, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_bc599c09-d787-4b5b-aaf2-e4c4e9acce5d
+      value: MinimapIcon_21d59d0a-5100-4ccd-8e5b-d324aee67621
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_Name
@@ -1980,7 +1980,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4837471904548248550, guid: edd9d584652991f4c945ac07ae3156ea, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_3eb293a6-dbf5-4253-9273-47ed0822a7d3
+      value: MinimapIcon_f0a9298b-3c16-4e6f-a188-6874d135817e
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: edd9d584652991f4c945ac07ae3156ea, type: 3}
       propertyPath: m_Name
@@ -2046,7 +2046,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4837471904548248550, guid: edd9d584652991f4c945ac07ae3156ea, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_b0792708-e8a6-4159-ae59-4305aa73406a
+      value: MinimapIcon_1cbd5898-91ca-463e-9029-5381c6398094
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: edd9d584652991f4c945ac07ae3156ea, type: 3}
       propertyPath: m_Name
@@ -2112,7 +2112,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6826658745282541354, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_992b53c1-db1a-4584-802b-d9caa9b92402
+      value: MinimapIcon_cef057fc-348f-4b0b-9fc4-40a7b2351e1b
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_Name
@@ -2189,7 +2189,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6826658745282541354, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_181abd09-1755-42d5-abe2-83629258a6ce
+      value: MinimapIcon_3ad80880-adbd-41f9-b08c-5bf884e038cb
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_Name
@@ -2255,7 +2255,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6826658745282541354, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_58c3fd63-8c64-4916-823b-b1e3d5d9297f
+      value: MinimapIcon_b966fa48-c984-4207-9914-1a91fea30eb8
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_Name
@@ -2332,7 +2332,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6826658745282541354, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_2afddbe8-83c6-4230-8025-12d988ad9c57
+      value: MinimapIcon_4b5b1919-8638-4150-a8a4-ef5d6a094a40
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_Name
@@ -2398,7 +2398,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2409355474575640235, guid: 49a2ba884993f2b4283e2cbabf66e153, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_7e3f4fd3-b718-4bf9-a46d-c4cb39ea2e4a
+      value: MinimapIcon_8a3fffe6-9bc5-4256-9638-1b40095f09aa
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 49a2ba884993f2b4283e2cbabf66e153, type: 3}
       propertyPath: m_Name
@@ -2464,7 +2464,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2409355474575640235, guid: 49a2ba884993f2b4283e2cbabf66e153, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_243f96ab-1898-4f80-a65f-bfba5008a0a9
+      value: MinimapIcon_a3b42d34-73bf-41f1-838a-1b1e92b512ae
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 49a2ba884993f2b4283e2cbabf66e153, type: 3}
       propertyPath: m_Name
@@ -2580,7 +2580,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6826658745282541354, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_08a75148-b5c8-4924-b61f-ece23f7eee8c
+      value: MinimapIcon_066fa123-7ac3-4d01-8827-e4a576edd7e0
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_Name
@@ -2646,7 +2646,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4837471904548248550, guid: edd9d584652991f4c945ac07ae3156ea, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_f552daca-e5a1-4e4f-b538-4fb8098227fe
+      value: MinimapIcon_59a51141-5b95-45fb-9953-9510a2c7c3fa
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: edd9d584652991f4c945ac07ae3156ea, type: 3}
       propertyPath: m_Name
@@ -2712,7 +2712,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3932770425156550699, guid: 5e4ae6f099e21b843b34ac8b276ddbee, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_2603278a-b74b-4af9-8533-c4b966aebb56
+      value: MinimapIcon_7e7bb927-bf7e-4ac7-81bb-44e21cd349fe
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 5e4ae6f099e21b843b34ac8b276ddbee, type: 3}
       propertyPath: m_Name
@@ -2778,7 +2778,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6826658745282541354, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_68e82aa7-cce3-4d85-9b11-1e26f9210ad5
+      value: MinimapIcon_4627512e-6bd5-4989-9fd1-dec19a721200
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_Name
@@ -2855,7 +2855,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6826658745282541354, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_9b74a466-2e36-4c7e-b7ee-756dd830b701
+      value: MinimapIcon_fb8f5c8d-ccc5-49bc-be6b-540ec4f8c08f
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_Name
@@ -2921,7 +2921,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2409355474575640235, guid: 49a2ba884993f2b4283e2cbabf66e153, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_7d9e8ebc-b9e3-4763-8cc6-4cc82b972961
+      value: MinimapIcon_5c60c37c-bda4-4eeb-aa63-b44aa3498c14
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 49a2ba884993f2b4283e2cbabf66e153, type: 3}
       propertyPath: m_Name
@@ -3114,7 +3114,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4837471904548248550, guid: edd9d584652991f4c945ac07ae3156ea, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_fe08f4e1-50f7-4ff0-a4b7-4797047de324
+      value: MinimapIcon_60226a8e-b7f6-4bdd-9b46-5f5dee40d4e5
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: edd9d584652991f4c945ac07ae3156ea, type: 3}
       propertyPath: m_Name
@@ -3180,7 +3180,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2409355474575640235, guid: 49a2ba884993f2b4283e2cbabf66e153, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_2017e6d3-b45c-4675-b759-aafbb718f2f1
+      value: MinimapIcon_36578894-2bfb-4e0e-8c58-5fe937d85c83
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 49a2ba884993f2b4283e2cbabf66e153, type: 3}
       propertyPath: m_Name
@@ -3246,7 +3246,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6826658745282541354, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_ebfbf190-a202-4b46-ad77-d6262825da98
+      value: MinimapIcon_8437536d-8475-4821-b6a9-6f1eeb481a0e
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_Name
@@ -3323,7 +3323,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6826658745282541354, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_d86789fe-f3aa-460b-a451-d6a07d6a5b7d
+      value: MinimapIcon_5f67b19f-692c-496b-a4c3-43f509a32b0d
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_Name
@@ -3404,7 +3404,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9107960523142778496, guid: bc7578952805e2e459640158e3b44220, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_f8860472-5d56-40bf-bc97-9c4262ff92ce
+      value: MinimapIcon_edd5aef6-13d7-49e0-abc2-1f56deb7ee98
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3466,7 +3466,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6826658745282541354, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_f2a3fbc3-cfce-46ea-af7d-00266b32cd1e
+      value: MinimapIcon_1c13f736-b968-4ded-816f-318322543811
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_Name
@@ -3536,7 +3536,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9107960523142778496, guid: bc7578952805e2e459640158e3b44220, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_c4685195-ed05-48a4-8b23-bfe4cf8495b9
+      value: MinimapIcon_32400aa3-9cd5-42b9-b47b-c55e634e1007
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3598,7 +3598,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4837471904548248550, guid: edd9d584652991f4c945ac07ae3156ea, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_95328845-6ac3-4a4e-8ae1-2cb546082506
+      value: MinimapIcon_3b0c9d67-fa81-4f5a-9b4d-3e6a11d89a43
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: edd9d584652991f4c945ac07ae3156ea, type: 3}
       propertyPath: m_Name
@@ -3664,7 +3664,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6826658745282541354, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_bde8e2d9-2122-436a-8e5d-2fecd83613c2
+      value: MinimapIcon_1ca60df2-3a74-4939-a85b-ac5b3a6466dc
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_Name
@@ -3741,7 +3741,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6826658745282541354, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_2d3036e2-f52c-418d-8832-3470a0b30086
+      value: MinimapIcon_eb15e6ab-acc3-43dc-8f66-897ff0c8d2fb
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_Name
@@ -3818,7 +3818,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4837471904548248550, guid: edd9d584652991f4c945ac07ae3156ea, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_c6275cd0-9140-46a3-9e00-d5e617bdc797
+      value: MinimapIcon_f1f519dc-cab7-4581-819e-f2cc779630c5
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: edd9d584652991f4c945ac07ae3156ea, type: 3}
       propertyPath: m_Name
@@ -3884,7 +3884,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2409355474575640235, guid: 49a2ba884993f2b4283e2cbabf66e153, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_e2a8e75e-eb80-47e7-a9a5-894c4b1d66dd
+      value: MinimapIcon_2b4edd99-a9c2-4722-809d-e9e66c12cd25
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 49a2ba884993f2b4283e2cbabf66e153, type: 3}
       propertyPath: m_Name
@@ -3950,7 +3950,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6826658745282541354, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_4299f5c4-082b-4828-be0e-e5ca63a989a2
+      value: MinimapIcon_e316e8ad-7072-4a0f-85ff-fc98a6dec035
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_Name
@@ -4027,7 +4027,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6826658745282541354, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_113a3fcd-0d8f-4365-becf-51e88d8fefb6
+      value: MinimapIcon_3709ab92-bfdd-412a-b4be-58fa01b609c6
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_Name
@@ -4093,7 +4093,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4837471904548248550, guid: edd9d584652991f4c945ac07ae3156ea, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_162a0d88-ce94-46bf-aaee-1aef024ff14d
+      value: MinimapIcon_0ec2ad5c-05e5-45e9-957b-70b208667b06
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: edd9d584652991f4c945ac07ae3156ea, type: 3}
       propertyPath: m_Name
@@ -4159,7 +4159,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4837471904548248550, guid: edd9d584652991f4c945ac07ae3156ea, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_fe56db74-d3cb-4bfd-a3ad-779c206f2c39
+      value: MinimapIcon_bdfa570b-9014-4869-8be5-06da2a53e6d8
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: edd9d584652991f4c945ac07ae3156ea, type: 3}
       propertyPath: m_Name
@@ -4225,7 +4225,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4837471904548248550, guid: edd9d584652991f4c945ac07ae3156ea, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_7b938132-5e4e-4db1-99fd-f3df3f89a0e9
+      value: MinimapIcon_11d87900-d578-4b60-a182-0648fc9b58d6
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: edd9d584652991f4c945ac07ae3156ea, type: 3}
       propertyPath: m_Name
@@ -4291,7 +4291,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6826658745282541354, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_31cd223a-779f-427b-9e31-f78c5ca21066
+      value: MinimapIcon_e500be8c-1bfe-48bf-b5bf-09f1a7acedc3
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_Name
@@ -4357,7 +4357,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2409355474575640235, guid: 49a2ba884993f2b4283e2cbabf66e153, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_317ead07-e273-494a-8695-12c87ac2afac
+      value: MinimapIcon_53b93222-382d-4474-878d-c2d2df75b912
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 49a2ba884993f2b4283e2cbabf66e153, type: 3}
       propertyPath: m_Name
@@ -4423,7 +4423,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6826658745282541354, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_e61d5b4d-4703-433b-b39b-3f3305b10596
+      value: MinimapIcon_f66e4a04-6470-4076-a8b9-270ad9c75779
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_Name
@@ -4500,7 +4500,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6826658745282541354, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_c8577b56-ab5f-48fd-a144-e2435cca48f3
+      value: MinimapIcon_84283e15-0af8-47ac-a04e-e74713f9238a
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_Name
@@ -4566,7 +4566,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6826658745282541354, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_c107eec7-beba-43ff-bc4d-5576a2e53e3e
+      value: MinimapIcon_51abda57-1d02-4068-878e-e0ccb20551b8
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_Name
@@ -4643,7 +4643,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6826658745282541354, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_674308b4-edc3-4978-90bb-50c61ac067f0
+      value: MinimapIcon_24bb582a-3a1f-4106-8526-6183723eb85d
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_Name
@@ -4720,7 +4720,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6826658745282541354, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_79cd01ac-1c07-464b-b32a-3dda071aab98
+      value: MinimapIcon_99822390-d3dd-43b7-abe0-c93c0b415b3d
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_Name
@@ -4797,7 +4797,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6826658745282541354, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_ad4c2957-becd-4b7a-87f9-c4a88797a832
+      value: MinimapIcon_595608be-32af-463c-8b16-628be5365eb7
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_Name
@@ -4863,7 +4863,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4837471904548248550, guid: edd9d584652991f4c945ac07ae3156ea, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_f552b3d4-1ba7-4390-b4a8-0d51dd0b16b6
+      value: MinimapIcon_7f46d7d4-2063-44d7-a452-5e69459a9d19
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: edd9d584652991f4c945ac07ae3156ea, type: 3}
       propertyPath: m_Name
@@ -4929,7 +4929,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4837471904548248550, guid: edd9d584652991f4c945ac07ae3156ea, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_a4d54ff4-e076-4d68-8170-36d8c8557c3b
+      value: MinimapIcon_6d08bb3b-f3b7-492a-8521-432b214195fd
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: edd9d584652991f4c945ac07ae3156ea, type: 3}
       propertyPath: m_Name
@@ -4995,7 +4995,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6826658745282541354, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_31a2632d-d961-4ff6-8910-5e24177c593e
+      value: MinimapIcon_82808d24-8c71-429c-9c27-0b62b82c7e79
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_Name
@@ -5072,7 +5072,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6826658745282541354, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_d191c803-d7a8-4991-8f66-12e06ff8eeab
+      value: MinimapIcon_1be3a624-b8bc-47a6-b9f6-4e0c5833365c
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_Name
@@ -5149,7 +5149,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6826658745282541354, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_b899e632-92b8-446a-b0fa-1388f86f53e7
+      value: MinimapIcon_f0205167-af3c-4829-9778-5752b1fd5d61
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_Name
@@ -5215,7 +5215,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2409355474575640235, guid: 49a2ba884993f2b4283e2cbabf66e153, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_80674c69-e5bd-4f7b-bd20-0f58bf797818
+      value: MinimapIcon_2822a66e-0882-43db-aa71-e0be3f49800c
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 49a2ba884993f2b4283e2cbabf66e153, type: 3}
       propertyPath: m_Name
@@ -5359,7 +5359,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6826658745282541354, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_acf845e5-5b4a-4675-840d-eb21d12989a6
+      value: MinimapIcon_75379673-bdf6-476c-823a-bb1b821e90e5
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_Name
@@ -5425,7 +5425,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6826658745282541354, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_12439667-9eae-41cd-b2de-9691aed950c1
+      value: MinimapIcon_43f13abf-9969-4eee-9f04-c72caae9bffb
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_Name
@@ -5491,7 +5491,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6826658745282541354, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_58537fe5-c911-40ee-833c-c69b37c652da
+      value: MinimapIcon_d83e6db5-bd08-42b4-be52-e115ca129226
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_Name
@@ -5528,7 +5528,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 280643224670735673, guid: 7e5ed5991c43f6346a4d37c1d3b20e14, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_1343e498-b0fc-4bc0-8258-acdc5966b682
+      value: MinimapIcon_a2477986-3c63-424b-8cca-f2d201da9eae
       objectReference: {fileID: 0}
     - target: {fileID: 388919840688140952, guid: 7e5ed5991c43f6346a4d37c1d3b20e14, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5642,7 +5642,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6826658745282541354, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_d8cb804c-568e-4b95-ae67-8fd83aeca9a1
+      value: MinimapIcon_bdeb2710-31ac-4bf8-94c8-9e8116af9783
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_Name
@@ -5719,7 +5719,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6826658745282541354, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_a983a705-2ab8-421a-9513-1bf7bea622ea
+      value: MinimapIcon_e333b4a8-a798-4939-af1c-d143c022463e
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_Name
@@ -5796,7 +5796,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6826658745282541354, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_50bc79cc-83f7-459a-acfd-653a0eb3a8ae
+      value: MinimapIcon_ab56e49b-9083-40ef-a463-ea614a895549
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_Name
@@ -5879,6 +5879,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4915202404410297225, guid: 6a4eaf30a68e2424d85431c5fdd70034, type: 3}
+      propertyPath: m_enemyStatsInfo
+      value: 
+      objectReference: {fileID: 11400000, guid: b7c4442512edae744966f2ec78e63fa0, type: 2}
     - target: {fileID: 4915202404410297225, guid: 6a4eaf30a68e2424d85431c5fdd70034, type: 3}
       propertyPath: OnEnemyDeath.m_PersistentCalls.m_Calls.Array.size
       value: 1
@@ -6151,7 +6155,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4837471904548248550, guid: edd9d584652991f4c945ac07ae3156ea, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_8d969124-fd27-4a22-b2bf-705a19c7b106
+      value: MinimapIcon_54c8eb4b-722e-431a-a659-1d1e97cad760
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: edd9d584652991f4c945ac07ae3156ea, type: 3}
       propertyPath: m_Name
@@ -6217,7 +6221,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6826658745282541354, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_2ba4e30a-2fbc-44bc-8060-84036fd6e089
+      value: MinimapIcon_901b7dbf-20f0-4fe3-ad02-cfe7a2af0957
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_Name
@@ -6283,7 +6287,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2409355474575640235, guid: 49a2ba884993f2b4283e2cbabf66e153, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_2dcf86fb-e4ac-401e-a062-9c8eedd5552d
+      value: MinimapIcon_f056cb0e-e8a6-4da7-a71b-717ccfd7566f
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 49a2ba884993f2b4283e2cbabf66e153, type: 3}
       propertyPath: m_Name
@@ -6349,7 +6353,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2409355474575640235, guid: 49a2ba884993f2b4283e2cbabf66e153, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_7d16415e-ba38-43eb-b672-adc7de0fc611
+      value: MinimapIcon_47512a49-4ba3-44b6-ba0d-d2b9711e077f
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 49a2ba884993f2b4283e2cbabf66e153, type: 3}
       propertyPath: m_Name
@@ -6415,7 +6419,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6826658745282541354, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_b01cd00b-766f-4712-a4f2-6bba3f3bba74
+      value: MinimapIcon_8ad40ae5-1cd0-4763-bdbb-332eb3fa9274
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_Name
@@ -6551,7 +6555,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6826658745282541354, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_2e984552-9834-42ef-a1df-9c53593ee8ae
+      value: MinimapIcon_4962a578-acff-4138-8e35-00e3c6654e0a
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_Name
@@ -6764,7 +6768,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6826658745282541354, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_0730872d-814b-40ca-b542-418871e88acd
+      value: MinimapIcon_509a4cd1-39fb-4cf8-85fb-9e56d6038aff
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_Name
@@ -6956,7 +6960,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2409355474575640235, guid: 49a2ba884993f2b4283e2cbabf66e153, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_692f4d3a-ae6b-463a-b6fa-0de3ffe57e13
+      value: MinimapIcon_3f959611-d4a5-435f-bc34-a126fe050f96
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 49a2ba884993f2b4283e2cbabf66e153, type: 3}
       propertyPath: m_Name
@@ -7022,7 +7026,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4837471904548248550, guid: edd9d584652991f4c945ac07ae3156ea, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_2df481c5-a711-42cf-93fa-805dbd581e99
+      value: MinimapIcon_054459ce-839c-411a-b8e3-312e695834ba
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: edd9d584652991f4c945ac07ae3156ea, type: 3}
       propertyPath: m_Name
@@ -7088,7 +7092,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2409355474575640235, guid: 49a2ba884993f2b4283e2cbabf66e153, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_0a6d994b-61e6-43e8-87a2-44f6f45c0445
+      value: MinimapIcon_f82597d1-5c5e-49a5-97aa-cd8ad7fb9ac6
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 49a2ba884993f2b4283e2cbabf66e153, type: 3}
       propertyPath: m_Name
@@ -7114,7 +7118,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 280643224670735673, guid: 7e5ed5991c43f6346a4d37c1d3b20e14, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_1f8973fc-bcd8-469e-b50d-88e4d4152af0
+      value: MinimapIcon_b424427d-ce86-4143-95e7-79e7145cbd84
       objectReference: {fileID: 0}
     - target: {fileID: 388919840688140952, guid: 7e5ed5991c43f6346a4d37c1d3b20e14, type: 3}
       propertyPath: m_LocalPosition.x
@@ -7235,7 +7239,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6826658745282541354, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_b1063e35-8c7f-4bef-bbf1-b73cd907bdd8
+      value: MinimapIcon_90205ddc-54ad-4f6d-860c-f7008480541d
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_Name
@@ -7301,7 +7305,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4837471904548248550, guid: edd9d584652991f4c945ac07ae3156ea, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_987a4189-3da0-4adc-bc88-4378258fc463
+      value: MinimapIcon_90247e81-3676-4541-a3aa-0311ad700f8a
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: edd9d584652991f4c945ac07ae3156ea, type: 3}
       propertyPath: m_Name
@@ -7367,7 +7371,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2409355474575640235, guid: 49a2ba884993f2b4283e2cbabf66e153, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_19a46d44-790a-42ca-831d-e5481c2a3cb5
+      value: MinimapIcon_1e69d099-71ea-4e93-b8a1-350e31da66fe
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 49a2ba884993f2b4283e2cbabf66e153, type: 3}
       propertyPath: m_Name
@@ -7433,7 +7437,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6826658745282541354, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_6031dab8-f853-4e04-b76b-0bb4b2d91031
+      value: MinimapIcon_8ab29dfa-ac60-4173-b3d8-6dd7d3e1751c
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_Name
@@ -7499,7 +7503,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6826658745282541354, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_a73af504-d802-41ef-b29f-fe39c5d9b085
+      value: MinimapIcon_69a98e3a-d62b-4774-b964-8c95edd5b273
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_Name
@@ -7565,7 +7569,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2409355474575640235, guid: 49a2ba884993f2b4283e2cbabf66e153, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_6130a4d6-3496-4fe9-91ef-541984ec4b94
+      value: MinimapIcon_cb43afc2-2147-4a85-86cd-f5c1cef81d98
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 49a2ba884993f2b4283e2cbabf66e153, type: 3}
       propertyPath: m_Name
@@ -7631,7 +7635,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2409355474575640235, guid: 49a2ba884993f2b4283e2cbabf66e153, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_5dd8e8c0-cc95-4f43-8d79-304c2f0b8245
+      value: MinimapIcon_903b2f37-a4e6-4fec-a02c-b970f3706f6c
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 49a2ba884993f2b4283e2cbabf66e153, type: 3}
       propertyPath: m_Name
@@ -7697,7 +7701,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6826658745282541354, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_cedac049-f5c4-4722-b13f-af790bf54438
+      value: MinimapIcon_6940428e-19bc-4f18-8d0e-dd457fc45853
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_Name
@@ -7774,7 +7778,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6826658745282541354, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_8967ac65-1ebb-4a8e-affa-5dd258874aa6
+      value: MinimapIcon_8baea66d-700b-41dd-8f28-4974c8be02b0
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_Name
@@ -7851,7 +7855,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6826658745282541354, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_c54c1454-0033-4a31-a71a-b53db47ed877
+      value: MinimapIcon_e91dcce1-9210-49cd-8c83-5717c6d146b0
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_Name
@@ -7917,7 +7921,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2409355474575640235, guid: 49a2ba884993f2b4283e2cbabf66e153, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_36e10bd0-a54b-4758-a438-179cf19aa439
+      value: MinimapIcon_89feeb42-54a5-4cf1-9676-b750bb5e6a1f
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 49a2ba884993f2b4283e2cbabf66e153, type: 3}
       propertyPath: m_Name
@@ -7983,7 +7987,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6826658745282541354, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_34d808d7-1d3a-451e-8e9f-a71a12ec54bd
+      value: MinimapIcon_7ee91080-e733-4066-a210-1f2b1cf478a9
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_Name
@@ -8049,7 +8053,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6826658745282541354, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_1ce4ab03-7e4f-46c4-b6e2-90b281e9a7c1
+      value: MinimapIcon_2a0c784c-7412-49cf-ab61-b94a65997e04
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_Name
@@ -8115,7 +8119,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6826658745282541354, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_0eff09d0-85ae-487e-aad7-3736b7e16323
+      value: MinimapIcon_ce39a529-f279-48fd-946b-4cbc67397ca4
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_Name
@@ -8130,72 +8134,6 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 489459555325452488, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
   m_PrefabInstance: {fileID: 649767022}
-  m_PrefabAsset: {fileID: 0}
---- !u!1001 &664379765
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 1713803245}
-    m_Modifications:
-    - target: {fileID: 489459555325452488, guid: edd9d584652991f4c945ac07ae3156ea, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 9.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 489459555325452488, guid: edd9d584652991f4c945ac07ae3156ea, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 489459555325452488, guid: edd9d584652991f4c945ac07ae3156ea, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 489459555325452488, guid: edd9d584652991f4c945ac07ae3156ea, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 489459555325452488, guid: edd9d584652991f4c945ac07ae3156ea, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 489459555325452488, guid: edd9d584652991f4c945ac07ae3156ea, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 489459555325452488, guid: edd9d584652991f4c945ac07ae3156ea, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 489459555325452488, guid: edd9d584652991f4c945ac07ae3156ea, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 489459555325452488, guid: edd9d584652991f4c945ac07ae3156ea, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 489459555325452488, guid: edd9d584652991f4c945ac07ae3156ea, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4837471904548248550, guid: edd9d584652991f4c945ac07ae3156ea, type: 3}
-      propertyPath: m_minimapIconId
-      value: MinimapIcon_03b8424b-1440-4ed7-ba45-f05964063bf9
-      objectReference: {fileID: 0}
-    - target: {fileID: 8524334448642957186, guid: edd9d584652991f4c945ac07ae3156ea, type: 3}
-      propertyPath: m_Name
-      value: Prison_WallL_90Angle
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: edd9d584652991f4c945ac07ae3156ea, type: 3}
---- !u!4 &664379766 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 489459555325452488, guid: edd9d584652991f4c945ac07ae3156ea, type: 3}
-  m_PrefabInstance: {fileID: 664379765}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &676044762
 PrefabInstance:
@@ -8247,7 +8185,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2409355474575640235, guid: 49a2ba884993f2b4283e2cbabf66e153, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_0007901a-f010-4dee-9974-964d3c3ef595
+      value: MinimapIcon_ef833ab8-cdde-4bd9-aabc-df3ab9960a48
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 49a2ba884993f2b4283e2cbabf66e153, type: 3}
       propertyPath: m_Name
@@ -8325,7 +8263,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 280643224670735673, guid: 7e5ed5991c43f6346a4d37c1d3b20e14, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_ecd931ce-986b-4cff-884b-1fea864d4e8a
+      value: MinimapIcon_e1492b73-59ea-419c-8802-bb422fbebfb8
       objectReference: {fileID: 0}
     - target: {fileID: 388919840688140952, guid: 7e5ed5991c43f6346a4d37c1d3b20e14, type: 3}
       propertyPath: m_LocalPosition.x
@@ -8443,7 +8381,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6826658745282541354, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_348bcfb7-b597-4add-af7f-6f23414a0b7f
+      value: MinimapIcon_d2cbfac2-7a35-4215-92df-07830330e1aa
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_Name
@@ -8509,7 +8447,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6826658745282541354, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_d79c1664-78bd-4cb8-8376-e294ab29d0d6
+      value: MinimapIcon_3970cd45-cd97-4a00-a93d-0c04223c0161
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_Name
@@ -8793,7 +8731,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2409355474575640235, guid: 49a2ba884993f2b4283e2cbabf66e153, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_529e36df-6278-40c8-8dd0-9f81b2d7045f
+      value: MinimapIcon_bb25c103-1cb0-4620-bbeb-33b089539bc6
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 49a2ba884993f2b4283e2cbabf66e153, type: 3}
       propertyPath: m_Name
@@ -8859,7 +8797,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2409355474575640235, guid: 49a2ba884993f2b4283e2cbabf66e153, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_c8597c0f-6a96-460e-9ac2-f59b362dcd94
+      value: MinimapIcon_76622636-1475-4e84-a5bb-028e0073f95a
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 49a2ba884993f2b4283e2cbabf66e153, type: 3}
       propertyPath: m_Name
@@ -8925,7 +8863,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4837471904548248550, guid: edd9d584652991f4c945ac07ae3156ea, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_b08bbc83-5eb7-49c1-8234-b70b63e051fe
+      value: MinimapIcon_611b34d5-556e-48ec-8f17-ea47be65859f
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: edd9d584652991f4c945ac07ae3156ea, type: 3}
       propertyPath: m_Name
@@ -8991,7 +8929,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2409355474575640235, guid: 49a2ba884993f2b4283e2cbabf66e153, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_0609ea97-b22c-49ca-bd68-eabcbaa13609
+      value: MinimapIcon_b0a36315-02dc-46bb-ac09-97d1eda11214
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 49a2ba884993f2b4283e2cbabf66e153, type: 3}
       propertyPath: m_Name
@@ -9057,7 +8995,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4837471904548248550, guid: edd9d584652991f4c945ac07ae3156ea, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_04935aca-73a5-41a8-b29a-50330178f734
+      value: MinimapIcon_503638b2-b50f-471e-9ce9-7c6a7fe32129
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: edd9d584652991f4c945ac07ae3156ea, type: 3}
       propertyPath: m_Name
@@ -9123,7 +9061,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6826658745282541354, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_f7ae813f-1513-4108-9b19-074f53b9b5e5
+      value: MinimapIcon_322aec3c-709a-4a13-b10f-2b7c7ca17789
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_Name
@@ -9189,7 +9127,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6826658745282541354, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_eff1a3b6-de65-4a66-9a69-5a95642eaa99
+      value: MinimapIcon_a9932984-ff69-440d-9b9d-aa36fe415c9d
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_Name
@@ -9255,7 +9193,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6826658745282541354, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_747bf949-21d5-4ca2-b0e6-5b372d78f0d7
+      value: MinimapIcon_a550ae26-c536-4e01-8e40-21a0e932d8ce
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_Name
@@ -9321,7 +9259,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6826658745282541354, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_987ef4c6-e0bf-422c-be9c-c34778ce3345
+      value: MinimapIcon_0e6437af-3446-4246-8d56-b987a90ff4cb
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_Name
@@ -9387,7 +9325,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4837471904548248550, guid: edd9d584652991f4c945ac07ae3156ea, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_9fe1406c-f750-4dcd-a355-6ed683d3282a
+      value: MinimapIcon_620508b7-ae0b-4f9e-830f-cec0a594254f
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: edd9d584652991f4c945ac07ae3156ea, type: 3}
       propertyPath: m_Name
@@ -9453,7 +9391,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6826658745282541354, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_2ef1bceb-7e03-43ae-8cdf-fa63dc5204bf
+      value: MinimapIcon_0893f15c-754c-4ea8-aa80-52cba6d54783
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_Name
@@ -9530,7 +9468,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6826658745282541354, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_3a005e6b-f711-4de3-b953-24444959bfd2
+      value: MinimapIcon_62c1ca4f-5616-43c7-996c-5eb7e20a78c5
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_Name
@@ -9607,7 +9545,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6826658745282541354, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_37115333-99c3-4bda-b985-0268b705188a
+      value: MinimapIcon_431c8b30-1040-45b8-b2fd-470d753bba88
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_Name
@@ -9688,7 +9626,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9107960523142778496, guid: bc7578952805e2e459640158e3b44220, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_d33cb584-488b-47ea-89a6-a0aaa404a1d5
+      value: MinimapIcon_482b7f95-602a-4eb1-b640-ac4fbc065661
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -9750,7 +9688,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4837471904548248550, guid: edd9d584652991f4c945ac07ae3156ea, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_518c1af2-b693-4d95-b732-635fcaaecf13
+      value: MinimapIcon_cfd4c058-c4ac-4153-a0cb-27ffb354c8f1
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: edd9d584652991f4c945ac07ae3156ea, type: 3}
       propertyPath: m_Name
@@ -9816,7 +9754,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6826658745282541354, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_d73409d0-cc4e-444b-a996-b47b16ff26ae
+      value: MinimapIcon_5209330b-cabf-482f-a0bd-12c32b7e0a4a
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_Name
@@ -9882,7 +9820,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6826658745282541354, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_a286eec3-f4c9-4996-abf2-aa315f060acf
+      value: MinimapIcon_8dc81874-8595-4a18-87b6-c1bf0bd64ea6
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_Name
@@ -9959,7 +9897,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6826658745282541354, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_616a4292-0abd-4eb0-8cbb-6f193bd306ef
+      value: MinimapIcon_d712a1c6-26f7-4e63-ae48-7952aa101a6a
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_Name
@@ -10025,7 +9963,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2409355474575640235, guid: 49a2ba884993f2b4283e2cbabf66e153, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_526e46af-a3f4-4dd8-9876-373f5970fad2
+      value: MinimapIcon_ebdfa3b7-a025-4bec-a7fa-25467c700963
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 49a2ba884993f2b4283e2cbabf66e153, type: 3}
       propertyPath: m_Name
@@ -10091,7 +10029,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6826658745282541354, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_237e5a51-1628-4b0b-827e-5ce75f604a49
+      value: MinimapIcon_f92189bd-7add-4fb6-bc28-af3c1d98e3a1
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_Name
@@ -10161,7 +10099,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9107960523142778496, guid: bc7578952805e2e459640158e3b44220, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_672a5e2d-3ede-4790-a17a-abfc968e8213
+      value: MinimapIcon_de7614e7-3ab3-4d5a-9705-2183758ec022
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -10223,7 +10161,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4837471904548248550, guid: edd9d584652991f4c945ac07ae3156ea, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_143ec952-127a-4b16-80ad-cbba8987243a
+      value: MinimapIcon_aee21ad0-48e2-4bfc-8b47-baf9c603c02b
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: edd9d584652991f4c945ac07ae3156ea, type: 3}
       propertyPath: m_Name
@@ -10289,7 +10227,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6826658745282541354, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_b0ca5319-4faf-49fe-982c-893385b75ccf
+      value: MinimapIcon_98609244-86f7-4920-b17e-8cd58c3343d8
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_Name
@@ -10355,7 +10293,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6826658745282541354, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_a399e881-3453-4524-934c-84857d5301c5
+      value: MinimapIcon_56e0810d-99c9-4176-b7bf-90ae7bd6c66a
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_Name
@@ -10465,7 +10403,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8878087963108433553, guid: 46b82607ee66fd34fad608322138db8d, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_039bce85-863a-4936-a7f0-b7a909f400d2
+      value: MinimapIcon_9e60fa30-f408-4a50-a4a9-208df3305810
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -10527,7 +10465,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4837471904548248550, guid: edd9d584652991f4c945ac07ae3156ea, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_1c225f74-a591-4c90-a4bd-79c0834d7fa0
+      value: MinimapIcon_701b1f12-bf1c-4d3a-8312-78d89570155b
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: edd9d584652991f4c945ac07ae3156ea, type: 3}
       propertyPath: m_Name
@@ -10593,7 +10531,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6826658745282541354, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_2ecfe767-6823-45f4-b01c-46fba62bdd61
+      value: MinimapIcon_7829c940-8df1-4191-af5d-8ab7278e47ae
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_Name
@@ -10663,7 +10601,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8990449376063212005, guid: 1ac4b555776cc90488e5149fe7dd9a06, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_02266c8a-124e-4bba-ac44-72c4b88d22e9
+      value: MinimapIcon_7311e011-53c2-4d3e-a340-f385a550aedd
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -10725,7 +10663,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2409355474575640235, guid: 49a2ba884993f2b4283e2cbabf66e153, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_82e34218-9057-473d-a5e6-b2a52c0a9bff
+      value: MinimapIcon_4b15d36b-2e9b-4463-9b85-c7f99e03336f
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 49a2ba884993f2b4283e2cbabf66e153, type: 3}
       propertyPath: m_Name
@@ -10791,7 +10729,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6826658745282541354, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_0999e7b5-95ee-43fd-91c8-d8c5913cd1bc
+      value: MinimapIcon_e8ec8e0e-4657-45b0-9fd1-223bab309e5c
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_Name
@@ -10857,7 +10795,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2409355474575640235, guid: 49a2ba884993f2b4283e2cbabf66e153, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_27d7501d-3ed6-41f7-b560-c5e38be52782
+      value: MinimapIcon_88a98f9a-9b62-4444-bf12-75707aa56570
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 49a2ba884993f2b4283e2cbabf66e153, type: 3}
       propertyPath: m_Name
@@ -10923,7 +10861,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6826658745282541354, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_0d1a8a69-1865-4449-94a2-acff7653293f
+      value: MinimapIcon_8ba7ed68-4580-40e6-8636-0ea8b74be6a2
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_Name
@@ -10993,7 +10931,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9107960523142778496, guid: bc7578952805e2e459640158e3b44220, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_b3cc2ec2-a964-4f20-8d95-059c228ecc0d
+      value: MinimapIcon_f4dd5522-7b29-4ff9-a373-424a9b77b2dc
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -11055,7 +10993,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4837471904548248550, guid: edd9d584652991f4c945ac07ae3156ea, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_d0559e82-f93e-42c6-baee-6c658ce73020
+      value: MinimapIcon_4b2ab567-2d51-4467-8d5f-d0321f2d7372
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: edd9d584652991f4c945ac07ae3156ea, type: 3}
       propertyPath: m_Name
@@ -11121,7 +11059,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6826658745282541354, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_e9e7d79d-0ce8-43ca-abf1-ef47268baacf
+      value: MinimapIcon_0103f736-48a2-488f-af80-f677d6920c3f
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_Name
@@ -11198,7 +11136,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6826658745282541354, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_0391eb31-3f0e-4ba4-b32a-e2b92a1f96a9
+      value: MinimapIcon_88653f74-7574-4ca9-89eb-469a3f5c244f
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_Name
@@ -11268,7 +11206,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9107960523142778496, guid: bc7578952805e2e459640158e3b44220, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_c9a9c942-8597-4c35-9309-3eeefa1b731c
+      value: MinimapIcon_2ce5dcaf-7f3c-4bc3-8df6-868e9ef717b0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -11330,7 +11268,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6826658745282541354, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_ed26e0a6-6db9-4a9b-ade9-28e60a3ab0b2
+      value: MinimapIcon_a7793997-b6ca-4cc0-a2b4-b46124bc6d67
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_Name
@@ -11396,7 +11334,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6826658745282541354, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_e71be2c2-42dd-4d2a-8a53-9e6dc16fa0a2
+      value: MinimapIcon_64bf66b0-5195-427d-963f-07d0b24db9ad
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_Name
@@ -11484,7 +11422,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6826658745282541354, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_13c98ef9-674c-447e-8bf2-4d05340f0b60
+      value: MinimapIcon_9052ddf2-24fe-47de-84ff-c12d6372cc92
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_Name
@@ -11561,7 +11499,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6826658745282541354, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_54c6fcf4-991f-4244-9d68-5b1db9921419
+      value: MinimapIcon_df20c8ba-1fdc-48a5-81d5-c262cc86434f
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_Name
@@ -11627,7 +11565,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6826658745282541354, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_77a0ae12-e714-4a12-9312-b050726d15e1
+      value: MinimapIcon_eb9d524d-b871-463d-9120-3ae24735bfbc
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_Name
@@ -11693,7 +11631,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6826658745282541354, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_1f90a6a4-b6da-4f42-b76c-f0ea7914767e
+      value: MinimapIcon_45f62655-62ad-402f-8975-d6c60f0a86a5
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_Name
@@ -11759,7 +11697,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6826658745282541354, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_3641a574-7825-4bae-8b5e-c640b7ba4df2
+      value: MinimapIcon_81a5e1b6-c914-4b0f-b3b9-43aeb4b1ac03
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_Name
@@ -11829,7 +11767,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9107960523142778496, guid: bc7578952805e2e459640158e3b44220, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_01010a79-5baa-49bf-bf76-cf44e821c087
+      value: MinimapIcon_b711cc93-5d49-4ec0-a745-edbaa36d042f
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -11931,7 +11869,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8878087963108433553, guid: 46b82607ee66fd34fad608322138db8d, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_e128c407-da2f-4c93-bb20-8c0fc4f81bf6
+      value: MinimapIcon_6dc4df3d-c636-4ffe-b373-a3252940be73
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -11993,7 +11931,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2409355474575640235, guid: 49a2ba884993f2b4283e2cbabf66e153, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_b8ae4c69-2329-4712-8fca-45b84f6470f4
+      value: MinimapIcon_e9468d67-cef4-464e-b80f-1eae42417c46
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 49a2ba884993f2b4283e2cbabf66e153, type: 3}
       propertyPath: m_Name
@@ -12059,7 +11997,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6826658745282541354, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_8248a16d-9bd5-435c-8eb8-f07a69ca7cb9
+      value: MinimapIcon_9ccc0528-6550-4335-b06e-d714532902ee
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_Name
@@ -12125,7 +12063,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6826658745282541354, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_3bf82e23-ce52-4fc9-88ef-630f1e5ef0a6
+      value: MinimapIcon_96084ae9-92b0-4e40-a15b-9373017658fa
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_Name
@@ -12191,7 +12129,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6826658745282541354, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_ca0e9f9c-1ba8-4f5c-9273-291f30264ada
+      value: MinimapIcon_6bb1f7e5-0537-4cc3-bf86-fab2e097d2ed
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_Name
@@ -12268,7 +12206,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6826658745282541354, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_28c669af-41d6-46c3-b2d9-585956951e2f
+      value: MinimapIcon_dc9fc788-b568-4ccc-abf7-037f0bb80a50
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_Name
@@ -12284,53 +12222,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 489459555325452488, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
   m_PrefabInstance: {fileID: 1023130275}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1024403642
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1024403644}
-  - component: {fileID: 1024403643}
-  m_Layer: 0
-  m_Name: MinimapIconCollector
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1024403643
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1024403642}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 436a14cb19f09b64bbb864d0c836026c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_prefabId: MinimapIconCollectorPrefab_Default
-  m_id: MinimapIconCollector
-  m_isSerializable: 1
---- !u!4 &1024403644
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1024403642}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1041632483
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12381,7 +12272,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2409355474575640235, guid: 49a2ba884993f2b4283e2cbabf66e153, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_dbe4c73e-2c6f-476e-8bd1-8c859b60d2a4
+      value: MinimapIcon_1e91ead0-41b6-41c8-b2fd-28e611e0350e
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 49a2ba884993f2b4283e2cbabf66e153, type: 3}
       propertyPath: m_Name
@@ -12447,7 +12338,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6826658745282541354, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_0615fa7b-be08-46b0-852a-f2444eccc47e
+      value: MinimapIcon_ede33d8b-c67e-4a4c-902a-ebce683ec65f
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_Name
@@ -12513,7 +12404,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4837471904548248550, guid: edd9d584652991f4c945ac07ae3156ea, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_562f2640-707c-495c-ac1d-a2591d2ec51d
+      value: MinimapIcon_745158fa-f217-4084-bf71-750eb1d0aafc
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: edd9d584652991f4c945ac07ae3156ea, type: 3}
       propertyPath: m_Name
@@ -12699,7 +12590,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6826658745282541354, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_77291bed-56d9-4851-a9bc-76da77136061
+      value: MinimapIcon_f845df7e-efac-4590-a793-dcef086a253f
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_Name
@@ -12765,7 +12656,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6826658745282541354, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_d99e6904-0616-4061-a627-cdcdeb98dba2
+      value: MinimapIcon_8f6f3740-8b71-40cf-8e1b-cefcf66850ca
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_Name
@@ -12780,6 +12671,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 489459555325452488, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
   m_PrefabInstance: {fileID: 1071070703}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1078190325 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8524334448642957186, guid: c1b8c3316529be0419b9724883976306, type: 3}
+  m_PrefabInstance: {fileID: 1763361081}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1082448386
 PrefabInstance:
@@ -12831,7 +12727,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6826658745282541354, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_267a1036-2919-4bbc-9129-f211c99136e1
+      value: MinimapIcon_a51fcd86-b66c-4738-8739-f6d2dd69eb3e
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_Name
@@ -12897,7 +12793,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4837471904548248550, guid: edd9d584652991f4c945ac07ae3156ea, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_d9a1cac9-3653-4cc9-a3d5-17522f5677db
+      value: MinimapIcon_11dc2dbc-65e8-4981-ab99-10b723a5b512
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: edd9d584652991f4c945ac07ae3156ea, type: 3}
       propertyPath: m_Name
@@ -12963,7 +12859,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1873275337474588604, guid: 35ec75bfe14fe294a93717d21a02dcdf, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_c84997a3-a8b3-4b29-ac83-f73a434a2bb0
+      value: MinimapIcon_ff407e61-559b-4a38-9d56-c878d254f8e7
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 35ec75bfe14fe294a93717d21a02dcdf, type: 3}
       propertyPath: m_Name
@@ -13029,7 +12925,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6826658745282541354, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_d069847c-b606-4ed1-b7ef-0e09e2816da4
+      value: MinimapIcon_933d8326-9b20-47e1-8f6d-5c2b184a43d6
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_Name
@@ -13145,7 +13041,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6826658745282541354, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_8f8ed195-a29c-4606-a485-d9e1f7b48531
+      value: MinimapIcon_c6de164d-9852-4a11-a77f-d14b17dc3ac8
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_Name
@@ -13211,7 +13107,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2409355474575640235, guid: 49a2ba884993f2b4283e2cbabf66e153, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_20291f52-92bf-46ed-99eb-e380623619bd
+      value: MinimapIcon_855ec3af-1cc1-46b6-aab0-ec9b1e2cf44a
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 49a2ba884993f2b4283e2cbabf66e153, type: 3}
       propertyPath: m_Name
@@ -13277,7 +13173,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6826658745282541354, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_b508906a-ba61-461a-978e-c5098c2161ab
+      value: MinimapIcon_907cf5b4-7d5d-48a7-943b-f964d87bfa3d
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_Name
@@ -13343,7 +13239,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6826658745282541354, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_46becf4a-e42b-4d11-82ef-e8a652b23a69
+      value: MinimapIcon_fa3c05bc-fb6e-4c13-81fa-b18245558d63
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_Name
@@ -13409,7 +13305,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2409355474575640235, guid: 49a2ba884993f2b4283e2cbabf66e153, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_892a0419-4ac7-4907-b851-d53869051d03
+      value: MinimapIcon_af7cc399-0652-4ecc-b3eb-f604202173a5
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 49a2ba884993f2b4283e2cbabf66e153, type: 3}
       propertyPath: m_Name
@@ -13475,7 +13371,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4837471904548248550, guid: edd9d584652991f4c945ac07ae3156ea, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_39c80a7d-8b83-46a3-a6d5-b09350c9c891
+      value: MinimapIcon_54bba5cc-c7d0-4eef-aedd-350b35fba5af
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: edd9d584652991f4c945ac07ae3156ea, type: 3}
       propertyPath: m_Name
@@ -13541,7 +13437,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2409355474575640235, guid: 49a2ba884993f2b4283e2cbabf66e153, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_673bbb42-f679-42e3-880c-5d46bb34e54b
+      value: MinimapIcon_7c8332a5-4ded-489f-b7a7-38d9c22084c9
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 49a2ba884993f2b4283e2cbabf66e153, type: 3}
       propertyPath: m_Name
@@ -13611,7 +13507,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8990449376063212005, guid: 1ac4b555776cc90488e5149fe7dd9a06, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_2d6e1bab-f44b-4bbc-8fd5-5f7b8aa27b72
+      value: MinimapIcon_9f8e31c2-2713-488c-b196-088802381fd3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -13752,7 +13648,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2409355474575640235, guid: 49a2ba884993f2b4283e2cbabf66e153, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_b96cc7cc-40d1-4ec7-b899-f795f1e3b943
+      value: MinimapIcon_de9b6f58-92c6-48df-9a50-9360ea4a895e
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 49a2ba884993f2b4283e2cbabf66e153, type: 3}
       propertyPath: m_Name
@@ -13818,7 +13714,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4837471904548248550, guid: edd9d584652991f4c945ac07ae3156ea, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_2f545717-c09a-4433-ae45-846df1fe78b7
+      value: MinimapIcon_0fb9f4ab-2935-42c4-b03a-a2167de3746d
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: edd9d584652991f4c945ac07ae3156ea, type: 3}
       propertyPath: m_Name
@@ -13884,7 +13780,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2409355474575640235, guid: 49a2ba884993f2b4283e2cbabf66e153, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_17ea9d09-c0c1-4c50-89ba-75df8987d4c9
+      value: MinimapIcon_d152a3a9-0d13-4fbc-9157-df5d1bcc40c8
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 49a2ba884993f2b4283e2cbabf66e153, type: 3}
       propertyPath: m_Name
@@ -13950,7 +13846,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4837471904548248550, guid: edd9d584652991f4c945ac07ae3156ea, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_166f6d81-66fe-421a-90d2-200b6e9857f6
+      value: MinimapIcon_e75fc44d-c12c-4cba-ac30-8262c0c607d8
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: edd9d584652991f4c945ac07ae3156ea, type: 3}
       propertyPath: m_Name
@@ -14016,7 +13912,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2409355474575640235, guid: 49a2ba884993f2b4283e2cbabf66e153, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_d8443488-a2a7-4277-a683-da0a02713fd5
+      value: MinimapIcon_bd9928c0-89cf-44f7-a814-52428344fcc6
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 49a2ba884993f2b4283e2cbabf66e153, type: 3}
       propertyPath: m_Name
@@ -14082,7 +13978,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6826658745282541354, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_e4c71598-3b5f-47d6-88ee-0a553ae04929
+      value: MinimapIcon_4463a3b9-8748-4000-8641-f5f4513af4d2
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_Name
@@ -14159,7 +14055,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4837471904548248550, guid: edd9d584652991f4c945ac07ae3156ea, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_c6806478-2343-4bcf-ae58-d97edd053ca4
+      value: MinimapIcon_fd1348f9-5cfe-4b26-ad3b-b065f5c76c1a
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: edd9d584652991f4c945ac07ae3156ea, type: 3}
       propertyPath: m_Name
@@ -14225,7 +14121,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6826658745282541354, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_967e0df6-d6e5-4349-8d3f-0c9f06c76602
+      value: MinimapIcon_cee0d7f2-7a01-4589-b542-753a3e233d3b
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_Name
@@ -14291,7 +14187,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2409355474575640235, guid: 49a2ba884993f2b4283e2cbabf66e153, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_84bc8e75-8b83-43c4-800b-38a1f49cab98
+      value: MinimapIcon_121e514a-e124-4ccc-a8cb-533ca393b631
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 49a2ba884993f2b4283e2cbabf66e153, type: 3}
       propertyPath: m_Name
@@ -14357,7 +14253,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4837471904548248550, guid: edd9d584652991f4c945ac07ae3156ea, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_e3739b71-c1ce-4a1b-b312-52d329b0e277
+      value: MinimapIcon_ab9f4948-f403-4101-95c3-fa5c3c894c20
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: edd9d584652991f4c945ac07ae3156ea, type: 3}
       propertyPath: m_Name
@@ -14572,7 +14468,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2409355474575640235, guid: 49a2ba884993f2b4283e2cbabf66e153, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_74be46c9-67db-42c8-a6c2-8ff502a5e607
+      value: MinimapIcon_40823ac6-56b9-4c9c-8f34-256e0cee280b
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 49a2ba884993f2b4283e2cbabf66e153, type: 3}
       propertyPath: m_Name
@@ -14638,7 +14534,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2409355474575640235, guid: 49a2ba884993f2b4283e2cbabf66e153, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_ac4bbdd2-16c0-4869-8fb8-d2d40a3b37fc
+      value: MinimapIcon_b461e49d-2f9e-408a-b747-e724e0e62eea
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 49a2ba884993f2b4283e2cbabf66e153, type: 3}
       propertyPath: m_Name
@@ -14708,7 +14604,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9107960523142778496, guid: bc7578952805e2e459640158e3b44220, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_3291975e-6219-4cb2-9e7e-d79c95a923b7
+      value: MinimapIcon_9c42ddb2-1293-405d-a40a-56205ceb5f84
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -14770,7 +14666,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4837471904548248550, guid: edd9d584652991f4c945ac07ae3156ea, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_50962dde-fd7a-4c20-8f7d-ab73ccfb660c
+      value: MinimapIcon_b51015e4-21e0-4b8b-9147-6bf625e0ac65
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: edd9d584652991f4c945ac07ae3156ea, type: 3}
       propertyPath: m_Name
@@ -14836,7 +14732,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2409355474575640235, guid: 49a2ba884993f2b4283e2cbabf66e153, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_926bbfc4-34bf-4f10-a630-2d21ba790a95
+      value: MinimapIcon_765f541b-e9e7-42a0-bf28-e36f21591415
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 49a2ba884993f2b4283e2cbabf66e153, type: 3}
       propertyPath: m_Name
@@ -14906,7 +14802,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9107960523142778496, guid: bc7578952805e2e459640158e3b44220, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_d696e45b-d29f-4755-b267-d3321dc72ef9
+      value: MinimapIcon_8579432f-5c2d-4e30-b155-786c92d6807b
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -14968,7 +14864,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6826658745282541354, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_db9213cf-1f58-4563-ba66-a805002eb49b
+      value: MinimapIcon_de6a72c8-937b-452e-8a65-05b79fe02d07
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_Name
@@ -15034,7 +14930,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6826658745282541354, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_a458bc23-5085-4057-9b03-1e0e53da2f68
+      value: MinimapIcon_5ed93786-b11b-415c-8285-9825e80fed62
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_Name
@@ -15158,6 +15054,22 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1728588171062075184, guid: 6d9d2a695028a324ebb44d3d583ffc36, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1728588171062075184, guid: 6d9d2a695028a324ebb44d3d583ffc36, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1728588171062075184, guid: 6d9d2a695028a324ebb44d3d583ffc36, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1728588171062075184, guid: 6d9d2a695028a324ebb44d3d583ffc36, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1844385430773188566, guid: 6d9d2a695028a324ebb44d3d583ffc36, type: 3}
       propertyPath: m_startedMoney
       value: 0
@@ -15174,6 +15086,22 @@ PrefabInstance:
       propertyPath: m_equippedItems.Armor.m_itemInfo
       value: 
       objectReference: {fileID: 11400000, guid: 525e1e509c81eaf40aa34b2c3319672d, type: 2}
+    - target: {fileID: 2245260609381059809, guid: 6d9d2a695028a324ebb44d3d583ffc36, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2245260609381059809, guid: 6d9d2a695028a324ebb44d3d583ffc36, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2245260609381059809, guid: 6d9d2a695028a324ebb44d3d583ffc36, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2245260609381059809, guid: 6d9d2a695028a324ebb44d3d583ffc36, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2337633520131754560, guid: 6d9d2a695028a324ebb44d3d583ffc36, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: -719.99994
@@ -15274,9 +15202,57 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.x
       value: -239.99994
       objectReference: {fileID: 0}
+    - target: {fileID: 4801950420123960181, guid: 6d9d2a695028a324ebb44d3d583ffc36, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4801950420123960181, guid: 6d9d2a695028a324ebb44d3d583ffc36, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4801950420123960181, guid: 6d9d2a695028a324ebb44d3d583ffc36, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4801950420123960181, guid: 6d9d2a695028a324ebb44d3d583ffc36, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5990796019146003148, guid: 6d9d2a695028a324ebb44d3d583ffc36, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5990796019146003148, guid: 6d9d2a695028a324ebb44d3d583ffc36, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5990796019146003148, guid: 6d9d2a695028a324ebb44d3d583ffc36, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5990796019146003148, guid: 6d9d2a695028a324ebb44d3d583ffc36, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6587183674851903207, guid: 6d9d2a695028a324ebb44d3d583ffc36, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 8299624945913364533, guid: 6d9d2a695028a324ebb44d3d583ffc36, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8299624945913364533, guid: 6d9d2a695028a324ebb44d3d583ffc36, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8299624945913364533, guid: 6d9d2a695028a324ebb44d3d583ffc36, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8299624945913364533, guid: 6d9d2a695028a324ebb44d3d583ffc36, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -15344,7 +15320,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6826658745282541354, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_7177f639-6cc8-4e51-af9e-3ff091dce5e4
+      value: MinimapIcon_1cb3b718-c904-4ab2-8f29-efd60f29ee2e
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_Name
@@ -15410,7 +15386,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2409355474575640235, guid: 49a2ba884993f2b4283e2cbabf66e153, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_0749186d-576c-49d0-ba3d-83c74384cf8e
+      value: MinimapIcon_34eaafeb-98d0-4b2f-9120-90425083d2cc
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 49a2ba884993f2b4283e2cbabf66e153, type: 3}
       propertyPath: m_Name
@@ -15582,7 +15558,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6826658745282541354, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_b770df6d-5280-44b6-928a-b5b4ce239bf9
+      value: MinimapIcon_ad1ecaa5-2a63-4cc4-994b-1139f3fe807f
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_Name
@@ -15648,7 +15624,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6826658745282541354, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_9c7a03f3-3b64-403c-b019-aa6730dab977
+      value: MinimapIcon_e264668a-06f0-4580-8a94-09ef0021fb0a
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_Name
@@ -15714,7 +15690,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6826658745282541354, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_9a799d86-dbda-49a5-b889-554ee211fa63
+      value: MinimapIcon_3c8604ce-7e87-4b4b-871a-00da405d3951
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_Name
@@ -15780,7 +15756,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4837471904548248550, guid: edd9d584652991f4c945ac07ae3156ea, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_e9b2e14b-9d45-4479-98e9-47ae843bfce5
+      value: MinimapIcon_c6305a24-5cfe-4d2a-9c08-4dcc029e8714
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: edd9d584652991f4c945ac07ae3156ea, type: 3}
       propertyPath: m_Name
@@ -15846,7 +15822,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6826658745282541354, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_a54e617d-2656-42a5-b569-0582b51c0927
+      value: MinimapIcon_531af69e-0854-44a7-aa90-86943fd31094
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_Name
@@ -15912,7 +15888,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6826658745282541354, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_fb933d8a-6fa4-4125-8f44-da0e161b6269
+      value: MinimapIcon_8ac10c39-0ba3-4996-93eb-bd0eb9d58a51
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_Name
@@ -15978,7 +15954,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6826658745282541354, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_c304f464-55fb-4c68-b529-7c2006195daa
+      value: MinimapIcon_8d35abaf-4856-4f91-97b6-105a8194a251
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_Name
@@ -16044,7 +16020,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6826658745282541354, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_e29b68eb-a005-4495-aa34-853d2853edbd
+      value: MinimapIcon_3d890dd3-c2f4-4512-abe4-175b2bca75f8
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_Name
@@ -16110,7 +16086,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6826658745282541354, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_f969f87b-2553-400e-8eef-08e472227602
+      value: MinimapIcon_2bee8e63-6910-4ebb-ade3-38b4f4dc7ea5
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_Name
@@ -16187,7 +16163,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6826658745282541354, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_dbf7a0da-0589-4cdf-8602-a81297168761
+      value: MinimapIcon_18a155fe-a3fa-4726-a132-1e8683f10a21
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_Name
@@ -16253,7 +16229,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2409355474575640235, guid: 49a2ba884993f2b4283e2cbabf66e153, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_603c514c-8932-44f7-8ca8-4a046aead963
+      value: MinimapIcon_7e9615c4-e0e8-4199-ac29-62a5a0582993
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 49a2ba884993f2b4283e2cbabf66e153, type: 3}
       propertyPath: m_Name
@@ -16319,7 +16295,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2409355474575640235, guid: 49a2ba884993f2b4283e2cbabf66e153, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_453a02f7-5637-4388-87d2-52f99ac3ab31
+      value: MinimapIcon_8fa210c0-5f5c-42c4-8120-39e5977de7e8
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 49a2ba884993f2b4283e2cbabf66e153, type: 3}
       propertyPath: m_Name
@@ -16385,7 +16361,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6826658745282541354, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_a9e9f885-1c85-4359-a63a-2dfb526bfc8c
+      value: MinimapIcon_00335193-8b42-4a47-830d-6053d1fd2e14
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_Name
@@ -16451,7 +16427,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6826658745282541354, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_681435f1-1e88-42cc-b6d3-cb04a7ac0170
+      value: MinimapIcon_79d6c53a-4131-4da8-bb05-b10e04fcb341
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_Name
@@ -16521,7 +16497,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8990449376063212005, guid: 1ac4b555776cc90488e5149fe7dd9a06, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_d53b369b-a7a6-4083-a792-0966a7dac416
+      value: MinimapIcon_9c45603a-6e56-4f90-ae74-5f61146b4253
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -16583,7 +16559,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6826658745282541354, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_aa01c07f-65b9-4c2f-8961-f012dfd6fac0
+      value: MinimapIcon_60a2ae92-944f-4307-b1e4-34d622dc45c1
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_Name
@@ -16649,7 +16625,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2409355474575640235, guid: 49a2ba884993f2b4283e2cbabf66e153, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_8c9a1069-1c9b-449a-8b6c-ba2deda8f66f
+      value: MinimapIcon_a3eb56cf-8b76-490f-8138-7ee73019ec07
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 49a2ba884993f2b4283e2cbabf66e153, type: 3}
       propertyPath: m_Name
@@ -16715,7 +16691,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2409355474575640235, guid: 49a2ba884993f2b4283e2cbabf66e153, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_bba41d21-480c-4dfd-8cfb-868ae24f0041
+      value: MinimapIcon_bae127b4-810f-4730-b526-9cac1e06e127
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 49a2ba884993f2b4283e2cbabf66e153, type: 3}
       propertyPath: m_Name
@@ -16781,7 +16757,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6826658745282541354, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_9e1c0866-48be-4147-be65-66abaaf5236d
+      value: MinimapIcon_1293ee23-1cad-4b37-aa7f-3382a4a000ee
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_Name
@@ -16847,7 +16823,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6826658745282541354, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_443d08f7-e90c-4482-9aa7-ddcc351fe4f2
+      value: MinimapIcon_643e4cc1-be51-4cb2-a434-3a16eed6f3ac
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_Name
@@ -16913,7 +16889,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4837471904548248550, guid: edd9d584652991f4c945ac07ae3156ea, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_43c68d8f-7601-4954-86f6-9283addfde2d
+      value: MinimapIcon_83e58bb1-e040-4e7d-a3e2-d874ca576069
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: edd9d584652991f4c945ac07ae3156ea, type: 3}
       propertyPath: m_Name
@@ -16979,7 +16955,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2409355474575640235, guid: 49a2ba884993f2b4283e2cbabf66e153, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_4604e856-c9e8-4b97-beee-f1256d02d7fc
+      value: MinimapIcon_c95f407a-794b-45e3-9a35-3625f2cbbe93
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 49a2ba884993f2b4283e2cbabf66e153, type: 3}
       propertyPath: m_Name
@@ -17045,7 +17021,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2409355474575640235, guid: 49a2ba884993f2b4283e2cbabf66e153, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_1acc199f-6106-4dfd-8a14-752054160fba
+      value: MinimapIcon_b0131a20-3878-4981-b174-a2db0d1dee18
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 49a2ba884993f2b4283e2cbabf66e153, type: 3}
       propertyPath: m_Name
@@ -17115,7 +17091,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9107960523142778496, guid: bc7578952805e2e459640158e3b44220, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_87246df9-a20d-4432-b8f4-e2f5e60641c3
+      value: MinimapIcon_4028c739-5134-4ca4-bac6-b8f8032e8f38
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -17177,7 +17153,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4837471904548248550, guid: edd9d584652991f4c945ac07ae3156ea, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_ddd32282-f874-45b3-b28b-20b344eb1f2c
+      value: MinimapIcon_3ef8b089-53f6-4528-9abf-f49cc7af0fe9
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: edd9d584652991f4c945ac07ae3156ea, type: 3}
       propertyPath: m_Name
@@ -17253,7 +17229,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 280643224670735673, guid: 7e5ed5991c43f6346a4d37c1d3b20e14, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_209d522a-40fc-40a5-b8e5-3e2d02b80229
+      value: MinimapIcon_60292e6a-6279-463d-8ee6-c686ac46e908
       objectReference: {fileID: 0}
     - target: {fileID: 388919840688140952, guid: 7e5ed5991c43f6346a4d37c1d3b20e14, type: 3}
       propertyPath: m_LocalPosition.x
@@ -17363,7 +17339,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6826658745282541354, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_d5f2c063-f192-40f0-870d-9db0e0ad98ce
+      value: MinimapIcon_a734f6c1-b36b-4817-bfd0-e480a4198e8c
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_Name
@@ -17429,7 +17405,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6826658745282541354, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_629d973e-6f5c-4501-8cf0-eafefaa87527
+      value: MinimapIcon_4a5cbe3d-a59a-4ca6-bdf4-53f7979852f0
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_Name
@@ -17506,7 +17482,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6826658745282541354, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_12fd2091-d62b-4f3f-b3ee-df059644d9e5
+      value: MinimapIcon_0afed0dc-fcd2-42a2-b2fe-33c0dd73cf10
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_Name
@@ -17572,7 +17548,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6826658745282541354, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_676e5d6f-7b53-4784-833f-75f3c299bb60
+      value: MinimapIcon_e92c96d3-8ab6-4123-8f79-379c14b512e7
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_Name
@@ -17638,7 +17614,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6826658745282541354, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_13e8b5d1-82e7-48cc-8f2e-b08dc11a07c9
+      value: MinimapIcon_561d213d-a2a0-4c78-b336-63b8f9f3c98e
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_Name
@@ -17704,7 +17680,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2409355474575640235, guid: 49a2ba884993f2b4283e2cbabf66e153, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_3817b23d-03e0-4817-b1b4-a379d16e3575
+      value: MinimapIcon_dfe95686-35d1-4905-950c-de83537b5220
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 49a2ba884993f2b4283e2cbabf66e153, type: 3}
       propertyPath: m_Name
@@ -17770,7 +17746,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6826658745282541354, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_67719b95-75f7-418d-bf98-15919ec7751c
+      value: MinimapIcon_2506e802-9254-4d11-85e5-442802115d3b
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_Name
@@ -17836,7 +17812,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6826658745282541354, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_0e40336a-381f-4baf-a79f-12e99433863b
+      value: MinimapIcon_1f15eced-fca6-4aa2-847d-a25cbc4ae735
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_Name
@@ -17917,7 +17893,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8990449376063212005, guid: 1ac4b555776cc90488e5149fe7dd9a06, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_1240a129-6cb8-433f-8dde-9abbec631fb1
+      value: MinimapIcon_ed9c0bfb-3d85-4e6f-b8a8-9ef1d616b5eb
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -18105,7 +18081,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8990449376063212005, guid: 1ac4b555776cc90488e5149fe7dd9a06, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_2206b413-8520-4a51-a5d9-204aac565704
+      value: MinimapIcon_f280f229-a6a7-469f-9816-f48d86f2cf10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -18167,7 +18143,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2409355474575640235, guid: 49a2ba884993f2b4283e2cbabf66e153, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_cee88456-e51e-4726-9aa8-e885f5e5d96b
+      value: MinimapIcon_6277e0e6-cfae-4931-a536-2f9c6b72dad3
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 49a2ba884993f2b4283e2cbabf66e153, type: 3}
       propertyPath: m_Name
@@ -18233,7 +18209,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6826658745282541354, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_1d6bb763-a203-4ee1-87cf-26c29aecfd86
+      value: MinimapIcon_d225c9a3-e0da-42a0-b387-609c514e6a53
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_Name
@@ -18310,7 +18286,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2409355474575640235, guid: 49a2ba884993f2b4283e2cbabf66e153, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_fd5628f2-c4a0-4d94-9948-8aac1022e6aa
+      value: MinimapIcon_13dfebf9-254f-4702-bf26-a31cfb88a21f
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 49a2ba884993f2b4283e2cbabf66e153, type: 3}
       propertyPath: m_Name
@@ -18376,7 +18352,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2409355474575640235, guid: 49a2ba884993f2b4283e2cbabf66e153, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_55306cea-c600-4b5e-ad92-20a817bcd6f8
+      value: MinimapIcon_db454dc7-60b6-4908-acef-8e9c35f19bb7
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 49a2ba884993f2b4283e2cbabf66e153, type: 3}
       propertyPath: m_Name
@@ -18442,7 +18418,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6826658745282541354, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_7c50d3c3-20c5-4548-b85a-7680ddeb1278
+      value: MinimapIcon_50b33321-9bb1-4ec1-a652-265050a44086
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_Name
@@ -18508,7 +18484,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2409355474575640235, guid: 49a2ba884993f2b4283e2cbabf66e153, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_7b7386d3-8fb3-4d09-800c-e81444d593be
+      value: MinimapIcon_b3fa53da-6fdf-474b-a453-db5358dad2a2
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 49a2ba884993f2b4283e2cbabf66e153, type: 3}
       propertyPath: m_Name
@@ -18585,7 +18561,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2409355474575640235, guid: 49a2ba884993f2b4283e2cbabf66e153, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_164b7dd5-7282-4c78-8ae8-2206f0ed7eed
+      value: MinimapIcon_0ef1d39f-9d9d-4a38-ab3c-0357666d0146
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 49a2ba884993f2b4283e2cbabf66e153, type: 3}
       propertyPath: m_Name
@@ -18651,7 +18627,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6826658745282541354, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_cd6feae4-e358-473a-8ac1-a705b344a40a
+      value: MinimapIcon_74a00839-50b5-4f78-adb8-6f0452c808e0
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_Name
@@ -18717,7 +18693,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4837471904548248550, guid: edd9d584652991f4c945ac07ae3156ea, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_60838d80-9c85-454e-82d6-c0872e6b7ca7
+      value: MinimapIcon_f50f1583-ce9e-42ba-bb86-e4b266a21da1
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: edd9d584652991f4c945ac07ae3156ea, type: 3}
       propertyPath: m_Name
@@ -18783,7 +18759,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4837471904548248550, guid: edd9d584652991f4c945ac07ae3156ea, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_b713b664-7f5c-40dd-af4a-76b16b73fbe0
+      value: MinimapIcon_27459b1a-6916-4810-9cef-e05acf64deee
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: edd9d584652991f4c945ac07ae3156ea, type: 3}
       propertyPath: m_Name
@@ -18849,7 +18825,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6826658745282541354, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_117c0202-45b5-4e10-aad2-c3edc78b6466
+      value: MinimapIcon_056a2778-c095-4f92-a8d4-d2000cf4bd20
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_Name
@@ -18915,7 +18891,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4837471904548248550, guid: edd9d584652991f4c945ac07ae3156ea, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_d843c4ef-afb4-4107-b74e-107165b1dc7c
+      value: MinimapIcon_d0787294-c535-4f9c-9d56-e1907ee9c6d0
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: edd9d584652991f4c945ac07ae3156ea, type: 3}
       propertyPath: m_Name
@@ -18981,7 +18957,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4837471904548248550, guid: edd9d584652991f4c945ac07ae3156ea, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_6715d0b6-0737-49a4-a5ef-f62f0d57ae6a
+      value: MinimapIcon_98d81c7c-abf6-491f-86f1-be04244a74a3
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: edd9d584652991f4c945ac07ae3156ea, type: 3}
       propertyPath: m_Name
@@ -19047,7 +19023,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2409355474575640235, guid: 49a2ba884993f2b4283e2cbabf66e153, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_435e1bf3-4f7f-442d-9913-925845b7a723
+      value: MinimapIcon_29aa85b3-6ccc-47d9-837f-e7cb7e9dbecb
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 49a2ba884993f2b4283e2cbabf66e153, type: 3}
       propertyPath: m_Name
@@ -19113,7 +19089,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6826658745282541354, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_84379419-5f92-49ac-8ad7-921de990e2b9
+      value: MinimapIcon_bfb85eca-2cfa-416e-8e6b-317f6e55ddd9
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_Name
@@ -19190,7 +19166,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2409355474575640235, guid: 49a2ba884993f2b4283e2cbabf66e153, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_5a6f8fc1-d471-4dde-b5a6-c0bb64605bab
+      value: MinimapIcon_df5b8166-c19c-4560-a779-993744d46759
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 49a2ba884993f2b4283e2cbabf66e153, type: 3}
       propertyPath: m_Name
@@ -19256,7 +19232,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4837471904548248550, guid: edd9d584652991f4c945ac07ae3156ea, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_6bb4330b-3809-4a00-9d5f-296801f4dc33
+      value: MinimapIcon_5ed3a67b-07cc-4d1d-b56e-5fde378b602f
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: edd9d584652991f4c945ac07ae3156ea, type: 3}
       propertyPath: m_Name
@@ -19322,7 +19298,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6826658745282541354, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_556627ce-d540-4a5b-b1ab-291fac7d8a77
+      value: MinimapIcon_827a2897-bb3d-43e5-9c01-03a12a84cf08
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_Name
@@ -19399,7 +19375,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6826658745282541354, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_41382c26-f236-44b3-84b2-6646a615b61d
+      value: MinimapIcon_7d256f66-b7b5-45be-a995-62b6e7ecc9bc
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_Name
@@ -19619,7 +19595,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6826658745282541354, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_89041d08-d5df-40e7-b71d-1e0486752070
+      value: MinimapIcon_aeea528d-17aa-4b81-b333-ea8d3c68157e
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_Name
@@ -19685,7 +19661,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6826658745282541354, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_e050e9e7-1437-41c5-bbb1-880726620542
+      value: MinimapIcon_fb6ea838-4cf3-4521-9da8-6b1b2506d139
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_Name
@@ -19825,7 +19801,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4837471904548248550, guid: edd9d584652991f4c945ac07ae3156ea, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_09870fd8-5f05-4f3a-bbc7-f82c562676c8
+      value: MinimapIcon_60b8e419-ac2d-493f-9afa-35cfe46fe81a
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: edd9d584652991f4c945ac07ae3156ea, type: 3}
       propertyPath: m_Name
@@ -19971,6 +19947,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4915202404410297225, guid: 6a4eaf30a68e2424d85431c5fdd70034, type: 3}
+      propertyPath: m_enemyStatsInfo
+      value: 
+      objectReference: {fileID: 11400000, guid: b7c4442512edae744966f2ec78e63fa0, type: 2}
     - target: {fileID: 4915202404410297225, guid: 6a4eaf30a68e2424d85431c5fdd70034, type: 3}
       propertyPath: OnEnemyDeath.m_PersistentCalls.m_Calls.Array.size
       value: 1
@@ -20243,7 +20223,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6826658745282541354, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_8fb00469-92f8-4239-bddd-ddab1d5f299d
+      value: MinimapIcon_3d0b06af-cf4e-40f7-a888-76edabe5a16e
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_Name
@@ -20390,7 +20370,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4837471904548248550, guid: edd9d584652991f4c945ac07ae3156ea, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_065e1ed3-3ba1-41e7-9572-07d5650888f0
+      value: MinimapIcon_d0fb539d-b5bc-4c40-86e2-30417d858c66
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: edd9d584652991f4c945ac07ae3156ea, type: 3}
       propertyPath: m_Name
@@ -20456,7 +20436,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6826658745282541354, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_0ee0f283-d458-4045-9f6d-d630a1696ae9
+      value: MinimapIcon_d38341f7-738f-42b3-9d28-ce23608dc940
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_Name
@@ -20482,7 +20462,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 280643224670735673, guid: 7e5ed5991c43f6346a4d37c1d3b20e14, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_4379c486-4a3e-49a6-98ea-30c2c3225502
+      value: MinimapIcon_b937530d-4cd9-4d22-983f-fe855f32d88e
       objectReference: {fileID: 0}
     - target: {fileID: 388919840688140952, guid: 7e5ed5991c43f6346a4d37c1d3b20e14, type: 3}
       propertyPath: m_LocalPosition.x
@@ -20607,7 +20587,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4837471904548248550, guid: edd9d584652991f4c945ac07ae3156ea, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_173ebdda-28f0-43af-ab6a-f3f57dd3ab5e
+      value: MinimapIcon_b263fc3c-c42d-4bb7-b6fe-4b31be392bf4
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: edd9d584652991f4c945ac07ae3156ea, type: 3}
       propertyPath: m_Name
@@ -20673,7 +20653,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6826658745282541354, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_79ff4f7a-643f-4f21-827c-eaeb74f5c729
+      value: MinimapIcon_4a3237c1-c8e7-431d-b9c8-0b4caab25b7f
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_Name
@@ -20874,7 +20854,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4837471904548248550, guid: edd9d584652991f4c945ac07ae3156ea, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_20f7dade-44d5-4a9a-8f3b-62072553e45d
+      value: MinimapIcon_1afe246f-8e41-4128-a267-8f2d854214b0
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: edd9d584652991f4c945ac07ae3156ea, type: 3}
       propertyPath: m_Name
@@ -21040,7 +21020,6 @@ Transform:
   - {fileID: 1424919811}
   - {fileID: 1574946897}
   - {fileID: 887367318}
-  - {fileID: 664379766}
   - {fileID: 1237847584}
   - {fileID: 1682027124}
   - {fileID: 520195567}
@@ -21064,6 +21043,7 @@ Transform:
   - {fileID: 853126715}
   - {fileID: 1517476059}
   - {fileID: 2126715762}
+  - {fileID: 1763361082}
   m_Father: {fileID: 676519136}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!483693784 &1713803246
@@ -21203,7 +21183,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6826658745282541354, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_be5d363d-dd49-4e7c-94ec-9da9e0b2c288
+      value: MinimapIcon_f831dba6-1b8e-4bbc-8419-c71d5cd23fec
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_Name
@@ -21269,7 +21249,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6826658745282541354, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_7232500a-0ec8-4110-8538-42fb33e24027
+      value: MinimapIcon_107683ee-aa1a-425f-b888-0d5a805b2793
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_Name
@@ -21335,7 +21315,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2409355474575640235, guid: 49a2ba884993f2b4283e2cbabf66e153, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_f2edd98d-3d5a-427d-82b2-b790d01c82ad
+      value: MinimapIcon_97e418ef-1228-495d-8229-e84a8a10f310
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 49a2ba884993f2b4283e2cbabf66e153, type: 3}
       propertyPath: m_Name
@@ -21401,7 +21381,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6826658745282541354, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_9200b922-b7b7-4ded-841a-a0b374d6ae99
+      value: MinimapIcon_b71ca6eb-846e-4e5b-b0ce-d5321b96f1b2
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_Name
@@ -21471,7 +21451,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9107960523142778496, guid: bc7578952805e2e459640158e3b44220, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_da3ec370-e634-4bb0-935e-6a692a5a3bb7
+      value: MinimapIcon_5fee8d54-b0cb-4fe7-baf2-06c72fd2f6a4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -21565,7 +21545,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4837471904548248550, guid: edd9d584652991f4c945ac07ae3156ea, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_69fe02a5-682c-4d3b-8b63-b50258aaf5d5
+      value: MinimapIcon_f4eae455-35dc-4fe8-b5cf-2d3953e474f0
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: edd9d584652991f4c945ac07ae3156ea, type: 3}
       propertyPath: m_Name
@@ -21635,7 +21615,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9107960523142778496, guid: bc7578952805e2e459640158e3b44220, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_5ebe6916-1279-49d1-90b5-380950e84940
+      value: MinimapIcon_44cd8fe3-c85c-4b54-a5d6-38d8010b8388
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -21771,7 +21751,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9107960523142778496, guid: bc7578952805e2e459640158e3b44220, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_fdce0042-b057-406b-97a4-dbb291a8ae7d
+      value: MinimapIcon_dcad456d-4540-4abf-804c-c07f4944b08b
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -21783,6 +21763,119 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 489459555325452488, guid: bc7578952805e2e459640158e3b44220, type: 3}
   m_PrefabInstance: {fileID: 1754691083}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1763361081
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1713803245}
+    m_Modifications:
+    - target: {fileID: 489459555325452488, guid: c1b8c3316529be0419b9724883976306, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 9.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 489459555325452488, guid: c1b8c3316529be0419b9724883976306, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 489459555325452488, guid: c1b8c3316529be0419b9724883976306, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 489459555325452488, guid: c1b8c3316529be0419b9724883976306, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 489459555325452488, guid: c1b8c3316529be0419b9724883976306, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 489459555325452488, guid: c1b8c3316529be0419b9724883976306, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 489459555325452488, guid: c1b8c3316529be0419b9724883976306, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 489459555325452488, guid: c1b8c3316529be0419b9724883976306, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 489459555325452488, guid: c1b8c3316529be0419b9724883976306, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 489459555325452488, guid: c1b8c3316529be0419b9724883976306, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2409355474575640235, guid: c1b8c3316529be0419b9724883976306, type: 3}
+      propertyPath: m_minimapIconId
+      value: MinimapIcon_0c89ea3c-643d-49f4-964d-a9892445c9f1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4242231837014280611, guid: c1b8c3316529be0419b9724883976306, type: 3}
+      propertyPath: EventOnInspection.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4242231837014280611, guid: c1b8c3316529be0419b9724883976306, type: 3}
+      propertyPath: EventOnInspection.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4242231837014280611, guid: c1b8c3316529be0419b9724883976306, type: 3}
+      propertyPath: EventOnInspection.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1763361084}
+    - target: {fileID: 4242231837014280611, guid: c1b8c3316529be0419b9724883976306, type: 3}
+      propertyPath: EventOnInspection.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4242231837014280611, guid: c1b8c3316529be0419b9724883976306, type: 3}
+      propertyPath: EventOnInspection.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: StartStoryEvent
+      objectReference: {fileID: 0}
+    - target: {fileID: 4242231837014280611, guid: c1b8c3316529be0419b9724883976306, type: 3}
+      propertyPath: EventOnInspection.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: DC_ARPG.StoryEvent, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 4242231837014280611, guid: c1b8c3316529be0419b9724883976306, type: 3}
+      propertyPath: EventOnInspection.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 8524334448642957186, guid: c1b8c3316529be0419b9724883976306, type: 3}
+      propertyPath: m_Name
+      value: Prison_Stairs
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8524334448642957186, guid: c1b8c3316529be0419b9724883976306, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1763361084}
+  m_SourcePrefab: {fileID: 100100000, guid: c1b8c3316529be0419b9724883976306, type: 3}
+--- !u!4 &1763361082 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 489459555325452488, guid: c1b8c3316529be0419b9724883976306, type: 3}
+  m_PrefabInstance: {fileID: 1763361081}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1763361084
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1078190325}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d0776f63f0368549969a95c08dd2285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_storyEventInfo: {fileID: 11400000, guid: c268ea255aee01d4aac7f6a548503e6c, type: 2}
+  EventOnStoryEventEnd:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1001 &1763454135
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -21833,7 +21926,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6826658745282541354, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_35afa93f-abd7-48b1-accf-325e6672aa96
+      value: MinimapIcon_dc9f40ca-966b-462f-bc1e-49ac4e53bf14
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_Name
@@ -21899,7 +21992,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2409355474575640235, guid: 49a2ba884993f2b4283e2cbabf66e153, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_a2a2598e-c403-4edf-a15a-7939dc7961ab
+      value: MinimapIcon_5df7bf84-1cd1-49ba-a103-9a1e8cb4f852
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 49a2ba884993f2b4283e2cbabf66e153, type: 3}
       propertyPath: m_Name
@@ -21925,7 +22018,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 280643224670735673, guid: 7e5ed5991c43f6346a4d37c1d3b20e14, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_86f011d4-99cb-4b87-ba08-bcae153f8216
+      value: MinimapIcon_cb0472f2-85e2-447b-8d5e-6584cfb1a381
       objectReference: {fileID: 0}
     - target: {fileID: 388919840688140952, guid: 7e5ed5991c43f6346a4d37c1d3b20e14, type: 3}
       propertyPath: m_LocalPosition.x
@@ -22039,7 +22132,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6826658745282541354, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_2c1c2452-41a8-4bfd-b30a-082a13557449
+      value: MinimapIcon_fe4275f6-35cc-4158-a3b4-2a377d19bfd5
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_Name
@@ -22105,7 +22198,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6826658745282541354, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_266d4e94-6c47-4729-85e0-8b5d864729a3
+      value: MinimapIcon_3c44f73a-3c9d-4780-8716-39b71e37be4e
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_Name
@@ -22171,7 +22264,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6826658745282541354, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_e24eb711-a749-4cbc-8318-4287affca39b
+      value: MinimapIcon_729993fa-5742-468c-b68a-86c55148b9b9
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_Name
@@ -22237,7 +22330,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4837471904548248550, guid: edd9d584652991f4c945ac07ae3156ea, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_b1dcacc6-3d7c-4585-aeec-208c9ce6a23c
+      value: MinimapIcon_a06ecb24-b193-474f-ba36-7b036bb8a3f4
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: edd9d584652991f4c945ac07ae3156ea, type: 3}
       propertyPath: m_Name
@@ -22426,7 +22519,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2409355474575640235, guid: 49a2ba884993f2b4283e2cbabf66e153, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_c2780ba3-9685-4baf-a8d8-7b88ed99e5a4
+      value: MinimapIcon_63ccebba-0e97-4c79-8903-9a42644e6129
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 49a2ba884993f2b4283e2cbabf66e153, type: 3}
       propertyPath: m_Name
@@ -22492,7 +22585,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2409355474575640235, guid: 49a2ba884993f2b4283e2cbabf66e153, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_ce19681a-3156-424d-9476-eda22d984aab
+      value: MinimapIcon_d01cbff8-6194-4861-bb46-73d77a9bbc0e
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 49a2ba884993f2b4283e2cbabf66e153, type: 3}
       propertyPath: m_Name
@@ -22558,7 +22651,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2409355474575640235, guid: 49a2ba884993f2b4283e2cbabf66e153, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_1271c4d8-d931-4339-9d67-39d0dc0b4ada
+      value: MinimapIcon_bbb9aa19-32d8-455a-97c8-d948aa0f88ec
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 49a2ba884993f2b4283e2cbabf66e153, type: 3}
       propertyPath: m_Name
@@ -22624,7 +22717,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6826658745282541354, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_cfd56c08-b59c-4b80-96e0-be9e1bb5d655
+      value: MinimapIcon_6dba72ad-ac45-404e-9323-527af86b4e5f
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_Name
@@ -22690,7 +22783,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1873275337474588604, guid: 35ec75bfe14fe294a93717d21a02dcdf, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_f6e48e29-c2a6-43d3-b5e1-495a4898236d
+      value: MinimapIcon_000d2b01-1bcc-4ec8-bb64-3b4e7511515b
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 35ec75bfe14fe294a93717d21a02dcdf, type: 3}
       propertyPath: m_Name
@@ -22756,7 +22849,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6826658745282541354, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_ffd98200-f9ab-4f97-97df-148d8d48a0fc
+      value: MinimapIcon_dba9f6ae-b5e1-4304-8af5-2c6170fb578a
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_Name
@@ -22822,7 +22915,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4837471904548248550, guid: edd9d584652991f4c945ac07ae3156ea, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_c3a17200-4615-4aa5-b03c-2e52bef9125d
+      value: MinimapIcon_7bdbb9b3-2fb3-49b1-9d0b-4aab12b2a499
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: edd9d584652991f4c945ac07ae3156ea, type: 3}
       propertyPath: m_Name
@@ -22888,7 +22981,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6826658745282541354, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_37ca1e95-330d-4fb9-927d-da300463ab6a
+      value: MinimapIcon_df632237-83f8-4009-9bce-7458700541f5
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_Name
@@ -23248,7 +23341,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9107960523142778496, guid: bc7578952805e2e459640158e3b44220, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_66dbb992-942c-417a-a7bb-20871a46c2b5
+      value: MinimapIcon_8c82c8da-f1ca-4371-997e-4059169b020b
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -23310,7 +23403,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2409355474575640235, guid: 49a2ba884993f2b4283e2cbabf66e153, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_663770ac-61c1-4f38-8e6e-d39ba25a5b0c
+      value: MinimapIcon_7b924b53-6adc-4e5e-a62f-0ac3b732f6f3
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 49a2ba884993f2b4283e2cbabf66e153, type: 3}
       propertyPath: m_Name
@@ -23376,7 +23469,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6826658745282541354, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_4f7dccdd-f17b-4d11-9464-5013b5f5b44b
+      value: MinimapIcon_3bcee0d6-836d-49af-941f-a92394a2dd81
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_Name
@@ -23442,7 +23535,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4837471904548248550, guid: edd9d584652991f4c945ac07ae3156ea, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_1d7d62a5-d338-4883-a4e5-12eea6961902
+      value: MinimapIcon_d616260e-a091-4d67-bb08-a39143ed3104
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: edd9d584652991f4c945ac07ae3156ea, type: 3}
       propertyPath: m_Name
@@ -23508,7 +23601,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2409355474575640235, guid: 49a2ba884993f2b4283e2cbabf66e153, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_db092512-0a59-4e4b-a2c9-90ef7427cac0
+      value: MinimapIcon_e0722da0-b239-4c2d-871a-1245169a4831
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 49a2ba884993f2b4283e2cbabf66e153, type: 3}
       propertyPath: m_Name
@@ -23644,7 +23737,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2409355474575640235, guid: 49a2ba884993f2b4283e2cbabf66e153, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_def97278-1520-40e7-b69d-e5fe62b1a6fb
+      value: MinimapIcon_365a7cfe-8f33-43b7-9f8e-23d2b6dfd9f4
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 49a2ba884993f2b4283e2cbabf66e153, type: 3}
       propertyPath: m_Name
@@ -23710,7 +23803,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6826658745282541354, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_9bf6545e-acda-4049-8e35-d25286c4aa18
+      value: MinimapIcon_75e736f8-ae1c-4045-b97b-0472e8d67c77
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_Name
@@ -23776,7 +23869,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2409355474575640235, guid: 49a2ba884993f2b4283e2cbabf66e153, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_c400cc7b-2027-430d-9eda-a0bb821595ec
+      value: MinimapIcon_42753a73-8a02-4ac5-8c91-2173e7f4891b
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 49a2ba884993f2b4283e2cbabf66e153, type: 3}
       propertyPath: m_Name
@@ -23934,7 +24027,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6826658745282541354, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_62c6719e-7045-4480-b226-991d8ebf72f0
+      value: MinimapIcon_80f298ac-5df0-4295-90c6-2e4c7e81eb58
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_Name
@@ -24050,7 +24143,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2409355474575640235, guid: 49a2ba884993f2b4283e2cbabf66e153, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_06f674aa-5232-4a6f-80a6-06b7797128b8
+      value: MinimapIcon_94f7255b-6ac1-4171-9ef9-b7e669323dfa
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 49a2ba884993f2b4283e2cbabf66e153, type: 3}
       propertyPath: m_Name
@@ -24116,7 +24209,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4837471904548248550, guid: edd9d584652991f4c945ac07ae3156ea, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_5e08406d-83fa-412f-8cdb-937547848c29
+      value: MinimapIcon_0f36acfd-0279-4bd1-97a1-06d5a2c77536
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: edd9d584652991f4c945ac07ae3156ea, type: 3}
       propertyPath: m_Name
@@ -24256,7 +24349,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6826658745282541354, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_2f695c90-42eb-47bb-82d1-2af176eb1b01
+      value: MinimapIcon_c9054ad9-62c8-45f6-9983-f3234a0b97b3
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_Name
@@ -24333,7 +24426,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6826658745282541354, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_5d1f52ca-36a2-4413-97d7-49cb2e1f912c
+      value: MinimapIcon_0e66673d-d939-4dc1-bdba-2549c0457b8e
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_Name
@@ -24399,7 +24492,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4837471904548248550, guid: edd9d584652991f4c945ac07ae3156ea, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_175f92b7-50cd-494d-8e12-62bbbd753bda
+      value: MinimapIcon_162cc420-38c6-4193-b448-42c0266dab60
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: edd9d584652991f4c945ac07ae3156ea, type: 3}
       propertyPath: m_Name
@@ -24465,7 +24558,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6826658745282541354, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_b8c2a845-c657-4b18-b139-4ed739e928a2
+      value: MinimapIcon_b82fbf86-3de0-4ad7-afcc-c53de6560202
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_Name
@@ -24531,7 +24624,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6826658745282541354, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_eb0ba9e3-1c80-4a3f-bf61-a5f6bd8dd4da
+      value: MinimapIcon_483190ef-b534-4329-a3c1-524b78d1b4d4
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_Name
@@ -24597,7 +24690,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2409355474575640235, guid: 49a2ba884993f2b4283e2cbabf66e153, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_de96dcad-6486-439b-a3a4-2f73b23dc419
+      value: MinimapIcon_094fa782-d561-4c8a-861a-e1277cc85f06
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 49a2ba884993f2b4283e2cbabf66e153, type: 3}
       propertyPath: m_Name
@@ -24663,7 +24756,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6826658745282541354, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_218299c4-01c4-4a95-8799-3d18ffba044d
+      value: MinimapIcon_9d2854fa-890a-4103-83cc-31bc130db244
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_Name
@@ -24740,7 +24833,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6826658745282541354, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_200b752d-33de-48b3-864a-e3502591067f
+      value: MinimapIcon_dba6e307-995f-4677-9815-4a7b69a7aa2c
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_Name
@@ -24806,7 +24899,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6826658745282541354, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_204066ea-7521-4185-8d74-2119bb3459fd
+      value: MinimapIcon_f0280173-f089-4e46-8619-09cae42679e4
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_Name
@@ -24872,7 +24965,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6826658745282541354, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_011a557d-ec5e-452e-952c-27f2ae40ae5b
+      value: MinimapIcon_a1c2bd8e-0a70-435f-b901-d694ce37b210
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_Name
@@ -24938,7 +25031,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6826658745282541354, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_1ab56bd8-4756-4ba8-9ee3-4aa829596d97
+      value: MinimapIcon_22095c1f-9951-4a48-9fe9-661ba2dfbc9d
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_Name
@@ -25004,7 +25097,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6826658745282541354, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_750fcf26-578b-4930-b948-a0f1b5705e65
+      value: MinimapIcon_b61e67bd-e264-4ee7-a66f-1e931e68069f
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_Name
@@ -25070,7 +25163,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6826658745282541354, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_f08e9901-bfbb-44ce-9205-2868572a481d
+      value: MinimapIcon_40d5fb2e-c5a1-4f6f-8494-acc59e006318
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_Name
@@ -25136,7 +25229,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4837471904548248550, guid: edd9d584652991f4c945ac07ae3156ea, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_9cf33420-8e30-4034-a36d-add7f2d6b400
+      value: MinimapIcon_1ce41de5-607e-40f2-a6d7-4e83151e9be5
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: edd9d584652991f4c945ac07ae3156ea, type: 3}
       propertyPath: m_Name
@@ -25202,7 +25295,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6826658745282541354, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_633c7ff0-37ee-491f-9a26-7edd34dd8f3d
+      value: MinimapIcon_0d98b1a5-ca85-4a5f-9533-dbb1c35e96d2
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_Name
@@ -25268,7 +25361,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6826658745282541354, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_5c736360-9851-48b8-aa4f-9aed53799a78
+      value: MinimapIcon_c012d3b1-d85c-4831-a10c-b447e27b48dc
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_Name
@@ -25334,7 +25427,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6826658745282541354, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_46bf9cd0-aeb9-4e36-acc3-94739bcf973a
+      value: MinimapIcon_2cd565f7-89b2-476a-aebd-c164aab7d6b8
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_Name
@@ -25400,7 +25493,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6826658745282541354, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_aff2194e-ddd6-451c-882b-b5b2d836e11c
+      value: MinimapIcon_0a4addce-5cbc-4bcf-bdbc-73e9ba6edca1
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_Name
@@ -25477,7 +25570,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6826658745282541354, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_1155528d-1c36-4915-a579-463465240c19
+      value: MinimapIcon_2b6d8e5e-82a0-44fa-8531-ef787b318d74
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_Name
@@ -25547,7 +25640,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9107960523142778496, guid: bc7578952805e2e459640158e3b44220, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_e53edfb2-5626-44bc-b8aa-84bcc8f6771a
+      value: MinimapIcon_efcee573-92a0-471f-aee3-2aec04f4ac22
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -25609,7 +25702,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2409355474575640235, guid: 49a2ba884993f2b4283e2cbabf66e153, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_53c526e1-6b31-4aaa-b882-f25ce5747df3
+      value: MinimapIcon_0887abdb-0582-4ccd-a5e5-ce998c567956
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 49a2ba884993f2b4283e2cbabf66e153, type: 3}
       propertyPath: m_Name
@@ -25675,7 +25768,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6826658745282541354, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_04f15ec5-fdee-4927-a82a-5dba4f7ec4de
+      value: MinimapIcon_6be59985-15dd-401c-8cad-cba9c5836d28
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_Name
@@ -25741,7 +25834,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6826658745282541354, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_d7641629-9387-4162-996a-b3e814b7645d
+      value: MinimapIcon_f91cbcb4-76c5-4e79-ba83-bc0920df10b2
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_Name
@@ -25807,7 +25900,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4837471904548248550, guid: edd9d584652991f4c945ac07ae3156ea, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_26171648-e3a9-4dda-ae9a-178ed5e1f1ba
+      value: MinimapIcon_4e03741a-d14b-46c1-9c09-db006ffbbaa7
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: edd9d584652991f4c945ac07ae3156ea, type: 3}
       propertyPath: m_Name
@@ -25873,7 +25966,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4837471904548248550, guid: edd9d584652991f4c945ac07ae3156ea, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_b7371c8e-e041-4717-ae4f-7792d03f4796
+      value: MinimapIcon_4f7b2f8b-48c4-41c2-86c8-8aa8a089a017
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: edd9d584652991f4c945ac07ae3156ea, type: 3}
       propertyPath: m_Name
@@ -25939,7 +26032,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2409355474575640235, guid: 49a2ba884993f2b4283e2cbabf66e153, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_8409498e-18d1-49bb-bd54-d4f30fba0eca
+      value: MinimapIcon_255145f7-38b9-40d4-b23e-d2576a78c9fe
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 49a2ba884993f2b4283e2cbabf66e153, type: 3}
       propertyPath: m_Name
@@ -26005,7 +26098,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6826658745282541354, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_6b047508-2eab-4999-8a08-4b02a2ee4996
+      value: MinimapIcon_39c63dae-677b-44de-b755-cf98341251a1
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_Name
@@ -26071,7 +26164,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6826658745282541354, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_a0785d88-dec5-4319-9cb2-e31779a51774
+      value: MinimapIcon_93714996-4599-469b-b8fd-248c9cb7d60b
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_Name
@@ -26137,7 +26230,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6826658745282541354, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_625492ff-be83-42f5-b126-00f1dd56a8e1
+      value: MinimapIcon_fc754b3b-7f5a-43c7-bb18-b0338dc1603f
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_Name
@@ -26203,7 +26296,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6826658745282541354, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_01327294-818b-41dc-9c6a-8b1cfff91612
+      value: MinimapIcon_05ffff1d-1042-459b-96a2-e2775903b1b3
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_Name
@@ -26269,7 +26362,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2409355474575640235, guid: 49a2ba884993f2b4283e2cbabf66e153, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_0f48fa36-cbe5-4f03-afc0-d5f02619f532
+      value: MinimapIcon_b66917fd-b537-49d7-aa66-b38113f31305
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 49a2ba884993f2b4283e2cbabf66e153, type: 3}
       propertyPath: m_Name
@@ -26335,7 +26428,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4837471904548248550, guid: edd9d584652991f4c945ac07ae3156ea, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_57e7622f-e2a6-4907-b95a-377e6e7dd433
+      value: MinimapIcon_43d66f56-2bd3-4b32-9fc5-342acc9acb6b
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: edd9d584652991f4c945ac07ae3156ea, type: 3}
       propertyPath: m_Name
@@ -26401,7 +26494,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2409355474575640235, guid: 49a2ba884993f2b4283e2cbabf66e153, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_1f1dbce3-6fec-459a-a4f7-608ef63e5ab0
+      value: MinimapIcon_0662e7a3-3804-4e7e-b8ac-0d57348a9eab
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 49a2ba884993f2b4283e2cbabf66e153, type: 3}
       propertyPath: m_Name
@@ -26467,7 +26560,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4837471904548248550, guid: edd9d584652991f4c945ac07ae3156ea, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_838715a1-060f-44f0-b64f-ed4662409873
+      value: MinimapIcon_480a3b91-2d6d-46d5-ac4e-00ee153c4a9b
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: edd9d584652991f4c945ac07ae3156ea, type: 3}
       propertyPath: m_Name
@@ -26537,7 +26630,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8990449376063212005, guid: 1ac4b555776cc90488e5149fe7dd9a06, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_ca8cccaa-1658-49ac-b40e-199913ba1e8c
+      value: MinimapIcon_e7923539-8357-46f3-af27-94095d0b6b88
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -26769,7 +26862,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8878087963108433553, guid: 46b82607ee66fd34fad608322138db8d, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_9e44934d-d318-4e9d-8a02-07bdf76617fd
+      value: MinimapIcon_c2d5a54d-cf58-448b-bfa3-7e849cc76da7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -26831,7 +26924,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6826658745282541354, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_a627d325-6673-4163-a68a-780367554bcc
+      value: MinimapIcon_49cd1dc1-2d42-44f7-94fb-2b2db928d034
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_Name
@@ -26897,7 +26990,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6826658745282541354, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_2ceaaca0-d3da-4952-8510-73d2130f03b6
+      value: MinimapIcon_8d4b1b4a-c24a-478b-8550-d92ac7f8dbba
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_Name
@@ -27193,7 +27286,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2409355474575640235, guid: 49a2ba884993f2b4283e2cbabf66e153, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_cc1e07e2-bab8-43a1-8b09-bb45b5de95e8
+      value: MinimapIcon_b15d26da-77ca-4ff6-ac38-4f56d32b845c
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 49a2ba884993f2b4283e2cbabf66e153, type: 3}
       propertyPath: m_Name
@@ -27259,7 +27352,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2409355474575640235, guid: 49a2ba884993f2b4283e2cbabf66e153, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_05842274-45f8-4c71-9b23-308b1be9c743
+      value: MinimapIcon_4f946cd9-b859-4172-98c8-ec6f28ff6af5
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 49a2ba884993f2b4283e2cbabf66e153, type: 3}
       propertyPath: m_Name
@@ -27329,7 +27422,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8990449376063212005, guid: 1ac4b555776cc90488e5149fe7dd9a06, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_ad36ac81-0fe0-4083-95a2-ebfc923a5eb7
+      value: MinimapIcon_06bf3f42-9d09-47d1-9234-5a9b8619d369
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -27391,7 +27484,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6826658745282541354, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_b558af3c-769c-45e8-a625-4014154e7e33
+      value: MinimapIcon_ba9be195-db56-4a3c-864a-0fb2df95ee9c
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_Name
@@ -27457,7 +27550,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6826658745282541354, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_minimapIconId
-      value: MinimapIcon_7d58a6eb-1ee2-4e10-9217-70938292e84e
+      value: MinimapIcon_58979303-4c86-44e5-bbf6-6e1f7349dff4
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 9c4a62c8843791b44a599381c1b32b05, type: 3}
       propertyPath: m_Name
@@ -27865,5 +27958,4 @@ SceneRoots:
   - {fileID: 501736528}
   - {fileID: 450987895}
   - {fileID: 1673402998}
-  - {fileID: 1024403644}
   - {fileID: 5407656914027589723}

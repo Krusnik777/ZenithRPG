@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc94f3ef51919f047a37a8689866768f, type: 3}
+  m_Name: TEST_EnemyStatsInfo
+  m_EditorClassIdentifier: 
+  Level: 1
+  HitPoints: 50
+  MagicPoints: 1
+  Strength: 1
+  Intelligence: 1
+  MagicResist: 1
+  Luck: 1
+  Attack: 5
+  Defense: 1
+  ExperiencePoints: 100
+  DroppedGold: 10
+  DroppedItems:
+  - DroppedItemData:
+      ItemInfo: {fileID: 11400000, guid: cf2f4a2b8c48efd429d56e8e72931749, type: 2}
+      Amount: 1
+    ItemDropChance: 0.1
+  - DroppedItemData:
+      ItemInfo: {fileID: 11400000, guid: 097fda4fc58e48a4fbb25f7ac89563d4, type: 2}
+      Amount: 5
+    ItemDropChance: 0.75
+  - DroppedItemData:
+      ItemInfo: {fileID: 11400000, guid: ba0c1000f3fdf72459c20fa7a2a7b597, type: 2}
+      Amount: 2
+    ItemDropChance: 0.35

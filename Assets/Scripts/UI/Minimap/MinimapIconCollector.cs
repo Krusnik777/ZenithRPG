@@ -7,6 +7,23 @@ namespace DC_ARPG
     {
         private List<MinimapIcon> m_minimapIcons;
 
+        public float GetMapCompletionPercent()
+        {
+            if (m_minimapIcons == null) GetMinimapIcons();
+
+            var discoveredIcons = new List<MinimapIcon>();
+
+            foreach (var minimapIcon in m_minimapIcons)
+            {
+                if (minimapIcon.Discovered)
+                    discoveredIcons.Add(minimapIcon);
+            }
+
+            float percent = (float) discoveredIcons.Count / m_minimapIcons.Count * 100;
+
+            return percent;
+        }
+
         private void Start()
         {
             GetMinimapIcons();
@@ -27,6 +44,7 @@ namespace DC_ARPG
         {
             public bool enabled;
             public List<string> discoveredIconsId;
+            public float mapCompletionPercent;
 
             public DataState() { }
         }
@@ -55,6 +73,8 @@ namespace DC_ARPG
                     s.discoveredIconsId.Add(minimapIcon.MinimapIconId);
             }
 
+            s.mapCompletionPercent = GetMapCompletionPercent();
+
             return JsonUtility.ToJson(s);
         }
 
@@ -77,7 +97,6 @@ namespace DC_ARPG
                     }
                 }
             }
-
         }
 
         public void SetupCreatedDataPersistenceObject(string entityId, bool isCreated, string state) { }
