@@ -76,6 +76,8 @@ namespace DC_ARPG
                 if (hit.collider) return;
             }
 
+            if (CheckForMovingEnemy(directionRay)) return;
+
             if (direction == Vector3.zero)
             {
                 m_animator.SetFloat("MovementX", 0);
@@ -148,7 +150,7 @@ namespace DC_ARPG
             if (!inIdleState && !isAttacking) return;
 
             if (
-                (m_animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.7f || m_animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 0.5f)
+                (m_animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.7f || m_animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 0.4f)
                 && m_animator.GetCurrentAnimatorStateInfo(0).IsName("AttackState.Attack" + hitCount)
                 ) return;
 
@@ -221,6 +223,21 @@ namespace DC_ARPG
         {
             landedAfterJump = true;
             m_characterSFX.PlayLandSound();
+        }
+
+        private bool CheckForMovingEnemy(Ray directionRay)
+        {
+            RaycastHit hit;
+
+            if (Physics.Raycast(directionRay, out hit, 1.7f, 1, QueryTriggerInteraction.Ignore))
+            {
+                if (hit.collider.transform.parent.TryGetComponent(out Enemy enemy))
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
 
         #region Coroutines
@@ -465,7 +482,6 @@ namespace DC_ARPG
         }
 
         #endregion
-
 
     }
 }

@@ -260,6 +260,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7afab20dc6c595843bf4621b331758df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_playerCharacter: {fileID: 0}
   m_hitPointsValueText: {fileID: 1820009324998204629}
   m_hitPointsFillImage: {fileID: 5984112194891175254}
   m_magicPointsValueText: {fileID: 3591047671829211346}
@@ -924,6 +925,7 @@ GameObject:
   - component: {fileID: 102157484455006016}
   - component: {fileID: 465336925956873523}
   - component: {fileID: 3047101301294734587}
+  - component: {fileID: 4646582220959595884}
   m_Layer: 5
   m_Name: MapName
   m_TagString: Untagged
@@ -989,6 +991,19 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &4646582220959595884
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2141725701198190389}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d199e5801e27ecc4a9d12f589717216b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_titleText: {fileID: 3226735652050597040}
 --- !u!1 &2360468212078001723
 GameObject:
   m_ObjectHideFlags: 0
@@ -3231,6 +3246,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fc1d5cd8e4e41e4393890702e19d154, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_playerCharacter: {fileID: 0}
   m_statsProgressPanel: {fileID: 8744923514732086146}
   m_levelValueText: {fileID: 6449453887856100886}
   m_levelFillImage: {fileID: 5600740677482928610}

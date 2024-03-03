@@ -4,7 +4,7 @@ using TMPro;
 
 namespace DC_ARPG
 {
-    public class UIInventory : MonoBehaviour, IDependency<Player>
+    public class UIInventory : MonoBehaviour
     {
         public enum InteractionState
         {
@@ -12,6 +12,7 @@ namespace DC_ARPG
             Shop
         }
 
+        [SerializeField] private Player m_player;
         [SerializeField] private GameObject m_inventoryPanel;
         [SerializeField] private ItemsPanel m_itemsPanel;
         [SerializeField] private TextMeshProUGUI m_moneyValueText;
@@ -34,14 +35,12 @@ namespace DC_ARPG
         [SerializeField] private TextMeshProUGUI m_defenseAmountText;
         [SerializeField] private TextMeshProUGUI m_attackAmountText;
 
+        public Player Player => m_player;
+
         private InteractionState m_interactionState;
         public InteractionState State => m_interactionState;
         public UIItemInfoPanelController InfoPanelController => m_uiItemInfoPanelController;
         public UIInventoryButtonsPanel ButtonsInfoPanel => m_uIInventoryButtonsPanel;
-
-        private Player m_player;
-        public void Construct(Player player) => m_player = player;
-        public Player Player => m_player;
 
         private Inventory m_inventory;
         public Inventory Inventory => m_inventory;

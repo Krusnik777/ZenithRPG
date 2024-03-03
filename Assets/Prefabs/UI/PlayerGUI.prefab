@@ -2366,27 +2366,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1245482016256308469, guid: c288a938800d63f4398951faf2db81d7, type: 3}
       propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1245482016256308469, guid: c288a938800d63f4398951faf2db81d7, type: 3}
       propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 6
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1245482016256308469, guid: c288a938800d63f4398951faf2db81d7, type: 3}
       propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 8884671719043803211}
+      objectReference: {fileID: 2160207327568905450}
     - target: {fileID: 1245482016256308469, guid: c288a938800d63f4398951faf2db81d7, type: 3}
       propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1245482016256308469, guid: c288a938800d63f4398951faf2db81d7, type: 3}
       propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ShowQuitButtons
+      value: ReturnToMainMenu
       objectReference: {fileID: 0}
     - target: {fileID: 1245482016256308469, guid: c288a938800d63f4398951faf2db81d7, type: 3}
       propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: DC_ARPG.PauseMenu, Assembly-CSharp
+      value: DC_ARPG.RestartMenu, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 1245482016256308469, guid: c288a938800d63f4398951faf2db81d7, type: 3}
       propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_BoolArgument

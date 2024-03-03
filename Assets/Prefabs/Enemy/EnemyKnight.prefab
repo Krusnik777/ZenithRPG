@@ -357,6 +357,8 @@ MonoBehaviour:
   m_chaseDurationTime: 20
   m_attackMinDelayTime: 1
   m_attackMaxDelayTime: 3
+  moveSpeed: 1.1
+  turnSpeed: 5
 --- !u!114 &5235701103468699958
 MonoBehaviour:
   m_ObjectHideFlags: 0

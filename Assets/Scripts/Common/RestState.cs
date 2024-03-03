@@ -3,10 +3,9 @@ using UnityEngine;
 
 namespace DC_ARPG
 {
-    public class RestState : MonoSingleton<RestState>, IDependency<Player>
+    public class RestState : MonoSingleton<RestState>
     {
-        private Player m_player;
-        public void Construct(Player player) => m_player = player;
+        [SerializeField] private Player m_player;
 
         private Animator m_animator;
 

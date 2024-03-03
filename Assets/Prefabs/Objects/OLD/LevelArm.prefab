@@ -82,6 +82,7 @@ MonoBehaviour:
   EventOnInspection:
     m_PersistentCalls:
       m_Calls: []
+  m_animator: {fileID: 9120895313891661057}
   m_canReset: 0
   OnUsed:
     m_PersistentCalls:
@@ -89,6 +90,9 @@ MonoBehaviour:
   OnReseted:
     m_PersistentCalls:
       m_Calls: []
+  m_prefabId: 
+  m_id: 
+  m_isSerializable: 1
 --- !u!95 &9120895313891661057
 Animator:
   serializedVersion: 5

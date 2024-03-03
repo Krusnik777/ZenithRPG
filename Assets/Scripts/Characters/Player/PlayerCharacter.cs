@@ -183,13 +183,13 @@ namespace DC_ARPG
                 return;
             }
 
+            MusicCommander.Instance.PlayGameOverMusic();
+
             m_player.CharacterSFX.PlayDeathSFX(m_player.transform.position);
 
             m_player.Animator.Play("Death");
 
             OnPlayerDeath?.Invoke();
-            Debug.Log("Game Over");
-            // And turn off everything
         }
 
         private void OnEquipItemRemoved(object sender, IItemSlot slot)

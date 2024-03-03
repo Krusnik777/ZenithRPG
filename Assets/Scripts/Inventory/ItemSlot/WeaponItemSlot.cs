@@ -14,6 +14,7 @@ namespace DC_ARPG
         public bool IsFull => !IsEmpty && Amount >= Capacity;
 
         public event UnityAction<object> EventOnAttack;
+        public event UnityAction<object> EventOnBrokenWeapon;
 
         public bool TrySetItemInSlot(IItem item)
         {
@@ -67,6 +68,8 @@ namespace DC_ARPG
                 player.Character.Inventory.SetBrokenWeapon(sender, player.Character.BrokenWeapon);
 
                 UISounds.Instance.PlaySwordBreakSound();
+
+                EventOnBrokenWeapon?.Invoke(sender);
             }
 
             EventOnAttack?.Invoke(sender);

@@ -4,8 +4,9 @@ using TMPro;
 
 namespace DC_ARPG
 {
-    public class UIStatsProgress : MonoBehaviour, IDependency<PlayerCharacter>
+    public class UIStatsProgress : MonoBehaviour
     {
+        [SerializeField] private PlayerCharacter m_playerCharacter;
         [SerializeField] private GameObject m_statsProgressPanel;
         [Header("Level")]
         [SerializeField] private TextMeshProUGUI m_levelValueText;
@@ -19,9 +20,6 @@ namespace DC_ARPG
         [Header("MagicResist")]
         [SerializeField] private TextMeshProUGUI m_magicResistValueText;
         [SerializeField] private Image m_magicResistFillImage;
-
-        private PlayerCharacter m_playerCharacter;
-        public void Construct(PlayerCharacter playerCharacter) => m_playerCharacter = playerCharacter;
 
         private void Start()
         {

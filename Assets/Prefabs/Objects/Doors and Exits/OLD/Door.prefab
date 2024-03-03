@@ -258,6 +258,7 @@ MonoBehaviour:
   EventOnInspection:
     m_PersistentCalls:
       m_Calls: []
+  m_animator: {fileID: 4289264148175112980}
   m_collider: {fileID: 5346726631591803513}
   m_openableDirectly: 0
   m_locked: 0
@@ -265,8 +266,9 @@ MonoBehaviour:
   m_specificKeyItemInfo: {fileID: 0}
   m_forwardPositionTrigger: {fileID: 7999012506349261603}
   m_backwardPositionTrigger: {fileID: 6136834741319281676}
-  m_forwardRoomCeiling: {fileID: 0}
-  m_backwardRoomCeiling: {fileID: 0}
+  m_prefabId: 
+  m_id: 
+  m_isSerializable: 1
 --- !u!1 &7191617750396868134
 GameObject:
   m_ObjectHideFlags: 0

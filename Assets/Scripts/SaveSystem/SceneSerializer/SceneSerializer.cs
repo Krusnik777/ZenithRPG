@@ -137,6 +137,7 @@ namespace DC_ARPG
         // TEMP DEBUG
 
         public void Restart() => SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().name);
+
         public void RestartFromStart()
         {
             DeleteCheckpoints();

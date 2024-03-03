@@ -4,17 +4,15 @@ using TMPro;
 
 namespace DC_ARPG
 {
-    public class UIStatsBaseParameters : MonoBehaviour, IDependency<PlayerCharacter>
+    public class UIStatsBaseParameters : MonoBehaviour
     {
+        [SerializeField] private PlayerCharacter m_playerCharacter;
         [Header("HitPoints")]
         [SerializeField] private TextMeshProUGUI m_hitPointsValueText;
         [SerializeField] private Image m_hitPointsFillImage;
         [Header("MagicPoints")]
         [SerializeField] private TextMeshProUGUI m_magicPointsValueText;
         [SerializeField] private Image m_magicPointsFillImage;
-
-        private PlayerCharacter m_playerCharacter;
-        public void Construct(PlayerCharacter playerCharacter) => m_playerCharacter = playerCharacter;
 
         private void Start()
         {

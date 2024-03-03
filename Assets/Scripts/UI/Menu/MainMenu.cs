@@ -32,6 +32,11 @@ namespace DC_ARPG
 
         }
 
+        public void StartTutorial()
+        {
+            SceneCommander.Instance.StartTutorialLevel();
+        }
+
         public void ShowSettings(bool state)
         {
             m_baseButtons.SetInteractable(!state);

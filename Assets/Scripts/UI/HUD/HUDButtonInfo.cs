@@ -3,13 +3,11 @@ using TMPro;
 
 namespace DC_ARPG
 {
-    public class HUDButtonInfo : MonoBehaviour, IDependency<Player>
+    public class HUDButtonInfo : MonoBehaviour
     {
+        [SerializeField] private Player m_player;
         [SerializeField] private GameObject m_buttonInfoPanel;
         [SerializeField] private TextMeshProUGUI m_useText;
-
-        private Player m_player;
-        public void Construct(Player player) => m_player = player;
 
         private void Update()
         {

@@ -7,6 +7,11 @@ namespace DC_ARPG
         private PositionTrigger m_positionTrigger;
         public bool StandingInFrontOfExit => m_positionTrigger != null ? m_positionTrigger.InRightPosition : false;
 
+        public void ExitToMainMenu()
+        {
+            SceneCommander.Instance.ReturnToMainMenu();
+        }
+
         public override void OnInspection(Player player)
         {
             if (!StandingInFrontOfExit)

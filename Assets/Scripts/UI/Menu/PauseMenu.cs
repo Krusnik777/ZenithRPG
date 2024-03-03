@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace DC_ARPG
 {
-    public class PauseMenu : MonoSingleton<PauseMenu>, IDependency<ControlsManager>, IDependency<PlayerCharacter>
+    public class PauseMenu : MonoSingleton<PauseMenu>, IDependency<ControlsManager>
     {
         public enum MenuState
         {
@@ -20,6 +20,7 @@ namespace DC_ARPG
             Require
         }
 
+        [SerializeField] private PlayerCharacter m_playerCharacter;
         [Header("Panels")]
         [SerializeField] private GameObject m_pauseMenuPanel;
         [SerializeField] private StatusPanel m_statusPanel;
@@ -34,9 +35,6 @@ namespace DC_ARPG
 
         private ControlsManager m_controlsManager;
         public void Construct(ControlsManager controlsManager) => m_controlsManager = controlsManager;
-
-        private PlayerCharacter m_playerCharacter;
-        public void Construct(PlayerCharacter character) => m_playerCharacter = character;
 
         public UISelectableButtonContainer ActiveButtonContainer { get; private set; }
 

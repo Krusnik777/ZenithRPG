@@ -24,6 +24,9 @@ namespace DC_ARPG
         [SerializeField] private float m_chaseDurationTime = 20.0f;
         [SerializeField] private float m_attackMinDelayTime = 1.0f;
         [SerializeField] private float m_attackMaxDelayTime = 3.0f;
+        [Header("MovementParamsForAI")]
+        [SerializeField] private float moveSpeed = 1.25f;
+        [SerializeField] private float turnSpeed = 5f;
 
         public event UnityAction<EnemyAIController> EventOnChaseStarted;
         public event UnityAction<EnemyAIController> EventOnChaseEnded;
@@ -50,12 +53,14 @@ namespace DC_ARPG
         private bool isChasing = false;
         private bool isStopped = false;
 
-        private float moveSpeed = 1.25f;
-        private float turnSpeed = 5f;
+        
 
         private Timer m_patrolRestTimer;
         private Timer m_chaseTimer;
         private Timer m_attackTimer;
+
+        private int currentMoves = 0;
+        private int m_moveCount = 1;
 
         private void GetCurrentTile() => currentTile = GetTargetTile(gameObject);
         private void CalculateHeadingDirection(Vector3 targetPosition) => headingDirection = (targetPosition - transform.position).normalized;
@@ -295,6 +300,28 @@ namespace DC_ARPG
                     // tile center reached
 
                     transform.position = targetPosition;
+
+                    if (isChasing)
+                    {
+                        currentMoves++;
+
+                        if (currentMoves > m_moveCount)
+                        {
+
+                            if (LevelState.Instance.ChasingEnemies.Count > 1)
+                            {
+                                CalculatePath(LevelState.Instance.GetTargetNearPlayer(this));
+                            }
+                            else
+                            {
+                                CalculatePath(playerTile);
+                            }
+
+                            currentMoves = 0;
+
+                            return;
+                        }
+                    }
 
                     path.Pop();
                 }

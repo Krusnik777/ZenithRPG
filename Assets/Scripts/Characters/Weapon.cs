@@ -15,11 +15,15 @@ namespace DC_ARPG
             {
                 if (other.transform.parent.TryGetComponent(out Enemy enemy))
                 {
-                    enemy.Character.EnemyStats.ChangeCurrentHitPoints(parentPlayer, -parentPlayer.Character.PlayerStats.Attack, DamageType.Physic);
-                    parentPlayer.Character.PlayerStats.AddStrengthExperience(m_experienceForHit);
-                    var weaponItem = parentPlayer.Character.Inventory.WeaponItemSlot.Item as WeaponItem;
+                    if (enemy.Character.EnemyStats.CurrentHitPoints > 0)
+                    {
+                        enemy.Character.EnemyStats.ChangeCurrentHitPoints(parentPlayer, -parentPlayer.Character.PlayerStats.Attack, DamageType.Physic);
+                        parentPlayer.Character.PlayerStats.AddStrengthExperience(m_experienceForHit);
 
-                    if (!weaponItem.HasInfiniteUses) parentPlayer.Character.Inventory.WeaponItemSlot.UseWeapon(this, parentPlayer);
+
+                        var weaponItem = parentPlayer.Character.Inventory.WeaponItemSlot.Item as WeaponItem;
+                        if (!weaponItem.HasInfiniteUses) parentPlayer.Character.Inventory.WeaponItemSlot.UseWeapon(this, parentPlayer);
+                    }
                 }
             }
 

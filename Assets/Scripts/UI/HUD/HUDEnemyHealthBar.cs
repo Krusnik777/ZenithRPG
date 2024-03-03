@@ -3,13 +3,11 @@ using UnityEngine.UI;
 
 namespace DC_ARPG
 {
-    public class HUDEnemyHealthBar : MonoBehaviour, IDependency<Player>
+    public class HUDEnemyHealthBar : MonoBehaviour
     {
+        [SerializeField] private Player m_player;
         [SerializeField] private GameObject m_enemyHealthBarPanel;
         [SerializeField] private Image m_fillImage;
-
-        private Player m_player;
-        public void Construct(Player player) => m_player = player;
 
         private void Update()
         {

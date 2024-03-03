@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.UI;
 using TMPro;
 
 namespace DC_ARPG
@@ -50,18 +49,14 @@ namespace DC_ARPG
 
         public void OnConfirm()
         {
-            // TEMP
-
             if (m_type == ConfirmType.ReturnToMainMenu)
             {
-                Debug.Log("ToMainMenu");
-                //SceneLoader.LoadMainMenu();
+                SceneCommander.Instance.ReturnToMainMenu();
             }
 
             if (m_type == ConfirmType.QuitGame)
             {
-                Debug.Log("Exited");
-                Application.Quit();
+                SceneCommander.Instance.ExitGame();
             }   
         }
     }

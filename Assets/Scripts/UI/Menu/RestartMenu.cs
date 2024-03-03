@@ -20,6 +20,11 @@ namespace DC_ARPG
         public void RestartFromCheckpoint() => SceneSerializer.Instance.Restart();
         public void RestartFromStart() => SceneSerializer.Instance.RestartFromStart();
 
+        public void ReturnToMainMenu()
+        {
+            SceneCommander.Instance.ReturnToMainMenu();
+        }
+
         public void ShowPanel()
         {
             m_controlsManager.SetPlayerControlsActive(false);
