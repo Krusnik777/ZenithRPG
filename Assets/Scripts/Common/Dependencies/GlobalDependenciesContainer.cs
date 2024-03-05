@@ -5,10 +5,11 @@ namespace DC_ARPG
 {
     public class GlobalDependenciesContainer : Dependency
     {
-        //[SerializeField] private Pauser m_pauser;
-        //[SerializeField] private GameCompletion m_gameCompletion;
         [SerializeField] private SettingLoader m_settingLoader;
         [SerializeField] private ControlsManager m_controlsManager;
+        [SerializeField] private MusicCommander m_musicCommander;
+        [SerializeField] private SceneCommander m_sceneCommander;
+        [SerializeField] private DataPersistenceManager m_dataPersistenceManager;
 
         private static GlobalDependenciesContainer instance;
 
@@ -34,10 +35,11 @@ namespace DC_ARPG
 
         protected override void BindAll(MonoBehaviour monoBehaviourInScene)
         {
-            //Bind<Pauser>(m_pauser, monoBehaviourInScene);
-            //Bind<GameCompletion>(m_gameCompletion, monoBehaviourInScene);
             Bind<SettingLoader>(m_settingLoader, monoBehaviourInScene);
             Bind<ControlsManager>(m_controlsManager, monoBehaviourInScene);
+            Bind<MusicCommander>(m_musicCommander, monoBehaviourInScene);
+            Bind<SceneCommander>(m_sceneCommander, monoBehaviourInScene);
+            Bind<DataPersistenceManager>(m_dataPersistenceManager, monoBehaviourInScene);
         }
 
         private void OnSceneLoaded(Scene arg0, LoadSceneMode arg1)

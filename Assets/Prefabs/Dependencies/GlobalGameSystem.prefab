@@ -240,7 +240,7 @@ AudioSource:
   m_PlayOnAwake: 0
   m_Volume: 0.4
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -387,6 +387,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_settingLoader: {fileID: 7345033864206287416}
   m_controlsManager: {fileID: 773322208633864496}
+  m_musicCommander: {fileID: 4846716099177493808}
+  m_sceneCommander: {fileID: 1590066743993130771}
+  m_dataPersistenceManager: {fileID: 3665079707667148077}
 --- !u!1 &4890244530716081855
 GameObject:
   m_ObjectHideFlags: 0

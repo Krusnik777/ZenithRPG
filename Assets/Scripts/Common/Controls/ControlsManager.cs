@@ -90,12 +90,6 @@ namespace DC_ARPG
             _controls = new Controls();
             _controls.Enable();
 
-            SetMenuControlsActive(false);
-            SetInventoryControlsActive(false);
-            SetStoryEventControlsActive(false);
-            SetShopControlsActive(false);
-            SetSimpleMenuControlsActive(false);
-
             SceneManager.sceneLoaded += OnSceneLoaded;
         }
 
@@ -116,6 +110,12 @@ namespace DC_ARPG
 
         private void UpdateStartActiveControls(Scene scene)
         {
+            SetMenuControlsActive(false);
+            SetInventoryControlsActive(false);
+            SetStoryEventControlsActive(false);
+            SetShopControlsActive(false);
+            SetSimpleMenuControlsActive(false);
+
             if (scene.name == SceneLoader.MainMenuSceneName)
             {
                 m_mainMenuInputController = FindObjectOfType<MainMenuInputController>(true);

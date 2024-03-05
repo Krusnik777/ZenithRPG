@@ -39,13 +39,16 @@ namespace DC_ARPG
             {
                 if (collision.gameObject.TryGetComponent(out Enemy enemy))
                 {
-                    if (enemy.EnemyAI.State != EnemyState.Chase || enemy.EnemyAI.State != EnemyState.Battle)
+                    if (enemy.Character.EnemyStats.CurrentHitPoints > 0)
                     {
-                        enemy.EnemyAI.StartChaseState();
-                    }
+                        if (enemy.EnemyAI.State != EnemyState.Chase || enemy.EnemyAI.State != EnemyState.Battle)
+                        {
+                            enemy.EnemyAI.StartChaseState();
+                        }
 
-                    enemy.Character.EnemyStats.ChangeCurrentHitPoints(parentPlayer, -m_damage, DamageType.Magic);
-                    parentPlayer.Character.PlayerStats.AddIntelligenceExperience(m_experienceForHit);
+                        enemy.Character.EnemyStats.ChangeCurrentHitPoints(parentPlayer, -m_damage, DamageType.Magic);
+                        parentPlayer.Character.PlayerStats.AddIntelligenceExperience(m_experienceForHit);
+                    }
                 }
             }
             else

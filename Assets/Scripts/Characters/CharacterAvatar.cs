@@ -237,6 +237,31 @@ namespace DC_ARPG
                 }
             }
 
+            var halfExtents = new Vector3();
+
+            if (directionRay.direction == transform.forward || directionRay.direction == -transform.forward)
+            {
+                halfExtents = new Vector3(1.499f, 1f, 0.5f)/2;
+            }
+
+            if (directionRay.direction == transform.right|| directionRay.direction == -transform.right)
+            {
+                halfExtents = new Vector3(0.5f, 1f, 1.499f)/2;
+            }
+            
+            Collider[] colliders = Physics.OverlapBox(transform.position + directionRay.direction, halfExtents,transform.rotation, 1, QueryTriggerInteraction.Ignore);
+
+            foreach (var collider in colliders)
+            {
+                if (!collider.isTrigger)
+                {
+                    if (collider.transform.parent.TryGetComponent(out Enemy enemy))
+                    {
+                        return true;
+                    }
+                }
+            }
+
             return false;
         }
 
@@ -482,6 +507,5 @@ namespace DC_ARPG
         }
 
         #endregion
-
     }
 }
