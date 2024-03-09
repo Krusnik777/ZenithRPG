@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 namespace DC_ARPG
@@ -6,6 +7,7 @@ namespace DC_ARPG
     {
         public enum MenuState
         {
+            Start,
             Selection,
             Load,
             Settings,
@@ -13,6 +15,7 @@ namespace DC_ARPG
             Quit
         }
 
+        [SerializeField] private GameObject m_startPanel;
         [SerializeField] private UISelectableButtonContainer m_baseButtons;
         [SerializeField] private UISelectableButtonContainer m_settingsButtons;
         [SerializeField] private ConfirmPanel m_confirmPanel;
@@ -21,6 +24,8 @@ namespace DC_ARPG
 
         private MenuState m_menuState;
         public MenuState State => m_menuState;
+
+        private Coroutine startPanelRoutine;
 
         public void StartNewGame()
         {
@@ -74,12 +79,40 @@ namespace DC_ARPG
             m_menuState = MenuState.Selection;
         }
 
+        public void TurnOffStartPanel()
+        {
+            if (startPanelRoutine != null) return;
+
+            startPanelRoutine = StartCoroutine(StartPanelRoutine());
+        }
+
         private void Start()
         {
             ActiveButtonContainer = m_baseButtons;
 
+            m_menuState = MenuState.Start;
+        }
+
+        #region Coroutines
+
+        private IEnumerator StartPanelRoutine()
+        {
+            var animator = m_startPanel.GetComponent<Animator>();
+
+            animator.SetTrigger("Disappear");
+
+            yield return new WaitUntil(() => animator.GetCurrentAnimatorStateInfo(0).IsName("Disappear"));
+
+            yield return new WaitWhile(() => animator.GetCurrentAnimatorStateInfo(0).IsName("Disappear") && animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 0.99);
+
+            m_startPanel.SetActive(false);
+
+            MusicCommander.Instance.PlayMainMenuTheme();
+
             m_menuState = MenuState.Selection;
         }
+
+        #endregion
 
     }
 }

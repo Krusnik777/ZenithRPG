@@ -23,6 +23,7 @@ namespace DC_ARPG
 
             _controls.Menu.Confirm.performed += OnConfirm;
             _controls.Menu.Cancel.performed += OnCancel;
+            _controls.Menu.CloseMenu.performed += OnStartPanel;
 
             _controls.Menu.Move.performed += OnMove;
             _controls.Menu.ChangeParameters.performed += OnChangeParameters;
@@ -32,6 +33,7 @@ namespace DC_ARPG
         {
             _controls.Menu.Confirm.performed -= OnConfirm;
             _controls.Menu.Cancel.performed -= OnCancel;
+            _controls.Menu.CloseMenu.performed -= OnStartPanel;
 
             _controls.Menu.Move.performed -= OnMove;
             _controls.Menu.ChangeParameters.performed -= OnChangeParameters;
@@ -41,18 +43,16 @@ namespace DC_ARPG
 
         private void OnConfirm(InputAction.CallbackContext obj)
         {
-            m_buttonContainer.SelectedButton.OnButtonClick();
+            if (m_mainMenu.State != MainMenu.MenuState.Start)
+                m_buttonContainer.SelectedButton.OnButtonClick();
         }
 
         private void OnCancel(InputAction.CallbackContext obj)
         {
-            m_mainMenuSounds.PlayBackSound();
-
-            if (m_mainMenu.State == MainMenu.MenuState.Selection)
-            {
-                // Nothing or return to "Press Start Button"
+            if (m_mainMenu.State == MainMenu.MenuState.Start || m_mainMenu.State == MainMenu.MenuState.Selection)
                 return;
-            }
+
+            m_mainMenuSounds.PlayBackSound();
 
             if (m_mainMenu.State == MainMenu.MenuState.Load)
             {
@@ -79,9 +79,18 @@ namespace DC_ARPG
             }
         }
 
+        private void OnStartPanel(InputAction.CallbackContext obj)
+        {
+            if (m_mainMenu.State != MainMenu.MenuState.Start) return;
+
+            m_mainMenuSounds.PlayStartPressedSound();
+
+            m_mainMenu.TurnOffStartPanel();
+        }
+
         private void OnMove(InputAction.CallbackContext obj)
         {
-            if (m_mainMenu.State == MainMenu.MenuState.Quit) return;
+            if (m_mainMenu.State == MainMenu.MenuState.Start || m_mainMenu.State == MainMenu.MenuState.Quit) return;
 
             var value = _controls.Menu.Move.ReadValue<float>();
 

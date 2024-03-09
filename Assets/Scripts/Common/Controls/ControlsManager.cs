@@ -30,6 +30,17 @@ namespace DC_ARPG
         private Controls _controls;
         public Controls Controls => _controls;
 
+        public void TurnOffAllControls()
+        {
+            SetPlayerControlsActive(false);
+            SetMainMenuControlsActive(false);
+            SetMenuControlsActive(false);
+            SetInventoryControlsActive(false);
+            SetStoryEventControlsActive(false);
+            SetShopControlsActive(false);
+            SetSimpleMenuControlsActive(false);
+        }
+
         public void SetMainMenuControlsActive(bool state)
         {
             if (m_mainMenuInputController == null) return;
@@ -73,7 +84,7 @@ namespace DC_ARPG
         {
             if (m_simpleMenuInputController == null)
             {
-                m_simpleMenuInputController = FindObjectOfType<SimpleMenuInputController>(true);
+                if (state == true) m_simpleMenuInputController = FindObjectOfType<SimpleMenuInputController>(true);
 
                 if (m_simpleMenuInputController == null) return;
             }

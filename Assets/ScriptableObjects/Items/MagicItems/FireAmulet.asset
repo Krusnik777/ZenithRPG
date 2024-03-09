@@ -17,7 +17,7 @@ MonoBehaviour:
   Description: "\u0414\u0430\u0441\u0442 \u0441\u043A\u043E\u043B\u0434\u043E\u0432\u0430\u0442\u044C
     \u043E\u0433\u043D\u0435\u043D\u043D\u044B\u0439 \u0448\u0430\u0440. \u0422\u0440\u0430\u0442\u0438\u0442
     \u043C\u0430\u043D\u0443."
-  Icon: {fileID: -700123321, guid: 68d555eaa6558544c91f2f3e8a2c17b9, type: 3}
+  Icon: {fileID: 21300000, guid: f77b8cd774f505d4ea31adbac73df258, type: 3}
   ItemTypeIcon: {fileID: 21300000, guid: 91443558981adc44988ae1f3c1742ed8, type: 3}
   Prefab: {fileID: 5010736486517576525, guid: 3ca53e71b8431dd49a556a2c40d4d54d, type: 3}
   Price: 1000

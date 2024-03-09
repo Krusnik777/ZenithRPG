@@ -18,9 +18,11 @@ MonoBehaviour:
     \u043E\u0433\u043D\u0435\u043D\u043D\u044B\u0439 \u0448\u0430\u0440, \u043D\u043E
     \u0442\u043E\u043B\u044C\u043A\u043E \u043D\u0435\u0441\u043A\u043E\u043B\u044C\u043A\u043E
     \u0440\u0430\u0437."
-  Icon: {fileID: -1205769420, guid: 477fee2de31240a4a910457991d1ca00, type: 3}
+  Icon: {fileID: 21300000, guid: e8342837b7c14494fbdc89c7bc5ac4c5, type: 3}
   ItemTypeIcon: {fileID: 21300000, guid: 91443558981adc44988ae1f3c1742ed8, type: 3}
   Prefab: {fileID: 5010736486517576525, guid: 3ca53e71b8431dd49a556a2c40d4d54d, type: 3}
   Price: 200
+  Magic:
+    m_magic: 0
   HasInfiniteUses: 0
   MagicPointsForUse: 0

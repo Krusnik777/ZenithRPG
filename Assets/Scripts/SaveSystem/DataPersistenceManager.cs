@@ -19,7 +19,7 @@ namespace DC_ARPG
 
         private string m_selectedProfileId = "";
 
-        public bool CheckSaveForCurrenProfileExists() => m_dataHandler.CheckIfSaveFileForProfileExist(m_selectedProfileId);
+        public bool CheckSaveForCurrentProfileExists() => m_dataHandler.CheckIfSaveFileForProfileExist(m_selectedProfileId);
 
         public void ChangeSelectedProfileId(string newProfileId)
         {

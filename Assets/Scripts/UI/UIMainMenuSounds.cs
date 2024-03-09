@@ -8,12 +8,14 @@ namespace DC_ARPG
         [SerializeField] private AudioClip m_clickSound;
         [SerializeField] private AudioClip m_hoverSound;
         [SerializeField] private AudioClip m_backSound;
+        [SerializeField] private AudioClip m_startPressedSound;
 
         private AudioSource m_audioSource;
 
         private UIButton[] uIButtons;
 
         public void PlayBackSound() => m_audioSource.PlayOneShot(m_backSound);
+        public void PlayStartPressedSound() => m_audioSource.PlayOneShot(m_startPressedSound);
 
         private void Start()
         {

@@ -26,7 +26,7 @@ namespace DC_ARPG
             player.Character.PlayerStats.ChangeCurrentHitPoints(this, 9999);
             player.Character.Inventory.RemoveItemFromInventory(this, slot);
 
-            Debug.Log("Revived");
+            ShortMessage.Instance.ShowMessage("Что-то сломалось в рюкзаке, но чувствуется прилив сил.");
         }
     }
 }

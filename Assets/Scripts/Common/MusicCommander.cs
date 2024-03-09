@@ -19,6 +19,12 @@ namespace DC_ARPG
             m_audioSource.Play();
         }
 
+        public void PlayMainMenuTheme()
+        {
+            m_audioSource.clip = m_musicDataBase.MainMenuTheme;
+            m_audioSource.Play();
+        }
+
         private AudioSource m_audioSource;
 
         protected override void Awake()
@@ -30,7 +36,8 @@ namespace DC_ARPG
 
         private void Start()
         {
-            PlayCurrentSceneBGM();
+            if (SceneManager.GetActiveScene().name != SceneCommander.MainMenuSceneName)
+                PlayCurrentSceneBGM();
 
             SceneManager.sceneLoaded += OnSceneLoaded;
         }
@@ -42,7 +49,9 @@ namespace DC_ARPG
 
         private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
         {
-            PlaySceneBGM(scene.name);
+            if (SceneManager.GetActiveScene().name != SceneCommander.MainMenuSceneName)
+                PlaySceneBGM(scene.name);
+            else m_audioSource.Stop();
         }
 
         private void PlaySceneBGM(string sceneName)

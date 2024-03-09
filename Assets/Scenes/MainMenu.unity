@@ -4102,7 +4102,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1806189007
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8477,6 +8477,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc359e08d27852347bd1772c9683a247, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_startPanel: {fileID: 1806189006}
   m_baseButtons: {fileID: 685402370437696800}
   m_settingsButtons: {fileID: 339262561277395734}
   m_confirmPanel: {fileID: 3782698277527336686}
@@ -8495,6 +8496,7 @@ MonoBehaviour:
   m_clickSound: {fileID: 8300000, guid: 02527d0a54178644aacaf1e1ba3554da, type: 3}
   m_hoverSound: {fileID: 8300000, guid: 327e9709d77a7494793a3961da2e3191, type: 3}
   m_backSound: {fileID: 8300000, guid: dc294077640cc1c41b077a9f2d67d749, type: 3}
+  m_startPressedSound: {fileID: 8300000, guid: fb4d8d1e4e61ede4cbb0998c7317259c, type: 3}
 --- !u!82 &5112740784745664187
 AudioSource:
   m_ObjectHideFlags: 0

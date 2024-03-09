@@ -229,7 +229,7 @@ namespace DC_ARPG
         {
             RaycastHit hit;
 
-            if (Physics.Raycast(directionRay, out hit, 1.7f, 1, QueryTriggerInteraction.Ignore))
+            if (Physics.Raycast(directionRay, out hit, 1.749f, 1, QueryTriggerInteraction.Ignore))
             {
                 if (hit.collider.transform.parent.TryGetComponent(out Enemy enemy))
                 {

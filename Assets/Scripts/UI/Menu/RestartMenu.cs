@@ -17,8 +17,8 @@ namespace DC_ARPG
         private ControlsManager m_controlsManager;
         public void Construct(ControlsManager controlsManager) => m_controlsManager = controlsManager;
 
-        public void RestartFromCheckpoint() => SceneSerializer.Instance.Restart();
-        public void RestartFromStart() => SceneSerializer.Instance.RestartFromStart();
+        public void RestartFromCheckpoint() => SceneCommander.Instance.RestartCurrentLevelFromCheckpoint();
+        public void RestartFromStart() => SceneCommander.Instance.RestartCurrentLevelFromStart();
 
         public void ReturnToMainMenu()
         {
@@ -41,7 +41,7 @@ namespace DC_ARPG
         {
             m_restartFromCheckpointButton.SetActive(SceneSerializer.Instance.CheckSaveExists());
             if (DataPersistenceManager.Instance != null)
-                m_loadButton.SetActive(DataPersistenceManager.Instance.CheckSaveForCurrenProfileExists());
+                m_loadButton.SetActive(DataPersistenceManager.Instance.CheckSaveForCurrentProfileExists());
             else m_loadButton.SetActive(false);
         }
     }

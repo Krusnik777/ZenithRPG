@@ -138,12 +138,6 @@ namespace DC_ARPG
 
         public void Restart() => SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().name);
 
-        public void RestartFromStart()
-        {
-            DeleteCheckpoints();
-            SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().name);
-        }
-
         public void Save() => SaveSceneData();
     }
 }
