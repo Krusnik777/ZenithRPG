@@ -43,6 +43,8 @@ namespace DC_ARPG
         private EnemyState m_state;
         public EnemyState State => m_state;
 
+        public bool InChaseState => m_state == EnemyState.Chase;
+
         private Vector3 currentDirection;
         private Vector3 headingDirection;
         private Vector3 velocity;
@@ -52,8 +54,6 @@ namespace DC_ARPG
         private bool isTurning = false;
         private bool isChasing = false;
         private bool isStopped = false;
-
-        
 
         private Timer m_patrolRestTimer;
         private Timer m_chaseTimer;
@@ -307,7 +307,6 @@ namespace DC_ARPG
 
                         if (currentMoves > m_moveCount)
                         {
-
                             if (LevelState.Instance.ChasingEnemies.Count > 1)
                             {
                                 CalculatePath(LevelState.Instance.GetTargetNearPlayer(this));

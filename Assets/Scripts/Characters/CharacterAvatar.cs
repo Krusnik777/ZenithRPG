@@ -229,11 +229,12 @@ namespace DC_ARPG
         {
             RaycastHit hit;
 
-            if (Physics.Raycast(directionRay, out hit, 1.749f, 1, QueryTriggerInteraction.Ignore))
+            if (Physics.Raycast(directionRay, out hit, 1.9f, 1, QueryTriggerInteraction.Ignore))
             {
                 if (hit.collider.transform.parent.TryGetComponent(out Enemy enemy))
                 {
-                    return true;
+                    if (enemy.EnemyAI.InChaseState || hit.distance < 1.75f && !enemy.EnemyAI.InChaseState)
+                        return true;
                 }
             }
 

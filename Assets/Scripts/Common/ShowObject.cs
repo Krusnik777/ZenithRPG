@@ -5,21 +5,52 @@ namespace DC_ARPG
 {
     public class ShowObject : MonoBehaviour
     {
-        [SerializeField] private GameObject m_gameObject;
+        [SerializeField] private GameObject[] m_targets;
         [SerializeField] private Camera m_camera;
         [SerializeField] private GameObject m_appearEffectPrefab;
         [SerializeField] private float m_showTime = 2.0f;
 
-        public void Show()
+        public void ShowTarget()
         {
-            if (m_gameObject.activeInHierarchy) return;
+            StartCoroutine(SimpleShowRoutine());
+        }
 
-            StartCoroutine(AppearRoutine());
+        public void ShowSingleTargetAppear()
+        {
+            if (m_targets[0].activeInHierarchy) return;
+
+            StartCoroutine(AppearSingleRoutine());
+        }
+
+        public void ShowMultipleTargetsAppear()
+        {
+            if (m_targets[0].activeInHierarchy) return;
+
+            StartCoroutine(AppearMultipleRoutine());
         }
 
         #region Coroutines
 
-        private IEnumerator AppearRoutine()
+        private IEnumerator SimpleShowRoutine()
+        {
+            StoryEventManager.Instance.StartMicroEvent();
+
+            if (PlayerCamera.Instance != null)
+                PlayerCamera.Instance.Camera.SetActive(false);
+
+            m_camera.gameObject.SetActive(true);
+
+            yield return new WaitForSeconds(m_showTime);
+
+            StoryEventManager.Instance.EndMicroEvent();
+
+            m_camera.gameObject.SetActive(false);
+
+            if (PlayerCamera.Instance != null)
+                PlayerCamera.Instance.Camera.SetActive(true);
+        }
+
+        private IEnumerator AppearSingleRoutine()
         {
             StoryEventManager.Instance.StartMicroEvent();
 
@@ -32,14 +63,52 @@ namespace DC_ARPG
 
             if (m_appearEffectPrefab != null)
             {
-                var effect = Instantiate(m_appearEffectPrefab, m_gameObject.transform.position, Quaternion.identity);
+                var effect = Instantiate(m_appearEffectPrefab, m_targets[0].transform.position, Quaternion.identity);
 
                 Destroy(effect, m_showTime);
             }
 
             yield return new WaitForSeconds(1.0f);
 
-            m_gameObject.SetActive(true);
+            m_targets[0].SetActive(true);
+
+            yield return new WaitForSeconds(m_showTime);
+
+            StoryEventManager.Instance.EndMicroEvent();
+
+            m_camera.gameObject.SetActive(false);
+
+            if (PlayerCamera.Instance != null)
+                PlayerCamera.Instance.Camera.SetActive(true);
+        }
+
+        private IEnumerator AppearMultipleRoutine()
+        {
+            StoryEventManager.Instance.StartMicroEvent();
+
+            yield return new WaitForSeconds(0.5f);
+
+            if (PlayerCamera.Instance != null)
+                PlayerCamera.Instance.Camera.SetActive(false);
+
+            m_camera.gameObject.SetActive(true);
+
+            if (m_appearEffectPrefab != null)
+            {
+                foreach(var target in m_targets)
+                {
+                    var effect = Instantiate(m_appearEffectPrefab, target.transform.position, Quaternion.identity);
+
+                    Destroy(effect, m_showTime);
+                }
+            }
+
+            yield return new WaitForSeconds(1.0f);
+
+            foreach (var target in m_targets)
+            {
+                target.SetActive(true);
+            }
 
             yield return new WaitForSeconds(m_showTime);
 

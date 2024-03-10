@@ -52,7 +52,7 @@ namespace DC_ARPG
         {
             if (!StandingInFrontOfChest)
             {
-                ShortMessage.Instance.ShowMessage("Сундук. С этой стороны не открыть.");
+                ShortMessage.Instance.ShowMessage("Сундук. С этой стороны с ним ничего не сделать.");
                 return;
             }
 
