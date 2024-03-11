@@ -1071,6 +1071,17 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""290d54e2-9dae-42a4-90db-e711e8c70408"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CloseMenu"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""437c9e91-be85-4083-9c7c-56237ea1a335"",
                     ""path"": ""<Gamepad>/start"",
                     ""interactions"": """",

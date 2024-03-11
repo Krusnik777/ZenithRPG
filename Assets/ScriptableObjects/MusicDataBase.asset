@@ -15,5 +15,7 @@ MonoBehaviour:
   m_levelsBGM:
   - SceneName: Level_Tutorial
     BGM: {fileID: 8300000, guid: 203b907980fe0024bb27d652f819e0f6, type: 3}
+  - SceneName: Level_01
+    BGM: {fileID: 8300000, guid: 9ad7b05c173beca478be154574182f58, type: 3}
   m_mainMenuTheme: {fileID: 8300000, guid: 2a3f9d778bd906f4abbf3e6f713c4285, type: 3}
   m_gameOverTheme: {fileID: 8300000, guid: d714b979093c24d48990c5f3160c4826, type: 3}
