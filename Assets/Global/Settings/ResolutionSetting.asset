@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_title: "\u0420\u0430\u0437\u0440\u0435\u0448\u0435\u043D\u0438\u0435 \u044D\u043A\u0440\u0430\u043D\u0430"
   m_availableResolutions:
-  - {x: 800, y: 600}
+  - {x: 854, y: 480}
   - {x: 1280, y: 720}
   - {x: 1600, y: 900}
   - {x: 1920, y: 1080}
