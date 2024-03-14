@@ -32,6 +32,17 @@ namespace DC_ARPG
         private bool inOpenedState => m_animator.GetCurrentAnimatorStateInfo(0).IsName("OpenedState");
         public bool Opened => inOpenedState;
 
+        public override string InfoText
+        {
+            get
+            {
+                if (inClosedState) m_infoText = "Открыть";
+                if (inOpenedState) m_infoText = "Закрыть";
+
+                return m_infoText;
+            }
+        }
+
         public void ChangeOpenableDirectly(bool state)
         {
             m_openableDirectly = state;

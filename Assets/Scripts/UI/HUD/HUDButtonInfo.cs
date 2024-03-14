@@ -9,7 +9,7 @@ namespace DC_ARPG
         [SerializeField] private GameObject m_buttonInfoPanel;
         [SerializeField] private TextMeshProUGUI m_useText;
 
-        private void Update()
+        private void LateUpdate()
         {
             UpdateButtonInfo(m_player.CheckForwardGridForInsectableObject());
         }
@@ -18,82 +18,10 @@ namespace DC_ARPG
         {
             if (inspectableObject != null && GameState.State == GameState.GameplayState.Active)
             {
-                if (inspectableObject is InfoPlaque)
+                if (inspectableObject.InfoText != string.Empty)
                 {
                     m_buttonInfoPanel.SetActive(true);
-                    m_useText.text = "Изучить";
-
-                    return;
-                }
-
-                if (inspectableObject is LevelArm)
-                {
-                    var levelArm = inspectableObject as LevelArm;
-
-                    if (levelArm.CanReset)
-                    {
-                        m_buttonInfoPanel.SetActive(true);
-                        m_useText.text = "Использовать";
-                    }
-                    else
-                    {
-                        if (levelArm.Unused)
-                        {
-                            m_buttonInfoPanel.SetActive(true);
-                            m_useText.text = "Использовать";
-                        }
-                        else m_buttonInfoPanel.SetActive(false);
-                    }
-
-                    return;
-                }
-
-                if (inspectableObject is ShopDoor)
-                {
-                    m_buttonInfoPanel.SetActive(true);
-                    m_useText.text = "Зайти";
-
-                    return;
-                }
-
-                if (inspectableObject is Door)
-                {
-                    var door = inspectableObject as Door;
-
-                    m_buttonInfoPanel.SetActive(true);
-
-                    if (door.Closed) m_useText.text = "Открыть";
-                    if (door.Opened) m_useText.text = "Закрыть";
-
-                    return;
-                }
-
-                if (inspectableObject is Chest)
-                {
-                    var chest = inspectableObject as Chest;
-
-                    m_buttonInfoPanel.SetActive(true);
-
-                    if (chest.Closed) m_useText.text = "Открыть";
-                    if (chest.Opened) m_useText.text = "Закрыть";
-
-                    return;
-                }
-
-                if (inspectableObject is ItemContainer)
-                {
-                    m_buttonInfoPanel.SetActive(true);
-
-                    m_useText.text = "Подобрать";
-
-                    return;
-                }
-
-                if (inspectableObject is Exit)
-                {
-                    m_buttonInfoPanel.SetActive(true);
-
-                    m_useText.text = "Уйти";
+                    m_useText.text = inspectableObject.InfoText;
 
                     return;
                 }

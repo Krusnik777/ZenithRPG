@@ -3,9 +3,18 @@ using UnityEngine.Events;
 
 namespace DC_ARPG
 {
-    public abstract class InspectableObject : MonoBehaviour
+    public class InspectableObject : MonoBehaviour
     {
+        [SerializeField] protected string m_infoText;
         public UnityEvent EventOnInspection;
+
+        public virtual string InfoText => m_infoText;
+
+        public void ShowInfoMessage(string message)
+        {
+            ShortMessage.Instance.ShowMessage(message);
+        }
+
         public virtual void OnInspection(Player player)
         {
             EventOnInspection?.Invoke();

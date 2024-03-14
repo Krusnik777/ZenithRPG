@@ -163,6 +163,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e702eb5dec97f5a4486224ad8add2692, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_infoText: "\u0418\u0437\u0443\u0447\u0438\u0442\u044C"
   EventOnInspection:
     m_PersistentCalls:
       m_Calls: []

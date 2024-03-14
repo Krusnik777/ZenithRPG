@@ -304,6 +304,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f965ddaaa495e94cb24e54ff8b0cb72, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_infoText: "\u0417\u0430\u0439\u0442\u0438"
   EventOnInspection:
     m_PersistentCalls:
       m_Calls: []
@@ -632,7 +633,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.5, z: 0}
-  m_LocalScale: {x: 0.2, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 388919840688140952}

@@ -19,13 +19,24 @@ namespace DC_ARPG
         private PositionTrigger m_positionTrigger;
         public bool StandingInFrontOfChest => m_positionTrigger != null ? m_positionTrigger.InRightPosition : false;
 
-        
+
         private ChestSFX m_chestSFX;
 
         private bool inClosedState => m_animator.GetCurrentAnimatorStateInfo(0).IsName("ClosedState");
         public bool Closed => inClosedState;
         private bool inOpenedState => m_animator.GetCurrentAnimatorStateInfo(0).IsName("OpenedState");
         public bool Opened => inOpenedState;
+
+        public override string InfoText
+        {
+            get
+            {
+                if (inClosedState) m_infoText = "Открыть";
+                if (inOpenedState) m_infoText = "Закрыть";
+
+                return m_infoText;
+            }
+        }
 
         public void Lock()
         {

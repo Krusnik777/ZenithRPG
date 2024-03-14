@@ -9,7 +9,8 @@ namespace DC_ARPG
         {
             Heal,
             Unlock,
-            SpecificUnlock
+            SpecificUnlock,
+            BreakWall
         }
 
         [SerializeField] private UseType m_useEffect;
@@ -20,6 +21,7 @@ namespace DC_ARPG
             if (m_useEffect == UseType.Heal) Heal(player, item);
             if (m_useEffect == UseType.Unlock) Unlock(player, item);
             if (m_useEffect == UseType.SpecificUnlock) SpecificUnlock(player, item);
+            if (m_useEffect == UseType.BreakWall) BreakWall(player, item);
         }
 
         private void Heal(Player player, IItem item)
@@ -109,6 +111,22 @@ namespace DC_ARPG
                     {
                         ShortMessage.Instance.ShowMessage("Этот ключ сюда не подходит.");
                     }
+                }
+            }
+        }
+
+        private void BreakWall(Player player, IItem item)
+        {
+            var potentialBreakableWall = player.CheckForwardGridForInsectableObject();
+
+            if (potentialBreakableWall is BreakableWall)
+            {
+                var breakableWall = potentialBreakableWall as BreakableWall;
+
+                if (breakableWall.StandingInFrontOfWall)
+                {
+                    breakableWall.BreakWall();
+                    item.Amount--;
                 }
             }
         }

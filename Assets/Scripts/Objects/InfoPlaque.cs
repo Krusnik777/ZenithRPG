@@ -11,9 +11,12 @@ namespace DC_ARPG
 
         public override void OnInspection(Player player)
         {
-            StoryEventManager.Instance.StartEvent(m_storyEventInfo);
+            if (m_storyEventInfo != null)
+            {
+                StoryEventManager.Instance.StartEvent(m_storyEventInfo);
 
-            StoryEventManager.Instance.EventOnStoryEventEnded += OnStoryEventEnded;
+                StoryEventManager.Instance.EventOnStoryEventEnded += OnStoryEventEnded;
+            }
 
             base.OnInspection(player);
         }

@@ -13,11 +13,23 @@ namespace DC_ARPG
         public UnityEvent OnUsed;
         public UnityEvent OnReseted;
 
-        
-
         private bool inUpperState => m_animator.GetCurrentAnimatorStateInfo(0).IsName("UpperState");
-        public bool Unused => inUpperState;
+        public bool Used => inLoweredState;
         private bool inLoweredState => m_animator.GetCurrentAnimatorStateInfo(0).IsName("LoweredState");
+
+        public override string InfoText
+        {
+            get
+            {
+                if (!m_canReset && Used)
+                {
+                    m_infoText = string.Empty;
+                }
+                else m_infoText = "Использовать";
+
+                return m_infoText;
+            }
+        }
 
         public override void OnInspection(Player player)
         {

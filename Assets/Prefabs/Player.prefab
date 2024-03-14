@@ -584,6 +584,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_doNotDestroyOnLoad: 0
   m_camera: {fileID: 5076532931756210042}
+  m_target: {fileID: 2578975128228413239}
 --- !u!1 &6686944547128483367
 GameObject:
   m_ObjectHideFlags: 0

@@ -36,11 +36,7 @@ namespace DC_ARPG
 
         private void Update()
         {
-            if (m_discovered)
-            {
-                EnableIcon();
-                return;
-            }
+            if (m_discovered) return;
 
             Vector2 pos = new Vector2(transform.position.x, transform.position.z);
             Vector2 explorerPos = new Vector2(m_explorer.transform.position.x, m_explorer.transform.position.z);
