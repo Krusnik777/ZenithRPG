@@ -127,7 +127,7 @@ namespace DC_ARPG
             SetShopControlsActive(false);
             SetSimpleMenuControlsActive(false);
 
-            if (scene.name == SceneLoader.MainMenuSceneName)
+            if (scene.name == SceneCommander.MainMenuSceneName)
             {
                 m_mainMenuInputController = FindObjectOfType<MainMenuInputController>(true);
 

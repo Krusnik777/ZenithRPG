@@ -30,7 +30,7 @@ namespace DC_ARPG
             {
                 if (enemy.EnemyAI.State == EnemyState.Patrol) return;
 
-                enemy.Character.EnemyStats.ChangeCurrentHitPoints(this, -m_damage);
+                if (!disabled) enemy.Character.EnemyStats.ChangeCurrentHitPoints(this, -m_damage);
 
                 activated = true;
 
@@ -49,7 +49,7 @@ namespace DC_ARPG
             SetAnimationAndSound();
         }
 
-        private void OnTriggerExit(Collider other)
+        protected override void OnTriggerExit(Collider other)
         {
             if (activated && other == enteredCollider)
             {
@@ -67,7 +67,7 @@ namespace DC_ARPG
             {
                 if (player.IsJumping && !player.JumpedAndLanded) return;
 
-                player.Character.PlayerStats.ChangeCurrentHitPoints(this, -m_damage);
+                if (!disabled) player.Character.PlayerStats.ChangeCurrentHitPoints(this, -m_damage);
                 player.ActionsIsAvailable = false;
 
                 activated = true;
@@ -78,6 +78,8 @@ namespace DC_ARPG
 
         private void SetAnimationAndSound()
         {
+            if (disabled) return;
+
             if (activated)
             {
                 m_animator.SetTrigger("Activate");

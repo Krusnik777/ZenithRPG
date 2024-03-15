@@ -160,7 +160,7 @@ GameObject:
   m_Component:
   - component: {fileID: 489459555325452488}
   m_Layer: 0
-  m_Name: Prison_WallL_Corner
+  m_Name: Prison_WallL_Corner V1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

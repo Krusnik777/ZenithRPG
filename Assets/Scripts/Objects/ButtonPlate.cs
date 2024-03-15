@@ -8,6 +8,8 @@ namespace DC_ARPG
         [SerializeField] private ButtonPressTrigger m_buttonPressTrigger;
         public ButtonPressTrigger PressTrigger => m_buttonPressTrigger;
 
+        public void SetButtonActive(bool state) => m_buttonPressTrigger.SetButtonActive(state);
+
         public void PressButton() => m_buttonPressTrigger.PressButton();
 
         public void UnpressButton() => m_buttonPressTrigger.UnpressButton();
@@ -25,6 +27,7 @@ namespace DC_ARPG
         public class DataState
         {
             public bool enabled;
+            public bool triggerDisabled;
             public int animatorState;
 
             public DataState() { }
@@ -46,7 +49,10 @@ namespace DC_ARPG
 
             s.enabled = gameObject.activeInHierarchy;
             if (gameObject.activeInHierarchy)
+            {
                 s.animatorState = m_buttonPressTrigger.Animator.GetCurrentAnimatorStateInfo(0).shortNameHash;
+                s.triggerDisabled = m_buttonPressTrigger.ButtonDisabled;
+            }
 
             return JsonUtility.ToJson(s);
         }
@@ -57,7 +63,10 @@ namespace DC_ARPG
 
             gameObject.SetActive(s.enabled);
             if (s.enabled)
+            {
                 m_buttonPressTrigger.Animator.Play(s.animatorState);
+                m_buttonPressTrigger.ButtonDisabled = s.triggerDisabled;
+            }
         }
 
         public void SetupCreatedDataPersistenceObject(string entityId, bool isCreated, string state) { }

@@ -178,6 +178,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5da44d32d7bec44aa2380cc59c2302f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_prefabId: DeletableWallPrefab_v1
+  m_id: 
+  m_isSerializable: 1
 --- !u!1 &1140276880975779903
 GameObject:
   m_ObjectHideFlags: 0

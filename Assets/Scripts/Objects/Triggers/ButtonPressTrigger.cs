@@ -14,11 +14,37 @@ namespace DC_ARPG
         public UnityEvent OnButtonPressed;
         public UnityEvent OnButtonUnpressed;
 
+        public bool ButtonDisabled { get; set; }
+
         private bool inPressedState => m_animator.GetCurrentAnimatorStateInfo(0).IsName("PressedState");
         private bool inUnpressedState => m_animator.GetCurrentAnimatorStateInfo(0).IsName("UnpressedState");
 
+        public void SetButtonActive(bool state)
+        {
+            ButtonDisabled = !state;
+
+            if (ButtonDisabled)
+            {
+                if (inUnpressedState)
+                {
+                    m_animator.SetTrigger("Press");
+                    m_audioSFX.Play();
+                }
+            }
+            else
+            {
+                if (inPressedState && m_hasSpring)
+                {
+                    m_animator.SetTrigger("Unpress");
+                    m_audioSFX.Play();
+                }
+            }
+        }
+
         public void PressButton()
         {
+            if (ButtonDisabled) return;
+
             if (inUnpressedState)
             {
                 m_animator.SetTrigger("Press");
@@ -29,6 +55,8 @@ namespace DC_ARPG
 
         public void UnpressButton()
         {
+            if (ButtonDisabled) return;
+
             if (inPressedState)
             {
                 m_animator.SetTrigger("Unpress");

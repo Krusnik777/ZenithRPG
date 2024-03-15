@@ -240,11 +240,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96d6d38c51edf83428131fbbf21c0db4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_infoText: 
   EventOnInspection:
     m_PersistentCalls:
       m_Calls: []
   m_holeObject: {fileID: 5129616675779124762}
   m_magic: {fileID: 7085147267152836299}
+  m_prefabId: TrapGunPrefab_Default
+  m_id: 
+  m_isSerializable: 1
 --- !u!1 &8977132456960944724
 GameObject:
   m_ObjectHideFlags: 0

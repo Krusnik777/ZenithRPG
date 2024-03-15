@@ -17,7 +17,7 @@ MonoBehaviour:
   Description: "\u041F\u043E\u043C\u043E\u0436\u0435\u0442 \u0447\u0442\u043E-\u043D\u0438\u0431\u0443\u0434\u044C
     \u0440\u0430\u0437\u043B\u043E\u043C\u0430\u0442\u044C, \u043D\u043E \u0441\u0430\u043C
     \u0441\u043B\u043E\u043C\u0430\u0435\u0442\u0441\u044F \u043F\u043E\u0441\u043B\u0435."
-  Icon: {fileID: 21300000, guid: 27d9878cff548d1408ca5e15a69040bf, type: 3}
+  Icon: {fileID: 21300000, guid: 48a1654e5b1a2714eaf985962c1e0c4a, type: 3}
   ItemTypeIcon: {fileID: 21300000, guid: 27d9878cff548d1408ca5e15a69040bf, type: 3}
   Prefab: {fileID: 5010736486517576525, guid: 3ca53e71b8431dd49a556a2c40d4d54d, type: 3}
   Price: 20

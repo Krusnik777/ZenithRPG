@@ -11,6 +11,8 @@ namespace DC_ARPG
 
         public void StartStoryEvent()
         {
+            if (m_storyEventInfo == null) return;
+
             StoryEventManager.Instance.StartEvent(m_storyEventInfo);
 
             StoryEventManager.Instance.EventOnStoryEventEnded += OnStoryEventEnded;

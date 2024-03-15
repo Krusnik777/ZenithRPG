@@ -97,6 +97,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c2ef29eb8e8cf646b25b78b90ef1455, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_minimapIconId: 
 --- !u!1 &2854378107654563746
 GameObject:
   m_ObjectHideFlags: 0
@@ -427,9 +428,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6023eda9aebb7e945ba15fd5352d5a6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_infoText: 
   EventOnInspection:
     m_PersistentCalls:
       m_Calls: []
+  m_trap: {fileID: 4059723956231192987}
+  m_prefabId: SpikeTrapPrefab_Default
+  m_id: 
+  m_isSerializable: 1
 --- !u!95 &7157544246097136069
 Animator:
   serializedVersion: 5

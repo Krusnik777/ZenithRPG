@@ -6,7 +6,7 @@ namespace DC_ARPG
     {
         private void Start()
         {
-            Invoke("TurnOffCanvas", 1f);
+            Invoke(nameof(TurnOffCanvas), 1f);
         }
 
         private void TurnOffCanvas()
