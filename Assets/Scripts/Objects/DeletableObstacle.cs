@@ -4,6 +4,21 @@ namespace DC_ARPG
 {
     public class DeletableObstacle : MonoBehaviour, IDataPersistence
     {
+        [Header("MinimapIndicator")]
+        [SerializeField] private GameObject m_minimapIndicatorPrefab;
+
+        public void DeleteObstacleWithIndication()
+        {
+            if (m_minimapIndicatorPrefab != null)
+            {
+                var indicator = Instantiate(m_minimapIndicatorPrefab, transform.position, Quaternion.identity);
+
+                Destroy(indicator, 1.1f);
+            }
+
+            Destroy(gameObject);
+        }
+
         public void DeleteObstacle()
         {
             // sfx + animation?

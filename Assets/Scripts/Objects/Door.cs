@@ -15,6 +15,9 @@ namespace DC_ARPG
         [Header("PositionTriggers")]
         [SerializeField] private PositionTrigger m_forwardPositionTrigger;
         [SerializeField] private PositionTrigger m_backwardPositionTrigger;
+        [Header("MinimapIndicator")]
+        [SerializeField] private GameObject m_minimapIndicatorPrefab;
+
         public bool Locked => m_locked;
         public bool RequireSpecialKey => m_requireSpecialKey;
         public UsableItemInfo SpecificKeyItemInfo => m_specificKeyItemInfo;
@@ -24,7 +27,6 @@ namespace DC_ARPG
 
         public bool StandingInFrontOfDoor => m_forwardPositionTrigger.InRightPosition || m_backwardPositionTrigger.InRightPosition;
 
-        
         private DoorSFX m_doorSFX;
 
         private bool inClosedState => m_animator.GetCurrentAnimatorStateInfo(0).IsName("ClosedState");
@@ -43,6 +45,16 @@ namespace DC_ARPG
             }
         }
 
+        public void ShowMinimapIndication()
+        {
+            if (m_minimapIndicatorPrefab != null)
+            {
+                var indicator = Instantiate(m_minimapIndicatorPrefab, transform.position, Quaternion.identity);
+
+                Destroy(indicator, 1.1f);
+            }
+        }
+
         public void ChangeOpenableDirectly(bool state)
         {
             m_openableDirectly = state;
@@ -51,6 +63,12 @@ namespace DC_ARPG
             {
                 if (inOpenedState) Close();
             }
+        }
+
+        public void ChangeUnlocked(bool state)
+        {
+            if (state) Unlock();
+            else Lock();
         }
 
         public void Lock()
@@ -117,6 +135,8 @@ namespace DC_ARPG
 
         private void Open()
         {
+            if (inOpenedState) return;
+
             m_animator.SetTrigger("Open");
             m_doorSFX.PlayUseSound();
             m_collider.isTrigger = true;
@@ -126,6 +146,8 @@ namespace DC_ARPG
 
         private void Close()
         {
+            if (inClosedState) return;
+
             m_animator.SetTrigger("Close");
             m_doorSFX.PlayUseSound();
             m_collider.isTrigger = false;

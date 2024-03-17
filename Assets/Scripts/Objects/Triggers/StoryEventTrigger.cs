@@ -19,10 +19,14 @@ namespace DC_ARPG
 
         private void OnTriggerEnter(Collider other)
         {
+            if (m_storyEventInfo == null) return;
+
             if (other.transform.root.GetComponent<Player>())
             {
                 if (!m_watched)
                 {
+                    
+
                     m_watched = true;
 
                     StoryEventManager.Instance.StartEvent(m_storyEventInfo);

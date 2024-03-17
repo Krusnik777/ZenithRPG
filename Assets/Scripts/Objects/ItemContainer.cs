@@ -19,7 +19,10 @@ namespace DC_ARPG
 
             if (player.Character.Inventory.TryToAddItem(this, m_item) == true)
             {
-                ShortMessage.Instance.ShowMessage("Добавлено в инвентарь: " + m_item.Info.Title + ".");
+                if ((m_item is UsableItem || m_item is NotUsableItem) && m_item.Amount > 1)
+                    ShortMessage.Instance.ShowMessage("Добавлено в инвентарь: " + m_item.Info.Title + " x" + m_item.Amount + ".");
+                else
+                    ShortMessage.Instance.ShowMessage("Добавлено в инвентарь: " + m_item.Info.Title + ".");
 
                 UISounds.Instance.PlayItemCollectedSound();
 

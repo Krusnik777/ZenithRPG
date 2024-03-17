@@ -268,6 +268,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4523d7ff12c867640ad25117b87b3429, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_infoText: 
   EventOnInspection:
     m_PersistentCalls:
       m_Calls: []
@@ -279,6 +280,7 @@ MonoBehaviour:
   m_specificKeyItemInfo: {fileID: 0}
   m_forwardPositionTrigger: {fileID: 7999012506349261603}
   m_backwardPositionTrigger: {fileID: 6136834741319281676}
+  m_minimapIndicatorPrefab: {fileID: 6724912137692166773, guid: ed5b4f79cfa19d643b107a3c022ddf3a, type: 3}
   m_prefabId: DoorPrefab_Default
   m_id: 
   m_isSerializable: 1

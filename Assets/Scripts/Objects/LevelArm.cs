@@ -7,6 +7,7 @@ namespace DC_ARPG
     public class LevelArm : InspectableObject, IDataPersistence
     {
         [SerializeField] private Animator m_animator;
+        [SerializeField] private AudioSource m_audioSFX;
         [SerializeField] private bool m_canReset;
         public bool CanReset => m_canReset;
 
@@ -41,6 +42,7 @@ namespace DC_ARPG
 
         private void UseLevelArm()
         {
+            m_audioSFX.Play();
             m_animator.SetTrigger("Use");
             OnUsed?.Invoke();
         }
@@ -49,6 +51,7 @@ namespace DC_ARPG
         {
             if (!m_canReset) return;
 
+            m_audioSFX.Play();
             m_animator.SetTrigger("Reset");
             OnReseted?.Invoke();
         }

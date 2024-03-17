@@ -23,7 +23,10 @@ namespace DC_ARPG
         public void ChangeDoorsOpenableState(bool state)
         {
             foreach (var door in m_doors)
+            {
+                door.ChangeUnlocked(state);
                 door.ChangeOpenableDirectly(state);
+            }
         }
     }
 }
