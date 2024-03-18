@@ -12,7 +12,7 @@ namespace DC_ARPG
         [SerializeField] private PositionTrigger m_forwardPositionTrigger;
         [SerializeField] private PositionTrigger m_backwardPositionTrigger;
 
-        public event UnityAction EventOnWallBroken;
+        public UnityEvent OnWallBroken;
 
         public bool StandingInFrontOfWall => m_forwardPositionTrigger.InRightPosition || m_backwardPositionTrigger.InRightPosition;
 
@@ -27,7 +27,7 @@ namespace DC_ARPG
             Destroy(m_wallMiddlePart);
             m_collider.enabled = false;
 
-            EventOnWallBroken?.Invoke();
+            OnWallBroken?.Invoke();
         }
 
         public override void OnInspection(Player player)

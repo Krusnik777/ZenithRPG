@@ -7,6 +7,7 @@ namespace DC_ARPG
         [SerializeField] private TrapPlate[] m_traps;
         [SerializeField] private ButtonPlate[] m_buttons;
         [SerializeField] private Door[] m_doors;
+        [SerializeField] private NPC[] m_npcs;
 
         public void SetTrapsActive(bool state)
         {
@@ -26,6 +27,15 @@ namespace DC_ARPG
             {
                 door.ChangeUnlocked(state);
                 door.ChangeOpenableDirectly(state);
+            }
+        }
+
+        public void DeleteNPCs()
+        {
+            foreach(var npc in m_npcs)
+            {
+                if (npc != null)
+                    npc.DeleteNPC();
             }
         }
     }

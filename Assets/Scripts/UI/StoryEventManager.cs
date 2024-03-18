@@ -38,6 +38,8 @@ namespace DC_ARPG
 
             m_HUD.SetActive(false);
             m_displayBoundsAnimator.SetTrigger("Appear");
+
+            EventOnStoryEventStarted?.Invoke();
         }
 
         public void EndMicroEvent()
@@ -46,6 +48,8 @@ namespace DC_ARPG
 
             m_displayBoundsAnimator.SetTrigger("Disappear");
             m_HUD.SetActive(true);
+
+            EventOnStoryEventEnded?.Invoke();
         }
 
         public void StartEvent(StoryEventInfo storyEventInfo)

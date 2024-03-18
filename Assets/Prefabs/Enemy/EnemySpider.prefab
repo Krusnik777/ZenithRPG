@@ -353,7 +353,7 @@ MonoBehaviour:
   m_patrolField: []
   m_chaseRange: 6
   m_closeRange: 1.5
-  m_patrolRestTime: 5
+  m_patrolRestTime: 10
   m_chaseDurationTime: 20
   m_attackMinDelayTime: 2
   m_attackMaxDelayTime: 4

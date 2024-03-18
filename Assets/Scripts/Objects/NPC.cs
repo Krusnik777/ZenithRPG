@@ -41,6 +41,11 @@ namespace DC_ARPG
             base.OnInspection(player);
         }
 
+        public void DeleteNPC()
+        {
+            Destroy(gameObject);
+        }
+
         private void Awake()
         {
             m_animator = GetComponentInChildren<Animator>();

@@ -47,6 +47,12 @@ namespace DC_ARPG
         {
             foreach(var enemy in m_allEnemies)
             {
+                if (enemy == null)
+                {
+                    m_allEnemies.Remove(enemy);
+                    break;
+                }
+
                 if (enemy.gameObject.activeInHierarchy)
                     if (enemy.EnemyAI != null) enemy.EnemyAI.StopActivity();
             }
@@ -56,6 +62,12 @@ namespace DC_ARPG
         {
             foreach (var enemy in m_allEnemies)
             {
+                if (enemy == null)
+                {
+                    m_allEnemies.Remove(enemy);
+                    break;
+                }
+
                 if (enemy.gameObject.activeInHierarchy)
                     if (enemy.EnemyAI != null) enemy.EnemyAI.ResumeActivity();
             }
@@ -154,6 +166,12 @@ namespace DC_ARPG
         {
             foreach (var enemy in m_allEnemies)
             {
+                if (enemy == null)
+                {
+                    m_allEnemies.Remove(enemy);
+                    break;
+                }
+
                 if (enemy.gameObject.activeInHierarchy)
                     if (enemy.EnemyAI != null) enemy.EnemyAI.UpdateActivity();
             }

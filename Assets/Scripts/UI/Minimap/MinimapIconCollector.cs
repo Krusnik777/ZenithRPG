@@ -5,36 +5,21 @@ namespace DC_ARPG
 {
     public class MinimapIconCollector : MonoBehaviour, IDataPersistence
     {
-        private List<MinimapIcon> m_minimapIcons;
+        private List<MinimapIcon> discoveredIcons = new List<MinimapIcon>();
 
         public float GetMapCompletionPercent()
         {
-            if (m_minimapIcons == null) GetMinimapIcons();
+            discoveredIcons.Clear();
 
-            var discoveredIcons = new List<MinimapIcon>();
-
-            foreach (var minimapIcon in m_minimapIcons)
+            foreach (var minimapIcon in MinimapIcon.AllMinimapIcons)
             {
                 if (minimapIcon.Discovered)
                     discoveredIcons.Add(minimapIcon);
             }
 
-            float percent = (float) discoveredIcons.Count / m_minimapIcons.Count * 100;
+            float percent = (float) discoveredIcons.Count / MinimapIcon.AllMinimapIcons.Count * 100;
 
             return percent;
-        }
-
-        private void Start()
-        {
-            GetMinimapIcons();
-        }
-
-        private void GetMinimapIcons()
-        {
-            if (m_minimapIcons != null) return;
-
-            m_minimapIcons = new List<MinimapIcon>();
-            m_minimapIcons.AddRange(MinimapIcon.AllMinimapIcons);
         }
 
         #region Serialize
@@ -67,7 +52,7 @@ namespace DC_ARPG
 
             s.discoveredIconsId = new List<string>();
 
-            foreach (var minimapIcon in m_minimapIcons)
+            foreach (var minimapIcon in MinimapIcon.AllMinimapIcons)
             {
                 if (minimapIcon.Discovered)
                     s.discoveredIconsId.Add(minimapIcon.MinimapIconId);
@@ -84,11 +69,9 @@ namespace DC_ARPG
 
             gameObject.SetActive(s.enabled);
 
-            GetMinimapIcons();
-
             foreach (var discoveredIconId in s.discoveredIconsId)
             {
-                foreach (var minimapIcon in m_minimapIcons)
+                foreach (var minimapIcon in MinimapIcon.AllMinimapIcons)
                 {
                     if (minimapIcon.MinimapIconId == discoveredIconId)
                     {

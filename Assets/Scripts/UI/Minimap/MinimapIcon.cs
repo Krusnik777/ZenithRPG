@@ -17,10 +17,17 @@ namespace DC_ARPG
         private bool m_discovered = false;
         public bool Discovered => m_discovered;
 
-        public void SetDiscovered(bool state) => m_discovered = state;
+        public void SetDiscovered(bool state)
+        {
+            m_discovered = state;
+            if (state) EnableIcon();
+        }
 
         public void EnableIcon()
         {
+            if (m_iconRenderer == null)
+                m_iconRenderer = GetComponent<SpriteRenderer>();
+
             m_iconRenderer.enabled = true;
             enabled = false;
         }
