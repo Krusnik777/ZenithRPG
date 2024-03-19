@@ -233,7 +233,7 @@ namespace DC_ARPG
             {
                 if (hit.collider.transform.parent.TryGetComponent(out Enemy enemy))
                 {
-                    if (enemy.EnemyAI.InChaseState || hit.distance < 1.75f && !enemy.EnemyAI.InChaseState)
+                    if (enemy.EnemyAI.InChaseState || hit.distance < 1.7f && !enemy.EnemyAI.InChaseState)
                         return true;
                 }
             }

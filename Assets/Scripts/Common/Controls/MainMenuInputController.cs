@@ -43,8 +43,14 @@ namespace DC_ARPG
 
         private void OnConfirm(InputAction.CallbackContext obj)
         {
-            if (m_mainMenu.State != MainMenu.MenuState.Start)
+            if (m_mainMenu.State == MainMenu.MenuState.Start)
+            {
+                OnStartPanel(obj);
+            }
+            else
+            {
                 m_buttonContainer.SelectedButton.OnButtonClick();
+            }  
         }
 
         private void OnCancel(InputAction.CallbackContext obj)

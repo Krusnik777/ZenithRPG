@@ -53,6 +53,9 @@ namespace DC_ARPG
             SetupInitialInventory();
 
             inventory.FillInventoryByInventoryData(playerData.PlayerInventoryData);
+            UpdateAttack(inventory.WeaponItemSlot);
+            UpdateArmorDefense(inventory.ArmorItemSlot);
+            UpdateShieldDefense(inventory.ShieldItemSlot);
 
             m_money = 0;
             AddMoney(playerData.Money);
@@ -77,12 +80,6 @@ namespace DC_ARPG
             SetupInitialPlayerStats();
 
             SetupInitialInventory();
-
-            playerStats.EventOnHitPointsChange += OnHitPointsChange;
-            playerStats.EventOnDeath += OnDeath;
-
-            inventory.EventOnTransitCompleted += OnEquipItemChange;
-            inventory.EventOnItemRemoved += OnEquipItemRemoved;
         }
 
         private void Start()
@@ -105,6 +102,9 @@ namespace DC_ARPG
 
             playerStats = new PlayerStats();
             playerStats.InitStats(m_playerStatsInfo);
+
+            playerStats.EventOnHitPointsChange += OnHitPointsChange;
+            playerStats.EventOnDeath += OnDeath;
         }
 
         private void SetupInitialInventory()
@@ -115,6 +115,9 @@ namespace DC_ARPG
             inventory.UnlockedPockets = m_unlockedPockets;
 
             SetInitialItems();
+
+            inventory.EventOnTransitCompleted += OnEquipItemChange;
+            inventory.EventOnItemRemoved += OnEquipItemRemoved;
         }
 
         private void SetInitialItems()
@@ -125,18 +128,21 @@ namespace DC_ARPG
                 {
                     inventory.TryToAddItem(this, m_equippedItems.Armor);
                     inventory.TransitFromSlotToSlot(this, inventory.MainPocket.ItemSlots[0], inventory.ArmorItemSlot);
+                    UpdateArmorDefense(inventory.ArmorItemSlot);
                 }
 
                 if (m_equippedItems.Shield.Info != null)
                 {
                     inventory.TryToAddItem(this, m_equippedItems.Shield);
                     inventory.TransitFromSlotToSlot(this, inventory.MainPocket.ItemSlots[0], inventory.ShieldItemSlot);
+                    UpdateShieldDefense(inventory.ShieldItemSlot);
                 }
 
                 if (m_equippedItems.Weapon.Info != null)
                 {
                     inventory.TryToAddItem(this, m_equippedItems.Weapon);
                     inventory.TransitFromSlotToSlot(this, inventory.MainPocket.ItemSlots[0], inventory.WeaponItemSlot);
+                    UpdateAttack(inventory.WeaponItemSlot);
                 }
 
                 if (m_equippedItems.Magic.Info != null)

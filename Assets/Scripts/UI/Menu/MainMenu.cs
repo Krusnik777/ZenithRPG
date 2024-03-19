@@ -29,7 +29,7 @@ namespace DC_ARPG
 
         public void StartNewGame()
         {
-
+            SceneCommander.Instance.StartLevel("Level_01");
         }
 
         public void ShowLoadMenu(bool state)

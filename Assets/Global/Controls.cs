@@ -1843,6 +1843,17 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""4d3f4c9e-5d8c-4b34-8f96-083366a79ab6"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Confirm"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""0e9a1040-d2e0-470a-b520-1af58d33dde7"",
                     ""path"": ""<Gamepad>/buttonSouth"",
                     ""interactions"": """",

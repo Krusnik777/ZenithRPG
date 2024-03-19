@@ -60,6 +60,20 @@ namespace DC_ARPG
             //SceneManager.LoadSceneAsync(TutorialLevel.SceneName);
         }
 
+        public void StartLevel(string sceneName)
+        {
+            foreach (var level in m_levelsDataBase.Levels)
+            {
+                if (level.SceneName == sceneName)
+                {
+                    LoadScene(sceneName);
+                    return;
+                }
+            }
+
+            Debug.LogWarning("Not Founded This Scene");
+        }
+
         public void RestartCurrentLevelFromStart()
         {
             if (SceneSerializer.Instance != null)
