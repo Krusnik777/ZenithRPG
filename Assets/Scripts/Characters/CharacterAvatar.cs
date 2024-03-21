@@ -10,6 +10,8 @@ namespace DC_ARPG
         [SerializeField] protected float m_transitionJumpSpeed = 0.3f;
         [SerializeField] protected float m_transitionRotateSpeed = 0.25f;
         [SerializeField] protected float m_afterJumpDelay = 0.1f;
+        [Header("Attack")]
+        [SerializeField] private int m_attackHits = 2;
         [Header("SFX")]
         [SerializeField] protected CharacterSFX m_characterSFX;
         public CharacterSFX CharacterSFX => m_characterSFX;
@@ -156,9 +158,9 @@ namespace DC_ARPG
 
             hitCount++;
 
-            if (hitCount > 2)
+            if (hitCount > m_attackHits)
             {
-                if (isAttacking) return;
+                if (isAttacking) return; // Wait combo end
                 hitCount = 1;
             }
 
@@ -172,6 +174,20 @@ namespace DC_ARPG
 
         public virtual void Block(string name)
         {
+            if (isAttacking)
+            {
+                if (attackRoutine != null)
+                {
+                    StopCoroutine(attackRoutine);
+                }
+
+                isAttacking = false;
+                hitCount = 0;
+                attackRoutine = null;
+
+                m_animator.SetTrigger("AttackToBlock");
+            }
+
             if (!inIdleState && !isBlocking) return;
 
             switch (name)
@@ -184,7 +200,11 @@ namespace DC_ARPG
                     break;
                 case "BlockHold":
                     {
-
+                        if (!isBlocking)
+                        {
+                            m_animator.SetBool("BlockHold", true);
+                            isBlocking = true;
+                        }
                     };
                     break;
                 case "BlockEnd":
@@ -480,7 +500,7 @@ namespace DC_ARPG
                 yield return new WaitUntil(() => m_animator.GetCurrentAnimatorStateInfo(0).IsName("AttackState.Attack1"));
             }
 
-            if (attackCount == 2)
+            if (attackCount > 1 && attackCount <= m_attackHits)
             {
                 m_animator.SetTrigger("Attack" + attackCount);
 

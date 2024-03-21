@@ -158,7 +158,7 @@ namespace DC_ARPG
         {
             if (player.State != Player.PlayerState.Active) return;
 
-            //player.Block("BlockHold");
+            player.Block("BlockHold");
         }
 
         private void OnBlockCanceled(InputAction.CallbackContext obj)

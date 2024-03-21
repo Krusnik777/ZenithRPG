@@ -124,7 +124,7 @@ Transform:
   m_GameObject: {fileID: 3768829961466162339}
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: -0.1, z: 0}
+  m_LocalPosition: {x: 0, y: 3, z: 0}
   m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -563,6 +563,7 @@ MonoBehaviour:
   m_transitionJumpSpeed: 0.25
   m_transitionRotateSpeed: 0.25
   m_afterJumpDelay: 0.1
+  m_attackHits: 2
   m_characterSFX: {fileID: 1526247927414751933}
   m_character: {fileID: 1844385430773188566}
   m_castDelay: 0.25
@@ -584,7 +585,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_doNotDestroyOnLoad: 0
   m_camera: {fileID: 5076532931756210042}
-  m_target: {fileID: 2578975128228413239}
 --- !u!1 &6686944547128483367
 GameObject:
   m_ObjectHideFlags: 0

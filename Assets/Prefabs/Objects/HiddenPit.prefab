@@ -233,7 +233,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_destroyTime: 0.2
-  m_audioSource: {fileID: 1719689351628313676}
   m_floorBreakEffectPrefab: {fileID: 2331595999424382646, guid: 72dc221004752ad49b32cba20f77d438, type: 3}
   m_prefabId: TrapFloorPrefab_Default
   m_id: 
@@ -283,6 +282,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae92a638ca7cbec4aaa435312d4eb9b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_infoText: 
   EventOnInspection:
     m_PersistentCalls:
       m_Calls: []
@@ -587,6 +587,7 @@ GameObject:
   m_Component:
   - component: {fileID: 863134404357470197}
   - component: {fileID: 3694570117051238265}
+  - component: {fileID: 5339535018065497959}
   m_Layer: 9
   m_Name: MinimapIcon
   m_TagString: Untagged
@@ -661,6 +662,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &5339535018065497959
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7595016243915938951}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c2ef29eb8e8cf646b25b78b90ef1455, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_minimapIconId: 
 --- !u!1 &8036514282288289043
 GameObject:
   m_ObjectHideFlags: 0

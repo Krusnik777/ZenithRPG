@@ -53,6 +53,8 @@ namespace DC_ARPG
             }
             else
             {
+                // For example if TrapGun is parent
+
                 if (collision.gameObject.TryGetComponent(out Player player))
                 {
                     if (player.State == Player.PlayerState.Rest)
@@ -66,6 +68,14 @@ namespace DC_ARPG
                     {
                         player.Character.PlayerStats.ChangeCurrentHitPoints(m_parent, -m_damage, DamageType.Magic);
                         player.Character.PlayerStats.AddMagicResistExperience(m_experienceForHit);
+                    }
+                }
+
+                if (collision.gameObject.TryGetComponent(out Enemy enemy))
+                {
+                    if (enemy.EnemyAI.State != EnemyState.Patrol)
+                    {
+                        enemy.Character.EnemyStats.ChangeCurrentHitPoints(m_parent, -m_damage, DamageType.Magic);
                     }
                 }
             }
