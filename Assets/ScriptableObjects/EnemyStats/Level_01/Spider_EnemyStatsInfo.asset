@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: Spider_EnemyStatsInfo
   m_EditorClassIdentifier: 
   Level: 1
-  HitPoints: 25
+  HitPoints: 35
   MagicPoints: 1
   Strength: 2
   Intelligence: 1
   MagicResist: 1
   Luck: 1
-  Attack: 2
+  Attack: 3
   Defense: 0
   ExperiencePoints: 20
   DroppedGold: 20

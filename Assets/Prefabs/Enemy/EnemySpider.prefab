@@ -316,6 +316,9 @@ MonoBehaviour:
   m_transitionJumpSpeed: 0.3
   m_transitionRotateSpeed: 0.25
   m_afterJumpDelay: 0.1
+  m_weapon: {fileID: 8194321721980781095}
+  m_additionalWeapon: {fileID: 1755279718904748087}
+  m_attackHits: 2
   m_characterSFX: {fileID: 2656352000066402074}
   m_prefabId: EnemySpiderPrefab_Default
   m_id: 
@@ -789,15 +792,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5760120983598902786, guid: fd02805ee801de64a828e8190cac7784, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.0033
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5760120983598902786, guid: fd02805ee801de64a828e8190cac7784, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.0024
+      value: 0.0009573507
       objectReference: {fileID: 0}
     - target: {fileID: 5760120983598902786, guid: fd02805ee801de64a828e8190cac7784, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.0015
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5760120983598902786, guid: fd02805ee801de64a828e8190cac7784, type: 3}
       propertyPath: m_LocalRotation.w
@@ -937,15 +940,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7061359333929251397, guid: fd02805ee801de64a828e8190cac7784, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.0025
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7061359333929251397, guid: fd02805ee801de64a828e8190cac7784, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.0027
+      value: 0.0010597866
       objectReference: {fileID: 0}
     - target: {fileID: 7061359333929251397, guid: fd02805ee801de64a828e8190cac7784, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.0025
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7061359333929251397, guid: fd02805ee801de64a828e8190cac7784, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1241,6 +1244,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_parent: {fileID: 8523599504161985663}
+  m_trail: {fileID: 0}
   m_experienceForHit: 5
 --- !u!1 &8975858599836195799 stripped
 GameObject:
@@ -1281,4 +1285,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_parent: {fileID: 8523599504161985663}
+  m_trail: {fileID: 0}
   m_experienceForHit: 5

@@ -5,7 +5,26 @@ namespace DC_ARPG
     public class Weapon : MonoBehaviour
     {
         [SerializeField] private GameObject m_parent;
+        [SerializeField] private GameObject m_trail;
         [SerializeField] private int m_experienceForHit = 5; // TEMP BALANCE
+
+        private Collider m_collider;
+
+        public void SetWeaponActive(bool state)
+        {
+            if (m_collider == null) m_collider = GetComponent<Collider>();
+
+            m_collider.enabled = state;
+            if (m_trail != null) m_trail.SetActive(state);
+        }
+
+        private void Start()
+        {
+            m_collider = GetComponent<Collider>();
+
+            m_collider.enabled = false;
+            if (m_trail != null) m_trail.SetActive(false);
+        }
 
         private void OnTriggerEnter(Collider other)
         {
@@ -24,6 +43,8 @@ namespace DC_ARPG
                         var weaponItem = parentPlayer.Character.Inventory.WeaponItemSlot.Item as WeaponItem;
                         if (!weaponItem.HasInfiniteUses) parentPlayer.Character.Inventory.WeaponItemSlot.UseWeapon(this, parentPlayer);
                     }
+
+                    SetWeaponActive(false);
                 }
             }
 
@@ -47,6 +68,7 @@ namespace DC_ARPG
                     }
 
                     player.Character.PlayerStats.ChangeCurrentHitPoints(m_parent, -parentEnemy.Character.EnemyStats.Attack, DamageType.Physic);
+                    SetWeaponActive(false);
                 }
             }
         }

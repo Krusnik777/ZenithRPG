@@ -453,10 +453,12 @@ MonoBehaviour:
   m_transitionJumpSpeed: 0.25
   m_transitionRotateSpeed: 0.25
   m_afterJumpDelay: 0.1
+  m_weapon: {fileID: 8394968033912865626}
+  m_additionalWeapon: {fileID: 0}
+  m_attackHits: 2
   m_characterSFX: {fileID: 1526247927414751933}
   m_character: {fileID: 1844385430773188566}
   m_castDelay: 0.25
-  m_weapon: {fileID: 8394968033912865626}
   m_prefabId: PlayerPrefab_Default
   m_id: PlayerAvatar_001
   m_isSerializable: 1
@@ -765,7 +767,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_playerCharacter: {fileID: 1844385430773188566}
   m_swordMesh: {fileID: 4940474121698531345}
+  m_brokenWeaponMesh: {fileID: 0}
   m_shieldMesh: {fileID: 7662868820669280715}
+  m_rigBuilder: {fileID: 0}
 --- !u!1001 &5827986822968285400
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -918,6 +922,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 16.028427
       objectReference: {fileID: 0}
+    - target: {fileID: 2621589565668612994, guid: 7c03e77928fe2324a83a18756ad0dceb, type: 3}
+      propertyPath: m_trail
+      value: 
+      objectReference: {fileID: 2111128482069109102}
     - target: {fileID: 2621589565668612994, guid: 7c03e77928fe2324a83a18756ad0dceb, type: 3}
       propertyPath: m_parent
       value: 
@@ -1454,6 +1462,11 @@ PrefabInstance:
       addedObject: {fileID: 1688891428040098351}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7c03e77928fe2324a83a18756ad0dceb, type: 3}
+--- !u!1 &2111128482069109102 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5597155236668948918, guid: 7c03e77928fe2324a83a18756ad0dceb, type: 3}
+  m_PrefabInstance: {fileID: 5827986822968285400}
+  m_PrefabAsset: {fileID: 0}
 --- !u!137 &4940474121698531345 stripped
 SkinnedMeshRenderer:
   m_CorrespondingSourceObject: {fileID: 1473024706485895369, guid: 7c03e77928fe2324a83a18756ad0dceb, type: 3}

@@ -11,6 +11,8 @@ namespace DC_ARPG
         [SerializeField] protected float m_transitionRotateSpeed = 0.25f;
         [SerializeField] protected float m_afterJumpDelay = 0.1f;
         [Header("Attack")]
+        [SerializeField] protected Weapon m_weapon;
+        [SerializeField] protected Weapon m_additionalWeapon;
         [SerializeField] private int m_attackHits = 2;
         [Header("SFX")]
         [SerializeField] protected CharacterSFX m_characterSFX;
@@ -181,11 +183,10 @@ namespace DC_ARPG
                     StopCoroutine(attackRoutine);
                 }
 
-                isAttacking = false;
-                hitCount = 0;
-                attackRoutine = null;
+                ResetAttack();
 
                 m_animator.SetTrigger("AttackToBlock");
+                isBlocking = true;
             }
 
             if (!inIdleState && !isBlocking) return;
@@ -284,6 +285,15 @@ namespace DC_ARPG
             }
 
             return false;
+        }
+
+        private void ResetAttack()
+        {
+            isAttacking = false;
+            hitCount = 0;
+            m_weapon.SetWeaponActive(false);
+            if (m_additionalWeapon != null) m_additionalWeapon.SetWeaponActive(false);
+            attackRoutine = null;
         }
 
         #region Coroutines
@@ -508,12 +518,12 @@ namespace DC_ARPG
             }
 
             m_characterSFX.PlayAttackSound();
+            m_weapon.SetWeaponActive(true);
+            if(m_additionalWeapon != null) m_additionalWeapon.SetWeaponActive(true);
 
             yield return new WaitWhile(() => m_animator.GetCurrentAnimatorStateInfo(0).IsName("AttackState.Attack" + attackCount));
 
-            isAttacking = false;
-            hitCount = 0;
-            attackRoutine = null;
+            ResetAttack();
         }
 
         private IEnumerator BlockEnd()

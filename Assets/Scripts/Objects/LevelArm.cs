@@ -42,7 +42,7 @@ namespace DC_ARPG
 
         private void UseLevelArm()
         {
-            m_audioSFX.Play();
+            if (m_audioSFX != null) m_audioSFX.Play();
             m_animator.SetTrigger("Use");
             OnUsed?.Invoke();
         }
@@ -51,7 +51,7 @@ namespace DC_ARPG
         {
             if (!m_canReset) return;
 
-            m_audioSFX.Play();
+            if (m_audioSFX != null) m_audioSFX.Play();
             m_animator.SetTrigger("Reset");
             OnReseted?.Invoke();
         }

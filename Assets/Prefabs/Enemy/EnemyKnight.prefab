@@ -316,6 +316,9 @@ MonoBehaviour:
   m_transitionJumpSpeed: 0.3
   m_transitionRotateSpeed: 0.25
   m_afterJumpDelay: 0.1
+  m_weapon: {fileID: 6113838619211676390}
+  m_additionalWeapon: {fileID: 0}
+  m_attackHits: 2
   m_characterSFX: {fileID: 5654172165861338612}
   m_prefabId: EnemyKnightPrefab_Default
   m_id: 
@@ -392,6 +395,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2100000, guid: be4587d62df6bab46a3bcb7f63d17b51, type: 2}
     - target: {fileID: 2621589565668612994, guid: 7c03e77928fe2324a83a18756ad0dceb, type: 3}
+      propertyPath: m_trail
+      value: 
+      objectReference: {fileID: 4401249446239641810}
+    - target: {fileID: 2621589565668612994, guid: 7c03e77928fe2324a83a18756ad0dceb, type: 3}
       propertyPath: m_parent
       value: 
       objectReference: {fileID: 3700599518249305028}
@@ -447,6 +454,10 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: be4587d62df6bab46a3bcb7f63d17b51, type: 2}
+    - target: {fileID: 4402178392750852233, guid: 7c03e77928fe2324a83a18756ad0dceb, type: 3}
+      propertyPath: m_Parameters.textureMode
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 7664871237299361072, guid: 7c03e77928fe2324a83a18756ad0dceb, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -456,8 +467,24 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7c03e77928fe2324a83a18756ad0dceb, type: 3}
+--- !u!1 &4401249446239641810 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5597155236668948918, guid: 7c03e77928fe2324a83a18756ad0dceb, type: 3}
+  m_PrefabInstance: {fileID: 8122653167065325924}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5207982989591060459 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4107017785693666959, guid: 7c03e77928fe2324a83a18756ad0dceb, type: 3}
   m_PrefabInstance: {fileID: 8122653167065325924}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &6113838619211676390 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2621589565668612994, guid: 7c03e77928fe2324a83a18756ad0dceb, type: 3}
+  m_PrefabInstance: {fileID: 8122653167065325924}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b484d9d1485883a4eb16efd221b0d1c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

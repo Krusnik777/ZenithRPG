@@ -14,8 +14,7 @@ namespace DC_ARPG
         [SerializeField] private PlayerCharacter m_character;
         [Header("Magic")]
         [SerializeField] private float m_castDelay = 1.0f;
-        [Header("Weapon")]
-        [SerializeField] private Weapon m_weapon;
+        
 
         public bool ActionsIsAvailable { get; set; }
 
