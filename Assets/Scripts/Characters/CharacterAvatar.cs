@@ -68,6 +68,8 @@ namespace DC_ARPG
         {
             if (!inIdleState) return;
 
+            if (Mathf.Sign(transform.position.y) < 0) return;
+
             Vector3 direction = GetDirection(inputDirection);
 
             Ray directionRay = new Ray(transform.position + new Vector3(0, 0.5f, 0), direction);
@@ -109,6 +111,9 @@ namespace DC_ARPG
 
             if (Mathf.Sign(transform.position.y) < 0)
             {
+                Vector3 correctionPos = new Vector3(transform.position.x, -1.0f, transform.position.z);
+                transform.position = correctionPos;
+
                 Ray upRay = new Ray(transform.position + new Vector3(0, 1.1f, 0), transform.forward);
                 RaycastHit upHit;
 
@@ -404,41 +409,20 @@ namespace DC_ARPG
                 {
                     targetPosition = distance + startPosition;
                     time *= 1.5f;
-
-                    while (elapsed < time || transform.position != targetPosition)
-                    {
-                        transform.position = Vector3.MoveTowards(startPosition, targetPosition, elapsed / time);
-                        elapsed += Time.deltaTime;
-
-                        yield return null;
-                    }
                 }
                 else
                 {
                     targetPosition = distance + startPosition;
-                    //targetPosition = distance / 2 + startPosition;
-                    //targetPosition.y = 0.5f;
+                }
 
-                    while (elapsed < time || transform.position != targetPosition)
-                    {
-                        transform.position = Vector3.MoveTowards(startPosition, targetPosition, elapsed / time);
-                        elapsed += Time.deltaTime;
+                while (elapsed < time || transform.position != targetPosition)
+                {
+                    Debug.Log("Here");
 
-                        yield return null;
-                    }
-                    /*
-                    startPosition = transform.position;
-                    targetPosition = startPosition + distance / 2;
-                    //targetPosition.y = 0;
-                    elapsed = 0.0f;
+                    transform.position = Vector3.MoveTowards(startPosition, targetPosition, elapsed / time);
+                    elapsed += Time.deltaTime;
 
-                    while (elapsed < time || transform.position != targetPosition)
-                    {
-                        transform.position = Vector3.MoveTowards(startPosition, targetPosition, elapsed / time);
-                        elapsed += Time.deltaTime;
-
-                        yield return null;
-                    }*/
+                    yield return null;
                 }
 
                 transform.position = targetPosition;
@@ -459,30 +443,18 @@ namespace DC_ARPG
         {
             isJumping = true;
             var startPosition = transform.position;
-            var targetPosition = startPosition;
-            targetPosition.y = 0.1f;
+            var targetPosition = startPosition + transform.forward;
+            targetPosition.y = 0.05f;
 
             var elapsed = 0.0f;
+            var time = m_transitionJumpSpeed + 1.0f;
 
             m_animator.Play("Jump");
             m_characterSFX.PlayJumpSound();
 
-            while (transform.position != targetPosition)
+            while (elapsed < time)
             {
-                transform.position = Vector3.MoveTowards(startPosition, targetPosition, elapsed / m_transitionJumpSpeed);
-                elapsed += Time.deltaTime;
-
-                yield return null;
-            }
-
-            startPosition = transform.position;
-            targetPosition = transform.position + transform.forward;
-            targetPosition.y = 0;
-            elapsed = 0.0f;
-
-            while (transform.position != targetPosition)
-            {
-                transform.position = Vector3.MoveTowards(startPosition, targetPosition, elapsed / m_transitionJumpSpeed);
+                transform.position = Vector3.MoveTowards(startPosition, targetPosition, elapsed / time);
                 elapsed += Time.deltaTime;
 
                 yield return null;

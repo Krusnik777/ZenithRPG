@@ -18,6 +18,8 @@ namespace DC_ARPG
         {
             if (other.transform.parent.TryGetComponent(out Player player))
             {
+                if (player.IsJumping && !player.JumpedAndLanded) return;
+
                 if (!disabled) player.Character.PlayerStats.ChangeCurrentHitPoints(this, -m_damage);
                 player.ActionsIsAvailable = false;
             }

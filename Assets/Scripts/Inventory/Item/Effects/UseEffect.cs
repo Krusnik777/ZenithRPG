@@ -10,7 +10,8 @@ namespace DC_ARPG
             Heal,
             Unlock,
             SpecificUnlock,
-            BreakWall
+            BreakWall,
+            UnveilHiddenPit
         }
 
         [SerializeField] private UseType m_useEffect;
@@ -22,6 +23,7 @@ namespace DC_ARPG
             if (m_useEffect == UseType.Unlock) Unlock(player, item);
             if (m_useEffect == UseType.SpecificUnlock) SpecificUnlock(player, item);
             if (m_useEffect == UseType.BreakWall) BreakWall(player, item);
+            if (m_useEffect == UseType.UnveilHiddenPit) UnveilHiddenPit(player, item);
         }
 
         private void Heal(Player player, IItem item)
@@ -33,7 +35,7 @@ namespace DC_ARPG
 
         private void Unlock(Player player, IItem item)
         {
-            var potentialUnlockable = player.CheckForwardGridForInsectableObject();
+            var potentialUnlockable = player.CheckForwardGridForInspectableObject();
 
             if (potentialUnlockable is Chest)
             {
@@ -76,7 +78,7 @@ namespace DC_ARPG
 
         private void SpecificUnlock(Player player, IItem item)
         {
-            var potentialUnlockable = player.CheckForwardGridForInsectableObject();
+            var potentialUnlockable = player.CheckForwardGridForInspectableObject();
 
             if (potentialUnlockable is Chest)
             {
@@ -117,7 +119,7 @@ namespace DC_ARPG
 
         private void BreakWall(Player player, IItem item)
         {
-            var potentialBreakableWall = player.CheckForwardGridForInsectableObject();
+            var potentialBreakableWall = player.CheckForwardGridForInspectableObject();
 
             if (potentialBreakableWall is BreakableWall)
             {
@@ -130,6 +132,48 @@ namespace DC_ARPG
                 }
             }
         }
-        
+
+        private void UnveilHiddenPit(Player player, IItem item)
+        {
+            var potentialHiddenPit = player.CheckForwardGridForInspectableObject();
+
+            if (potentialHiddenPit is Pit)
+            {
+                if (potentialHiddenPit is HiddenPit)
+                {
+                    var hiddenPit = potentialHiddenPit as HiddenPit;
+
+                    if (hiddenPit.TrapFloor != null)
+                    {
+                        ShortMessage.Instance.ShowMessage("«десь €ма!");
+                        hiddenPit.UnveilHiddenPit();
+                        item.Amount--;
+                        return;
+                    }
+                    else
+                    {
+                        ShortMessage.Instance.ShowMessage("Ўар упал в €му.");
+                        item.Amount--;
+                        return;
+                    }
+                }
+
+                ShortMessage.Instance.ShowMessage("Ўар упал в €му.");
+                item.Amount--;
+                return;
+            }
+
+            if (player.CheckForwardGridIsEmpty() == true)
+            {
+                ShortMessage.Instance.ShowMessage("ямы впереди нет.");
+            }
+            else
+            {
+                ShortMessage.Instance.ShowMessage("Ўар отскочил от преп€тстви€ и упал на ногу.");
+                player.Character.PlayerStats.ChangeCurrentHitPoints(item, -1);
+            }
+        }
+
+
     }
 }

@@ -50,7 +50,7 @@ namespace DC_ARPG
         {
             if (!inIdleState) return;
 
-            var inspectableObject = CheckForwardGridForInsectableObject();
+            var inspectableObject = CheckForwardGridForInspectableObject();
 
             if (inspectableObject != null)
             {
@@ -132,7 +132,7 @@ namespace DC_ARPG
             CharacterSFX.PlayBrokenSwordEffect(m_weapon.transform.position);
         }
 
-        public InspectableObject CheckForwardGridForInsectableObject()
+        public InspectableObject CheckForwardGridForInspectableObject()
         {
             RaycastHit hit;
 

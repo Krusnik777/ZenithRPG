@@ -27,8 +27,18 @@ namespace DC_ARPG
         {
             if (m_uiInventory.Player.CheckForwardGridIsEmpty() == true)
             {
-                if (m_uiInventory.Player.CheckForwardGridForInsectableObject() is Pit)
+                var potentialPit = m_uiInventory.Player.CheckForwardGridForInspectableObject();
+
+                if (potentialPit is Pit)
                 {
+                    if (potentialPit is HiddenPit)
+                    {
+                        if ((potentialPit as HiddenPit).TrapFloor != null)
+                        {
+                            (potentialPit as HiddenPit).UnveilHiddenPit();
+                        }
+                    }
+
                     ShortMessage.Instance.ShowMessage("Предмет пропал в недрах ямы.");
 
                     Inventory.RemoveItemFromInventory(this, m_inventorySlot);
@@ -48,7 +58,7 @@ namespace DC_ARPG
             }
             else
             {
-                var potentialItemContainer = m_uiInventory.Player.CheckForwardGridForInsectableObject();
+                var potentialItemContainer = m_uiInventory.Player.CheckForwardGridForInspectableObject();
 
                 if (potentialItemContainer is Chest)
                 {

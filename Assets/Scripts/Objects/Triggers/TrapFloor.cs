@@ -7,19 +7,30 @@ namespace DC_ARPG
         [SerializeField] private float m_destroyTime = 0.2f;
         [SerializeField] private GameObject m_floorBreakEffectPrefab;
 
+        private bool isTriggered = false;
+
+        public void DestroyTrapFloor(float destroyTime = 0.1f)
+        {
+            if (m_floorBreakEffectPrefab != null)
+            {
+                var effect = Instantiate(m_floorBreakEffectPrefab, transform.position, Quaternion.identity);
+                Destroy(effect, m_destroyTime + 0.1f);
+            }
+
+            Destroy(gameObject, destroyTime);
+        }
+
         private void OnCollisionStay(Collision collision)
         {
+            if (isTriggered) return;
+
             if (collision.gameObject.TryGetComponent(out Player player))
             {
                 if (player.IsJumping && !player.JumpedAndLanded) return;
 
-                if (m_floorBreakEffectPrefab != null)
-                {
-                    var effect = Instantiate(m_floorBreakEffectPrefab, transform.position, Quaternion.identity);
-                    Destroy(effect, m_destroyTime + 0.1f);
-                }
+                isTriggered = true;
 
-                Destroy(gameObject, m_destroyTime);
+                DestroyTrapFloor(m_destroyTime);
             }
         }
 

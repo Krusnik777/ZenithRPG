@@ -11,7 +11,7 @@ namespace DC_ARPG
 
         private void LateUpdate()
         {
-            UpdateButtonInfo(m_player.CheckForwardGridForInsectableObject());
+            UpdateButtonInfo(m_player.CheckForwardGridForInspectableObject());
         }
 
         private void UpdateButtonInfo(InspectableObject inspectableObject)
