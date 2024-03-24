@@ -68,8 +68,6 @@ namespace DC_ARPG
         {
             if (!inIdleState) return;
 
-            if (Mathf.Sign(transform.position.y) < 0) return;
-
             Vector3 direction = GetDirection(inputDirection);
 
             Ray directionRay = new Ray(transform.position + new Vector3(0, 0.5f, 0), direction);
@@ -114,7 +112,7 @@ namespace DC_ARPG
                 Vector3 correctionPos = new Vector3(transform.position.x, -1.0f, transform.position.z);
                 transform.position = correctionPos;
 
-                Ray upRay = new Ray(transform.position + new Vector3(0, 1.1f, 0), transform.forward);
+                Ray upRay = new Ray(transform.position + new Vector3(0, 1.15f, 0), transform.forward);
                 RaycastHit upHit;
 
                 if (Physics.Raycast(upRay, out upHit, 1.0f))
@@ -126,7 +124,7 @@ namespace DC_ARPG
                 return;
             }
 
-            Ray jumpRay = new Ray(transform.position + new Vector3(0, 0.5f, 0), transform.forward);
+            Ray jumpRay = new Ray(transform.position + new Vector3(0, 0.45f, 0), transform.forward);
             RaycastHit hit;
             Vector3 distance = Vector3.zero;
 
@@ -415,9 +413,10 @@ namespace DC_ARPG
                     targetPosition = distance + startPosition;
                 }
 
-                while (elapsed < time || transform.position != targetPosition)
+                while (Vector3.Distance(transform.position, targetPosition) >= 0.05f)
                 {
-                    Debug.Log("Here");
+                    if (Vector3.Distance(transform.position, targetPosition) <= 0.1f)
+                        if (!IsGrounded) break;
 
                     transform.position = Vector3.MoveTowards(startPosition, targetPosition, elapsed / time);
                     elapsed += Time.deltaTime;
@@ -441,19 +440,23 @@ namespace DC_ARPG
 
         private IEnumerator JumpUp()
         {
+            landedAfterJump = false;
             isJumping = true;
             var startPosition = transform.position;
             var targetPosition = startPosition + transform.forward;
             targetPosition.y = 0.05f;
 
             var elapsed = 0.0f;
-            var time = m_transitionJumpSpeed + 1.0f;
+            var time = m_transitionJumpSpeed;
 
             m_animator.Play("Jump");
             m_characterSFX.PlayJumpSound();
 
-            while (elapsed < time)
+            while (Vector3.Distance(transform.position, targetPosition) >= 0.05f)
             {
+                if (Vector3.Distance(transform.position, targetPosition) <= 0.1f)
+                    if (!IsGrounded) break;
+
                 transform.position = Vector3.MoveTowards(startPosition, targetPosition, elapsed / time);
                 elapsed += Time.deltaTime;
 

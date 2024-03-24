@@ -135,6 +135,8 @@ namespace DC_ARPG
 
         private void UnveilHiddenPit(Player player, IItem item)
         {
+            UISounds.Instance.PlayItemUsedSound(m_useSound);
+
             var potentialHiddenPit = player.CheckForwardGridForInspectableObject();
 
             if (potentialHiddenPit is Pit)
@@ -173,7 +175,5 @@ namespace DC_ARPG
                 player.Character.PlayerStats.ChangeCurrentHitPoints(item, -1);
             }
         }
-
-
     }
 }

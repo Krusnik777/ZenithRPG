@@ -80,6 +80,11 @@ namespace DC_ARPG
                 }
             }
 
+            if (collision.transform.parent.TryGetComponent(out MagicalTorch torch))
+            {
+                torch.FireTorch();
+            }
+
             if (m_hitPrefab != null)
             {
                 var hitEffect = Instantiate(m_hitPrefab, collision.transform.position, Quaternion.identity);

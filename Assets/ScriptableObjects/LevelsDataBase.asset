@@ -20,3 +20,5 @@ MonoBehaviour:
     LevelTitle: "\u0422\u0435\u0441\u0442\u043E\u0432\u044B\u0439"
   - SceneName: Level_01
     LevelTitle: "\u0422\u044E\u0440\u044C\u043C\u0430 \u041F\u042D4"
+  - SceneName: Level_02
+    LevelTitle: "\u0422\u044E\u0440\u044C\u043C\u0430 \u041F\u042D3"

@@ -1,37 +1,34 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace DC_ARPG
 {
-    public class TrapFloor : MonoBehaviour, IDataPersistence
+    public class MagicalTorch : InspectableObject, IDataPersistence
     {
-        [SerializeField] private float m_destroyTime = 0.2f;
-        [SerializeField] private GameObject m_floorBreakEffectPrefab;
+        [SerializeField] private GameObject m_fire;
 
-        private bool isTriggered = false;
+        public UnityEvent OnFired;
 
-        public void DestroyTrapFloor(float destroyTime = 0.1f)
+        public void FireTorch()
         {
-            if (m_floorBreakEffectPrefab != null)
-            {
-                var effect = Instantiate(m_floorBreakEffectPrefab, transform.position, Quaternion.identity);
-                Destroy(effect, 1.0f);
-            }
+            if (m_fire.activeInHierarchy) return;
 
-            Destroy(gameObject, destroyTime);
+            m_fire.SetActive(true);
+            OnFired?.Invoke();
         }
 
-        private void OnCollisionStay(Collision collision)
+        public override void OnInspection(Player player)
         {
-            if (isTriggered) return;
-
-            if (collision.gameObject.TryGetComponent(out Player player))
+            if (m_fire.activeInHierarchy)
             {
-                if (player.IsJumping && !player.JumpedAndLanded) return;
-
-                isTriggered = true;
-
-                DestroyTrapFloor(m_destroyTime);
+                ShortMessage.Instance.ShowMessage("Факел.");
             }
+            else
+            {
+                ShortMessage.Instance.ShowMessage("Потухший факел.");
+            }
+
+            base.OnInspection(player);
         }
 
         #region Serialize
@@ -40,6 +37,7 @@ namespace DC_ARPG
         public class DataState
         {
             public bool enabled;
+            public bool fired;
 
             public DataState() { }
         }
@@ -59,6 +57,7 @@ namespace DC_ARPG
             DataState s = new DataState();
 
             s.enabled = gameObject.activeInHierarchy;
+            s.fired = m_fire.activeInHierarchy;
 
             return JsonUtility.ToJson(s);
         }
@@ -68,6 +67,7 @@ namespace DC_ARPG
             DataState s = JsonUtility.FromJson<DataState>(state);
 
             gameObject.SetActive(s.enabled);
+            m_fire.SetActive(s.fired);
         }
 
         public void SetupCreatedDataPersistenceObject(string entityId, bool isCreated, string state) { }

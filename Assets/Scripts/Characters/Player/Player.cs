@@ -36,12 +36,16 @@ namespace DC_ARPG
         {
             if (Character.Inventory.WeaponItemSlot.IsEmpty) return;
 
+            if (Mathf.Sign(transform.position.y) < 0) return;
+
             base.Attack();
         }
 
         public override void Block(string name)
         {
             if (Character.Inventory.ShieldItemSlot.IsEmpty) return;
+
+            if (Mathf.Sign(transform.position.y) < 0) return;
 
             base.Block(name);
         }
@@ -67,6 +71,8 @@ namespace DC_ARPG
             if (!inIdleState) return;
 
             if (Character.Inventory.MagicItemSlot.IsEmpty) return;
+
+            if (Mathf.Sign(transform.position.y) < 0) return;
 
             StartCoroutine(CastMagic());
         }
