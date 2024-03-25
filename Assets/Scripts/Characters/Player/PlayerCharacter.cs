@@ -61,6 +61,13 @@ namespace DC_ARPG
             AddMoney(playerData.Money);
         }
 
+        public void UnlockExtraPocket()
+        {
+            if (inventory.UnlockedPockets == 3) return;
+
+            inventory.UnlockedPockets++;
+        }
+
         public void AddMoney(int amount)
         {
             m_money += amount;

@@ -10,6 +10,10 @@ namespace DC_ARPG
         [SerializeField] private bool m_locked;
         [SerializeField] private bool m_requireSpecialKey;
         [SerializeField] private UsableItemInfo m_specificKeyItemInfo;
+        [Header("Special")]
+        [SerializeField] private bool m_unlockInventoryPocket;
+        [SerializeField] private bool m_giveMoney;
+        [SerializeField] private int m_money;
         public bool Locked => m_locked;
         public bool RequireSpecialKey => m_requireSpecialKey;
         public UsableItemInfo SpecificKeyItemInfo => m_specificKeyItemInfo;
@@ -96,6 +100,28 @@ namespace DC_ARPG
 
             if (m_item == null)
             {
+                if (m_giveMoney)
+                {
+                    ShortMessage.Instance.ShowMessage("Найдено денег: " + m_money);
+                    player.Character.AddMoney(m_money);
+                    m_giveMoney = false;
+
+                    UISounds.Instance.PlayItemCollectedSound();
+
+                    return;
+                }
+
+                if (m_unlockInventoryPocket)
+                {
+                    ShortMessage.Instance.ShowMessage("Найдена дополнительная сумка для инвентаря.");
+                    player.Character.UnlockExtraPocket();
+                    m_unlockInventoryPocket = false;
+
+                    UISounds.Instance.PlayItemCollectedSound();
+
+                    return;
+                }
+
                 ShortMessage.Instance.ShowMessage("Пусто.");
                 return;
             }
@@ -131,6 +157,9 @@ namespace DC_ARPG
             public bool enabled;
             public bool locked;
             public ItemData itemData;
+            public bool unlockingInventoryPocket;
+            public bool givingMoney;
+            public int money;
             public int animatorState;
 
             public ChestDataState() { }
@@ -144,6 +173,9 @@ namespace DC_ARPG
             s.enabled = gameObject.activeInHierarchy;
             s.locked = m_locked;
             s.itemData = new ItemData(m_itemData);
+            s.unlockingInventoryPocket = m_unlockInventoryPocket;
+            s.givingMoney = m_giveMoney;
+            s.money = m_money;
             if (gameObject.activeInHierarchy)
                 s.animatorState = m_animator.GetCurrentAnimatorStateInfo(0).shortNameHash;
 
@@ -158,6 +190,9 @@ namespace DC_ARPG
             m_locked = s.locked;
             m_itemData = new ItemData(s.itemData);
             m_item = m_itemData.CreateItem();
+            m_unlockInventoryPocket = s.unlockingInventoryPocket;
+            m_giveMoney = s.givingMoney;
+            m_money = s.money;
             if (s.enabled)
                 m_animator.Play(s.animatorState);
         }

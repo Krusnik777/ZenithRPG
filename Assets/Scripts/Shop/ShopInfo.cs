@@ -10,10 +10,8 @@ namespace DC_ARPG
         public class Speech
         {
             [TextArea(1,5)] public string[] Lines;
-            /// <summary>
-            /// Speak only single time.
-            /// </summary>
-            public bool Removable;
+
+            public bool Repeatable = true;
         }
 
         public List<Speech> TalkSpeeches;
@@ -21,8 +19,28 @@ namespace DC_ARPG
         [TextArea(1, 5)] public List<string> FarewellLines;
         [TextArea(1, 5)] public List<string> PurchaseLines;
         [TextArea(1, 5)] public List<string> SellLines;
+        [TextArea(1, 5)] public List<string> SellFailureLines;
         [TextArea(1, 5)] public List<string> NotEnoughMoneyLines;
         [TextArea(1, 5)] public List<string> NoPlaceLines;
+
+        public int CurrentSpeech { get; set; }
+
+        public Shopkeeper()
+        {
+
+        }
+
+        public Shopkeeper(Shopkeeper shopkeeper)
+        {
+            TalkSpeeches = new List<Speech>(shopkeeper.TalkSpeeches);
+            WelcomeLines = new List<string>(shopkeeper.WelcomeLines);
+            FarewellLines = new List<string>(shopkeeper.FarewellLines);
+            PurchaseLines = new List<string>(shopkeeper.PurchaseLines);
+            SellLines = new List<string>(shopkeeper.SellLines);
+            SellFailureLines = new List<string>(shopkeeper.SellFailureLines);
+            NotEnoughMoneyLines = new List<string>(shopkeeper.NotEnoughMoneyLines);
+            NoPlaceLines = new List<string>(shopkeeper.NoPlaceLines);
+        }
     }
 
     [CreateAssetMenu(fileName = "ShopInfo", menuName = "ScriptableObjects/ShopInfo")]
@@ -32,5 +50,6 @@ namespace DC_ARPG
         public Sprite BackgroundImage;
         public Shopkeeper Shopkeeper;
         public ItemData[] ShopItemsData;
+        public float Surcharge;
     }
 }

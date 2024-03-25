@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace DC_ARPG
@@ -73,5 +74,30 @@ namespace DC_ARPG
         public void SetupCreatedDataPersistenceObject(string entityId, bool isCreated, string state) { }
 
         #endregion
+
+#if UNITY_EDITOR
+
+        [ContextMenu(nameof(GenerateIdForAllTrapFloors))]
+        private void GenerateIdForAllTrapFloors()
+        {
+            if (Application.isPlaying) return;
+
+            List<TrapFloor> trapFloorsInScene = new List<TrapFloor>();
+            trapFloorsInScene.AddRange(FindObjectsOfType<TrapFloor>());
+
+            foreach (var trapFloor in trapFloorsInScene)
+            {
+                trapFloor.UpdateId();
+            }
+        }
+
+        public void UpdateId()
+        {
+            m_id = string.Empty;
+            m_id = "TrapFloor_" + System.Guid.NewGuid().ToString();
+            UnityEditor.EditorUtility.SetDirty(this);
+        }
+
+#endif
     }
 }

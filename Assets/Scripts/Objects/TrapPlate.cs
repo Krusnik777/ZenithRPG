@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace DC_ARPG
@@ -57,5 +58,31 @@ namespace DC_ARPG
         public void SetupCreatedDataPersistenceObject(string entityId, bool isCreated, string state) { }
 
         #endregion
+
+        #if UNITY_EDITOR
+
+        [ContextMenu(nameof(GenerateIdForAllTraps))]
+        private void GenerateIdForAllTraps()
+        {
+            if (Application.isPlaying) return;
+
+            List<TrapPlate> trapsInScene = new List<TrapPlate>();
+            trapsInScene.AddRange(FindObjectsOfType<TrapPlate>());
+
+            for(int i = 0; i < trapsInScene.Count; i++)
+            {
+                trapsInScene[i].UpdateId(i);
+            }
+        }
+
+        public void UpdateId(int number)
+        {
+            string name = "Trap_" + number.ToString("D3");
+            gameObject.name = name;
+            m_id = name;
+            UnityEditor.EditorUtility.SetDirty(this);
+        }
+
+        #endif
     }
 }

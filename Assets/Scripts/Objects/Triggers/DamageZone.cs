@@ -9,6 +9,8 @@ namespace DC_ARPG
         protected bool disabled;
         public bool Disabled => disabled;
 
+        public void SetDamage(int damage) => m_damage = damage;
+
         public void SetTrapActive(bool state)
         {
             disabled = !state;

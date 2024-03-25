@@ -58,7 +58,11 @@ namespace DC_ARPG
         {
             int index = 0;
 
-            if (m_uiInventory.Player.Character.Money < item.Price)
+            int price = item.Price;
+
+            if (price <= 0) price = (int)(m_shop.ShopInfo.Surcharge * m_shop.DefaultPrice);
+
+            if (m_uiInventory.Player.Character.Money < price)
             {
                 index = Random.Range(0, m_shop.ShopInfo.Shopkeeper.NotEnoughMoneyLines.Count);
                 m_shopkeeperSpeech.ShowShortPhrase(m_shop.ShopInfo.Shopkeeper.NotEnoughMoneyLines[index]);
@@ -78,7 +82,7 @@ namespace DC_ARPG
                 return;
             }
 
-            m_uiInventory.Player.Character.SpendMoney(item.Price);
+            m_uiInventory.Player.Character.SpendMoney(price);
 
             index = Random.Range(0, m_shop.ShopInfo.Shopkeeper.PurchaseLines.Count);
             m_shopkeeperSpeech.ShowShortPhrase(m_shop.ShopInfo.Shopkeeper.PurchaseLines[index]);
@@ -90,10 +94,22 @@ namespace DC_ARPG
         {
             if (slot.IsEmpty) return;
 
+            int index = 0;
+
+            if (slot.Item.Price <= 0)
+            {
+                index = Random.Range(0, m_shop.ShopInfo.Shopkeeper.SellFailureLines.Count);
+                m_shopkeeperSpeech.ShowShortPhrase(m_shop.ShopInfo.Shopkeeper.SellFailureLines[index]);
+
+                UISounds.Instance.PlayPurchaseFailureSound();
+
+                return;
+            }
+
             playerCharacter.AddMoney(slot.Item.Price);
             playerCharacter.Inventory.RemoveItemFromInventory(sender, slot);
 
-            int index = Random.Range(0, m_shop.ShopInfo.Shopkeeper.SellLines.Count);
+            index = Random.Range(0, m_shop.ShopInfo.Shopkeeper.SellLines.Count);
             m_shopkeeperSpeech.ShowShortPhrase(m_shop.ShopInfo.Shopkeeper.SellLines[index]);
 
             UISounds.Instance.PlayPurchaseSound();
@@ -116,7 +132,7 @@ namespace DC_ARPG
 
             for (int i = 0; i < m_uIShopItems.Length; i++)
             {
-                m_uIShopItems[i].SetShopItem(shop.ShopItems[i]);
+                m_uIShopItems[i].SetShopItem(shop, shop.ShopItems[i]);
             }
 
             m_buttonsInfoPanel.SetActive(false);

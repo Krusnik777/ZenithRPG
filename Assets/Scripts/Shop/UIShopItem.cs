@@ -13,12 +13,17 @@ namespace DC_ARPG
         private IItem m_item;
         public IItem Item => m_item;
 
-        public void SetShopItem(IItem item)
+        public void SetShopItem(Shop shop, IItem item)
         {
             m_item = item;
 
             m_itemIcon.sprite = item.Info.Icon;
-            m_priceValue.text = item.Price.ToString();
+
+            int price = item.Price;
+
+            if (price <= 0) price = (int)(shop.ShopInfo.Surcharge * shop.DefaultPrice);
+
+            m_priceValue.text = price.ToString();
 
             if (item is UsableItem || item is NotUsableItem)
             {

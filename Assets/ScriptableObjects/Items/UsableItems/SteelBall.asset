@@ -21,7 +21,7 @@ MonoBehaviour:
   Icon: {fileID: 21300000, guid: 59836fe59e12126439b0765406ce9194, type: 3}
   ItemTypeIcon: {fileID: 21300000, guid: 27d9878cff548d1408ca5e15a69040bf, type: 3}
   Prefab: {fileID: 5010736486517576525, guid: 3ca53e71b8431dd49a556a2c40d4d54d, type: 3}
-  Price: 1
+  Price: 10
   MaxAmount: 99
   UseEffect:
     m_useEffect: 4

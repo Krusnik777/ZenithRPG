@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace DC_ARPG
@@ -86,5 +87,24 @@ namespace DC_ARPG
                 m_audioSource.Play();
             }
         }
+
+        #if UNITY_EDITOR
+
+        [ContextMenu(nameof(ChangeDamageForAllSpikeTraps))]
+        private void ChangeDamageForAllSpikeTraps()
+        {
+            if (Application.isPlaying) return;
+
+            List<SpikeTrap> spikeTrapsInScene = new List<SpikeTrap>();
+            spikeTrapsInScene.AddRange(FindObjectsOfType<SpikeTrap>());
+
+            foreach (var spikeTrap in spikeTrapsInScene)
+            {
+                spikeTrap.SetDamage(m_damage);
+                UnityEditor.EditorUtility.SetDirty(spikeTrap);
+            }
+        }
+
+        #endif
     }
 }

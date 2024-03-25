@@ -12,7 +12,6 @@ namespace DC_ARPG
 
         private Coroutine displayPhrase;
 
-        private int currentSpeechNumber;
         private int currentLineNumber;
         private Shopkeeper currentShopkeeper;
         private Shopkeeper.Speech currentSpeech;
@@ -21,11 +20,10 @@ namespace DC_ARPG
         {
             if (displayPhrase != null) StopCoroutine(displayPhrase);
 
-            currentSpeechNumber = 0;
             currentLineNumber = 0;
 
             currentShopkeeper = shopkeeper;
-            currentSpeech = currentShopkeeper.TalkSpeeches[currentSpeechNumber];
+            currentSpeech = currentShopkeeper.TalkSpeeches[shopkeeper.CurrentSpeech];
 
             ContinueSpeech();
         }
@@ -53,11 +51,14 @@ namespace DC_ARPG
 
         private void EndCurrentSpeech()
         {
-            if (currentSpeech.Removable) currentShopkeeper.TalkSpeeches.Remove(currentSpeech);
+            if (!currentSpeech.Repeatable)
+            {
+                if (currentShopkeeper.TalkSpeeches.Count > currentShopkeeper.CurrentSpeech + 1)
+                    currentShopkeeper.CurrentSpeech++;
+            }
 
             currentShopkeeper = null;
             currentSpeech = null;
-            currentSpeechNumber = 0;
             currentLineNumber = 0;
 
             UIShop.Instance.EndTalk();

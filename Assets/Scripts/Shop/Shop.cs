@@ -5,9 +5,9 @@ namespace DC_ARPG
     public class Shop : MonoBehaviour
     {
         [SerializeField] private ShopInfo m_shopInfo;
+        [SerializeField] private int m_defaultPrice = 10;
         public ShopInfo ShopInfo => m_shopInfo;
-
-        private ShopInfo clonedShopInfo;
+        public int DefaultPrice => m_defaultPrice;
 
         private Shopkeeper shopkeeper;
         public Shopkeeper Shopkeeper => shopkeeper;
@@ -24,9 +24,8 @@ namespace DC_ARPG
                 m_shopItems[i] = m_shopInfo.ShopItemsData[i].CreateItem();
             }
 
-            clonedShopInfo = Instantiate(m_shopInfo);
-
-            shopkeeper = clonedShopInfo.Shopkeeper;
+            shopkeeper = new Shopkeeper(m_shopInfo.Shopkeeper);
+            shopkeeper.CurrentSpeech = 0;
         }
     }
 }
