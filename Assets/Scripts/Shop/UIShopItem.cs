@@ -19,9 +19,9 @@ namespace DC_ARPG
 
             m_itemIcon.sprite = item.Info.Icon;
 
-            int price = item.Price;
+            int price = (int)(shop.ShopInfo.Surcharge * item.Price) + item.Price;
 
-            if (price <= 0) price = (int)(shop.ShopInfo.Surcharge * shop.DefaultPrice);
+            if (price <= 0) price = ((int)(shop.ShopInfo.Surcharge * shop.DefaultPrice) + shop.DefaultPrice) * item.Amount;
 
             m_priceValue.text = price.ToString();
 

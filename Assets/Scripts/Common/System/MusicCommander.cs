@@ -13,15 +13,21 @@ namespace DC_ARPG
             PlaySceneBGM(SceneManager.GetActiveScene().name);
         }
 
+        public void PlayMainMenuTheme()
+        {
+            m_audioSource.clip = m_musicDataBase.MainMenuTheme;
+            m_audioSource.Play();
+        }
+
         public void PlayGameOverMusic()
         {
             m_audioSource.clip = m_musicDataBase.GameOverTheme;
             m_audioSource.Play();
         }
 
-        public void PlayMainMenuTheme()
+        public void PlayShopTheme()
         {
-            m_audioSource.clip = m_musicDataBase.MainMenuTheme;
+            m_audioSource.clip = m_musicDataBase.ShopTheme;
             m_audioSource.Play();
         }
 

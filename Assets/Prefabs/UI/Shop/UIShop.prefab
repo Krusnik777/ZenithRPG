@@ -1204,7 +1204,7 @@ MonoBehaviour:
     m_Top: 0
     m_Bottom: 0
   m_ChildAlignment: 4
-  m_Spacing: 2
+  m_Spacing: 1
   m_ChildForceExpandWidth: 1
   m_ChildForceExpandHeight: 1
   m_ChildControlWidth: 0
@@ -1226,7 +1226,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_buttonContrainer: {fileID: 376718382396150966}
   m_maxVisibleButtons: 6
-  m_scrollStep: 150
+  m_scrollStep: 151
   m_upArrowActiveImage: {fileID: 7842508479708780761}
   m_downArrowActiveImage: {fileID: 5733306699075988045}
 --- !u!1 &3011462102061901530

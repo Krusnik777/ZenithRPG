@@ -12,7 +12,7 @@ namespace DC_ARPG
             inRightPosition = false;
         }
 
-        private void OnTriggerEnter(Collider other)
+        private void OnTriggerStay(Collider other)
         {
             if (other.transform.root.GetComponent<Player>())
             {

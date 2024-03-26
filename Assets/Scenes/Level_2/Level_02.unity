@@ -81688,7 +81688,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1844385430773188566, guid: 6d9d2a695028a324ebb44d3d583ffc36, type: 3}
       propertyPath: m_startedMoney
-      value: 0
+      value: 100000
       objectReference: {fileID: 0}
     - target: {fileID: 1844385430773188566, guid: 6d9d2a695028a324ebb44d3d583ffc36, type: 3}
       propertyPath: m_items.Array.size
@@ -97658,7 +97658,7 @@ PrefabInstance:
     - target: {fileID: 7599729716025759701, guid: 5eb88ca72059bdf43b613a70732512d8, type: 3}
       propertyPath: m_shopInfo
       value: 
-      objectReference: {fileID: 11400000, guid: 8f7057736c8d0e243a25e3cd92751b0f, type: 2}
+      objectReference: {fileID: 11400000, guid: fa987189e6bed4b4e8424606cf0578b9, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -97739,7 +97739,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8316584615705747185, guid: bcbec74888b5ac64ab9f1c75d062c007, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 6.31
+      value: 14.66
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

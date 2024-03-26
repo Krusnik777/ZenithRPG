@@ -21,3 +21,4 @@ MonoBehaviour:
     BGM: {fileID: 8300000, guid: 9ad7b05c173beca478be154574182f58, type: 3}
   m_mainMenuTheme: {fileID: 8300000, guid: 2a3f9d778bd906f4abbf3e6f713c4285, type: 3}
   m_gameOverTheme: {fileID: 8300000, guid: d714b979093c24d48990c5f3160c4826, type: 3}
+  m_shopTheme: {fileID: 8300000, guid: f3555dfa8c56c6e4992b9b0ba0d4e2d0, type: 3}

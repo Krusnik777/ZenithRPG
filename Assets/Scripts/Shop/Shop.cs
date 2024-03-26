@@ -25,7 +25,6 @@ namespace DC_ARPG
             }
 
             shopkeeper = new Shopkeeper(m_shopInfo.Shopkeeper);
-            shopkeeper.CurrentSpeech = 0;
         }
     }
 }

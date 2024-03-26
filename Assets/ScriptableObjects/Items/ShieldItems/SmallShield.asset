@@ -20,6 +20,6 @@ MonoBehaviour:
   Icon: {fileID: 21300000, guid: ddd98a7c66f13b84ba40c68059bf7ab4, type: 3}
   ItemTypeIcon: {fileID: 21300000, guid: e1ad577ec7507f743a65970412e6a5f1, type: 3}
   Prefab: {fileID: 5010736486517576525, guid: 3ca53e71b8431dd49a556a2c40d4d54d, type: 3}
-  Price: 80
+  Price: 2000
   EquipType: 1
   DefenseIncrease: 3

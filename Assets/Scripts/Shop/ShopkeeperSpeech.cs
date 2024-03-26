@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using TMPro;
+using System.Collections.Generic;
 
 namespace DC_ARPG
 {
@@ -23,14 +24,32 @@ namespace DC_ARPG
             currentLineNumber = 0;
 
             currentShopkeeper = shopkeeper;
-            currentSpeech = currentShopkeeper.TalkSpeeches[shopkeeper.CurrentSpeech];
+
+            int speechIndex = -1;
+
+            for (int i = 0; i < currentShopkeeper.TalkSpeeches.Count; i++)
+            {
+                if (!currentShopkeeper.TalkSpeeches[i].Listened)
+                {
+                    speechIndex = i;
+                    break;
+                }
+            }
+
+            while (speechIndex == -1)
+            {
+                speechIndex = Random.Range(0, currentShopkeeper.TalkSpeeches.Count);
+                if (!currentShopkeeper.TalkSpeeches[speechIndex].Repeatable) speechIndex = -1;
+            }
+
+            currentSpeech = currentShopkeeper.TalkSpeeches[speechIndex];
 
             ContinueSpeech();
         }
 
         public void ContinueSpeech()
         {
-            if (currentLineNumber < currentSpeech.Lines.Length)
+            if (currentLineNumber < currentSpeech.Lines.Count)
             {
                 m_phraseText.text = currentSpeech.Lines[currentLineNumber];
 
@@ -51,11 +70,7 @@ namespace DC_ARPG
 
         private void EndCurrentSpeech()
         {
-            if (!currentSpeech.Repeatable)
-            {
-                if (currentShopkeeper.TalkSpeeches.Count > currentShopkeeper.CurrentSpeech + 1)
-                    currentShopkeeper.CurrentSpeech++;
-            }
+            currentSpeech.Listened = true;
 
             currentShopkeeper = null;
             currentSpeech = null;

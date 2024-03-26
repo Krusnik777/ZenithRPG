@@ -58,14 +58,14 @@ namespace DC_ARPG
         {
             int index = 0;
 
-            int price = item.Price;
+            int price = (int)(m_shop.ShopInfo.Surcharge * item.Price) + item.Price;
 
-            if (price <= 0) price = (int)(m_shop.ShopInfo.Surcharge * m_shop.DefaultPrice);
+            if (price <= 0) price = ((int)(m_shop.ShopInfo.Surcharge * m_shop.DefaultPrice) + m_shop.DefaultPrice) * item.Amount;
 
             if (m_uiInventory.Player.Character.Money < price)
             {
-                index = Random.Range(0, m_shop.ShopInfo.Shopkeeper.NotEnoughMoneyLines.Count);
-                m_shopkeeperSpeech.ShowShortPhrase(m_shop.ShopInfo.Shopkeeper.NotEnoughMoneyLines[index]);
+                index = Random.Range(0, m_shop.Shopkeeper.NotEnoughMoneyLines.Count);
+                m_shopkeeperSpeech.ShowShortPhrase(m_shop.Shopkeeper.NotEnoughMoneyLines[index]);
 
                 UISounds.Instance.PlayPurchaseFailureSound();
 
@@ -74,8 +74,8 @@ namespace DC_ARPG
 
             if (m_uiInventory.Inventory.TryToAddItem(sender, item) == false)
             {
-                index = Random.Range(0, m_shop.ShopInfo.Shopkeeper.NoPlaceLines.Count);
-                m_shopkeeperSpeech.ShowShortPhrase(m_shop.ShopInfo.Shopkeeper.NoPlaceLines[index]);
+                index = Random.Range(0, m_shop.Shopkeeper.NoPlaceLines.Count);
+                m_shopkeeperSpeech.ShowShortPhrase(m_shop.Shopkeeper.NoPlaceLines[index]);
 
                 UISounds.Instance.PlayPurchaseFailureSound();
 
@@ -84,8 +84,8 @@ namespace DC_ARPG
 
             m_uiInventory.Player.Character.SpendMoney(price);
 
-            index = Random.Range(0, m_shop.ShopInfo.Shopkeeper.PurchaseLines.Count);
-            m_shopkeeperSpeech.ShowShortPhrase(m_shop.ShopInfo.Shopkeeper.PurchaseLines[index]);
+            index = Random.Range(0, m_shop.Shopkeeper.PurchaseLines.Count);
+            m_shopkeeperSpeech.ShowShortPhrase(m_shop.Shopkeeper.PurchaseLines[index]);
 
             UISounds.Instance.PlayPurchaseSound();
         }
@@ -98,8 +98,8 @@ namespace DC_ARPG
 
             if (slot.Item.Price <= 0)
             {
-                index = Random.Range(0, m_shop.ShopInfo.Shopkeeper.SellFailureLines.Count);
-                m_shopkeeperSpeech.ShowShortPhrase(m_shop.ShopInfo.Shopkeeper.SellFailureLines[index]);
+                index = Random.Range(0, m_shop.Shopkeeper.SellFailureLines.Count);
+                m_shopkeeperSpeech.ShowShortPhrase(m_shop.Shopkeeper.SellFailureLines[index]);
 
                 UISounds.Instance.PlayPurchaseFailureSound();
 
@@ -109,8 +109,8 @@ namespace DC_ARPG
             playerCharacter.AddMoney(slot.Item.Price);
             playerCharacter.Inventory.RemoveItemFromInventory(sender, slot);
 
-            index = Random.Range(0, m_shop.ShopInfo.Shopkeeper.SellLines.Count);
-            m_shopkeeperSpeech.ShowShortPhrase(m_shop.ShopInfo.Shopkeeper.SellLines[index]);
+            index = Random.Range(0, m_shop.Shopkeeper.SellLines.Count);
+            m_shopkeeperSpeech.ShowShortPhrase(m_shop.Shopkeeper.SellLines[index]);
 
             UISounds.Instance.PlayPurchaseSound();
         }
@@ -151,8 +151,10 @@ namespace DC_ARPG
 
             ActiveButtonContainer = m_baseShopButtonContainer;
 
-            int index = Random.Range(0, m_shop.ShopInfo.Shopkeeper.WelcomeLines.Count);
-            m_shopkeeperSpeech.ShowShortPhrase(m_shop.ShopInfo.Shopkeeper.WelcomeLines[index]);
+            int index = Random.Range(0, m_shop.Shopkeeper.WelcomeLines.Count);
+            m_shopkeeperSpeech.ShowShortPhrase(m_shop.Shopkeeper.WelcomeLines[index]);
+
+            MusicCommander.Instance.PlayShopTheme();
         }
 
         public void BuyItems()
@@ -270,6 +272,8 @@ namespace DC_ARPG
             exitCoroutine = null;
 
             EventOnShopExit?.Invoke();
+
+            MusicCommander.Instance.PlayCurrentSceneBGM();
         }
 
         #endregion

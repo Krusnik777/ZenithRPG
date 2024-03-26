@@ -9,9 +9,19 @@ namespace DC_ARPG
         [System.Serializable]
         public class Speech
         {
-            [TextArea(1,5)] public string[] Lines;
+            [TextArea(1,5)] public List<string> Lines;
 
             public bool Repeatable = true;
+            public bool Listened { get; set; }
+
+            public Speech() { }
+
+            public Speech(Speech speech)
+            {
+                Lines = new List<string>(speech.Lines);
+                Repeatable = speech.Repeatable;
+                Listened = false;
+            }
         }
 
         public List<Speech> TalkSpeeches;
@@ -23,16 +33,17 @@ namespace DC_ARPG
         [TextArea(1, 5)] public List<string> NotEnoughMoneyLines;
         [TextArea(1, 5)] public List<string> NoPlaceLines;
 
-        public int CurrentSpeech { get; set; }
-
-        public Shopkeeper()
-        {
-
-        }
+        public Shopkeeper() { }
 
         public Shopkeeper(Shopkeeper shopkeeper)
         {
-            TalkSpeeches = new List<Speech>(shopkeeper.TalkSpeeches);
+            TalkSpeeches = new List<Speech>();
+
+            foreach (var speech in shopkeeper.TalkSpeeches)
+            {
+                TalkSpeeches.Add(new Speech(speech));
+            }
+
             WelcomeLines = new List<string>(shopkeeper.WelcomeLines);
             FarewellLines = new List<string>(shopkeeper.FarewellLines);
             PurchaseLines = new List<string>(shopkeeper.PurchaseLines);
