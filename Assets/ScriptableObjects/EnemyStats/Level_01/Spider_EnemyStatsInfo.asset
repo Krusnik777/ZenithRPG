@@ -12,15 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc94f3ef51919f047a37a8689866768f, type: 3}
   m_Name: Spider_EnemyStatsInfo
   m_EditorClassIdentifier: 
-  Level: 1
+  Level: 2
   HitPoints: 35
   MagicPoints: 1
   Strength: 2
   Intelligence: 1
   MagicResist: 1
   Luck: 1
-  Attack: 3
+  AttackIncrease: 4
   Defense: 0
-  ExperiencePoints: 20
-  DroppedGold: 20
+  ExperiencePoints: 30
+  DroppedGold: 50
   DroppedItems: []

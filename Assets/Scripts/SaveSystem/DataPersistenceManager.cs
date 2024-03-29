@@ -58,7 +58,30 @@ namespace DC_ARPG
                 return;
             }
 
-            m_gameData.Save(SceneManager.GetActiveScene().buildIndex); // TEMP
+            m_gameData.SetActiveSceneState(SceneManager.GetActiveScene().name);
+
+            m_gameData.ActiveSceneState.SceneObjects.Clear();
+
+            foreach (var dataPersistenceObject in FindAllDataPersistenceObjects())
+            {
+                if (!dataPersistenceObject.IsSerializable()) continue;
+
+                var sceneObject = new SceneObject(dataPersistenceObject.PrefabId, dataPersistenceObject.EntityId, dataPersistenceObject.SerializeState(), dataPersistenceObject.IsCreated);
+
+                m_gameData.ActiveSceneState.SceneObjects.Add(sceneObject);
+
+                if (dataPersistenceObject is Player)
+                {
+                    var playerCharacter = (dataPersistenceObject as Player).Character;
+                    m_gameData.PlayerData = new PlayerData(playerCharacter.PlayerStats, playerCharacter.Inventory, playerCharacter.Money);
+                }
+
+                if (dataPersistenceObject is MinimapIconCollector)
+                {
+                    var minimapIconCollector = dataPersistenceObject as MinimapIconCollector;
+                    m_gameData.ActiveSceneState.MapCompletion = minimapIconCollector.GetMapCompletionPercent();
+                }
+            }
 
             m_gameData.LastUpdated = System.DateTime.Now.ToBinary();
 
@@ -75,7 +98,51 @@ namespace DC_ARPG
                 return;
             }
 
-            m_gameData.Load();
+            SceneCommander.Instance.StartLevel(m_gameData.ActiveSceneState.SceneId);
+
+            // Must be After Scene Loaded
+
+            foreach (var dataPersistenceObject in FindAllDataPersistenceObjects())
+            {
+                if (!dataPersistenceObject.IsSerializable()) continue;
+
+                bool isFound = false;
+
+                foreach (var loadedObject in m_gameData.ActiveSceneState.SceneObjects)
+                {
+                    if (dataPersistenceObject.EntityId == loadedObject.EntityId)
+                    {
+                        dataPersistenceObject.DeserializeState(loadedObject.State);
+                        isFound = true;
+
+                        if (dataPersistenceObject is Player)
+                        {
+                            var playerCharacter = (dataPersistenceObject as Player).Character;
+                            playerCharacter.UpdatePlayerCharacter(m_gameData.PlayerData);
+                        }
+
+                        break;
+                    }
+                }
+
+                if (!isFound)
+                {
+                    //Debug.Log("Not serialized object is found: ID - " + dataPersistenceObject.EntityId + " -> Destroying Object");
+                    Destroy((dataPersistenceObject as MonoBehaviour).gameObject);
+                }
+            }
+
+            // Find saved objects which were created in last game session but hadn't existed at start
+
+            foreach (var loadedObject in m_gameData.ActiveSceneState.SceneObjects)
+            {
+                if (loadedObject.IsCreated)
+                {
+                    Debug.Log("Found created object => " + loadedObject.EntityId);
+                    GameObject createdObject = m_prefabsDataBase.CreateEntityFromId(loadedObject.PrefabId);
+                    createdObject.GetComponent<IDataPersistence>().SetupCreatedDataPersistenceObject(loadedObject.EntityId, loadedObject.IsCreated, loadedObject.State);
+                }
+            }
         }
 
         protected override void Awake()

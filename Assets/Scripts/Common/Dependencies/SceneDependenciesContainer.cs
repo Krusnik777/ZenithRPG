@@ -10,6 +10,12 @@ namespace DC_ARPG
 
         protected override void BindAll(MonoBehaviour monoBehaviourInScene)
         {
+            if (m_player == null)
+            {
+                m_player = FindObjectOfType<Player>(true);
+                m_playerCharacter = m_player.Character;
+            }
+
             Bind<Player>(m_player, monoBehaviourInScene);
             Bind<PlayerCharacter>(m_playerCharacter, monoBehaviourInScene);
             Bind<LevelState>(m_levelStateBeholder, monoBehaviourInScene);

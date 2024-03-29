@@ -25,8 +25,6 @@ namespace DC_ARPG
             {
                 if (!m_watched)
                 {
-                    
-
                     m_watched = true;
 
                     StoryEventManager.Instance.StartEvent(m_storyEventInfo);

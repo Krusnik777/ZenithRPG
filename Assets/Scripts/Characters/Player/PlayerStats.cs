@@ -37,6 +37,10 @@ namespace DC_ARPG
         public int CurrentIntelligenceExperiencePoints { get; private set; }
         public int CurrentMagicResistExperiencePoints { get; private set; }
 
+        public int BaseStrengthExperience { get; private set; }
+        public int BaseIntelligenceExperience { get; private set; }
+        public int BaseMagicResistExperience { get; private set; }
+
         private int equippedWeaponDamage = 0;
         private float attackMultiplier;
 
@@ -89,6 +93,10 @@ namespace DC_ARPG
             magicResistGrowthMultiplier = playerInfo.MagicResistGrowthMultiplier;
             hitPointsGrowthMultiplier = playerInfo.HitPointsGrowthMultiplier;
             magicPointsGrowthMultiplier = playerInfo.MagicPointsGrowthMultiplier;
+
+            BaseStrengthExperience = playerInfo.BaseStrengthExperience;
+            BaseIntelligenceExperience = playerInfo.BaseIntelligenceExperience;
+            BaseMagicResistExperience = playerInfo.BaseMagicResistExperience;
 
             attackMultiplier = playerInfo.AttackMultiplier;
             defenseMultiplier = playerInfo.DefenseMultiplier;
@@ -251,11 +259,13 @@ namespace DC_ARPG
             EventOnExperienceChange?.Invoke();
         }
 
-        public void AddStrengthExperience(int strengthExperience)
+        public void AddStrengthExperience(int senderLevel)
         {
             if (Strength >= MaxStatLevel) return;
 
-            if (strengthExperience <= 0) return;
+            int strengthExperience = BaseStrengthExperience * senderLevel / Level;
+
+            if (strengthExperience < 1) strengthExperience = 1;
 
             CurrentStrengthExperiencePoints += strengthExperience;
 
@@ -268,11 +278,13 @@ namespace DC_ARPG
             EventOnStrengthExperienceChange?.Invoke();
         }
 
-        public void AddIntelligenceExperience(int intelligenceExperience)
+        public void AddIntelligenceExperience(int senderLevel)
         {
             if (Intelligence >= MaxStatLevel) return;
 
-            if (intelligenceExperience <= 0) return;
+            int intelligenceExperience = BaseIntelligenceExperience * senderLevel / Level;
+
+            if (intelligenceExperience < 1) intelligenceExperience = 1;
 
             CurrentIntelligenceExperiencePoints += intelligenceExperience;
 
@@ -285,11 +297,13 @@ namespace DC_ARPG
             EventOnIntelligenceExperienceChange?.Invoke();
         }
 
-        public void AddMagicResistExperience(int magicResistExperience)
+        public void AddMagicResistExperience(int senderLevel)
         {
             if (MagicResist >= MaxStatLevel) return;
 
-            if (magicResistExperience <= 0) return;
+            int magicResistExperience = BaseMagicResistExperience * senderLevel / Level;
+
+            if (magicResistExperience < 1) magicResistExperience = 1;
 
             CurrentMagicResistExperiencePoints += magicResistExperience;
 

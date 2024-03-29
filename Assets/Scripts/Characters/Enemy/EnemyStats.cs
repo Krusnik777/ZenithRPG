@@ -11,7 +11,7 @@ namespace DC_ARPG
         {
             base.InitStats(enemyInfo);
 
-            Attack = enemyInfo.Attack;
+            Attack = Strength + enemyInfo.AttackIncrease;
             Defense = enemyInfo.Defense;
             ExperiencePoints = enemyInfo.ExperiencePoints;
             DroppedGold = enemyInfo.DroppedGold;

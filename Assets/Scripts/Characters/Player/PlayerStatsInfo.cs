@@ -7,7 +7,7 @@ namespace DC_ARPG
     {
         [Header("Limits")]
         public int MaxLevel = 99;
-        public int MaxStatLevel = 99;
+        public int MaxStatLevel = 150;
 
         [Header("VariablesForUpgradableStats")]
         public int LevelGrowthPoints;
@@ -24,6 +24,11 @@ namespace DC_ARPG
         public float MagicResistGrowthMultiplier = 0.1f;
         public float HitPointsGrowthMultiplier = 0.5f;
         public float MagicPointsGrowthMultiplier = 0.5f;
+
+        [Header("BaseExperiencePointsForUpgradableStats")]
+        public int BaseStrengthExperience = 5;
+        public int BaseIntelligenceExperience = 3;
+        public int BaseMagicResistExperience = 3;
 
         [Header("PassiveStatsMultipliers")]
         public float AttackMultiplier = 1.1f;

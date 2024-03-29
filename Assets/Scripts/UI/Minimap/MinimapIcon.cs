@@ -50,8 +50,7 @@ namespace DC_ARPG
 
             if (Vector2.Distance(pos, explorerPos) <= m_distance)
             {
-                m_discovered = true;
-                EnableIcon();
+                SetDiscovered(true);
             }
         }
 

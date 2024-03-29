@@ -12,7 +12,5 @@ namespace DC_ARPG
         public int Intelligence;
         public int MagicResist;
         public int Luck;
-
-        
     }
 }

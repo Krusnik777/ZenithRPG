@@ -44,7 +44,6 @@ namespace DC_ARPG
                     var playerCharacter = (dataPersistenceObject as Player).Character;
                     m_sceneData.PlayerData = new PlayerData(playerCharacter.PlayerStats, playerCharacter.Inventory, playerCharacter.Money);
                 }
-
             }
 
             m_dataHandler.Save(m_sceneData);
@@ -87,7 +86,7 @@ namespace DC_ARPG
 
                 if (!isFound)
                 {
-                    Debug.Log("Not serialized object is found: ID - " + dataPersistenceObject.EntityId + " -> Destroying Object");
+                    //Debug.Log("Not serialized object is found: ID - " + dataPersistenceObject.EntityId + " -> Destroying Object");
                     Destroy((dataPersistenceObject as MonoBehaviour).gameObject);
                 }
             }

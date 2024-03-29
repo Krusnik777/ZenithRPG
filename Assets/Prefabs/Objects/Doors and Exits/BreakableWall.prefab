@@ -239,7 +239,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1, y: 0.3, z: 0}
-  m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
+  m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2814746532136739690}
@@ -547,6 +547,9 @@ MonoBehaviour:
   m_collider: {fileID: 7127894335592123326}
   m_forwardPositionTrigger: {fileID: 5731041203286324327}
   m_backwardPositionTrigger: {fileID: 8748420112572780776}
+  OnWallBroken:
+    m_PersistentCalls:
+      m_Calls: []
   m_prefabId: BreakableWallPrefab_Dafault
   m_id: 
   m_isSerializable: 1
@@ -578,7 +581,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -1, y: 0.3, z: 0}
-  m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
+  m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2814746532136739690}

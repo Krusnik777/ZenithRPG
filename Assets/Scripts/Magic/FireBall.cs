@@ -4,13 +4,12 @@ namespace DC_ARPG
 {
     public class FireBall : MonoBehaviour
     {
-        // Maybe FireBall Info???
-
         [SerializeField] protected float m_velocity;
         [SerializeField] protected float m_lifeTime;
-        [SerializeField] protected int m_damage;
-        [SerializeField] private int m_experienceForHit = 3; // TEMP BALANCE
         [SerializeField] private GameObject m_hitPrefab;
+        [Header("Parameters")]
+        [SerializeField] private int m_fireballLevel = 3;
+        [SerializeField] protected int m_damage;
 
         private GameObject m_parent;
 
@@ -21,8 +20,6 @@ namespace DC_ARPG
 
         private void Start()
         {
-            // Setup FireBallInfo???
-
             Destroy(gameObject, m_lifeTime);
         }
 
@@ -47,7 +44,7 @@ namespace DC_ARPG
                         }
 
                         enemy.Character.EnemyStats.ChangeCurrentHitPoints(parentPlayer, -m_damage, DamageType.Magic);
-                        parentPlayer.Character.PlayerStats.AddIntelligenceExperience(m_experienceForHit);
+                        parentPlayer.Character.PlayerStats.AddIntelligenceExperience(m_fireballLevel);
                     }
                 }
             }
@@ -60,14 +57,14 @@ namespace DC_ARPG
                     if (player.State == Player.PlayerState.Rest)
                     {
                         player.Character.PlayerStats.ChangeCurrentHitPoints(m_parent, -m_damage*2, DamageType.Magic); // Damage x2
-                        player.Character.PlayerStats.AddMagicResistExperience(m_experienceForHit);
+                        player.Character.PlayerStats.AddMagicResistExperience(m_fireballLevel);
 
                         player.ChangeRestState();
                     }
                     else
                     {
                         player.Character.PlayerStats.ChangeCurrentHitPoints(m_parent, -m_damage, DamageType.Magic);
-                        player.Character.PlayerStats.AddMagicResistExperience(m_experienceForHit);
+                        player.Character.PlayerStats.AddMagicResistExperience(m_fireballLevel);
                     }
                 }
 
@@ -80,9 +77,12 @@ namespace DC_ARPG
                 }
             }
 
-            if (collision.transform.parent.TryGetComponent(out MagicalTorch torch))
+            if (collision.transform.parent != null)
             {
-                torch.FireTorch();
+                if (collision.transform.parent.TryGetComponent(out MagicalTorch torch))
+                {
+                    torch.FireTorch();
+                }
             }
 
             if (m_hitPrefab != null)

@@ -19,7 +19,7 @@ MonoBehaviour:
   Intelligence: 1
   MagicResist: 1
   Luck: 1
-  Attack: 5
+  AttackIncrease: 5
   Defense: 1
   ExperiencePoints: 100
   DroppedGold: 10

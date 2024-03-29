@@ -248,6 +248,9 @@ MonoBehaviour:
   m_locked: 0
   m_requireSpecialKey: 0
   m_specificKeyItemInfo: {fileID: 0}
+  m_unlockInventoryPocket: 0
+  m_giveMoney: 0
+  m_money: 0
 --- !u!1 &7480203995557125350
 GameObject:
   m_ObjectHideFlags: 0
@@ -577,7 +580,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.3, z: 0}
-  m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
+  m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3412375566356701473}

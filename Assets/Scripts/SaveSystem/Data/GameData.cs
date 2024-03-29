@@ -6,108 +6,49 @@ namespace DC_ARPG
     [System.Serializable]
     public class SceneState
     {
-        public int SceneId;
-        // MAP_OPENED_STATE -> here OR to SceneObjects?
+        public string SceneId;
+        public float MapCompletion;
         public List<SceneObject> SceneObjects;
+        public PlayerData PlayerDataAtStart;
 
-        public SceneState(int id)
+        public SceneState(string id)
         {
             SceneId = id;
             SceneObjects = new List<SceneObject>();
-        }
-
-        public void SaveSceneObjects()
-        {
-            SceneObjects.Clear(); // Just to be safe
-
-            var dataPersistenceObjects = DataPersistenceManager.Instance.FindAllDataPersistenceObjects();
-
-            foreach (var dataPersistenceObject in dataPersistenceObjects)
-            {
-                if (!dataPersistenceObject.IsSerializable()) continue;
-
-                var sceneObject = new SceneObject(dataPersistenceObject.PrefabId, dataPersistenceObject.EntityId, dataPersistenceObject.SerializeState(), dataPersistenceObject.IsCreated);
-
-                SceneObjects.Add(sceneObject);
-            }
-        }
-
-        public void LoadSceneObjects()
-        {
-            var dataPersistenceObjects = DataPersistenceManager.Instance.FindAllDataPersistenceObjects();
-
-            foreach (var dataPersistenceObject in dataPersistenceObjects)
-            {
-                if (!dataPersistenceObject.IsSerializable()) continue;
-
-                bool isFound = false;
-
-                foreach (var sceneObject in SceneObjects)
-                {
-                    if (dataPersistenceObject.EntityId == sceneObject.EntityId)
-                    {
-                        dataPersistenceObject.DeserializeState(sceneObject.State);
-                        isFound = true;
-                        break;
-                    }
-                }
-
-                if (!isFound)
-                {
-                    Debug.Log("Not serialized object is found");
-                    // Destroy dataPersistenceObject.gameObject SOMEHOW
-                }
-            }
         }
     }
 
     [System.Serializable]
     public class GameData
     {
-        // ALL TEMP
-
         // params
         public long LastUpdated;
-        public SceneState ActiveScene;
-        public List<SceneState> SavedScenes;
-        // PlayerProgress : Stats, Inventory
+        public List<SceneState> SavedSceneStates;
+        public PlayerData PlayerData;
         // PlayTime
+
+        public SceneState ActiveSceneState { get; private set; }
 
         public GameData()
         {
-            SavedScenes = new List<SceneState>();
+            SavedSceneStates = new List<SceneState>();
+            PlayerData = new PlayerData();
         }
 
-        public void Save(int currentSceneId)
+        public void SetActiveSceneState(string sceneId)
         {
-            bool notExist = true;
-
-            foreach (var scene in SavedScenes)
+            foreach (var sceneState in SavedSceneStates)
             {
-                if (scene.SceneId == currentSceneId)
+                if (sceneState.SceneId == sceneId)
                 {
-                    scene.SaveSceneObjects();
-                    notExist = false;
+                    ActiveSceneState = sceneState;
+                    return;
                 }
             }
 
-            if (notExist)
-            {
-                var sceneForSave = new SceneState(currentSceneId);
-                sceneForSave.SaveSceneObjects();
-                SavedScenes.Add(sceneForSave);
-            }
+            ActiveSceneState = new SceneState(sceneId);
 
-            // Save Player Progress
+            SavedSceneStates.Add(ActiveSceneState);
         }
-
-        public void Load()
-        {
-            ActiveScene.LoadSceneObjects();
-
-            // Load Player Progress
-        }
-
-        
     }
 }

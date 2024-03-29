@@ -13,7 +13,7 @@ namespace DC_ARPG
     public class EnemyStatsInfo : CharacterStatsInfo
     {
         [Header("PassiveStats")]
-        public int Attack;
+        public int AttackIncrease;
         public int Defense;
         [Header("Drops")]
         public int ExperiencePoints;

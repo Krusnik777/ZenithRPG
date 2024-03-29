@@ -6,7 +6,6 @@ namespace DC_ARPG
     {
         [SerializeField] private GameObject m_parent;
         [SerializeField] private GameObject m_trail;
-        [SerializeField] private int m_experienceForHit = 5; // TEMP BALANCE
 
         private Collider m_collider;
 
@@ -37,7 +36,7 @@ namespace DC_ARPG
                     if (enemy.Character.EnemyStats.CurrentHitPoints > 0)
                     {
                         enemy.Character.EnemyStats.ChangeCurrentHitPoints(parentPlayer, -parentPlayer.Character.PlayerStats.Attack, DamageType.Physic);
-                        parentPlayer.Character.PlayerStats.AddStrengthExperience(m_experienceForHit);
+                        parentPlayer.Character.PlayerStats.AddStrengthExperience(enemy.Character.EnemyStats.Level);
 
 
                         var weaponItem = parentPlayer.Character.Inventory.WeaponItemSlot.Item as WeaponItem;
