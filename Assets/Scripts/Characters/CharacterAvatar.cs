@@ -510,6 +510,8 @@ namespace DC_ARPG
             yield return new WaitWhile(() => m_animator.GetCurrentAnimatorStateInfo(0).IsName("BlockState.BlockEnd"));
 
             isBlocking = false;
+
+            m_animator.ResetTrigger("AttackToBlock"); // just to be safe
         }
 
         #endregion

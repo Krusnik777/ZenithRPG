@@ -77,6 +77,12 @@ namespace DC_ARPG
                 return;
             }
 
+            if (PauseMenu.Instance.State == PauseMenu.MenuState.SaveMenu)
+            {
+                PauseMenu.Instance.HideSaveLoadMenu();
+                return;
+            }
+
             if (PauseMenu.Instance.State == PauseMenu.MenuState.Quit)
             {
                 if (PauseMenu.Instance.RequireConfirm == PauseMenu.ConfirmationState.None)

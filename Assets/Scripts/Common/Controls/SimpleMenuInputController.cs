@@ -7,7 +7,6 @@ namespace DC_ARPG
     {
         [SerializeField] private RestartMenu m_restartMenu;
 
-
         private ControlsManager m_controlsManager;
         public void Construct(ControlsManager controlsManager) => m_controlsManager = controlsManager;
 
@@ -48,7 +47,11 @@ namespace DC_ARPG
         {
             UISounds.Instance.PlayBackSound();
 
-            return;
+            if (m_restartMenu.State == RestartMenu.MenuState.Load)
+            {
+                m_restartMenu.ShowLoadMenu(false);
+                return;
+            }
         }
 
         private void OnMove(InputAction.CallbackContext obj)
@@ -58,9 +61,9 @@ namespace DC_ARPG
             if (value == 1) m_buttonContainer.SelectPrevious();
             if (value == -1) m_buttonContainer.SelectNext();
         }
+
         private void OnChangeParameters(InputAction.CallbackContext obj)
         {
-            return;
             /*
             var value = _controls.Menu.ChangeParameters.ReadValue<float>();
 

@@ -11,6 +11,7 @@ namespace DC_ARPG
             Map,
             Settings,
             Data,
+            SaveMenu,
             Quit
         }
 
@@ -25,13 +26,15 @@ namespace DC_ARPG
         [SerializeField] private GameObject m_pauseMenuPanel;
         [SerializeField] private StatusPanel m_statusPanel;
         [SerializeField] private GameObject m_mapPanel;
-
         [Header("ButtonContainers")]
         [SerializeField] private UISelectableButtonContainer m_baseButtons;
         [SerializeField] private UISelectableButtonContainer m_settingsButtons;
         [SerializeField] private UISelectableButtonContainer m_dataButtons;
         [SerializeField] private UISelectableButtonContainer m_quitButtons;
         [SerializeField] private ConfirmPanel m_confirmPanel;
+        [Header("SaveLoad")]
+        [SerializeField] private UISelectableButtonContainer m_saveloadButtons;
+        [SerializeField] private SaveSlotsMenu m_saveSlotsMenu;
 
         private ControlsManager m_controlsManager;
         public void Construct(ControlsManager controlsManager) => m_controlsManager = controlsManager;
@@ -112,6 +115,30 @@ namespace DC_ARPG
             }
         }
 
+        public void ShowSaveMenu()
+        {
+            ShowSaveLoadMenu(SaveSlotsMenu.MenuState.Save);
+        }
+
+        public void ShowLoadMenu()
+        {
+            ShowSaveLoadMenu(SaveSlotsMenu.MenuState.Load);
+        }
+
+        public void ShowEraseMenu()
+        {
+            ShowSaveLoadMenu(SaveSlotsMenu.MenuState.Erase);
+        }
+
+        public void HideSaveLoadMenu()
+        {
+            m_saveloadButtons.gameObject.SetActive(false);
+            m_dataButtons.SetInteractable(true);
+
+            m_menuState = MenuState.Data;
+            ActiveButtonContainer = m_dataButtons;
+        }
+
         public void ShowQuitButtons(bool state)
         {
             m_baseButtons.SetInteractable(!state);
@@ -164,6 +191,16 @@ namespace DC_ARPG
             m_controlsManager.SetPlayerControlsActive(true);
 
             LevelState.Instance.ResumeAllActivity();
+        }
+
+        private void ShowSaveLoadMenu(SaveSlotsMenu.MenuState saveSlotMenuState)
+        {
+            m_dataButtons.SetInteractable(false);
+            m_saveloadButtons.gameObject.SetActive(true);
+            m_saveSlotsMenu.SetState(saveSlotMenuState);
+
+            m_menuState = MenuState.SaveMenu;
+            ActiveButtonContainer = m_saveloadButtons;
         }
     }
 }

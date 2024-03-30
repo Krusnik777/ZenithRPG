@@ -170,24 +170,6 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""TEMP_Save"",
-                    ""type"": ""Button"",
-                    ""id"": ""f93b5190-dff6-4700-b3dc-2a202c0209e8"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""TEMP_Load"",
-                    ""type"": ""Button"",
-                    ""id"": ""737972fb-b189-4c60-8507-bda72bfe6450"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -683,28 +665,6 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""LeftItem"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""a44df305-8763-46fb-b188-fb69e3dbbf0e"",
-                    ""path"": ""<Keyboard>/f5"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""TEMP_Save"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""c04baf78-4b88-461f-b067-cdd00c5e98b5"",
-                    ""path"": ""<Keyboard>/f8"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""TEMP_Load"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1886,8 +1846,6 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         m_Gameplay_LeftItem = m_Gameplay.FindAction("LeftItem", throwIfNotFound: true);
         m_Gameplay_MiddleItem = m_Gameplay.FindAction("MiddleItem", throwIfNotFound: true);
         m_Gameplay_RightItem = m_Gameplay.FindAction("RightItem", throwIfNotFound: true);
-        m_Gameplay_TEMP_Save = m_Gameplay.FindAction("TEMP_Save", throwIfNotFound: true);
-        m_Gameplay_TEMP_Load = m_Gameplay.FindAction("TEMP_Load", throwIfNotFound: true);
         // Menu
         m_Menu = asset.FindActionMap("Menu", throwIfNotFound: true);
         m_Menu_Confirm = m_Menu.FindAction("Confirm", throwIfNotFound: true);
@@ -1989,8 +1947,6 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Gameplay_LeftItem;
     private readonly InputAction m_Gameplay_MiddleItem;
     private readonly InputAction m_Gameplay_RightItem;
-    private readonly InputAction m_Gameplay_TEMP_Save;
-    private readonly InputAction m_Gameplay_TEMP_Load;
     public struct GameplayActions
     {
         private @Controls m_Wrapper;
@@ -2011,8 +1967,6 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         public InputAction @LeftItem => m_Wrapper.m_Gameplay_LeftItem;
         public InputAction @MiddleItem => m_Wrapper.m_Gameplay_MiddleItem;
         public InputAction @RightItem => m_Wrapper.m_Gameplay_RightItem;
-        public InputAction @TEMP_Save => m_Wrapper.m_Gameplay_TEMP_Save;
-        public InputAction @TEMP_Load => m_Wrapper.m_Gameplay_TEMP_Load;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -2070,12 +2024,6 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @RightItem.started += instance.OnRightItem;
             @RightItem.performed += instance.OnRightItem;
             @RightItem.canceled += instance.OnRightItem;
-            @TEMP_Save.started += instance.OnTEMP_Save;
-            @TEMP_Save.performed += instance.OnTEMP_Save;
-            @TEMP_Save.canceled += instance.OnTEMP_Save;
-            @TEMP_Load.started += instance.OnTEMP_Load;
-            @TEMP_Load.performed += instance.OnTEMP_Load;
-            @TEMP_Load.canceled += instance.OnTEMP_Load;
         }
 
         private void UnregisterCallbacks(IGameplayActions instance)
@@ -2128,12 +2076,6 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @RightItem.started -= instance.OnRightItem;
             @RightItem.performed -= instance.OnRightItem;
             @RightItem.canceled -= instance.OnRightItem;
-            @TEMP_Save.started -= instance.OnTEMP_Save;
-            @TEMP_Save.performed -= instance.OnTEMP_Save;
-            @TEMP_Save.canceled -= instance.OnTEMP_Save;
-            @TEMP_Load.started -= instance.OnTEMP_Load;
-            @TEMP_Load.performed -= instance.OnTEMP_Load;
-            @TEMP_Load.canceled -= instance.OnTEMP_Load;
         }
 
         public void RemoveCallbacks(IGameplayActions instance)
@@ -2449,8 +2391,6 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         void OnLeftItem(InputAction.CallbackContext context);
         void OnMiddleItem(InputAction.CallbackContext context);
         void OnRightItem(InputAction.CallbackContext context);
-        void OnTEMP_Save(InputAction.CallbackContext context);
-        void OnTEMP_Load(InputAction.CallbackContext context);
     }
     public interface IMenuActions
     {

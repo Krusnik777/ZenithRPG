@@ -16,6 +16,8 @@ namespace DC_ARPG
 
         public event UnityAction EventOnSaved;
 
+        public static bool LoadingFromCheckpoint { get; set; }
+
         private FileDataHandler<SceneData> m_dataHandler;
 
         private SceneData m_sceneData;
@@ -29,6 +31,8 @@ namespace DC_ARPG
 
         public void SaveSceneData()
         {
+            if (m_sceneData == null) m_sceneData = new SceneData();
+
             m_sceneData.SceneObjects.Clear();
 
             foreach (var dataPersistenceObject in FindAllDataPersistenceObjects())
@@ -130,13 +134,16 @@ namespace DC_ARPG
 
         private void OnSceneLoaded(Scene scene, LoadSceneMode loadSceneMode)
         {
-            LoadSceneData();
+            if (LoadingFromCheckpoint)
+            {
+                LoadSceneData();
+                LoadingFromCheckpoint = false;
+            }
         }
 
-        // TEMP DEBUG
-
-        public void Restart() => SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().name);
-
-        public void Save() => SaveSceneData();
+        private void OnApplicationQuit()
+        {
+            DeleteCheckpoints();
+        }
     }
 }

@@ -89,11 +89,6 @@ namespace DC_ARPG
             SetupInitialInventory();
         }
 
-        private void Start()
-        {
-            AddMoney(m_startedMoney);
-        }
-
         private void OnDestroy()
         {
             playerStats.EventOnHitPointsChange -= OnHitPointsChange;
@@ -112,6 +107,9 @@ namespace DC_ARPG
 
             playerStats.EventOnHitPointsChange += OnHitPointsChange;
             playerStats.EventOnDeath += OnDeath;
+
+            m_money = 0;
+            AddMoney(m_startedMoney);
         }
 
         private void SetupInitialInventory()

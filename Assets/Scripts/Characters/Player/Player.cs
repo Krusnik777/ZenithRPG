@@ -245,8 +245,16 @@ namespace DC_ARPG
         public string EntityId => m_id;
         public bool IsCreated => false;
 
-        private Vector3 savedPosition;
-        public void SavePosition(Vector3 pos) => savedPosition = pos;
+        private bool saveCheckpointPosition = false;
+        private Vector3 savedPosition = new Vector3();
+
+        public void ResetCheckpointPosition() => saveCheckpointPosition = false;
+
+        public void SavePosition(Vector3 pos)
+        {
+            saveCheckpointPosition = true;
+            savedPosition = pos;
+        }
 
         public bool IsSerializable() => m_isSerializable;
 
@@ -254,7 +262,7 @@ namespace DC_ARPG
         {
             DataState s = new DataState();
 
-            if (savedPosition != Vector3.zero)
+            if (saveCheckpointPosition)
             {
                 s.position = savedPosition;
             }

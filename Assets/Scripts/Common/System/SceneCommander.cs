@@ -3,7 +3,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-
 namespace DC_ARPG
 {
     public class SceneCommander : MonoSingleton<SceneCommander>, IDependency<ControlsManager>
@@ -21,6 +20,17 @@ namespace DC_ARPG
         public void Construct(ControlsManager controlsManager) => m_controlsManager = controlsManager;
 
         private Coroutine loadingCoroutine;
+
+        public string GetTitleOfLevel(string sceneName)
+        {
+            foreach (var level in m_levelsDataBase.Levels)
+            {
+                if (level.SceneName == sceneName)
+                    return level.LevelTitle;
+            }
+
+            return string.Empty;
+        }
 
         public string GetCurrentLevelTitle()
         {
@@ -86,6 +96,9 @@ namespace DC_ARPG
 
         public void RestartCurrentLevelFromCheckpoint()
         {
+            if (SceneSerializer.Instance != null)
+                SceneSerializer.LoadingFromCheckpoint = true;
+
             LoadScene(SceneManager.GetActiveScene().name);
 
             //SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().name);
@@ -102,11 +115,11 @@ namespace DC_ARPG
 
         private IEnumerator LoadSceneAsync(string sceneName)
         {
-            AsyncOperation loadingOperation = SceneManager.LoadSceneAsync(sceneName);
-
             m_loadingCanvas.SetActive(true);
 
             m_controlsManager.TurnOffAllControls();
+
+            AsyncOperation loadingOperation = SceneManager.LoadSceneAsync(sceneName);
 
             while(!loadingOperation.isDone)
             {

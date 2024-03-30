@@ -148,24 +148,6 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
-                },
-                {
-                    "name": "TEMP_Save",
-                    "type": "Button",
-                    "id": "f93b5190-dff6-4700-b3dc-2a202c0209e8",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "TEMP_Load",
-                    "type": "Button",
-                    "id": "737972fb-b189-4c60-8507-bda72bfe6450",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -661,28 +643,6 @@
                     "processors": "",
                     "groups": "",
                     "action": "LeftItem",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "a44df305-8763-46fb-b188-fb69e3dbbf0e",
-                    "path": "<Keyboard>/f5",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "TEMP_Save",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "c04baf78-4b88-461f-b067-cdd00c5e98b5",
-                    "path": "<Keyboard>/f8",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "TEMP_Load",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

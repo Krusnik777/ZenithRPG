@@ -9,12 +9,15 @@ namespace DC_ARPG
         public string SceneId;
         public float MapCompletion;
         public List<SceneObject> SceneObjects;
+        public List<SceneObject> SceneObjectsAtStart;
         public PlayerData PlayerDataAtStart;
 
         public SceneState(string id)
         {
             SceneId = id;
             SceneObjects = new List<SceneObject>();
+            SceneObjectsAtStart = new List<SceneObject>();
+            PlayerDataAtStart = new PlayerData();
         }
     }
 
@@ -23,9 +26,10 @@ namespace DC_ARPG
     {
         // params
         public long LastUpdated;
+        public string ActiveSceneName;
         public List<SceneState> SavedSceneStates;
         public PlayerData PlayerData;
-        // PlayTime
+        public double PlayTime;
 
         public SceneState ActiveSceneState { get; private set; }
 
@@ -33,10 +37,23 @@ namespace DC_ARPG
         {
             SavedSceneStates = new List<SceneState>();
             PlayerData = new PlayerData();
+            PlayTime = 0;
+        }
+
+        public bool ContainsScene(string sceneId)
+        {
+            foreach (var sceneState in SavedSceneStates)
+            {
+                if (sceneState.SceneId == sceneId) return true;
+            }
+
+            return false;
         }
 
         public void SetActiveSceneState(string sceneId)
         {
+            ActiveSceneName = sceneId;
+
             foreach (var sceneState in SavedSceneStates)
             {
                 if (sceneState.SceneId == sceneId)

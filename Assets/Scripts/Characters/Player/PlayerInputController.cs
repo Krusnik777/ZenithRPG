@@ -47,11 +47,6 @@ namespace DC_ARPG
             _controls.Gameplay.RightItem.performed += OnRightItem;
 
             _controls.Gameplay.Pause.performed += OnPause;
-
-            // TEMP
-            _controls.Gameplay.TEMP_Load.performed += Load;
-            _controls.Gameplay.TEMP_Save.performed += Save;
-            //
         }
 
         private void OnDisable()
@@ -80,11 +75,6 @@ namespace DC_ARPG
             _controls.Gameplay.RightItem.performed -= OnRightItem;
 
             _controls.Gameplay.Pause.performed -= OnPause;
-
-            // TEMP
-            _controls.Gameplay.TEMP_Load.performed -= Load;
-            _controls.Gameplay.TEMP_Save.performed -= Save;
-            //
 
             _controls.Gameplay.Disable();
         }
@@ -222,18 +212,6 @@ namespace DC_ARPG
             if (player.State != Player.PlayerState.Active || !player.ActionsIsAvailable) return;
 
             PauseMenu.Instance.ShowPauseMenu();
-        }
-
-        // TEMP
-
-        private void Save(InputAction.CallbackContext obj)
-        {
-            SceneSerializer.Instance.Save();
-        }
-
-        private void Load(InputAction.CallbackContext obj)
-        {
-            SceneSerializer.Instance.Restart();
         }
     }
 }

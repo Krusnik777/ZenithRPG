@@ -62,7 +62,7 @@ namespace DC_ARPG
 
             if (m_mainMenu.State == MainMenu.MenuState.Load)
             {
-                // Return from LoadPanel to Default Title screen
+                m_mainMenu.ShowLoadMenu(false);
                 return;
             }
 

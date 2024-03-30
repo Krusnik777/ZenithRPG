@@ -17,6 +17,8 @@ namespace DC_ARPG
 
         [SerializeField] private GameObject m_startPanel;
         [SerializeField] private UISelectableButtonContainer m_baseButtons;
+        [SerializeField] private UISelectableButtonContainer m_loadButtons;
+        [SerializeField] private SaveSlotsMenu m_saveSlotsMenu;
         [SerializeField] private UISelectableButtonContainer m_settingsButtons;
         [SerializeField] private ConfirmPanel m_confirmPanel;
 
@@ -34,7 +36,19 @@ namespace DC_ARPG
 
         public void ShowLoadMenu(bool state)
         {
+            m_baseButtons.SetInteractable(!state);
+            m_loadButtons.gameObject.SetActive(state);
 
+            if (state)
+            {
+                m_menuState = MenuState.Load;
+                ActiveButtonContainer = m_loadButtons;
+            }
+            else
+            {
+                m_menuState = MenuState.Selection;
+                ActiveButtonContainer = m_baseButtons;
+            }
         }
 
         public void StartTutorial()
@@ -47,7 +61,7 @@ namespace DC_ARPG
             m_baseButtons.SetInteractable(!state);
             m_settingsButtons.gameObject.SetActive(state);
 
-            if (state == true)
+            if (state)
             {
                 m_menuState = MenuState.Settings;
                 ActiveButtonContainer = m_settingsButtons;
@@ -91,6 +105,8 @@ namespace DC_ARPG
             ActiveButtonContainer = m_baseButtons;
 
             m_menuState = MenuState.Start;
+
+            m_saveSlotsMenu.SetState(SaveSlotsMenu.MenuState.Load);
         }
 
         #region Coroutines

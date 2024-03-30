@@ -138,7 +138,7 @@ GameObject:
   - component: {fileID: 49138128}
   - component: {fileID: 49138127}
   m_Layer: 5
-  m_Name: SaveSlot
+  m_Name: SaveSlot_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -181,7 +181,19 @@ MonoBehaviour:
   m_interactable: 1
   OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 854951761}
+        m_TargetAssemblyTypeName: DC_ARPG.SaveSlotsMenu, Assembly-CSharp
+        m_MethodName: OnSaveSlotClicked
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 49138128}
+          m_ObjectArgumentAssemblyTypeName: DC_ARPG.SaveSlot, Assembly-CSharp
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_selectImage: {fileID: 68132094}
   OnSelect:
     m_PersistentCalls:
@@ -201,7 +213,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4dba8d421e8530e4584fefa479a38e5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_profileId: 
+  m_profileId: Slot_01
   m_noDataContent: {fileID: 1978865985}
   m_hasDataContent: {fileID: 1739335953}
   m_levelNameText: {fileID: 1014607495}
@@ -527,7 +539,7 @@ GameObject:
   - component: {fileID: 235014791}
   - component: {fileID: 235014790}
   m_Layer: 5
-  m_Name: SaveSlot (1)
+  m_Name: SaveSlot_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -570,7 +582,19 @@ MonoBehaviour:
   m_interactable: 1
   OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 854951761}
+        m_TargetAssemblyTypeName: DC_ARPG.SaveSlotsMenu, Assembly-CSharp
+        m_MethodName: OnSaveSlotClicked
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 235014791}
+          m_ObjectArgumentAssemblyTypeName: DC_ARPG.SaveSlot, Assembly-CSharp
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_selectImage: {fileID: 987742267}
   OnSelect:
     m_PersistentCalls:
@@ -590,7 +614,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4dba8d421e8530e4584fefa479a38e5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_profileId: 
+  m_profileId: Slot_02
   m_noDataContent: {fileID: 688667177}
   m_hasDataContent: {fileID: 1297036482}
   m_levelNameText: {fileID: 1371033360}
@@ -1365,7 +1389,7 @@ GameObject:
   - component: {fileID: 684544247}
   - component: {fileID: 684544246}
   m_Layer: 5
-  m_Name: SaveSlot (2)
+  m_Name: SaveSlot_03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1408,7 +1432,19 @@ MonoBehaviour:
   m_interactable: 1
   OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 854951761}
+        m_TargetAssemblyTypeName: DC_ARPG.SaveSlotsMenu, Assembly-CSharp
+        m_MethodName: OnSaveSlotClicked
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 684544247}
+          m_ObjectArgumentAssemblyTypeName: DC_ARPG.SaveSlot, Assembly-CSharp
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_selectImage: {fileID: 1945858389}
   OnSelect:
     m_PersistentCalls:
@@ -1428,7 +1464,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4dba8d421e8530e4584fefa479a38e5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_profileId: 
+  m_profileId: Slot_03
   m_noDataContent: {fileID: 197727222}
   m_hasDataContent: {fileID: 402231962}
   m_levelNameText: {fileID: 1413841399}
@@ -1721,7 +1757,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u0412\u0440\u0435\u043C\u044F \u0438\u0433\u0440\u044B: 999:99"
+  m_text: "\u0412\u0440\u0435\u043C\u044F \u0438\u0433\u0440\u044B: 99:99:99"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2e7a160bf07c2184091b1a56f2460043, type: 2}
   m_sharedMaterial: {fileID: -8179078667665772699, guid: 2e7a160bf07c2184091b1a56f2460043, type: 2}
@@ -8479,6 +8515,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_startPanel: {fileID: 1806189006}
   m_baseButtons: {fileID: 685402370437696800}
+  m_loadButtons: {fileID: 1266561201}
+  m_saveSlotsMenu: {fileID: 854951761}
   m_settingsButtons: {fileID: 339262561277395734}
   m_confirmPanel: {fileID: 3782698277527336686}
 --- !u!114 &5112740784745664186
@@ -11315,7 +11353,19 @@ MonoBehaviour:
   m_interactable: 1
   OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5112740784745664185}
+        m_TargetAssemblyTypeName: DC_ARPG.MainMenu, Assembly-CSharp
+        m_MethodName: ShowLoadMenu
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
   m_selectImage: {fileID: 3567594784954880830}
   OnSelect:
     m_PersistentCalls:
