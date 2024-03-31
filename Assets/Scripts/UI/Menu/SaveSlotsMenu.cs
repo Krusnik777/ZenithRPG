@@ -44,10 +44,10 @@ namespace DC_ARPG
 
         private void Start()
         {
-            ActivateMenu();
+            SetupMenu();
         }
 
-        private void ActivateMenu()
+        private void SetupMenu()
         {
             var profilesGameData = DataPersistenceManager.Instance.GetAllProfilesGameData();
 

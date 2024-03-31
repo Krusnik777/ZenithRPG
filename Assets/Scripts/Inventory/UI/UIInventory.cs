@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.UI;
 using TMPro;
 
 namespace DC_ARPG
@@ -53,6 +52,8 @@ namespace DC_ARPG
         public void SetInventoryButtonContainer(bool state) => m_uiSlotButtonsContainer.enabled = state;
         public void SetInventoryButtonsInfoPanel(bool state) => m_uIInventoryButtonsPanel.gameObject.SetActive(state);
         public void SetState(InteractionState state) => m_interactionState = state;
+
+        public bool InventoryIsActive => m_inventoryPanel.activeInHierarchy;
 
         public void ShowInventory()
         {
@@ -130,6 +131,8 @@ namespace DC_ARPG
 
             m_player.Character.EventOnMoneySpend += UpdateMoneyInfo;
             m_player.Character.EventOnMoneyAdded += UpdateMoneyInfo;
+
+            m_player.Character.OnPlayerDeath.AddListener(OnPlayerDeath);
         }
 
         private void OnDestroy()
@@ -141,6 +144,8 @@ namespace DC_ARPG
 
             m_player.Character.EventOnMoneyAdded -= UpdateMoneyInfo;
             m_player.Character.EventOnMoneySpend -= UpdateMoneyInfo;
+
+            m_player.Character.OnPlayerDeath.RemoveListener(OnPlayerDeath);
         }
 
         private void SetInventory()
@@ -236,6 +241,12 @@ namespace DC_ARPG
         private void UpdateMoneyInfo()
         {
             m_moneyValueText.text = m_player.Character.Money.ToString();
+        }
+
+        private void OnPlayerDeath()
+        {
+            if (InventoryIsActive)
+                HideInventory();
         }
 
     }

@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace DC_ARPG
 {
@@ -21,6 +22,10 @@ namespace DC_ARPG
         [SerializeField] private SaveSlotsMenu m_saveSlotsMenu;
         [SerializeField] private UISelectableButtonContainer m_settingsButtons;
         [SerializeField] private ConfirmPanel m_confirmPanel;
+        [Header("CreditsPanel")]
+        [SerializeField] private GameObject m_creditsPanel;
+        [SerializeField] private Scrollbar m_scrollbar;
+        [SerializeField] private float m_scrollStep = 0.1f;
 
         public UISelectableButtonContainer ActiveButtonContainer { get; private set; }
 
@@ -28,6 +33,8 @@ namespace DC_ARPG
         public MenuState State => m_menuState;
 
         private Coroutine startPanelRoutine;
+
+        public bool StartPanelDisappearing => startPanelRoutine != null;
 
         public void StartNewGame()
         {
@@ -71,6 +78,36 @@ namespace DC_ARPG
                 m_menuState = MenuState.Selection;
                 ActiveButtonContainer = m_baseButtons;
             }
+        }
+
+        public void ShowCredits(bool state)
+        {
+            m_baseButtons.SetInteractable(!state);
+            m_creditsPanel.SetActive(state);
+
+            if (state)
+            {
+                m_scrollbar.value = 1.0f;
+                m_menuState = MenuState.Credits;
+            }
+            else
+            {
+                m_menuState = MenuState.Selection;
+                ActiveButtonContainer = m_baseButtons;
+            }
+        }
+
+        public void ScrollCredits(float input)
+        {
+            if (input == 0) return;
+
+            if (input < 0 && m_scrollbar.value <= 0) return;
+            if (input > 0 && m_scrollbar.value >= 1) return;
+
+            m_scrollbar.value += input * m_scrollStep;
+
+            if (m_scrollbar.value < 0) m_scrollbar.value = 0;
+            if (m_scrollbar.value > 1) m_scrollbar.value = 1;
         }
 
         public void ShowConfirmQuitGamePanel()

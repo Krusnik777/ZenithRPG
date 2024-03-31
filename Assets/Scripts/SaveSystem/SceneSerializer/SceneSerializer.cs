@@ -22,12 +22,12 @@ namespace DC_ARPG
 
         private SceneData m_sceneData;
 
-        public bool CheckSaveExists() => m_dataHandler.CheckIfSaveFileExist();
+        private string m_checkpointsProfileId = "Checkpoints";
+        public string CheckpointsProfileId => m_checkpointsProfileId;
 
-        public void DeleteCheckpoints()
-        {
-            m_dataHandler.Delete();
-        }
+        public bool CheckCheckpointExists() => m_dataHandler.CheckIfSaveFileForProfileExist(m_checkpointsProfileId);
+
+        public void DeleteCheckpoints() => m_dataHandler.Delete(m_checkpointsProfileId);
 
         public void SaveSceneData()
         {
@@ -50,14 +50,14 @@ namespace DC_ARPG
                 }
             }
 
-            m_dataHandler.Save(m_sceneData);
+            m_dataHandler.Save(m_sceneData, m_checkpointsProfileId);
 
             EventOnSaved?.Invoke();
         }
 
         public void LoadSceneData()
         {
-            m_sceneData = m_dataHandler.Load();
+            m_sceneData = m_dataHandler.Load(m_checkpointsProfileId);
 
             if (m_sceneData == null)
             {

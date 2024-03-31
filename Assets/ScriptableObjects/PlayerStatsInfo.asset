@@ -31,8 +31,8 @@ MonoBehaviour:
   StrengthGrowthMultiplier: 0.1
   IntelligenceGrowthMultiplier: 0.2
   MagicResistGrowthMultiplier: 0.1
-  HitPointsGrowthMultiplier: 0.5
-  MagicPointsGrowthMultiplier: 0.5
+  HitPointsGrowthMultiplier: 0.4
+  MagicPointsGrowthMultiplier: 0.4
   BaseStrengthExperience: 5
   BaseIntelligenceExperience: 3
   BaseMagicResistExperience: 3

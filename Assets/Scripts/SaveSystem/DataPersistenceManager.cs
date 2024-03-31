@@ -18,10 +18,12 @@ namespace DC_ARPG
         private GameData m_gameData;
         private GameData m_tempData;
 
-        private string m_selectedProfileId = "TEST";
+        private string m_selectedProfileId = "";
         private string m_tempDataProfileId = "TempData";
 
         private bool m_loadingFromSaveFile;
+
+        private double m_timeSinceSceneLoaded;
 
         public GameData GetGameDataByProfile(string profileId) => m_dataHandler.Load(profileId);
 
@@ -39,6 +41,18 @@ namespace DC_ARPG
             var dataPersistenceObjects = FindObjectsOfType<MonoBehaviour>(true).OfType<IDataPersistence>();
 
             return new List<IDataPersistence>(dataPersistenceObjects);
+        }
+
+        public bool CheckAnySaveFilesExists()
+        {
+            var profilesGameData = GetAllProfilesGameData();
+
+            foreach (var profileData in profilesGameData)
+            {
+                if (profileData.Key != m_tempDataProfileId) return true;
+            }
+
+            return false;
         }
 
         public void SaveGame()
@@ -81,7 +95,9 @@ namespace DC_ARPG
             }
 
             m_gameData.LastUpdated = System.DateTime.Now.ToBinary();
-            m_gameData.PlayTime += Time.timeSinceLevelLoadAsDouble;
+
+            m_gameData.PlayTime += Time.timeSinceLevelLoadAsDouble - m_timeSinceSceneLoaded;
+            m_timeSinceSceneLoaded = Time.timeSinceLevelLoadAsDouble;
 
             m_dataHandler.Save(m_gameData, m_selectedProfileId);
         }
@@ -127,8 +143,6 @@ namespace DC_ARPG
                 //m_tempData.ActiveSceneState.SceneObjects.Add(sceneObject);
                 m_tempData.ActiveSceneState.SceneObjectsAtStart.Add(sceneObject);
 
-                
-
                 if (dataPersistenceObject is MinimapIconCollector)
                 {
                     var minimapIconCollector = dataPersistenceObject as MinimapIconCollector;
@@ -137,7 +151,9 @@ namespace DC_ARPG
             }
 
             m_tempData.LastUpdated = System.DateTime.Now.ToBinary();
-            m_tempData.PlayTime += Time.timeSinceLevelLoadAsDouble;
+
+            m_tempData.PlayTime += Time.timeSinceLevelLoadAsDouble - m_timeSinceSceneLoaded;
+            m_timeSinceSceneLoaded = Time.timeSinceLevelLoadAsDouble;
 
             m_dataHandler.Save(m_tempData, m_tempDataProfileId);
         }
@@ -147,6 +163,7 @@ namespace DC_ARPG
             var player = FindObjectOfType<Player>();
             player.Character.UpdatePlayerCharacter(m_tempData.PlayerData);
             m_tempData.ActiveSceneState.PlayerDataAtStart = new PlayerData(player.Character.PlayerStats, player.Character.Inventory, player.Character.Money);
+            if (Exit.ChangedLevels) player.transform.forward = -player.transform.forward;
         }
 
         protected override void Awake()
@@ -170,6 +187,8 @@ namespace DC_ARPG
 
         private void OnSceneLoaded(Scene scene, LoadSceneMode loadSceneMode)
         {
+            m_timeSinceSceneLoaded = 0;
+
             if (scene.name == SceneCommander.MainMenuSceneName || scene.name == SceneCommander.Instance.TutorialLevel.SceneName)
             {
                 m_dataHandler.Delete(m_tempDataProfileId); // delete tempData if it for some reason exist
@@ -185,10 +204,18 @@ namespace DC_ARPG
                     if (m_tempData.ContainsScene(SceneManager.GetActiveScene().name))
                     {
                         LoadSceneObjectsFromTempData();
+                        if (Exit.ChangedLevels)
+                        {
+                            LoadPlayerDataFromTempData();
+                            Exit.ChangedLevels = false;
+                        }
                     }
-                    else LoadPlayerDataFromTempData();
-
-                    SaveTempData();
+                    else
+                    {
+                        if (Exit.ChangedLevels) Exit.ChangedLevels = false;
+                        LoadPlayerDataFromTempData();
+                        SaveTempData();
+                    }
                 }
                 else
                 {
@@ -204,6 +231,8 @@ namespace DC_ARPG
 
                 m_loadingFromSaveFile = false;
             }
+
+            
         }
 
         private void OnApplicationQuit()
@@ -283,8 +312,7 @@ namespace DC_ARPG
                         if (dataPersistenceObject is Player)
                         {
                             var playerCharacter = (dataPersistenceObject as Player).Character;
-                            playerCharacter.UpdatePlayerCharacter(m_tempData.PlayerData);
-                            m_tempData.ActiveSceneState.PlayerDataAtStart = new PlayerData(playerCharacter.PlayerStats, playerCharacter.Inventory, playerCharacter.Money);
+                            playerCharacter.UpdatePlayerCharacter(m_tempData.ActiveSceneState.PlayerDataAtStart);
                         }
 
                         break;
@@ -317,8 +345,15 @@ namespace DC_ARPG
 
             m_tempData.SavedSceneStates.Clear();
             m_tempData.SavedSceneStates.AddRange(m_gameData.SavedSceneStates);
+            m_tempData.PlayerData = m_gameData.PlayerData;
 
-            SaveTempData();
+            m_tempData.SetActiveSceneState(SceneManager.GetActiveScene().name);
+
+            m_tempData.LastUpdated = System.DateTime.Now.ToBinary();
+
+            m_tempData.PlayTime += m_gameData.PlayTime;
+
+            m_dataHandler.Save(m_tempData, m_tempDataProfileId);
         }
     }
 }

@@ -23,7 +23,6 @@ namespace DC_ARPG
         private PositionTrigger m_positionTrigger;
         public bool StandingInFrontOfChest => m_positionTrigger != null ? m_positionTrigger.InRightPosition : false;
 
-
         private ChestSFX m_chestSFX;
 
         private bool inClosedState => m_animator.GetCurrentAnimatorStateInfo(0).IsName("ClosedState");

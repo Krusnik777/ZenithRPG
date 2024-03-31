@@ -36,7 +36,7 @@ namespace DC_ARPG
 
         public void ShowPanel()
         {
-            m_controlsManager.SetPlayerControlsActive(false);
+            m_controlsManager.TurnOffAllControls();
             m_controlsManager.SetSimpleMenuControlsActive(true);
 
             SetupButtonPanel();
@@ -69,10 +69,9 @@ namespace DC_ARPG
 
         private void SetupButtonPanel()
         {
-            m_restartFromCheckpointButton.SetActive(SceneSerializer.Instance.CheckSaveExists());
-            if (DataPersistenceManager.Instance != null)
-                m_loadButton.SetActive(DataPersistenceManager.Instance.CheckSaveForCurrentProfileExists());
-            else m_loadButton.SetActive(false);
+            m_restartFromCheckpointButton.SetActive(SceneSerializer.Instance.CheckCheckpointExists());
+
+            m_loadButton.SetActive(DataPersistenceManager.Instance.CheckAnySaveFilesExists());
         }
     }
 }

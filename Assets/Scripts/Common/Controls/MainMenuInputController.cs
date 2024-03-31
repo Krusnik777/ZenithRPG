@@ -43,6 +43,8 @@ namespace DC_ARPG
 
         private void OnConfirm(InputAction.CallbackContext obj)
         {
+            if (m_mainMenu.State == MainMenu.MenuState.Credits) return;
+
             if (m_mainMenu.State == MainMenu.MenuState.Start)
             {
                 OnStartPanel(obj);
@@ -74,7 +76,7 @@ namespace DC_ARPG
 
             if (m_mainMenu.State == MainMenu.MenuState.Credits)
             {
-                // Return from CreditsPage to Default Title screen
+                m_mainMenu.ShowCredits(false);
                 return;
             }
 
@@ -87,7 +89,7 @@ namespace DC_ARPG
 
         private void OnStartPanel(InputAction.CallbackContext obj)
         {
-            if (m_mainMenu.State != MainMenu.MenuState.Start) return;
+            if (m_mainMenu.State != MainMenu.MenuState.Start || m_mainMenu.StartPanelDisappearing) return;
 
             m_mainMenuSounds.PlayStartPressedSound();
 
@@ -100,8 +102,15 @@ namespace DC_ARPG
 
             var value = _controls.Menu.Move.ReadValue<float>();
 
-            if (value == 1) m_buttonContainer.SelectPrevious();
-            if (value == -1) m_buttonContainer.SelectNext();
+            if (m_mainMenu.State == MainMenu.MenuState.Credits)
+            {
+                m_mainMenu.ScrollCredits(value);
+            }
+            else
+            {
+                if (value == 1) m_buttonContainer.SelectPrevious();
+                if (value == -1) m_buttonContainer.SelectNext();
+            }
         }
         private void OnChangeParameters(InputAction.CallbackContext obj)
         {

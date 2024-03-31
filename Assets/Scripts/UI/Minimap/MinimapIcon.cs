@@ -83,7 +83,7 @@ namespace DC_ARPG
             if (Application.isPlaying) return;
 
             List<MinimapIcon> minimapIconsInScene = new List<MinimapIcon>();
-            minimapIconsInScene.AddRange(FindObjectsOfType<MinimapIcon>());
+            minimapIconsInScene.AddRange(FindObjectsOfType<MinimapIcon>(true));
 
             foreach (var minimapIcon in minimapIconsInScene)
             {

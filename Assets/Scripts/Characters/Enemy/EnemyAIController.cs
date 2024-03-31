@@ -464,6 +464,11 @@ namespace DC_ARPG
 
             // what to do if no path to target
             Debug.Log("Path not found");
+
+            if (m_state == EnemyState.Chase)
+            {
+                StopChasing();
+            }
         }
 
         private Tile FindLowestF(List<Tile> list)

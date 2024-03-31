@@ -4,6 +4,8 @@ namespace DC_ARPG
 {
     public class Exit : InspectableObject
     {
+        public static bool ChangedLevels = false;
+
         private PositionTrigger m_positionTrigger;
         public bool StandingInFrontOfExit => m_positionTrigger != null ? m_positionTrigger.InRightPosition : false;
 
@@ -14,6 +16,7 @@ namespace DC_ARPG
 
             DataPersistenceManager.Instance.SaveTempData();
 
+            ChangedLevels = true;
             SceneCommander.Instance.StartLevel(sceneName);
         }
 
