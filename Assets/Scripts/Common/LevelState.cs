@@ -190,7 +190,10 @@ namespace DC_ARPG
 
         private void AddChasingEnemyToList(EnemyAIController chasingEnemyAI)
         {
-            m_chasingEnemies.Add(chasingEnemyAI);
+            if (!m_chasingEnemies.Contains(chasingEnemyAI))
+            {
+                m_chasingEnemies.Add(chasingEnemyAI);
+            }
         }
 
         private void RemoveChasingEnemyFromList(EnemyAIController chasingEnemyAI)

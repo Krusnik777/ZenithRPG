@@ -23,8 +23,6 @@ namespace DC_ARPG
 
         private bool m_loadingFromSaveFile;
 
-        private double m_timeSinceSceneLoaded;
-
         public GameData GetGameDataByProfile(string profileId) => m_dataHandler.Load(profileId);
 
         public bool CheckSaveForCurrentProfileExists() => m_dataHandler.CheckIfSaveFileForProfileExist(m_selectedProfileId);
@@ -96,8 +94,7 @@ namespace DC_ARPG
 
             m_gameData.LastUpdated = System.DateTime.Now.ToBinary();
 
-            m_gameData.PlayTime += Time.timeSinceLevelLoadAsDouble - m_timeSinceSceneLoaded;
-            m_timeSinceSceneLoaded = Time.timeSinceLevelLoadAsDouble;
+            m_gameData.PlayTime = m_tempData.PlayTime + Time.timeSinceLevelLoadAsDouble;
 
             m_dataHandler.Save(m_gameData, m_selectedProfileId);
         }
@@ -152,8 +149,7 @@ namespace DC_ARPG
 
             m_tempData.LastUpdated = System.DateTime.Now.ToBinary();
 
-            m_tempData.PlayTime += Time.timeSinceLevelLoadAsDouble - m_timeSinceSceneLoaded;
-            m_timeSinceSceneLoaded = Time.timeSinceLevelLoadAsDouble;
+            m_tempData.PlayTime += Time.timeSinceLevelLoadAsDouble;
 
             m_dataHandler.Save(m_tempData, m_tempDataProfileId);
         }
@@ -187,8 +183,6 @@ namespace DC_ARPG
 
         private void OnSceneLoaded(Scene scene, LoadSceneMode loadSceneMode)
         {
-            m_timeSinceSceneLoaded = 0;
-
             if (scene.name == SceneCommander.MainMenuSceneName || scene.name == SceneCommander.Instance.TutorialLevel.SceneName)
             {
                 m_dataHandler.Delete(m_tempDataProfileId); // delete tempData if it for some reason exist
@@ -351,7 +345,7 @@ namespace DC_ARPG
 
             m_tempData.LastUpdated = System.DateTime.Now.ToBinary();
 
-            m_tempData.PlayTime += m_gameData.PlayTime;
+            m_tempData.PlayTime = m_gameData.PlayTime;
 
             m_dataHandler.Save(m_tempData, m_tempDataProfileId);
         }

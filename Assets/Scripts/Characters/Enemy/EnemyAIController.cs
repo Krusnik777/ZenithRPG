@@ -467,7 +467,13 @@ namespace DC_ARPG
 
             if (m_state == EnemyState.Chase)
             {
-                StopChasing();
+                StopMoving();
+                isChasing = false;
+
+                Debug.Log("Started Patrol");
+                EventOnChaseEnded?.Invoke(this);
+
+                StartPatrolState();
             }
         }
 
