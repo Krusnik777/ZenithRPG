@@ -66,6 +66,8 @@ namespace DC_ARPG
 
         public void Move(Vector2 inputDirection)
         {
+            if (Mathf.Sign(transform.position.y) < 0) return;
+
             if (!inIdleState) return;
 
             Vector3 direction = GetDirection(inputDirection);
