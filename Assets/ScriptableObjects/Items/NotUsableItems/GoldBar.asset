@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 991de079794450f46b88b5e12fab3882, type: 3}
   m_Name: GoldBar
   m_EditorClassIdentifier: 
-  ID: 1
+  ID: GoldBar_Info
   Title: "\u0417\u043E\u043B\u043E\u0442\u043E\u0439 \u0441\u043B\u0438\u0442\u043E\u043A"
   Description: "\u0421\u043B\u0438\u0442\u043E\u043A \u0438\u0437 \u0447\u0438\u0441\u0442\u043E\u0433\u043E
     \u0437\u043E\u043B\u043E\u0442\u0430. \u0421\u0430\u043C\u043E\u0435 \u0442\u043E

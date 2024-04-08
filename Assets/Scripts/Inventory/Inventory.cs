@@ -349,6 +349,24 @@ namespace DC_ARPG
         {
             if (!toSlot.IsEmpty)
             {
+                if (toSlot.GetType() != fromSlot.GetType())
+                {
+                    if (toSlot.Item.GetType() != fromSlot.Item.GetType())
+                    {
+                        Debug.Log("Swap Error -> Not Same SlotType And Not Same ItemType");
+                        return;
+                    }
+
+                    if (toSlot.Item is EquipItem && fromSlot.Item is EquipItem)
+                    {
+                        if ((toSlot.Item as EquipItem).EquipType != (fromSlot.Item as EquipItem).EquipType)
+                        {
+                            Debug.Log("Swap Error -> Not Same SlotType, Same ItemType: is EquipItem, but not same EquipType");
+                            return;
+                        }
+                    }
+                }
+
                 var swappedItem = toSlot.Item;
 
                 if (toSlot.TryClearSlotAndSetItem(fromSlot.Item) == false) return;

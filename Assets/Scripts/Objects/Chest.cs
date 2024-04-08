@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace DC_ARPG
 {
@@ -14,6 +15,9 @@ namespace DC_ARPG
         [SerializeField] private bool m_unlockInventoryPocket;
         [SerializeField] private bool m_giveMoney;
         [SerializeField] private int m_money;
+
+        public UnityEvent EventOnItemAdded;
+
         public bool Locked => m_locked;
         public bool RequireSpecialKey => m_requireSpecialKey;
         public UsableItemInfo SpecificKeyItemInfo => m_specificKeyItemInfo;
@@ -41,6 +45,13 @@ namespace DC_ARPG
 
                 return m_infoText;
             }
+        }
+
+        public override void AssignItem(IItem item)
+        {
+            base.AssignItem(item);
+
+            EventOnItemAdded?.Invoke();
         }
 
         public void Lock()

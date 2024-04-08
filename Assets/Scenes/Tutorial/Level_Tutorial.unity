@@ -13848,6 +13848,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 7f57e2742bb0dd64db0025146b35863e, type: 2}
     - target: {fileID: 2999589642607726072, guid: 46b82607ee66fd34fad608322138db8d, type: 3}
+      propertyPath: m_itemData.ItemInfoId
+      value: ShortSword_Info
+      objectReference: {fileID: 0}
+    - target: {fileID: 2999589642607726072, guid: 46b82607ee66fd34fad608322138db8d, type: 3}
       propertyPath: EventOnInspection.m_PersistentCalls.m_Calls.Array.size
       value: 1
       objectReference: {fileID: 0}
@@ -15478,9 +15482,17 @@ PrefabInstance:
       value: ChestWithShield_001
       objectReference: {fileID: 0}
     - target: {fileID: 2999589642607726072, guid: 46b82607ee66fd34fad608322138db8d, type: 3}
+      propertyPath: m_itemData.Amount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2999589642607726072, guid: 46b82607ee66fd34fad608322138db8d, type: 3}
       propertyPath: m_itemData.ItemInfo
       value: 
       objectReference: {fileID: 11400000, guid: ec650bce1f75fb64fb96da30f9708c00, type: 2}
+    - target: {fileID: 2999589642607726072, guid: 46b82607ee66fd34fad608322138db8d, type: 3}
+      propertyPath: m_itemData.ItemInfoId
+      value: WoodShield_Info
+      objectReference: {fileID: 0}
     - target: {fileID: 2999589642607726072, guid: 46b82607ee66fd34fad608322138db8d, type: 3}
       propertyPath: EventOnInspection.m_PersistentCalls.m_Calls.Array.size
       value: 1
@@ -18926,6 +18938,10 @@ PrefabInstance:
       propertyPath: m_itemData.ItemInfo
       value: 
       objectReference: {fileID: 11400000, guid: ba0c1000f3fdf72459c20fa7a2a7b597, type: 2}
+    - target: {fileID: 5128590638175710160, guid: 3ca53e71b8431dd49a556a2c40d4d54d, type: 3}
+      propertyPath: m_itemData.ItemInfoId
+      value: Potion_Info
+      objectReference: {fileID: 0}
     - target: {fileID: 6822851689026922055, guid: 3ca53e71b8431dd49a556a2c40d4d54d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 2.5
@@ -26259,6 +26275,10 @@ PrefabInstance:
       propertyPath: m_itemData.ItemInfo
       value: 
       objectReference: {fileID: 11400000, guid: ba0c1000f3fdf72459c20fa7a2a7b597, type: 2}
+    - target: {fileID: 5128590638175710160, guid: 3ca53e71b8431dd49a556a2c40d4d54d, type: 3}
+      propertyPath: m_itemData.ItemInfoId
+      value: Potion_Info
+      objectReference: {fileID: 0}
     - target: {fileID: 6822851689026922055, guid: 3ca53e71b8431dd49a556a2c40d4d54d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.5
@@ -29881,6 +29901,10 @@ PrefabInstance:
       propertyPath: m_itemData.ItemInfo
       value: 
       objectReference: {fileID: 11400000, guid: 097fda4fc58e48a4fbb25f7ac89563d4, type: 2}
+    - target: {fileID: 5128590638175710160, guid: 3ca53e71b8431dd49a556a2c40d4d54d, type: 3}
+      propertyPath: m_itemData.ItemInfoId
+      value: Key_Info
+      objectReference: {fileID: 0}
     - target: {fileID: 6822851689026922055, guid: 3ca53e71b8431dd49a556a2c40d4d54d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 2.5
@@ -32139,6 +32163,10 @@ PrefabInstance:
       propertyPath: m_itemData.ItemInfo
       value: 
       objectReference: {fileID: 11400000, guid: ba0c1000f3fdf72459c20fa7a2a7b597, type: 2}
+    - target: {fileID: 5128590638175710160, guid: 3ca53e71b8431dd49a556a2c40d4d54d, type: 3}
+      propertyPath: m_itemData.ItemInfoId
+      value: Potion_Info
+      objectReference: {fileID: 0}
     - target: {fileID: 6822851689026922055, guid: 3ca53e71b8431dd49a556a2c40d4d54d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.5
@@ -35673,6 +35701,10 @@ PrefabInstance:
       value: ChestWithMagicItem_001
       objectReference: {fileID: 0}
     - target: {fileID: 2999589642607726072, guid: 46b82607ee66fd34fad608322138db8d, type: 3}
+      propertyPath: m_infoText
+      value: FireScroll_Info
+      objectReference: {fileID: 0}
+    - target: {fileID: 2999589642607726072, guid: 46b82607ee66fd34fad608322138db8d, type: 3}
       propertyPath: m_itemData.Amount
       value: 10
       objectReference: {fileID: 0}
@@ -35680,6 +35712,10 @@ PrefabInstance:
       propertyPath: m_itemData.ItemInfo
       value: 
       objectReference: {fileID: 11400000, guid: 60e68b13b98adce439adff0fcc276610, type: 2}
+    - target: {fileID: 2999589642607726072, guid: 46b82607ee66fd34fad608322138db8d, type: 3}
+      propertyPath: m_itemData.ItemInfoId
+      value: FireScroll_Info
+      objectReference: {fileID: 0}
     - target: {fileID: 2999589642607726072, guid: 46b82607ee66fd34fad608322138db8d, type: 3}
       propertyPath: EventOnInspection.m_PersistentCalls.m_Calls.Array.size
       value: 1

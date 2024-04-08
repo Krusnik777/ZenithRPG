@@ -25,10 +25,10 @@ MonoBehaviour:
   DroppedGold: 500
   DroppedItems:
   - DroppedItemData:
-      ItemInfo: {fileID: 11400000, guid: 097fda4fc58e48a4fbb25f7ac89563d4, type: 2}
-      Amount: 1
-    ItemDropChance: 0.2
-  - DroppedItemData:
-      ItemInfo: {fileID: 11400000, guid: 0bfaa744924477443acced2f71f2f9a5, type: 2}
+      ItemInfoId: Key_Info
       Amount: 1
     ItemDropChance: 0.1
+  - DroppedItemData:
+      ItemInfoId: SteelBall_Info
+      Amount: 1
+    ItemDropChance: 0.05

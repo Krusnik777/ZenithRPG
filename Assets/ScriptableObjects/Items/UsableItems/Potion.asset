@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc69153928140f449bd8b0b9293ad6ee, type: 3}
   m_Name: Potion
   m_EditorClassIdentifier: 
-  ID: 1
+  ID: Potion_Info
   Title: "\u0417\u0435\u043B\u044C\u0435"
   Description: "\u0422\u0430\u0438\u043D\u0441\u0442\u0432\u0435\u043D\u043D\u044B\u043C
     \u043E\u0431\u0440\u0430\u0437\u043E\u043C \u043F\u043E\u043B\u043D\u043E\u0441\u0442\u044C\u044E

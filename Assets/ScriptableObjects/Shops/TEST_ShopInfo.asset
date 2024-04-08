@@ -77,24 +77,24 @@ MonoBehaviour:
     - "\u041E\u0441\u0432\u043E\u0431\u043E\u0434\u0438\u0442\u0435 \u043C\u0435\u0441\u0442\u043E
       \u0432 \u0441\u0432\u043E\u0435\u043C \u043C\u0435\u0448\u043A\u0435."
   ShopItemsData:
-  - ItemInfo: {fileID: 11400000, guid: 3fae1436d81c79847a9ecd17419bc27e, type: 2}
+  - ItemInfoId: Potion_Info
     Amount: 1
-  - ItemInfo: {fileID: 11400000, guid: a4a0deeee3282d44982f1d09bbea2084, type: 2}
+  - ItemInfoId: SpecialKey101_Info
     Amount: 1
-  - ItemInfo: {fileID: 11400000, guid: 7f57e2742bb0dd64db0025146b35863e, type: 2}
+  - ItemInfoId: ShortSword_Info
     Amount: 99
-  - ItemInfo: {fileID: 11400000, guid: dda5bd3912eaaef4f90f3bf6425a406f, type: 2}
+  - ItemInfoId: SmallShield_Info
     Amount: 1
-  - ItemInfo: {fileID: 11400000, guid: c91de874e23868848ade651b48a1acd8, type: 2}
+  - ItemInfoId: ChainMail_Info
     Amount: 1
-  - ItemInfo: {fileID: 11400000, guid: 60e68b13b98adce439adff0fcc276610, type: 2}
+  - ItemInfoId: SteelBall_Info
     Amount: 50
-  - ItemInfo: {fileID: 11400000, guid: cf2f4a2b8c48efd429d56e8e72931749, type: 2}
+  - ItemInfoId: FireScroll_Info
     Amount: 10
-  - ItemInfo: {fileID: 11400000, guid: 525e1e509c81eaf40aa34b2c3319672d, type: 2}
+  - ItemInfoId: FireAmulet_Info
     Amount: 1
-  - ItemInfo: {fileID: 11400000, guid: ba0c1000f3fdf72459c20fa7a2a7b597, type: 2}
+  - ItemInfoId: Potion_Info
     Amount: 33
-  - ItemInfo: {fileID: 11400000, guid: 864f9785d77d2cf40aade483bb0e03a7, type: 2}
+  - ItemInfoId: RevivalRing_Info
     Amount: 1
   Surcharge: 0

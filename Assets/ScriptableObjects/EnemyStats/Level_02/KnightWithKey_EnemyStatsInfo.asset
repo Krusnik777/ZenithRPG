@@ -25,6 +25,6 @@ MonoBehaviour:
   DroppedGold: 300
   DroppedItems:
   - DroppedItemData:
-      ItemInfo: {fileID: 11400000, guid: 32c14b3fb757da441b3018497a51fad0, type: 2}
+      ItemInfoId: SpecialKey102_Info
       Amount: 1
     ItemDropChance: 1

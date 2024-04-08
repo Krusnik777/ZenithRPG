@@ -1,9 +1,13 @@
+using UnityEngine;
+
 namespace DC_ARPG
 {
     [System.Serializable]
     public class ItemData
     {
-        public ItemInfo ItemInfo;
+        public ItemInfo ItemInfo { get; set; }
+
+        public string ItemInfoId;
         /// <summary>
         /// For some item types: Amount = Uses
         /// </summary>
@@ -11,7 +15,8 @@ namespace DC_ARPG
 
         public ItemData(ItemInfo itemInfo, int amount)
         {
-            ItemInfo = itemInfo;
+            ItemInfoId = itemInfo.ID;
+            ItemInfo = ItemInfosDataBase.Instance.GetItemInfoFromId(ItemInfoId);
             Amount = amount;
         }
 
@@ -19,7 +24,8 @@ namespace DC_ARPG
         {
             if (item != null)
             {
-                ItemInfo = item.Info;
+                ItemInfoId = item.Info.ID;
+                ItemInfo = ItemInfosDataBase.Instance.GetItemInfoFromId(ItemInfoId);
 
                 if (item is WeaponItem)
                 {
@@ -43,13 +49,16 @@ namespace DC_ARPG
 
         public ItemData(ItemData itemData)
         {
-            ItemInfo = itemData.ItemInfo;
+            ItemInfoId = itemData.ItemInfoId;
+            ItemInfo = ItemInfosDataBase.Instance.GetItemInfoFromId(ItemInfoId);
             Amount = itemData.Amount;
         }
 
         public IItem CreateItem()
         {
             if (Amount <= 0) Amount = 1;
+
+            if (ItemInfo == null) ItemInfo = ItemInfosDataBase.Instance.GetItemInfoFromId(ItemInfoId);
 
             if (ItemInfo is UsableItemInfo) return new UsableItem(ItemInfo as UsableItemInfo, Amount);
 

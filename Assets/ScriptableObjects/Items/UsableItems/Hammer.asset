@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc69153928140f449bd8b0b9293ad6ee, type: 3}
   m_Name: Hammer
   m_EditorClassIdentifier: 
-  ID: 3
+  ID: Hammer_Info
   Title: "\u041C\u043E\u043B\u043E\u0442"
   Description: "\u041F\u043E\u043C\u043E\u0436\u0435\u0442 \u0447\u0442\u043E-\u043D\u0438\u0431\u0443\u0434\u044C
     \u0440\u0430\u0437\u043B\u043E\u043C\u0430\u0442\u044C, \u043D\u043E \u0441\u0430\u043C
