@@ -52,9 +52,24 @@ namespace DC_ARPG
         protected Animator m_animator;
         public Animator Animator => m_animator;
 
+
+        private Rigidbody m_rigidbody;
+
         private bool GetIsGrounded()
         {
-            if (GetComponent<Rigidbody>().velocity.y == 0)
+            if (m_rigidbody == null) m_rigidbody = GetComponent<Rigidbody>();
+
+            if (transform.position.y < -1.0f && m_rigidbody.velocity.y != 0)
+            {
+                Vector3 correctionPos = new Vector3(transform.position.x, -1.0f, transform.position.z);
+                transform.position = correctionPos;
+
+                m_rigidbody.velocity = Vector3.zero;
+                m_rigidbody.angularVelocity = Vector3.zero;
+                m_rigidbody.Sleep();
+            }
+
+            if (m_rigidbody.velocity.y == 0)
                 return true;
             else return false;
         }
@@ -324,7 +339,7 @@ namespace DC_ARPG
 
             transform.position = targetPosition;
 
-            yield return null;
+            //yield return null;
 
             inMovement = false;
 

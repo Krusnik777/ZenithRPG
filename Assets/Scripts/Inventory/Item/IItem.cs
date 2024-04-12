@@ -72,6 +72,13 @@ namespace DC_ARPG
 
             return null;
         }
+
+        public void Reset()
+        {
+            ItemInfoId = "";
+            ItemInfo = null;
+            Amount = 0;
+        }
     }
 
     public interface IItem

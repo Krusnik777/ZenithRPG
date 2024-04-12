@@ -145,8 +145,7 @@ namespace DC_ARPG
 
                 UISounds.Instance.PlayItemCollectedSound();
 
-                m_itemData.ItemInfo = null;
-                m_itemData.Amount = 0;
+                m_itemData.Reset();
                 m_item = null;
 
                 EventOnInspection?.Invoke();

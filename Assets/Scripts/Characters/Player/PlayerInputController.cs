@@ -118,6 +118,8 @@ namespace DC_ARPG
 
         private void OnJump(InputAction.CallbackContext obj)
         {
+            Debug.Log(!player.IsGrounded);
+
             if (!player.IsGrounded || player.State != Player.PlayerState.Active) return;
 
             player.Jump();

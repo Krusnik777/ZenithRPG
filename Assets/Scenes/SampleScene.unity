@@ -13505,11 +13505,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1844385430773188566, guid: 6d9d2a695028a324ebb44d3d583ffc36, type: 3}
       propertyPath: m_items.Array.size
-      value: 7
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1844385430773188566, guid: 6d9d2a695028a324ebb44d3d583ffc36, type: 3}
       propertyPath: m_equippedItems.Magic.m_uses
       value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 1844385430773188566, guid: 6d9d2a695028a324ebb44d3d583ffc36, type: 3}
+      propertyPath: m_items.Array.data[0].Amount
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 1844385430773188566, guid: 6d9d2a695028a324ebb44d3d583ffc36, type: 3}
+      propertyPath: m_items.Array.data[1].Amount
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 1844385430773188566, guid: 6d9d2a695028a324ebb44d3d583ffc36, type: 3}
       propertyPath: m_items.Array.data[2].Amount
@@ -13567,6 +13575,14 @@ PrefabInstance:
       propertyPath: m_equippedItems.Magic.m_itemInfo
       value: 
       objectReference: {fileID: 11400000, guid: 60e68b13b98adce439adff0fcc276610, type: 2}
+    - target: {fileID: 1844385430773188566, guid: 6d9d2a695028a324ebb44d3d583ffc36, type: 3}
+      propertyPath: m_items.Array.data[0].ItemInfoId
+      value: Key_Info
+      objectReference: {fileID: 0}
+    - target: {fileID: 1844385430773188566, guid: 6d9d2a695028a324ebb44d3d583ffc36, type: 3}
+      propertyPath: m_items.Array.data[1].ItemInfoId
+      value: Potion_Info
+      objectReference: {fileID: 0}
     - target: {fileID: 1844385430773188566, guid: 6d9d2a695028a324ebb44d3d583ffc36, type: 3}
       propertyPath: m_equippedItems.Shield.m_itemInfo
       value: 
