@@ -64,7 +64,7 @@ namespace DC_ARPG
                 {
                     var chest = potentialItemContainer as Chest;
 
-                    if (chest.Item != null)
+                    if (chest.Item != null || chest.HasSpecialContents)
                     {
                         ShortMessage.Instance.ShowMessage("Больше нет места.");
 

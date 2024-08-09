@@ -22,6 +22,8 @@ namespace DC_ARPG
         public bool RequireSpecialKey => m_requireSpecialKey;
         public UsableItemInfo SpecificKeyItemInfo => m_specificKeyItemInfo;
 
+        public bool HasSpecialContents => m_unlockInventoryPocket || m_giveMoney;
+
         public IItem Item => m_item;
 
         private PositionTrigger m_positionTrigger;
