@@ -1,7 +1,7 @@
 # Dungeon Crawler ARPG
 Игра представляет собой сплав игр жанра Dungeon Crawler и Action-RPG.
 
-[Дизайн-документ](Docs/DesignDoc.md)
+[Дизайн-документ](https://github.com/Krusnik777/ZenithRPG/blob/master/Docs/DesignDoc.md)
 
 ### [Скачать пре-альфу](https://github.com/Krusnik777/ZenithRPG/releases/tag/0.3)
 
