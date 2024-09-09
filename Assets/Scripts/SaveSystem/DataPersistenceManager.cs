@@ -225,8 +225,6 @@ namespace DC_ARPG
 
                 m_loadingFromSaveFile = false;
             }
-
-            
         }
 
         private void OnApplicationQuit()

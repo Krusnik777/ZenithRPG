@@ -38,7 +38,7 @@ namespace DC_ARPG
 
             if (playerTile == null) return null;
 
-            if (playerTile.NeighborTiles == null) playerTile.FindNeighbors();
+            //if (playerTile.NeighborTiles == null) playerTile.FindNeighbors();
 
             return playerTile.NeighborTiles;
         }
@@ -73,19 +73,11 @@ namespace DC_ARPG
             }
         }
 
-        public void ComputeAdjacencyList(bool notIncludeTileWithPlayer = true)
+        public void ComputeAdjacencyList()
         {
             foreach (var tile in m_levelTileField)
             {
-                tile.FindNeighbors(null, notIncludeTileWithPlayer);
-            }
-        }
-
-        public void ComputeAdjacencyList(Tile target)
-        {
-            foreach (var tile in m_levelTileField)
-            {
-                tile.FindNeighbors(target);
+                tile.FindNeighbors();
             }
         }
 
@@ -112,6 +104,8 @@ namespace DC_ARPG
         {
             m_levelTileField = FindObjectsOfType<Tile>();
 
+            ComputeAdjacencyList();
+
             m_allEnemies = new List<Enemy>();
             m_allEnemies.AddRange(FindObjectsOfType<Enemy>(true));
 
@@ -131,12 +125,6 @@ namespace DC_ARPG
                 enemy.EnemyAI.EventOnChaseEnded += RemoveChasingEnemyFromList;
             }
 
-            foreach(var door in m_allDoorsOnLevel)
-            {
-                door.EventOnDoorOpened += OnAnyDoorStateChanged;
-                door.EventOnDoorClosed += OnAnyDoorStateChanged;
-            }
-
             foreach(var shop in m_allShops)
             {
                 shop.EventOnShopEntered += StopAllActivity;
@@ -149,31 +137,10 @@ namespace DC_ARPG
             StoryEventManager.Instance.EventOnStoryEventStarted -= StopAllActivity;
             StoryEventManager.Instance.EventOnStoryEventEnded -= ResumeAllActivity;
 
-            foreach (var door in m_allDoorsOnLevel)
-            {
-                door.EventOnDoorOpened -= OnAnyDoorStateChanged;
-                door.EventOnDoorClosed -= OnAnyDoorStateChanged;
-            }
-
             foreach (var shop in m_allShops)
             {
                 shop.EventOnShopEntered -= StopAllActivity;
                 shop.EventOnShopExited -= ResumeAllActivity;
-            }
-        }
-
-        private void OnAnyDoorStateChanged()
-        {
-            foreach (var enemy in m_allEnemies)
-            {
-                if (enemy == null)
-                {
-                    m_allEnemies.Remove(enemy);
-                    break;
-                }
-
-                if (enemy.gameObject.activeInHierarchy)
-                    if (enemy.EnemyAI != null) enemy.EnemyAI.UpdateActivity();
             }
         }
 

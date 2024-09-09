@@ -25,7 +25,8 @@ namespace DC_ARPG
             }
 
             Destroy(m_wallMiddlePart);
-            m_collider.enabled = false;
+            //m_collider.enabled = false;
+            Destroy(m_collider.gameObject);
 
             OnWallBroken?.Invoke();
         }
@@ -81,7 +82,8 @@ namespace DC_ARPG
             if (s.destroyed)
             {
                 Destroy(m_wallMiddlePart);
-                m_collider.enabled = false;
+                //m_collider.enabled = false;
+                Destroy(m_collider.gameObject);
             }
         }
 
