@@ -34,6 +34,8 @@ namespace DC_ARPG
         private bool inOpenedState => m_animator.GetCurrentAnimatorStateInfo(0).IsName("OpenedState");
         public bool Opened => inOpenedState;
 
+        public override bool Disabled => m_collider.isTrigger;
+
         public override string InfoText
         {
             get

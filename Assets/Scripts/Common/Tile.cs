@@ -18,7 +18,7 @@ namespace DC_ARPG
         public List<Tile> NeighborTiles { get => neighborTiles; set => neighborTiles = value; }
 
         [SerializeField] private TileType m_type;
-        [SerializeField] private Collider m_colliderOnTile;
+        [SerializeField] private InspectableObject m_objectOnTile;
         public TileType Type => m_type;
 
         private bool m_occupied;
@@ -41,18 +41,26 @@ namespace DC_ARPG
 
         public void SetTileOccupied(bool occupied) => m_occupied = occupied;
 
-        public bool CheckClosable()
+        public bool CheckClosed()
         {
-            if (m_colliderOnTile == null)
+            if (m_objectOnTile == null)
             {
                 m_type = TileType.Walkable;
                 return false;
             }
 
-            if (m_colliderOnTile.enabled && !m_colliderOnTile.isTrigger)
+            return !m_objectOnTile.Disabled;
+        }
+
+        public bool CheckMechanism()
+        {
+            if (m_objectOnTile == null)
+            {
+                m_type = TileType.Walkable;
                 return true;
-            else
-                return false;
+            }
+
+            return m_objectOnTile.Disabled;
         }
 
         public bool CheckTileOccupied()
@@ -67,6 +75,23 @@ namespace DC_ARPG
                 }  
             }
             return false;
+        }
+
+        public Tile FindNeighbourByDirection(Vector3 direction)
+        {
+            Tile tile = null;
+
+            Vector3 halfExtents = new Vector3(0.25f, 0.25f, 0.25f);
+            Collider[] colliders = Physics.OverlapBox(transform.position + direction, halfExtents);
+
+            foreach (var collider in colliders)
+            {
+                tile = collider.GetComponentInParent<Tile>();
+
+                if (tile != null) return tile;
+            }
+
+            return tile;
         }
 
         public void FindNeighbors(bool notIncludeTileWithPlayer = true)

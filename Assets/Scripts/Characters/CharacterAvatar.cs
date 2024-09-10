@@ -18,6 +18,22 @@ namespace DC_ARPG
         [SerializeField] protected CharacterSFX m_characterSFX;
         public CharacterSFX CharacterSFX => m_characterSFX;
 
+        private Tile currentTile;
+        private Tile GetCurrentTile()
+        {
+            Tile tile = null;
+
+            Ray ray = new Ray(transform.position + new Vector3(0, 0.1f, 0), -Vector3.up);
+            RaycastHit hit;
+
+            if (Physics.Raycast(ray, out hit, 1f, 1, QueryTriggerInteraction.Ignore))
+            {
+                tile = hit.collider.GetComponentInParent<Tile>();
+            }
+
+            return tile;
+        }
+
         #region Parameters
 
         protected bool inMovement;
@@ -87,18 +103,6 @@ namespace DC_ARPG
 
             Vector3 direction = GetDirection(inputDirection);
 
-            Ray directionRay = new Ray(transform.position + new Vector3(0, 0.5f, 0), direction);
-            RaycastHit hit;
-
-            Debug.DrawRay(directionRay.origin, directionRay.direction, Color.red);
-
-            if (Physics.Raycast(directionRay, out hit, 1.1f, 1, QueryTriggerInteraction.Ignore))
-            {
-                if (hit.collider) return;
-            }
-
-            if (CheckForMovingEnemy(directionRay)) return;
-
             if (direction == Vector3.zero)
             {
                 m_animator.SetFloat("MovementX", 0);
@@ -107,10 +111,20 @@ namespace DC_ARPG
                 return;
             }
 
+            currentTile = GetCurrentTile();
+
+            Tile targetTile = currentTile.FindNeighbourByDirection(direction);
+
+            if (targetTile == null) return;
+
+            if (targetTile.Occupied || targetTile.Type == TileType.Obstacle) return;
+
+            if (targetTile.Type == TileType.Closable && targetTile.CheckClosed()) return;
+
             m_animator.SetFloat("MovementX", inputDirection.x);
             m_animator.SetFloat("MovementZ", inputDirection.y);
 
-            StartCoroutine(MoveTo(direction));
+            StartCoroutine(MoveTo(targetTile));
         }
 
         public void Turn(float angle)
@@ -318,12 +332,13 @@ namespace DC_ARPG
 
         #region Coroutines
 
-        private IEnumerator MoveTo(Vector3 direction)
+        private IEnumerator MoveTo(Tile targetTile)
         {
             inMovement = true;
+            targetTile.SetTileOccupied(true);
 
             var startPosition = transform.position;
-            var targetPosition = direction + startPosition;
+            var targetPosition = targetTile.transform.position;
 
             var elapsed = 0.0f;
 
@@ -339,13 +354,15 @@ namespace DC_ARPG
 
             transform.position = targetPosition;
 
+            if (currentTile != null) currentTile.SetTileOccupied(false);
+
             //yield return null;
 
             inMovement = false;
 
             yield return null;
             //yield return new WaitForSeconds(0.1f);
-            
+
             if (!inMovement)
             {
                 m_animator.SetFloat("MovementX", 0);

@@ -9,6 +9,8 @@ namespace DC_ARPG
 
         public void SetTrapActive(bool state) => m_trap.SetTrapActive(state);
 
+        public override bool Disabled => m_trap.Disabled;
+
         public override void OnInspection(Player player)
         {
             ShortMessage.Instance.ShowMessage("Ловушка!");
