@@ -4,7 +4,7 @@ using UnityEngine.Events;
 
 namespace DC_ARPG
 {
-    public class EnemyCharacter : MonoBehaviour
+    public class EnemyCharacter : CharacterBase
     {
         [SerializeField] private EnemyStatsInfo m_enemyStatsInfo;
         [Space]
@@ -41,7 +41,7 @@ namespace DC_ARPG
             {
                 if (enemy != null)
                 {
-                    enemy.CharacterSFX.PlayGetHitSFX(enemy.transform.position);
+                    OnHit();
                 }
             }
         }
@@ -70,11 +70,6 @@ namespace DC_ARPG
         private IEnumerator PlayDeath(object sender)
         {
             enemy.EnemyAI.StopActivity();
-
-            if (enemy != null)
-            {
-                enemy.CharacterSFX.PlayDeathSFX(enemy.transform.position);
-            }
 
             enemy.Animator.Play("Death");
 

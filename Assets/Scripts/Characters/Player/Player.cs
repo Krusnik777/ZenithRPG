@@ -15,7 +15,6 @@ namespace DC_ARPG
         [Header("Magic")]
         [SerializeField] private float m_castDelay = 1.0f;
         
-
         public bool ActionsIsAvailable { get; set; }
 
         public PlayerCharacter Character => m_character;
@@ -28,7 +27,7 @@ namespace DC_ARPG
         private bool isCasting;
         public bool IsCasting => isCasting;
 
-        protected override bool inIdleState => !(inMovement || isJumping || isAttacking || isBlocking || isCasting);
+        protected override bool inIdleState => !(inMovement || isJumping || isFalling || isAttacking || isBlocking || isCasting);
 
         #region PlayerActions
 
@@ -132,11 +131,6 @@ namespace DC_ARPG
         }
 
         #endregion
-
-        public void ShowSwordBreakEffect()
-        {
-            CharacterSFX.PlayBrokenSwordEffect(m_weapon.transform.position);
-        }
 
         public InspectableObject CheckForwardGridForInspectableObject()
         {

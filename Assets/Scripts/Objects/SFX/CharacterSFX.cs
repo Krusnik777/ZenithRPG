@@ -5,11 +5,14 @@ namespace DC_ARPG
 {
     public class CharacterSFX : MonoBehaviour
     {
+        [SerializeField] private CharacterBase m_character;
+        [SerializeField] private CharacterAvatar m_characterAvatar;
+        [Header("Sounds")]
         [SerializeField] private AudioClip m_footstepSound;
         [SerializeField] private AudioClip m_jumpSound;
         [SerializeField] private AudioClip m_landSound;
         [SerializeField] private AudioClip m_attackSound;
-
+        [Header("Effects")]
         [SerializeField] private GameObject m_blockEffect;
         [SerializeField] private GameObject m_hitEffectPrefab;
         [SerializeField] private GameObject m_deathEffectPrefab;
@@ -70,8 +73,34 @@ namespace DC_ARPG
             
             if (m_blockEffect != null)
                 if (m_blockEffect.activeInHierarchy) m_blockEffect.SetActive(false);
+
+            m_character.EventOnHit += OnHit;
+            m_characterAvatar.Weapon.EventOnBrokenWeapon += OnBrokenWeapon;
+            m_characterAvatar.Weapon.EventOnBlock += OnBlock;
         }
 
+        private void OnDestroy()
+        {
+            m_character.EventOnHit -= OnHit;
+            m_characterAvatar.Weapon.EventOnBrokenWeapon -= OnBrokenWeapon;
+            m_characterAvatar.Weapon.EventOnBlock -= OnBlock;
+        }
+
+        private void OnHit()
+        {
+            PlayGetHitSFX(m_character.transform.position);
+        }
+               
+
+        private void OnBrokenWeapon()
+        {
+            PlayBrokenSwordEffect(m_characterAvatar.Weapon.transform.position);
+        }
+
+        private void OnBlock()
+        {
+            PlayBlockSFX();
+        }
 
         #region Coroutines
 

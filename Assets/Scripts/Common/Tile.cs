@@ -94,6 +94,17 @@ namespace DC_ARPG
             return tile;
         }
 
+        public Tile[] FindTwoForwardTiles(Vector3 direction)
+        {
+            Tile[] tiles = new Tile[2];
+
+            tiles[0] = FindNeighbourByDirection(direction);
+
+            if (tiles[0] != null) tiles[1] = tiles[0].FindNeighbourByDirection(direction);
+
+            return tiles;
+        }
+
         public void FindNeighbors(bool notIncludeTileWithPlayer = true)
         {
             Reset();

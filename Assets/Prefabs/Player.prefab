@@ -530,7 +530,7 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 122
@@ -566,7 +566,6 @@ MonoBehaviour:
   m_weapon: {fileID: 4389632054340375843}
   m_additionalWeapon: {fileID: 0}
   m_attackHits: 2
-  m_characterSFX: {fileID: 1526247927414751933}
   m_character: {fileID: 1844385430773188566}
   m_castDelay: 0.25
   m_prefabId: PlayerPrefab_Default
@@ -727,6 +726,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4e8560462e060643a8482cd5b4bc61e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_character: {fileID: 1844385430773188566}
+  m_characterAvatar: {fileID: 6766054219301148474}
   m_footstepSound: {fileID: 8300000, guid: e8e9beea36680be48a76a7cfc47f1f0b, type: 3}
   m_jumpSound: {fileID: 8300000, guid: eeffcbb39ec446a478ab230288a6b658, type: 3}
   m_landSound: {fileID: 8300000, guid: c95f94ec25c9e6949bfe149c5685ea16, type: 3}
@@ -1043,8 +1044,30 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3708694670624589135, guid: d5e01126c1cd14044ab57d4d0b5f6cef, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8431557142474108310}
   m_SourcePrefab: {fileID: 100100000, guid: d5e01126c1cd14044ab57d4d0b5f6cef, type: 3}
+--- !u!1 &394555040776671525 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3708694670624589135, guid: d5e01126c1cd14044ab57d4d0b5f6cef, type: 3}
+  m_PrefabInstance: {fileID: 3895142671683146858}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &8431557142474108310
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 394555040776671525}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f43d5ea8938cf1d48879ac2251d299e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_characterAvatar: {fileID: 6766054219301148474}
+  m_characterSFX: {fileID: 1526247927414751933}
 --- !u!1 &551195887405852799 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3578230997887007765, guid: d5e01126c1cd14044ab57d4d0b5f6cef, type: 3}
@@ -1086,7 +1109,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 9136601753458833822, guid: d5e01126c1cd14044ab57d4d0b5f6cef, type: 3}
   m_PrefabInstance: {fileID: 3895142671683146858}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 394555040776671525}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fff0960ef4ea6e04eac66b4a7fd2189d, type: 3}

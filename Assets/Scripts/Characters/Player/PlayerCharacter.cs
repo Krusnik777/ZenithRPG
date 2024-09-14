@@ -3,7 +3,7 @@ using UnityEngine.Events;
 
 namespace DC_ARPG
 {
-    public class PlayerCharacter : MonoBehaviour
+    public class PlayerCharacter : CharacterBase
     {
         [System.Serializable]
         public class EquippedItems
@@ -170,7 +170,7 @@ namespace DC_ARPG
         {
             if (change < 0 && playerStats.CurrentHitPoints != 0)
             {
-                m_player.CharacterSFX.PlayGetHitSFX(m_player.transform.position);
+                OnHit();
             }
         }
 
@@ -195,8 +195,6 @@ namespace DC_ARPG
             }
 
             MusicCommander.Instance.PlayGameOverMusic();
-
-            m_player.CharacterSFX.PlayDeathSFX(m_player.transform.position);
 
             m_player.Animator.Play("Death");
 

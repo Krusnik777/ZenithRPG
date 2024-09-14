@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace DC_ARPG
 {
@@ -6,6 +7,9 @@ namespace DC_ARPG
     {
         [SerializeField] private GameObject m_parent;
         [SerializeField] private GameObject m_trail;
+
+        public event UnityAction EventOnBrokenWeapon;
+        public event UnityAction EventOnBlock;
 
         private Collider m_collider;
 
@@ -40,7 +44,7 @@ namespace DC_ARPG
 
 
                         var weaponItem = parentPlayer.Character.Inventory.WeaponItemSlot.Item as WeaponItem;
-                        if (!weaponItem.HasInfiniteUses) parentPlayer.Character.Inventory.WeaponItemSlot.UseWeapon(this, parentPlayer);
+                        if (!weaponItem.HasInfiniteUses) parentPlayer.Character.Inventory.WeaponItemSlot.UseWeapon(this, parentPlayer, EventOnBrokenWeapon);
                     }
 
                     SetWeaponActive(false);
@@ -53,7 +57,7 @@ namespace DC_ARPG
                 {
                     if (player.IsBlocking && player.CheckForwardGridForEnemy() == parentEnemy)
                     {
-                        player.CharacterSFX.PlayBlockSFX();
+                        EventOnBlock?.Invoke();
 
                         return;
                     }
