@@ -5,7 +5,7 @@ namespace DC_ARPG
 {
     public class TrapFloor : MonoBehaviour, IDataPersistence
     {
-        [SerializeField] private float m_destroyTime = 0.2f;
+        [SerializeField] private float m_destroyTime = 0.1f;
         [SerializeField] private GameObject m_floorBreakEffectPrefab;
 
         private bool isTriggered = false;

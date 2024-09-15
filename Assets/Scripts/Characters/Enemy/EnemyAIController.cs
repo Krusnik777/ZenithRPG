@@ -399,12 +399,12 @@ namespace DC_ARPG
             if (target == null) return;
 
             //LevelState.Instance.ComputeAdjacencyList(target);
-
+            /*
             if (m_state == EnemyState.Chase && LevelState.Instance.ChasingEnemies.Count > 1)
                 LevelState.Instance.ComputeAdjacencyList(false);
             else
                 LevelState.Instance.ComputeAdjacencyList();
-
+            */
             GetCurrentTile();
 
             List<Tile> openList = new List<Tile>();
@@ -434,6 +434,8 @@ namespace DC_ARPG
 
                 foreach (var tile in t.NeighborTiles)
                 {
+                    if (tile.Type != TileType.Walkable) continue; // TEMP
+
                     if (closedList.Contains(tile))
                     {
                         // Do nothing, already processed
@@ -542,9 +544,9 @@ namespace DC_ARPG
         }
 
         #endregion
-
+        /*
         #region OBSOLETE
-
+        
         private List<Tile> selectableTiles = new List<Tile>();
 
         private void ComputeAdjacencyList(Tile[] tileField, Tile target)
@@ -610,6 +612,6 @@ namespace DC_ARPG
         }
 
         #endregion
-
+        */
     }
 }

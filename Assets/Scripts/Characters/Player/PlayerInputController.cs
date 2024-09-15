@@ -86,7 +86,7 @@ namespace DC_ARPG
 
         private void OnMovement()
         {
-            if (!player.IsGrounded || player.State != Player.PlayerState.Active) return;
+            if (player.State != Player.PlayerState.Active) return;
 
             Vector2 inputDirection = _controls.Gameplay.Movement.ReadValue<Vector2>();
 
@@ -118,9 +118,7 @@ namespace DC_ARPG
 
         private void OnJump(InputAction.CallbackContext obj)
         {
-            Debug.Log(!player.IsGrounded);
-
-            if (!player.IsGrounded || player.State != Player.PlayerState.Active) return;
+            if (player.State != Player.PlayerState.Active) return;
 
             player.Jump();
         }

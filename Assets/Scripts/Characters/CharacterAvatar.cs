@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace DC_ARPG
 {
@@ -10,19 +11,40 @@ namespace DC_ARPG
         [SerializeField] protected float m_transitionJumpSpeed = 0.3f;
         [SerializeField] protected float m_transitionRotateSpeed = 0.25f;
         [SerializeField] protected float m_afterJumpDelay = 0.1f;
+        [SerializeField] protected float m_transitionFallSpeed = 0.25f;
+        [SerializeField] protected AnimationCurve m_jumpUpCurve;
         [Header("Attack")]
         [SerializeField] protected Weapon m_weapon;
         [SerializeField] protected Weapon m_additionalWeapon;
         [SerializeField] private int m_attackHits = 2;
-        [Header("SFX")]
-        [SerializeField] protected CharacterSFX m_characterSFX;
-        public CharacterSFX CharacterSFX => m_characterSFX;
+        public Weapon Weapon => m_weapon;
+
+        private Tile currentTile;
+        private Tile GetCurrentTile()
+        {
+            Tile tile = null;
+
+            Ray ray = new Ray(transform.position + new Vector3(0, 0.1f, 0), -Vector3.up);
+            RaycastHit hit;
+
+            if (Physics.Raycast(ray, out hit, 1f, 1, QueryTriggerInteraction.Ignore))
+            {
+                tile = hit.collider.GetComponentInParent<Tile>();
+            }
+
+            return tile;
+        }
 
         #region Parameters
 
         protected bool inMovement;
         public bool InMovement => inMovement;
 
+        public event UnityAction EventOnFallStart;
+
+        protected bool isFalling;
+        protected bool isFallen;
+        public bool IsFallingOrFallen => isFalling || isFallen;
 
         protected bool isJumping;
         public bool IsJumping => isJumping;
@@ -45,35 +67,29 @@ namespace DC_ARPG
         public bool IsBlocking => isBlocking;
 
 
-        protected virtual bool inIdleState => !(inMovement || isJumping || isAttacking || isBlocking);
+        protected virtual bool inIdleState => !(inMovement || isJumping || isFalling || isAttacking || isBlocking);
         public bool InIdleState => inIdleState;
 
 
         protected Animator m_animator;
         public Animator Animator => m_animator;
 
+        #endregion
 
-        private Rigidbody m_rigidbody;
+        #region SupportMethods
 
-        private bool GetIsGrounded()
+        public void LandAfterJump()
         {
-            if (m_rigidbody == null) m_rigidbody = GetComponent<Rigidbody>();
-
-            if (transform.position.y < -1.0f && m_rigidbody.velocity.y != 0)
-            {
-                Vector3 correctionPos = new Vector3(transform.position.x, -1.0f, transform.position.z);
-                transform.position = correctionPos;
-
-                m_rigidbody.velocity = Vector3.zero;
-                m_rigidbody.angularVelocity = Vector3.zero;
-                m_rigidbody.Sleep();
-            }
-
-            if (m_rigidbody.velocity.y == 0)
-                return true;
-            else return false;
+            landedAfterJump = true;
         }
-        public bool IsGrounded => GetIsGrounded();
+
+        public void LandAfterFall()
+        {
+            isFalling = false;
+            isFallen = true;
+
+            m_animator.ResetTrigger("Fall"); // Just to be safe
+        }
 
         #endregion
 
@@ -81,23 +97,11 @@ namespace DC_ARPG
 
         public void Move(Vector2 inputDirection)
         {
-            if (Mathf.Sign(transform.position.y) < 0) return;
+            if (isFallen) return;
 
             if (!inIdleState) return;
 
             Vector3 direction = GetDirection(inputDirection);
-
-            Ray directionRay = new Ray(transform.position + new Vector3(0, 0.5f, 0), direction);
-            RaycastHit hit;
-
-            Debug.DrawRay(directionRay.origin, directionRay.direction, Color.red);
-
-            if (Physics.Raycast(directionRay, out hit, 1.1f, 1, QueryTriggerInteraction.Ignore))
-            {
-                if (hit.collider) return;
-            }
-
-            if (CheckForMovingEnemy(directionRay)) return;
 
             if (direction == Vector3.zero)
             {
@@ -107,10 +111,20 @@ namespace DC_ARPG
                 return;
             }
 
+            currentTile = GetCurrentTile();
+
+            Tile targetTile = currentTile.FindNeighbourByDirection(direction);
+
+            if (targetTile == null) return;
+
+            if (targetTile.Occupied || targetTile.Type == TileType.Obstacle) return;
+
+            if (targetTile.Type == TileType.Closable && targetTile.CheckClosed()) return;
+
             m_animator.SetFloat("MovementX", inputDirection.x);
             m_animator.SetFloat("MovementZ", inputDirection.y);
 
-            StartCoroutine(MoveTo(direction));
+            StartCoroutine(MoveTo(targetTile));
         }
 
         public void Turn(float angle)
@@ -124,49 +138,77 @@ namespace DC_ARPG
         {
             if (!inIdleState) return;
 
-            if (Mathf.Sign(transform.position.y) < 0)
+            if (isFallen)
             {
-                Vector3 correctionPos = new Vector3(transform.position.x, -1.0f, transform.position.z);
-                transform.position = correctionPos;
+                Tile targetTile = currentTile.FindNeighbourByDirection(transform.forward);
 
-                Ray upRay = new Ray(transform.position + new Vector3(0, 1.15f, 0), transform.forward);
-                RaycastHit upHit;
+                if (targetTile == null) return;
 
-                if (Physics.Raycast(upRay, out upHit, 1.0f))
-                {
-                    if (upHit.collider && !upHit.collider.isTrigger) return;
-                }
+                if (targetTile.Occupied || targetTile.Type == TileType.Obstacle) return;
 
-                StartCoroutine(JumpUp());
+                if (targetTile.Type == TileType.Closable && targetTile.CheckClosed()) return;
+
+                StartCoroutine(JumpUpForward(targetTile));
+
+                isFallen = false;
+
                 return;
             }
 
-            Ray jumpRay = new Ray(transform.position + new Vector3(0, 0.45f, 0), transform.forward);
-            RaycastHit hit;
-            Vector3 distance = Vector3.zero;
+            currentTile = GetCurrentTile();
 
-            Debug.DrawRay(jumpRay.origin, jumpRay.direction, Color.yellow);
+            var forwardTiles = currentTile.FindTwoForwardTiles(transform.forward);
 
-            if (Physics.Raycast(jumpRay, out hit, 2.0f, 1, QueryTriggerInteraction.Ignore))
+            if (forwardTiles[0] == null)
             {
-                if (hit.collider)
-                {
-                    if (hit.distance <= 2.0f && hit.distance > 1.0f)
-                    {
-                        distance = transform.forward;
-                    }
-                    else if (hit.distance <= 1.0f)
-                    {
-                        distance = Vector3.zero;
-                    }
-                }
+                StartCoroutine(JumpInPlace());
             }
             else
             {
-                distance = transform.forward * 2;
+                if (forwardTiles[0].Occupied || forwardTiles[0].Type == TileType.Closable && forwardTiles[0].CheckClosed())
+                {
+                    StartCoroutine(JumpInPlace());
+                }
+                else
+                {
+                    if (forwardTiles[1] != null)
+                    {
+                        if (forwardTiles[1].Occupied || forwardTiles[1].Type == TileType.Obstacle || forwardTiles[1].Type == TileType.Closable && forwardTiles[1].CheckClosed())
+                        {
+                            if (forwardTiles[0].Type != TileType.Obstacle)
+                            {
+                                StartCoroutine(JumpToForwardTile(forwardTiles[0]));
+                            }
+                            else
+                            {
+                                StartCoroutine(JumpInPlace());
+                            }
+                        }
+                        else
+                        {
+                            StartCoroutine(JumpTwoTilesForward(forwardTiles));
+                        }
+                    }
+                    else
+                    {
+                        if (forwardTiles[0].Type != TileType.Obstacle)
+                        {
+                            StartCoroutine(JumpToForwardTile(forwardTiles[0]));
+                        }
+                        else
+                        {
+                            StartCoroutine(JumpInPlace());
+                        }
+                    }
+                }
             }
+        }
 
-            StartCoroutine(JumpTo(distance));
+        public void Fall()
+        {
+            if (IsFallingOrFallen) return;
+
+            StartCoroutine(FallRoutine());
         }
 
         public virtual void Attack()
@@ -260,51 +302,20 @@ namespace DC_ARPG
             return direction;
         }
 
-        private void LandAfterJump()
+        private void FreePreviousTileAndCheckNewForPit()
         {
-            landedAfterJump = true;
-            m_characterSFX.PlayLandSound();
-        }
-
-        private bool CheckForMovingEnemy(Ray directionRay)
-        {
-            RaycastHit hit;
-
-            if (Physics.Raycast(directionRay, out hit, 1.9f, 1, QueryTriggerInteraction.Ignore))
+            if (currentTile != null)
             {
-                if (hit.collider.transform.parent.TryGetComponent(out Enemy enemy))
-                {
-                    if (enemy.EnemyAI.InChaseState || hit.distance < 1.7f && !enemy.EnemyAI.InChaseState)
-                        return true;
-                }
-            }
+                currentTile.SetTileOccupied(false);
 
-            var halfExtents = new Vector3();
+                currentTile = GetCurrentTile();
 
-            if (directionRay.direction == transform.forward || directionRay.direction == -transform.forward)
-            {
-                halfExtents = new Vector3(1.499f, 1f, 0.5f)/2;
-            }
-
-            if (directionRay.direction == transform.right|| directionRay.direction == -transform.right)
-            {
-                halfExtents = new Vector3(0.5f, 1f, 1.499f)/2;
-            }
-            
-            Collider[] colliders = Physics.OverlapBox(transform.position + directionRay.direction, halfExtents,transform.rotation, 1, QueryTriggerInteraction.Ignore);
-
-            foreach (var collider in colliders)
-            {
-                if (!collider.isTrigger)
-                {
-                    if (collider.transform.parent.TryGetComponent(out Enemy enemy))
+                if (currentTile != null)
+                    if (currentTile.Type == TileType.Pit)
                     {
-                        return true;
+                        Fall();
                     }
-                }
             }
-
-            return false;
         }
 
         private void ResetAttack()
@@ -318,16 +329,15 @@ namespace DC_ARPG
 
         #region Coroutines
 
-        private IEnumerator MoveTo(Vector3 direction)
+        private IEnumerator MoveTo(Tile targetTile)
         {
             inMovement = true;
+            targetTile.SetTileOccupied(true);
 
             var startPosition = transform.position;
-            var targetPosition = direction + startPosition;
+            var targetPosition = targetTile.transform.position;
 
             var elapsed = 0.0f;
-
-            m_characterSFX.PlayFootstepSound();
 
             while (elapsed < m_transitionMoveSpeed)
             {
@@ -339,18 +349,20 @@ namespace DC_ARPG
 
             transform.position = targetPosition;
 
+            FreePreviousTileAndCheckNewForPit();
+
             //yield return null;
 
             inMovement = false;
 
             yield return null;
             //yield return new WaitForSeconds(0.1f);
-            
+
             if (!inMovement)
             {
                 m_animator.SetFloat("MovementX", 0);
                 m_animator.SetFloat("MovementZ", 0);
-                m_animator.SetTrigger("IdleTrigger");
+                if (!isFalling) m_animator.SetTrigger("IdleTrigger");
             }
         }
 
@@ -383,8 +395,6 @@ namespace DC_ARPG
                 yield return new WaitUntil(() => m_animator.GetCurrentAnimatorStateInfo(0).IsName("Turn180"));
             }
 
-            m_characterSFX.PlayFootstepSound();
-
             while (elapsed < m_transitionRotateSpeed)
             {
                 transform.rotation = Quaternion.Slerp(startRotation, targetRotation, elapsed / m_transitionRotateSpeed);
@@ -401,79 +411,26 @@ namespace DC_ARPG
             inMovement = false;
         }
 
-        private IEnumerator JumpTo(Vector3 distance)
+        private IEnumerator JumpToForwardTile(Tile targetTile)
         {
             landedAfterJump = false;
             isJumping = true;
 
+            targetTile.SetTileOccupied(true);
+
             var startPosition = transform.position;
-            Vector3 targetPosition;
+            Vector3 targetPosition = targetTile.transform.position;
 
             var elapsed = 0.0f;
             var time = m_transitionJumpSpeed;
+            time *= 1.5f; // maybe to do different times to variables
 
             m_animator.Play("Jump");
-
-            m_characterSFX.PlayJumpSound();
 
             yield return new WaitUntil(() => m_animator.GetCurrentAnimatorStateInfo(0).IsName("Jump"));
 
-            if (distance != Vector3.zero)
-            {
-                if (distance == transform.forward)
-                {
-                    targetPosition = distance + startPosition;
-                    time *= 1.5f;
-                }
-                else
-                {
-                    targetPosition = distance + startPosition;
-                }
-
-                while (Vector3.Distance(transform.position, targetPosition) >= 0.05f)
-                {
-                    if (Vector3.Distance(transform.position, targetPosition) <= 0.1f)
-                        if (!IsGrounded) break;
-
-                    transform.position = Vector3.MoveTowards(startPosition, targetPosition, elapsed / time);
-                    elapsed += Time.deltaTime;
-
-                    yield return null;
-                }
-
-                transform.position = targetPosition;
-
-                LandAfterJump();
-            }
-
-            yield return new WaitWhile(() => m_animator.GetCurrentAnimatorStateInfo(0).IsName("Jump"));
-
-            if (distance == Vector3.zero) LandAfterJump();
-
-            yield return new WaitForSeconds(m_afterJumpDelay);
-
-            isJumping = false;
-        }
-
-        private IEnumerator JumpUp()
-        {
-            landedAfterJump = false;
-            isJumping = true;
-            var startPosition = transform.position;
-            var targetPosition = startPosition + transform.forward;
-            targetPosition.y = 0.05f;
-
-            var elapsed = 0.0f;
-            var time = m_transitionJumpSpeed;
-
-            m_animator.Play("Jump");
-            m_characterSFX.PlayJumpSound();
-
             while (Vector3.Distance(transform.position, targetPosition) >= 0.05f)
             {
-                if (Vector3.Distance(transform.position, targetPosition) <= 0.1f)
-                    if (!IsGrounded) break;
-
                 transform.position = Vector3.MoveTowards(startPosition, targetPosition, elapsed / time);
                 elapsed += Time.deltaTime;
 
@@ -482,13 +439,171 @@ namespace DC_ARPG
 
             transform.position = targetPosition;
 
-            LandAfterJump();
+            FreePreviousTileAndCheckNewForPit();
+
+            if (isFalling)
+            {
+                yield return null;
+            }
+            else
+            {
+                yield return new WaitWhile(() => m_animator.GetCurrentAnimatorStateInfo(0).IsName("Jump"));
+
+                yield return new WaitForSeconds(m_afterJumpDelay);
+            }
+
+            isJumping = false;
+        }
+
+        private IEnumerator JumpTwoTilesForward(Tile[] tiles)
+        {
+            landedAfterJump = false;
+            isJumping = true;
+
+            tiles[0].SetTileOccupied(true);
+            tiles[1].SetTileOccupied(true);
+
+            var startPosition = transform.position;
+            Vector3 targetPosition = tiles[1].transform.position;
+
+            var elapsed = 0.0f;
+            var time = m_transitionJumpSpeed;
+
+            m_animator.Play("Jump");
+
+            yield return new WaitUntil(() => m_animator.GetCurrentAnimatorStateInfo(0).IsName("Jump"));
+
+            while (Vector3.Distance(transform.position, targetPosition) >= 0.05f)
+            {
+                transform.position = Vector3.MoveTowards(startPosition, targetPosition, elapsed / time);
+                elapsed += Time.deltaTime;
+
+                yield return null;
+            }
+
+            transform.position = targetPosition;
+
+            FreePreviousTileAndCheckNewForPit();
+
+            tiles[0].SetTileOccupied(false);
+
+            if (isFalling)
+            {
+                yield return null;
+            }
+            else
+            {
+                yield return new WaitWhile(() => m_animator.GetCurrentAnimatorStateInfo(0).IsName("Jump"));
+
+                yield return new WaitForSeconds(m_afterJumpDelay);
+            }
+
+            isJumping = false;
+        }
+
+        private IEnumerator JumpInPlace()
+        {
+            landedAfterJump = false;
+            isJumping = true;
+
+            m_animator.Play("Jump");
+
+            yield return new WaitUntil(() => m_animator.GetCurrentAnimatorStateInfo(0).IsName("Jump"));
 
             yield return new WaitWhile(() => m_animator.GetCurrentAnimatorStateInfo(0).IsName("Jump"));
 
             yield return new WaitForSeconds(m_afterJumpDelay);
 
             isJumping = false;
+        }
+
+        private IEnumerator JumpUpForward(Tile targetTile)
+        {
+            landedAfterJump = false;
+            isJumping = true;
+
+            targetTile.SetTileOccupied(true);
+
+            var startPosition = transform.position;
+            Vector3 targetPosition = targetTile.transform.position;
+
+            var elapsed = 0.0f;
+            var time = m_transitionJumpSpeed;
+            time *= 1.5f;
+
+            m_animator.Play("Jump");
+
+            yield return new WaitUntil(() => m_animator.GetCurrentAnimatorStateInfo(0).IsName("Jump"));
+
+            while (Vector3.Distance(transform.position, targetPosition) >= 0.05f)
+            {
+                elapsed += Time.deltaTime;
+
+                float elapsedToTime = elapsed / time;
+                float heightEvaluated = m_jumpUpCurve.Evaluate(elapsedToTime);
+
+                transform.position = Vector3.MoveTowards(startPosition, targetPosition, elapsedToTime);
+                transform.position = new Vector3(transform.position.x, heightEvaluated, transform.position.z);
+
+                /*
+                transform.position = Vector3.MoveTowards(startPosition, targetPosition, elapsed / time);
+                elapsed += Time.deltaTime;*/
+
+                yield return null;
+            }
+
+            transform.position = targetPosition;
+
+            FreePreviousTileAndCheckNewForPit();
+
+            if (isFalling)
+            {
+                yield return null;
+            }
+            else
+            {
+                yield return new WaitWhile(() => m_animator.GetCurrentAnimatorStateInfo(0).IsName("Jump"));
+
+                yield return new WaitForSeconds(m_afterJumpDelay);
+            }
+
+            isJumping = false;
+        }
+
+        private IEnumerator FallRoutine()
+        {
+            EventOnFallStart?.Invoke();
+
+            isFalling = true;
+
+            yield return null; // delay for fall event
+
+            Vector3 startPosition = transform.position;
+            Vector3 targetPosition = new Vector3(transform.position.x, -1, transform.position.z);
+
+            var elapsed = 0.0f;
+
+            m_animator.Play("FallState.Fall");
+
+            yield return new WaitUntil(() => m_animator.GetCurrentAnimatorStateInfo(0).IsName("FallState.Fall"));
+
+            while (Vector3.Distance(transform.position, targetPosition) >= 0.05f)
+            {
+                transform.position = Vector3.MoveTowards(startPosition, targetPosition, elapsed / m_transitionFallSpeed);
+                elapsed += Time.deltaTime;
+
+                yield return null;
+            }
+
+            transform.position = targetPosition;
+
+            m_animator.SetTrigger("Fall");
+
+            yield return new WaitUntil(() => m_animator.GetCurrentAnimatorStateInfo(0).IsName("FallState.LandAfterFall"));
+
+            yield return new WaitWhile(() => m_animator.GetCurrentAnimatorStateInfo(0).IsName("FallState.LandAfterFall"));
+
+            yield return new WaitForSeconds(m_afterJumpDelay);
         }
 
         private IEnumerator SetAttack(int attackCount)
@@ -509,7 +624,6 @@ namespace DC_ARPG
                 yield return new WaitUntil(() => m_animator.GetCurrentAnimatorStateInfo(0).IsName("AttackState.Attack" + attackCount));
             }
 
-            m_characterSFX.PlayAttackSound();
             m_weapon.SetWeaponActive(true);
             if(m_additionalWeapon != null) m_additionalWeapon.SetWeaponActive(true);
 

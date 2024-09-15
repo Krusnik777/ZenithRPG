@@ -14,6 +14,8 @@ namespace DC_ARPG
 
         public void UnpressButton() => m_buttonPressTrigger.UnpressButton();
 
+        public override bool Disabled => m_buttonPressTrigger.ButtonDisabled;
+
         public override void OnInspection(Player player)
         {
             ShortMessage.Instance.ShowMessage("Нажимная плита.");

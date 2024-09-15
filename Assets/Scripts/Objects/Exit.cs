@@ -1,5 +1,3 @@
-using UnityEngine;
-
 namespace DC_ARPG
 {
     public class Exit : InspectableObject

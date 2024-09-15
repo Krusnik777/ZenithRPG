@@ -14,6 +14,8 @@ namespace DC_ARPG
 
         public UnityEvent OnWallBroken;
 
+        public override bool Disabled => !m_collider.enabled;
+
         public bool StandingInFrontOfWall => m_forwardPositionTrigger.InRightPosition || m_backwardPositionTrigger.InRightPosition;
 
         public void BreakWall()
@@ -26,6 +28,7 @@ namespace DC_ARPG
 
             Destroy(m_wallMiddlePart);
             m_collider.enabled = false;
+            //Destroy(m_collider.gameObject);
 
             OnWallBroken?.Invoke();
         }
@@ -82,6 +85,7 @@ namespace DC_ARPG
             {
                 Destroy(m_wallMiddlePart);
                 m_collider.enabled = false;
+                //Destroy(m_collider.gameObject);
             }
         }
 

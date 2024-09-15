@@ -141,6 +141,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4e8560462e060643a8482cd5b4bc61e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_character: {fileID: 4915202404410297225}
+  m_characterAvatar: {fileID: 5625230263563871144}
   m_footstepSound: {fileID: 8300000, guid: e8e9beea36680be48a76a7cfc47f1f0b, type: 3}
   m_jumpSound: {fileID: 8300000, guid: eeffcbb39ec446a478ab230288a6b658, type: 3}
   m_landSound: {fileID: 8300000, guid: c95f94ec25c9e6949bfe149c5685ea16, type: 3}
@@ -319,7 +321,6 @@ MonoBehaviour:
   m_weapon: {fileID: 6113838619211676390}
   m_additionalWeapon: {fileID: 0}
   m_attackHits: 2
-  m_characterSFX: {fileID: 5654172165861338612}
   m_prefabId: EnemyKnightPrefab_Default
   m_id: 
   m_isSerializable: 1

@@ -3,14 +3,28 @@ using UnityEngine;
 
 namespace DC_ARPG
 {
+    public enum TileType
+    {
+        Walkable,
+        Mechanism,
+        Pit,
+        Obstacle,
+        Closable
+    }
+
     public class Tile : MonoBehaviour
     {
         private List<Tile> neighborTiles = new List<Tile>();
         public List<Tile> NeighborTiles { get => neighborTiles; set => neighborTiles = value; }
 
-        [SerializeField] private bool m_walkable = true;
+        [SerializeField] private TileType m_type;
+        [SerializeField] private InspectableObject m_objectOnTile;
+        public TileType Type => m_type;
 
-        public bool Walkable { get => m_walkable; set => m_walkable = value; }
+        private bool m_occupied;
+        public bool Occupied => m_occupied;
+
+        // Path Finding
         public bool Current { get; set; }
         public bool Target { get; set; }
         public bool Selectable { get; set; }
@@ -25,7 +39,31 @@ namespace DC_ARPG
         public float g { get; set; }
         public float h { get; set; }
 
-        public bool CheckTileOccupied(bool notIncludeTileWithPlayer = true)
+        public void SetTileOccupied(bool occupied) => m_occupied = occupied;
+
+        public bool CheckClosed()
+        {
+            if (m_objectOnTile == null)
+            {
+                m_type = TileType.Walkable;
+                return false;
+            }
+
+            return !m_objectOnTile.Disabled;
+        }
+
+        public bool CheckMechanism()
+        {
+            if (m_objectOnTile == null)
+            {
+                m_type = TileType.Walkable;
+                return true;
+            }
+
+            return m_objectOnTile.Disabled;
+        }
+
+        public bool CheckTileOccupied()
         {
             Collider[] colliders = Physics.OverlapSphere(transform.position + Vector3.up * 0.6f, 0.45f);
 
@@ -33,26 +71,48 @@ namespace DC_ARPG
             {
                 if (!collider.isTrigger)
                 {
-                    if (notIncludeTileWithPlayer)
-                    {
-                        if (!collider.transform.parent.GetComponent<Player>()) return true;
-                    }
-                    else return true;
-                }
-                    
+                    return true;
+                }  
             }
-
             return false;
         }
 
-        public void FindNeighbors(Tile target = null, bool notIncludeTileWithPlayer = true)
+        public Tile FindNeighbourByDirection(Vector3 direction)
+        {
+            Tile tile = null;
+
+            Vector3 halfExtents = new Vector3(0.25f, 0.25f, 0.25f);
+            Collider[] colliders = Physics.OverlapBox(transform.position + direction, halfExtents);
+
+            foreach (var collider in colliders)
+            {
+                tile = collider.GetComponentInParent<Tile>();
+
+                if (tile != null) return tile;
+            }
+
+            return tile;
+        }
+
+        public Tile[] FindTwoForwardTiles(Vector3 direction)
+        {
+            Tile[] tiles = new Tile[2];
+
+            tiles[0] = FindNeighbourByDirection(direction);
+
+            if (tiles[0] != null) tiles[1] = tiles[0].FindNeighbourByDirection(direction);
+
+            return tiles;
+        }
+
+        public void FindNeighbors(bool notIncludeTileWithPlayer = true)
         {
             Reset();
 
-            CheckTile(Vector3.forward, target, notIncludeTileWithPlayer);
-            CheckTile(-Vector3.forward, target, notIncludeTileWithPlayer);
-            CheckTile(Vector3.right, target, notIncludeTileWithPlayer);
-            CheckTile(-Vector3.right, target, notIncludeTileWithPlayer);
+            CheckTile(Vector3.forward, notIncludeTileWithPlayer);
+            CheckTile(-Vector3.forward, notIncludeTileWithPlayer);
+            CheckTile(Vector3.right, notIncludeTileWithPlayer);
+            CheckTile(-Vector3.right, notIncludeTileWithPlayer);
         }
 
         public void Reset()
@@ -70,7 +130,7 @@ namespace DC_ARPG
             f = g = h = 0;
         }
 
-        private void CheckTile(Vector3 direction, Tile target, bool notIncludeTileWithPlayer = true)
+        private void CheckTile(Vector3 direction, bool notIncludeTileWithPlayer = true)
         {
             Vector3 halfExtents = new Vector3(0.25f, 0.25f, 0.25f);
             Collider[] colliders = Physics.OverlapBox(transform.position + direction, halfExtents);
@@ -79,9 +139,9 @@ namespace DC_ARPG
             {
                 Tile tile = collider.GetComponentInParent<Tile>();
 
-                if (tile != null && tile.Walkable && tile.CheckTileOccupied(notIncludeTileWithPlayer) == false)
+                if (tile != null /*&& tile.CheckTileOccupied() == false*/)
                 {
-                    if (!Physics.Raycast(tile.transform.position, Vector3.up, 1f, 1, QueryTriggerInteraction.Ignore) || tile == target)
+                    if (!Physics.Raycast(tile.transform.position, Vector3.up, 1f, 1, QueryTriggerInteraction.Ignore))
                     {
                         neighborTiles.Add(tile);
                     }

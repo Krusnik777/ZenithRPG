@@ -55,7 +55,7 @@ namespace DC_ARPG
             return TrySetItemInSlot(item);
         }
 
-        public void UseWeapon(object sender, Player player)
+        public void UseWeapon(object sender, Player player, UnityAction OnBroken = null)
         {
             var weaponItem = Item as WeaponItem;
 
@@ -64,11 +64,11 @@ namespace DC_ARPG
             if (weaponItem.Uses <= 0)
             {
                 player.Character.Inventory.RemoveItemFromInventory(sender, player.Character.Inventory.WeaponItemSlot);
-                player.ShowSwordBreakEffect();
                 player.Character.Inventory.SetBrokenWeapon(sender, player.Character.BrokenWeapon);
 
                 UISounds.Instance.PlaySwordBreakSound();
 
+                OnBroken?.Invoke();
                 EventOnBrokenWeapon?.Invoke(sender);
             }
 
