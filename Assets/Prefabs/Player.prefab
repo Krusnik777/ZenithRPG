@@ -533,7 +533,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 122
+  m_Constraints: 126
   m_CollisionDetection: 0
 --- !u!114 &7808917086676399244
 MonoBehaviour:
@@ -563,6 +563,40 @@ MonoBehaviour:
   m_transitionJumpSpeed: 0.25
   m_transitionRotateSpeed: 0.25
   m_afterJumpDelay: 0.1
+  m_transitionFallSpeed: 0.25
+  m_jumpUpCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: -1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 136
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.75
+      value: 0.1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 136
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 136
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   m_weapon: {fileID: 4389632054340375843}
   m_additionalWeapon: {fileID: 0}
   m_attackHits: 2
@@ -1068,6 +1102,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_characterAvatar: {fileID: 6766054219301148474}
   m_characterSFX: {fileID: 1526247927414751933}
+  m_rigBuilder: {fileID: 5243854061240593908}
 --- !u!1 &551195887405852799 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3578230997887007765, guid: d5e01126c1cd14044ab57d4d0b5f6cef, type: 3}

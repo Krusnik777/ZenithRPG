@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace DC_ARPG
 {
@@ -11,6 +12,7 @@ namespace DC_ARPG
         [SerializeField] protected float m_transitionRotateSpeed = 0.25f;
         [SerializeField] protected float m_afterJumpDelay = 0.1f;
         [SerializeField] protected float m_transitionFallSpeed = 0.25f;
+        [SerializeField] protected AnimationCurve m_jumpUpCurve;
         [Header("Attack")]
         [SerializeField] protected Weapon m_weapon;
         [SerializeField] protected Weapon m_additionalWeapon;
@@ -37,6 +39,8 @@ namespace DC_ARPG
 
         protected bool inMovement;
         public bool InMovement => inMovement;
+
+        public event UnityAction EventOnFallStart;
 
         protected bool isFalling;
         protected bool isFallen;
@@ -144,7 +148,7 @@ namespace DC_ARPG
 
                 if (targetTile.Type == TileType.Closable && targetTile.CheckClosed()) return;
 
-                StartCoroutine(JumpToForwardTile(targetTile));
+                StartCoroutine(JumpUpForward(targetTile));
 
                 isFallen = false;
 
@@ -513,13 +517,69 @@ namespace DC_ARPG
             isJumping = false;
         }
 
+        private IEnumerator JumpUpForward(Tile targetTile)
+        {
+            landedAfterJump = false;
+            isJumping = true;
+
+            targetTile.SetTileOccupied(true);
+
+            var startPosition = transform.position;
+            Vector3 targetPosition = targetTile.transform.position;
+
+            var elapsed = 0.0f;
+            var time = m_transitionJumpSpeed;
+            time *= 1.5f;
+
+            m_animator.Play("Jump");
+
+            yield return new WaitUntil(() => m_animator.GetCurrentAnimatorStateInfo(0).IsName("Jump"));
+
+            while (Vector3.Distance(transform.position, targetPosition) >= 0.05f)
+            {
+                elapsed += Time.deltaTime;
+
+                float elapsedToTime = elapsed / time;
+                float heightEvaluated = m_jumpUpCurve.Evaluate(elapsedToTime);
+
+                transform.position = Vector3.MoveTowards(startPosition, targetPosition, elapsedToTime);
+                transform.position = new Vector3(transform.position.x, heightEvaluated, transform.position.z);
+
+                /*
+                transform.position = Vector3.MoveTowards(startPosition, targetPosition, elapsed / time);
+                elapsed += Time.deltaTime;*/
+
+                yield return null;
+            }
+
+            transform.position = targetPosition;
+
+            FreePreviousTileAndCheckNewForPit();
+
+            if (isFalling)
+            {
+                yield return null;
+            }
+            else
+            {
+                yield return new WaitWhile(() => m_animator.GetCurrentAnimatorStateInfo(0).IsName("Jump"));
+
+                yield return new WaitForSeconds(m_afterJumpDelay);
+            }
+
+            isJumping = false;
+        }
+
         private IEnumerator FallRoutine()
         {
+            EventOnFallStart?.Invoke();
+
             isFalling = true;
 
+            yield return null; // delay for fall event
+
             Vector3 startPosition = transform.position;
-            Vector3 targetPosition = transform.position;
-            targetPosition.y = -1;
+            Vector3 targetPosition = new Vector3(transform.position.x, -1, transform.position.z);
 
             var elapsed = 0.0f;
 

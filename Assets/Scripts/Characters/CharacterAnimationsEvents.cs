@@ -1,11 +1,13 @@
 using UnityEngine;
+using UnityEngine.Animations.Rigging;
 
 namespace DC_ARPG
 {
     public class CharacterAnimationsEvents : MonoBehaviour
     {
         [SerializeField] private CharacterAvatar m_characterAvatar;
-        [SerializeField] protected CharacterSFX m_characterSFX;
+        [SerializeField] private CharacterSFX m_characterSFX;
+        [SerializeField] private RigBuilder m_rigBuilder;
 
         public void OnFootstepAnimation()
         {
@@ -19,13 +21,17 @@ namespace DC_ARPG
 
         public void OnLandAfterJumpAnimation()
         {
-            m_characterSFX.PlayLandSound();
+            if (!m_characterAvatar.IsFallingOrFallen) m_characterSFX.PlayLandSound();
             m_characterAvatar.LandAfterJump();
         }
 
         public void OnLandAfterFallAnimation()
         {
+            m_characterSFX.PlayLandSound(); // Maybe another sound? Or without it
             m_characterAvatar.LandAfterFall();
+
+            m_rigBuilder.layers[0].active = false;
+            m_rigBuilder.layers[1].active = false;
         }
 
         public void OnAttackAnimation()
@@ -36,6 +42,22 @@ namespace DC_ARPG
         public void OnDeathAnimation()
         {
             m_characterSFX.PlayDeathSFX(m_characterAvatar.transform.position);
+        }
+
+        private void Awake()
+        {
+            m_characterAvatar.EventOnFallStart += OnFallAnimation;
+        }
+
+        private void OnDestroy()
+        {
+            m_characterAvatar.EventOnFallStart -= OnFallAnimation;
+        }
+
+        private void OnFallAnimation()
+        {
+            m_rigBuilder.layers[0].active = true;
+            m_rigBuilder.layers[1].active = true;
         }
     }
 }

@@ -8,7 +8,7 @@ namespace DC_ARPG
         [SerializeField] protected string m_infoText;
         public UnityEvent EventOnInspection;
 
-        public virtual bool Disabled => true;
+        public virtual bool Disabled => false;
 
         public virtual string InfoText => m_infoText;
 
