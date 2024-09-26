@@ -59,10 +59,6 @@ namespace DC_ARPG
         private Timer m_chaseTimer;
         private Timer m_attackTimer;
 
-        private int currentMoves = 0;
-        private int m_moveCount = 1;
-
-        private void GetCurrentTile() => currentTile = GetTargetTile(gameObject);
         private void CalculateHeadingDirection(Vector3 targetPosition) => headingDirection = (targetPosition - transform.position).normalized;
         private void SetHorizontalVelocity() => velocity = headingDirection * moveSpeed;
 
@@ -124,6 +120,12 @@ namespace DC_ARPG
         private void StartState(EnemyState state)
         {
             m_state = state;
+        }
+
+        private void Awake()
+        {
+            currentTile = m_enemy.GetCurrentTile();
+            if (currentTile != null) currentTile.SetTileOccupied(m_enemy);
         }
 
         private void Start()
@@ -189,7 +191,7 @@ namespace DC_ARPG
                     }
                     else
                     {
-                        CalculatePath(playerTile);
+                        CalculatePath(LevelState.Instance.GetTargetNearPlayer(this));
                     }
 
                     isChasing = true;
@@ -250,7 +252,7 @@ namespace DC_ARPG
             return tile;
         }
 
-        private void MoveToTile(Tile tile)
+        private void MoveToTile(Tile tile, List<Tile> clearList)
         {
             path.Clear();
 
@@ -264,6 +266,11 @@ namespace DC_ARPG
 
                 next = next.ParentTile;
             }
+
+            foreach (var t in clearList)
+            {
+                t.ResetPathFindingValues();
+            }
         }
 
         private void Move()
@@ -271,6 +278,18 @@ namespace DC_ARPG
             if (path.Count > 0)
             {
                 Tile t = path.Peek();
+
+                if (!t.Occupied.State)
+                {
+                    t.SetTileOccupied(m_enemy);
+                }
+
+                if (t.Occupied.State && t.Occupied.By != m_enemy || t.Type == TileType.Closable && t.CheckClosed())
+                {
+                    StopMoving();
+                    return;
+                }
+
                 Vector3 targetPosition = t.transform.position;
 
                 m_enemy.Animator.SetFloat("MovementZ", 1);
@@ -301,26 +320,8 @@ namespace DC_ARPG
 
                     transform.position = targetPosition;
 
-                    if (isChasing)
-                    {
-                        currentMoves++;
-
-                        if (currentMoves > m_moveCount)
-                        {
-                            if (LevelState.Instance.ChasingEnemies.Count > 1)
-                            {
-                                CalculatePath(LevelState.Instance.GetTargetNearPlayer(this));
-                            }
-                            else
-                            {
-                                CalculatePath(playerTile);
-                            }
-
-                            currentMoves = 0;
-
-                            return;
-                        }
-                    }
+                    currentTile.SetTileOccupied(null);
+                    currentTile = t;
 
                     path.Pop();
                 }
@@ -369,7 +370,6 @@ namespace DC_ARPG
             m_enemy.Animator.SetTrigger("IdleTrigger");
             m_enemy.Animator.SetFloat("MovementZ", 0);
 
-            ClearCurrentTile();
             isMoving = false;
         }
 
@@ -385,32 +385,19 @@ namespace DC_ARPG
             isChasing = false;
         }
 
-        private void ClearCurrentTile()
-        {
-            if (currentTile != null)
-            {
-                currentTile.Current = false;
-                currentTile = null;
-            }
-        }
-
         private void CalculatePath(Tile target)
         {
             if (target == null) return;
 
-            //LevelState.Instance.ComputeAdjacencyList(target);
-            /*
-            if (m_state == EnemyState.Chase && LevelState.Instance.ChasingEnemies.Count > 1)
-                LevelState.Instance.ComputeAdjacencyList(false);
-            else
-                LevelState.Instance.ComputeAdjacencyList();
-            */
-            GetCurrentTile();
+            if (currentTile == null) currentTile = m_enemy.GetCurrentTile();
 
             List<Tile> openList = new List<Tile>();
             List<Tile> closedList = new List<Tile>();
 
+            List<Tile> clearList = new List<Tile>();
+
             openList.Add(currentTile);
+            clearList.Add(currentTile);
             currentTile.h = Vector3.Distance(currentTile.transform.position, target.transform.position);
             currentTile.f = currentTile.h;
 
@@ -425,16 +412,28 @@ namespace DC_ARPG
                     if (m_state == EnemyState.Chase && LevelState.Instance.ChasingEnemies.Count == 1)
                     {
                         targetTile = FindEndTile(t);
-                        MoveToTile(targetTile);
+                        MoveToTile(targetTile, clearList);
                     }
-                    else MoveToTile(t);
+                    else MoveToTile(t, clearList);
 
                     return;
                 }
 
                 foreach (var tile in t.NeighborTiles)
                 {
-                    if (tile.Type != TileType.Walkable) continue; // TEMP
+                    // Tile Checks START
+
+                    if (m_state == EnemyState.Patrol && tile.Type != TileType.Walkable) continue;
+
+                    if (tile.Type == TileType.Pit || tile.Type == TileType.Obstacle) continue;
+
+                    if (tile.Type == TileType.Closable && tile.CheckClosed()) continue;
+
+                    if (tile.Occupied.State && tile.Occupied.By != m_enemy) continue;
+
+                    // Tile Checks END
+
+                    clearList.Add(tile);
 
                     if (closedList.Contains(tile))
                     {
@@ -455,6 +454,7 @@ namespace DC_ARPG
                     else
                     {
                         tile.ParentTile = t;
+
                         tile.g = t.g + Vector3.Distance(tile.transform.position, t.transform.position);
                         tile.h = Vector3.Distance(tile.transform.position, target.transform.position);
                         tile.f = tile.g + tile.h;
@@ -466,6 +466,11 @@ namespace DC_ARPG
 
             // what to do if no path to target
             Debug.Log("Path not found");
+
+            foreach (var tile in clearList)
+            {
+                tile.ResetPathFindingValues();
+            }
 
             if (m_state == EnemyState.Chase)
             {
@@ -508,23 +513,7 @@ namespace DC_ARPG
                 next = next.ParentTile;
             }
 
-            if (t.ParentTile != null) t.ParentTile.Target = true;
-
             return t.ParentTile;
-
-            /*
-            if (tempPath.Count <= chaseRange)
-            {
-                return t.ParentTile;
-            }
-
-            Tile endTile = null;
-            for (int i = 0; i <= chaseRange; i++)
-            {
-                endTile = tempPath.Pop();
-            }
-
-            return endTile;*/
         }
 
         #region Timers
@@ -544,74 +533,5 @@ namespace DC_ARPG
         }
 
         #endregion
-        /*
-        #region OBSOLETE
-        
-        private List<Tile> selectableTiles = new List<Tile>();
-
-        private void ComputeAdjacencyList(Tile[] tileField, Tile target)
-        {
-            foreach (var tile in tileField)
-            {
-                tile.FindNeighbors(target);
-            }
-        }
-
-        private void FindSelectableTiles(Tile[] tileField)
-        {
-            ComputeAdjacencyList(tileField, null);
-            GetCurrentTile();
-
-            Queue<Tile> process = new Queue<Tile>();
-
-            process.Enqueue(currentTile);
-            currentTile.Visited = true;
-
-            while (process.Count > 0)
-            {
-                Tile t = process.Dequeue();
-
-                selectableTiles.Add(t);
-                t.Selectable = true;
-
-                foreach (var tile in t.NeighborTiles)
-                {
-                    if (!tile.Visited)
-                    {
-                        tile.ParentTile = t;
-                        tile.Visited = true;
-                        tile.Distance = 1 + t.Distance;
-                        process.Enqueue(tile);
-                    }
-                }
-            }
-        }
-
-        private void SetTarget(Tile target)
-        {
-            if (target.Selectable)
-            {
-                MoveToTile(target);
-            }
-        }
-
-        private void RemoveSelectableTiles()
-        {
-            if (currentTile != null)
-            {
-                currentTile.Current = false;
-                currentTile = null;
-            }
-
-            foreach (var tile in selectableTiles)
-            {
-                tile.Reset();
-            }
-
-            selectableTiles.Clear();
-        }
-
-        #endregion
-        */
     }
 }

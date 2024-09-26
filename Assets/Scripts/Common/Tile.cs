@@ -3,6 +3,26 @@ using UnityEngine;
 
 namespace DC_ARPG
 {
+    public struct OccupiedState
+    {
+        private bool isOccupied;
+        private CharacterAvatar occupiedBy;
+        public bool State => isOccupied;
+        public CharacterAvatar By => occupiedBy;
+
+        public OccupiedState(bool isOccupied = false, CharacterAvatar occupiedBy = null)
+        {
+            this.isOccupied = isOccupied;
+            this.occupiedBy = occupiedBy;
+        }
+
+        public void SetOccupied(bool isOccupied, CharacterAvatar occupiedBy)
+        {
+            this.isOccupied = isOccupied;
+            this.occupiedBy = occupiedBy;
+        }
+    }
+
     public enum TileType
     {
         Walkable,
@@ -21,25 +41,20 @@ namespace DC_ARPG
         [SerializeField] private InspectableObject m_objectOnTile;
         public TileType Type => m_type;
 
-        private bool m_occupied;
-        public bool Occupied => m_occupied;
+        private OccupiedState m_occupied;
+        public OccupiedState Occupied => m_occupied;
 
         // Path Finding
-        public bool Current { get; set; }
-        public bool Target { get; set; }
-        public bool Selectable { get; set; }
 
         // Breadth-first search (BFS)
-        public bool Visited { get; set; }
         public Tile ParentTile { get; set; }
-        public int Distance { get; set; }
 
         // A*
         public float f { get; set; }
         public float g { get; set; }
         public float h { get; set; }
 
-        public void SetTileOccupied(bool occupied) => m_occupied = occupied;
+        public void SetTileOccupied(CharacterAvatar occupiedBy) => m_occupied.SetOccupied(occupiedBy != null, occupiedBy);
 
         public bool CheckClosed()
         {
@@ -105,32 +120,37 @@ namespace DC_ARPG
             return tiles;
         }
 
-        public void FindNeighbors(bool notIncludeTileWithPlayer = true)
+        public void FindNeighbors()
         {
             Reset();
 
-            CheckTile(Vector3.forward, notIncludeTileWithPlayer);
-            CheckTile(-Vector3.forward, notIncludeTileWithPlayer);
-            CheckTile(Vector3.right, notIncludeTileWithPlayer);
-            CheckTile(-Vector3.right, notIncludeTileWithPlayer);
+            CheckTile(Vector3.forward);
+            CheckTile(-Vector3.forward);
+            CheckTile(Vector3.right);
+            CheckTile(-Vector3.right);
+        }
+
+        public void ResetPathFindingValues()
+        {
+            f = g = h = 0;
+
+            ParentTile = null;
+
+            //m_occupied = new OccupiedState();
         }
 
         public void Reset()
         {
             neighborTiles.Clear();
 
-            Current = false;
-            Target = false;
-            Selectable = false;
-
-            Visited = false;
             ParentTile = null;
-            Distance = 0;
 
             f = g = h = 0;
+
+            m_occupied = new OccupiedState();
         }
 
-        private void CheckTile(Vector3 direction, bool notIncludeTileWithPlayer = true)
+        private void CheckTile(Vector3 direction)
         {
             Vector3 halfExtents = new Vector3(0.25f, 0.25f, 0.25f);
             Collider[] colliders = Physics.OverlapBox(transform.position + direction, halfExtents);
@@ -139,12 +159,9 @@ namespace DC_ARPG
             {
                 Tile tile = collider.GetComponentInParent<Tile>();
 
-                if (tile != null /*&& tile.CheckTileOccupied() == false*/)
+                if (tile != null && !neighborTiles.Contains(tile))
                 {
-                    if (!Physics.Raycast(tile.transform.position, Vector3.up, 1f, 1, QueryTriggerInteraction.Ignore))
-                    {
-                        neighborTiles.Add(tile);
-                    }
+                    neighborTiles.Add(tile);
                 }   
             }
         }

@@ -20,7 +20,7 @@ namespace DC_ARPG
         public Weapon Weapon => m_weapon;
 
         private Tile currentTile;
-        private Tile GetCurrentTile()
+        public Tile GetCurrentTile()
         {
             Tile tile = null;
 
@@ -117,7 +117,7 @@ namespace DC_ARPG
 
             if (targetTile == null) return;
 
-            if (targetTile.Occupied || targetTile.Type == TileType.Obstacle) return;
+            if (targetTile.Occupied.State || targetTile.Type == TileType.Obstacle) return;
 
             if (targetTile.Type == TileType.Closable && targetTile.CheckClosed()) return;
 
@@ -144,7 +144,7 @@ namespace DC_ARPG
 
                 if (targetTile == null) return;
 
-                if (targetTile.Occupied || targetTile.Type == TileType.Obstacle) return;
+                if (targetTile.Occupied.State || targetTile.Type == TileType.Obstacle) return;
 
                 if (targetTile.Type == TileType.Closable && targetTile.CheckClosed()) return;
 
@@ -165,7 +165,7 @@ namespace DC_ARPG
             }
             else
             {
-                if (forwardTiles[0].Occupied || forwardTiles[0].Type == TileType.Closable && forwardTiles[0].CheckClosed())
+                if (forwardTiles[0].Occupied.State || forwardTiles[0].Type == TileType.Closable && forwardTiles[0].CheckClosed())
                 {
                     StartCoroutine(JumpInPlace());
                 }
@@ -173,7 +173,7 @@ namespace DC_ARPG
                 {
                     if (forwardTiles[1] != null)
                     {
-                        if (forwardTiles[1].Occupied || forwardTiles[1].Type == TileType.Obstacle || forwardTiles[1].Type == TileType.Closable && forwardTiles[1].CheckClosed())
+                        if (forwardTiles[1].Occupied.State || forwardTiles[1].Type == TileType.Obstacle || forwardTiles[1].Type == TileType.Closable && forwardTiles[1].CheckClosed())
                         {
                             if (forwardTiles[0].Type != TileType.Obstacle)
                             {
@@ -283,6 +283,9 @@ namespace DC_ARPG
         private void Awake()
         {
             m_animator = GetComponentInChildren<Animator>();
+
+            currentTile = GetCurrentTile();
+            if (currentTile != null) currentTile.SetTileOccupied(this);
         }
 
         private Vector3 GetDirection(Vector2 inputDirection)
@@ -306,7 +309,7 @@ namespace DC_ARPG
         {
             if (currentTile != null)
             {
-                currentTile.SetTileOccupied(false);
+                currentTile.SetTileOccupied(null);
 
                 currentTile = GetCurrentTile();
 
@@ -332,7 +335,7 @@ namespace DC_ARPG
         private IEnumerator MoveTo(Tile targetTile)
         {
             inMovement = true;
-            targetTile.SetTileOccupied(true);
+            targetTile.SetTileOccupied(this);
 
             var startPosition = transform.position;
             var targetPosition = targetTile.transform.position;
@@ -416,7 +419,7 @@ namespace DC_ARPG
             landedAfterJump = false;
             isJumping = true;
 
-            targetTile.SetTileOccupied(true);
+            targetTile.SetTileOccupied(this);
 
             var startPosition = transform.position;
             Vector3 targetPosition = targetTile.transform.position;
@@ -460,8 +463,8 @@ namespace DC_ARPG
             landedAfterJump = false;
             isJumping = true;
 
-            tiles[0].SetTileOccupied(true);
-            tiles[1].SetTileOccupied(true);
+            tiles[0].SetTileOccupied(this);
+            tiles[1].SetTileOccupied(this);
 
             var startPosition = transform.position;
             Vector3 targetPosition = tiles[1].transform.position;
@@ -485,7 +488,7 @@ namespace DC_ARPG
 
             FreePreviousTileAndCheckNewForPit();
 
-            tiles[0].SetTileOccupied(false);
+            tiles[0].SetTileOccupied(null);
 
             if (isFalling)
             {
@@ -522,7 +525,7 @@ namespace DC_ARPG
             landedAfterJump = false;
             isJumping = true;
 
-            targetTile.SetTileOccupied(true);
+            targetTile.SetTileOccupied(this);
 
             var startPosition = transform.position;
             Vector3 targetPosition = targetTile.transform.position;

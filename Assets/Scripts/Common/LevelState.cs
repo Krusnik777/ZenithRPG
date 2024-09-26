@@ -38,8 +38,6 @@ namespace DC_ARPG
 
             if (playerTile == null) return null;
 
-            //if (playerTile.NeighborTiles == null) playerTile.FindNeighbors();
-
             return playerTile.NeighborTiles;
         }
 
@@ -73,11 +71,11 @@ namespace DC_ARPG
             }
         }
 
-        public void ComputeAdjacencyList()
+        public void ResetAllPathFindings()
         {
             foreach (var tile in m_levelTileField)
             {
-                tile.FindNeighbors();
+                tile.ResetPathFindingValues();
             }
         }
 
@@ -104,7 +102,10 @@ namespace DC_ARPG
         {
             m_levelTileField = FindObjectsOfType<Tile>();
 
-            ComputeAdjacencyList();
+            foreach (var tile in m_levelTileField)
+            {
+                tile.FindNeighbors();
+            }
 
             m_allEnemies = new List<Enemy>();
             m_allEnemies.AddRange(FindObjectsOfType<Enemy>(true));
