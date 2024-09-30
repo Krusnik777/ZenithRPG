@@ -25,8 +25,8 @@ namespace DC_ARPG
         [SerializeField] private float m_attackMinDelayTime = 1.0f;
         [SerializeField] private float m_attackMaxDelayTime = 3.0f;
         [Header("MovementParamsForAI")]
-        [SerializeField] private float moveSpeed = 1.25f;
-        [SerializeField] private float turnSpeed = 5f;
+        [SerializeField] private float m_moveSpeed = 1.25f;
+        [SerializeField] private float m_turnSpeed = 5f;
 
         public event UnityAction<EnemyAIController> EventOnChaseStarted;
         public event UnityAction<EnemyAIController> EventOnChaseEnded;
@@ -38,7 +38,6 @@ namespace DC_ARPG
         private Tile currentTile;
         private Tile targetTile;
         public Tile TargetTile => targetTile;
-        private Tile playerTile => GetTargetTile(m_enemyFOV.PlayerGameObject);
 
         private EnemyState m_state;
         public EnemyState State => m_state;
@@ -60,7 +59,7 @@ namespace DC_ARPG
         private Timer m_attackTimer;
 
         private void CalculateHeadingDirection(Vector3 targetPosition) => headingDirection = (targetPosition - transform.position).normalized;
-        private void SetHorizontalVelocity() => velocity = headingDirection * moveSpeed;
+        private void SetHorizontalVelocity() => velocity = headingDirection * m_moveSpeed;
 
         private bool CheckPlayerInChaseRange() => Vector3.Distance(transform.position, m_enemyFOV.PlayerGameObject.transform.position) < m_chaseRange ? true : false;
         private bool CheckCloseRange() => Vector3.Distance(transform.position, m_enemyFOV.PlayerGameObject.transform.position) < m_closeRange ? true : false;
@@ -191,7 +190,7 @@ namespace DC_ARPG
                     }
                     else
                     {
-                        CalculatePath(LevelState.Instance.GetTargetNearPlayer(this));
+                        CalculatePath(LevelState.Instance.Player.CurrentTile);
                     }
 
                     isChasing = true;
@@ -235,21 +234,6 @@ namespace DC_ARPG
                 if (CheckForPlayerInAttackRange() == false)
                     StartChaseState();
             }
-        }
-
-        private Tile GetTargetTile(GameObject target)
-        {
-            Tile tile = null;
-
-            Ray ray = new Ray(target.transform.position + new Vector3(0, 0.1f, 0), -Vector3.up);
-            RaycastHit hit;
-
-            if (Physics.Raycast(ray, out hit, 1f, 1, QueryTriggerInteraction.Ignore))
-            {
-                tile = hit.collider.GetComponentInParent<Tile>();
-            }
-
-            return tile;
         }
 
         private void MoveToTile(Tile tile, List<Tile> clearList)
@@ -320,8 +304,11 @@ namespace DC_ARPG
 
                     transform.position = targetPosition;
 
-                    currentTile.SetTileOccupied(null);
-                    currentTile = t;
+                    if (t != currentTile)
+                    {
+                        currentTile.SetTileOccupied(null);
+                        currentTile = t;
+                    }
 
                     path.Pop();
                 }
@@ -332,15 +319,12 @@ namespace DC_ARPG
 
                 if (isChasing)
                 {
-                    if (playerTile != null)
-                    {
-                        CalculateHeadingDirection(m_enemyFOV.PlayerGameObject.transform.position);
+                    CalculateHeadingDirection(m_enemyFOV.PlayerGameObject.transform.position);
 
-                        if (currentDirection != headingDirection)
-                        {
-                            isTurning = true;
-                            return;
-                        }
+                    if (currentDirection != headingDirection)
+                    {
+                        isTurning = true;
+                        return;
                     }
 
                     StopChasing();
@@ -353,7 +337,7 @@ namespace DC_ARPG
         private void Turn()
         {
             targetRotation = Quaternion.LookRotation(headingDirection);
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, turnSpeed * Time.deltaTime);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, m_turnSpeed * Time.deltaTime);
 
             var angle = Quaternion.Angle(transform.rotation, targetRotation);
 
@@ -371,6 +355,16 @@ namespace DC_ARPG
             m_enemy.Animator.SetFloat("MovementZ", 0);
 
             isMoving = false;
+
+            if (path.Count > 0)
+            {
+                Tile t = path.Peek();
+
+                if (t.Occupied.State && t.Occupied.By == m_enemy && t != currentTile)
+                {
+                    t.SetTileOccupied(null);
+                }
+            }
         }
 
         private void StopChasing()
@@ -429,7 +423,7 @@ namespace DC_ARPG
 
                     if (tile.Type == TileType.Closable && tile.CheckClosed()) continue;
 
-                    if (tile.Occupied.State && tile.Occupied.By != m_enemy) continue;
+                    if (tile.Occupied.State && tile.Occupied.By != m_enemy && tile != target) continue;
 
                     // Tile Checks END
 

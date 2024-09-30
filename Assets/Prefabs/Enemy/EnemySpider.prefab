@@ -318,6 +318,13 @@ MonoBehaviour:
   m_transitionJumpSpeed: 0.3
   m_transitionRotateSpeed: 0.25
   m_afterJumpDelay: 0.1
+  m_transitionFallSpeed: 0.25
+  m_jumpUpCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   m_weapon: {fileID: 8194321721980781095}
   m_additionalWeapon: {fileID: 1755279718904748087}
   m_attackHits: 2
@@ -361,8 +368,8 @@ MonoBehaviour:
   m_chaseDurationTime: 20
   m_attackMinDelayTime: 2
   m_attackMaxDelayTime: 4
-  moveSpeed: 1.75
-  turnSpeed: 7.5
+  m_moveSpeed: 1.75
+  m_turnSpeed: 7.5
 --- !u!114 &6547117571592615411
 MonoBehaviour:
   m_ObjectHideFlags: 0

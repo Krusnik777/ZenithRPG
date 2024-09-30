@@ -19,7 +19,7 @@ namespace DC_ARPG
         [SerializeField] private int m_attackHits = 2;
         public Weapon Weapon => m_weapon;
 
-        private Tile currentTile;
+        protected Tile currentTile;
         public Tile GetCurrentTile()
         {
             Tile tile = null;

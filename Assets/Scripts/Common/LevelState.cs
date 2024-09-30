@@ -14,9 +14,6 @@ namespace DC_ARPG
         private List<EnemyAIController> m_chasingEnemies;
         public List<EnemyAIController> ChasingEnemies => m_chasingEnemies;
 
-        private Door[] m_allDoorsOnLevel;
-        public Door[] AllDoorsOnLevel => m_allDoorsOnLevel;
-
         private ShopDoor[] m_allShops;
         public ShopDoor[] AllShops => m_allShops;
 
@@ -24,31 +21,16 @@ namespace DC_ARPG
         public void Construct(Player player) => m_player = player;
         public Player Player => m_player;
 
-        public List<Tile> GetNeighborsTilesToPlayer()
-        {
-            Tile playerTile = null;
-
-            Ray ray = new Ray(m_player.transform.position + new Vector3(0, 0.1f, 0), -Vector3.up);
-            RaycastHit hit;
-
-            if (Physics.Raycast(ray, out hit, 1f, 1, QueryTriggerInteraction.Ignore))
-            {
-                playerTile = hit.collider.GetComponentInParent<Tile>();
-            }
-
-            if (playerTile == null) return null;
-
-            return playerTile.NeighborTiles;
-        }
-
         public void StopAllActivity()
         {
-            foreach(var enemy in m_allEnemies)
+            for (int i = m_allEnemies.Count - 1; i >= 0; i--)
             {
+                var enemy = m_allEnemies[i];
+
                 if (enemy == null)
                 {
                     m_allEnemies.Remove(enemy);
-                    break;
+                    continue;
                 }
 
                 if (enemy.gameObject.activeInHierarchy)
@@ -58,12 +40,14 @@ namespace DC_ARPG
 
         public void ResumeAllActivity()
         {
-            foreach (var enemy in m_allEnemies)
+            for (int i = m_allEnemies.Count - 1; i >= 0; i--)
             {
+                var enemy = m_allEnemies[i];
+
                 if (enemy == null)
                 {
                     m_allEnemies.Remove(enemy);
-                    break;
+                    continue;
                 }
 
                 if (enemy.gameObject.activeInHierarchy)
@@ -83,9 +67,9 @@ namespace DC_ARPG
         {
             if (!m_chasingEnemies.Contains(chasingEnemyAI)) return null;
 
-            var possibleTargetTiles = GetNeighborsTilesToPlayer();
+            var possibleTargetTiles = m_player.CurrentTile.NeighborTiles;
 
-            if (possibleTargetTiles == null) return null;
+            if (possibleTargetTiles.Count == 0) return null;
 
             for (int i = 0; i < possibleTargetTiles.Count; i++)
             {
@@ -112,7 +96,6 @@ namespace DC_ARPG
 
             m_chasingEnemies = new List<EnemyAIController>();
 
-            m_allDoorsOnLevel = FindObjectsOfType<Door>();
             m_allShops = FindObjectsOfType<ShopDoor>();
 
             StoryEventManager.Instance.EventOnStoryEventStarted += StopAllActivity;

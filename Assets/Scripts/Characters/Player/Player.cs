@@ -1,4 +1,5 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace DC_ARPG
@@ -14,7 +15,9 @@ namespace DC_ARPG
         [SerializeField] private PlayerCharacter m_character;
         [Header("Magic")]
         [SerializeField] private float m_castDelay = 1.0f;
-        
+
+        public Tile CurrentTile => currentTile ?? GetCurrentTile();
+
         public bool ActionsIsAvailable { get; set; }
 
         public PlayerCharacter Character => m_character;
