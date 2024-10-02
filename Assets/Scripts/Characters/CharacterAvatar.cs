@@ -19,7 +19,11 @@ namespace DC_ARPG
         [SerializeField] private int m_attackHits = 2;
         public Weapon Weapon => m_weapon;
 
+        #region Tile
+
         protected Tile currentTile;
+        public virtual Tile CurrentTile => currentTile;
+
         public Tile GetCurrentTile()
         {
             Tile tile = null;
@@ -34,6 +38,10 @@ namespace DC_ARPG
 
             return tile;
         }
+
+        public void SetCurrentTile(Tile tile) => currentTile = tile;
+
+        #endregion
 
         #region Parameters
 
@@ -65,6 +73,7 @@ namespace DC_ARPG
 
         protected bool isBlocking;
         public bool IsBlocking => isBlocking;
+        public event UnityAction EventOnBlock;
 
 
         protected virtual bool inIdleState => !(inMovement || isJumping || isFalling || isAttacking || isBlocking);
@@ -117,7 +126,7 @@ namespace DC_ARPG
 
             if (targetTile == null) return;
 
-            if (targetTile.Occupied.State || targetTile.Type == TileType.Obstacle) return;
+            if (targetTile.OccupiedBy != null || targetTile.Type == TileType.Obstacle) return;
 
             if (targetTile.Type == TileType.Closable && targetTile.CheckClosed()) return;
 
@@ -144,7 +153,7 @@ namespace DC_ARPG
 
                 if (targetTile == null) return;
 
-                if (targetTile.Occupied.State || targetTile.Type == TileType.Obstacle) return;
+                if (targetTile.OccupiedBy != null || targetTile.Type == TileType.Obstacle) return;
 
                 if (targetTile.Type == TileType.Closable && targetTile.CheckClosed()) return;
 
@@ -165,7 +174,7 @@ namespace DC_ARPG
             }
             else
             {
-                if (forwardTiles[0].Occupied.State || forwardTiles[0].Type == TileType.Closable && forwardTiles[0].CheckClosed())
+                if (forwardTiles[0].OccupiedBy != null || forwardTiles[0].Type == TileType.Closable && forwardTiles[0].CheckClosed())
                 {
                     StartCoroutine(JumpInPlace());
                 }
@@ -173,7 +182,7 @@ namespace DC_ARPG
                 {
                     if (forwardTiles[1] != null)
                     {
-                        if (forwardTiles[1].Occupied.State || forwardTiles[1].Type == TileType.Obstacle || forwardTiles[1].Type == TileType.Closable && forwardTiles[1].CheckClosed())
+                        if (forwardTiles[1].OccupiedBy != null || forwardTiles[1].Type == TileType.Obstacle || forwardTiles[1].Type == TileType.Closable && forwardTiles[1].CheckClosed())
                         {
                             if (forwardTiles[0].Type != TileType.Obstacle)
                             {
@@ -276,6 +285,11 @@ namespace DC_ARPG
                     };
                     break;
             }
+        }
+
+        public virtual void OnBlock()
+        {
+            EventOnBlock?.Invoke();
         }
 
         #endregion

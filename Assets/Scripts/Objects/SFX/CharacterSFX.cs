@@ -75,15 +75,15 @@ namespace DC_ARPG
                 if (m_blockEffect.activeInHierarchy) m_blockEffect.SetActive(false);
 
             m_character.EventOnHit += OnHit;
-            m_characterAvatar.Weapon.EventOnBrokenWeapon += OnBrokenWeapon;
-            m_characterAvatar.Weapon.EventOnBlock += OnBlock;
+            if (m_brokenSwordEffectPrefab != null) m_characterAvatar.Weapon.EventOnBrokenWeapon += OnBrokenWeapon;
+            m_characterAvatar.EventOnBlock += OnBlock;
         }
 
         private void OnDestroy()
         {
             m_character.EventOnHit -= OnHit;
             m_characterAvatar.Weapon.EventOnBrokenWeapon -= OnBrokenWeapon;
-            m_characterAvatar.Weapon.EventOnBlock -= OnBlock;
+            m_characterAvatar.EventOnBlock -= OnBlock;
         }
 
         private void OnHit()

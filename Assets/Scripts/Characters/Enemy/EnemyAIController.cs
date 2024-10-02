@@ -28,16 +28,17 @@ namespace DC_ARPG
         [SerializeField] private float m_moveSpeed = 1.25f;
         [SerializeField] private float m_turnSpeed = 5f;
 
+        private static bool _busyFindingPath;
+
         public event UnityAction<EnemyAIController> EventOnChaseStarted;
         public event UnityAction<EnemyAIController> EventOnChaseEnded;
 
         public FieldOfView EnemyFieldOfView => m_enemyFOV;
         public bool SeePlayer => m_enemyFOV.CanSeePlayer;
 
+        private PathFinder pathFinder;
+
         private Stack<Tile> path = new Stack<Tile>();
-        private Tile currentTile;
-        private Tile targetTile;
-        public Tile TargetTile => targetTile;
 
         private EnemyState m_state;
         public EnemyState State => m_state;
@@ -58,10 +59,22 @@ namespace DC_ARPG
         private Timer m_chaseTimer;
         private Timer m_attackTimer;
 
+        private float changingChaseRange;
+
+        private Tile targetedTile;
+        private void ClearTargetedTile()
+        {
+            if (targetedTile != null)
+            {
+                targetedTile.TargetedBy = null;
+                targetedTile = null;
+            }
+        }
+
         private void CalculateHeadingDirection(Vector3 targetPosition) => headingDirection = (targetPosition - transform.position).normalized;
         private void SetHorizontalVelocity() => velocity = headingDirection * m_moveSpeed;
 
-        private bool CheckPlayerInChaseRange() => Vector3.Distance(transform.position, m_enemyFOV.PlayerGameObject.transform.position) < m_chaseRange ? true : false;
+        private bool CheckPlayerInChaseRange() => Vector3.Distance(transform.position, m_enemyFOV.PlayerGameObject.transform.position) < changingChaseRange ? true : false;
         private bool CheckCloseRange() => Vector3.Distance(transform.position, m_enemyFOV.PlayerGameObject.transform.position) < m_closeRange ? true : false;
 
         public bool CheckForPlayerInAttackRange()
@@ -84,6 +97,8 @@ namespace DC_ARPG
 
             m_chaseTimer.Start(m_chaseDurationTime);
 
+            changingChaseRange = m_chaseRange;
+
             Debug.Log("Started Chase");
         }
 
@@ -97,18 +112,11 @@ namespace DC_ARPG
             StartState(EnemyState.Battle); 
         }
 
-        public void UpdateActivity()
-        {
-            StopMoving();
-            if (m_state == EnemyState.Chase) StopChasing();
-        }
-
         public void StopActivity()
         {
             isStopped = true;
 
             StopMoving();
-            isChasing = false;
         }
 
         public void ResumeActivity()
@@ -121,14 +129,10 @@ namespace DC_ARPG
             m_state = state;
         }
 
-        private void Awake()
-        {
-            currentTile = m_enemy.GetCurrentTile();
-            if (currentTile != null) currentTile.SetTileOccupied(m_enemy);
-        }
-
         private void Start()
         {
+            pathFinder = new PathFinder(m_enemy);
+
             InitTimers();
 
             currentDirection = transform.forward;
@@ -159,7 +163,7 @@ namespace DC_ARPG
                 if (!isMoving)
                 {
                     int index = Random.Range(0, m_patrolField.Length);
-                    CalculatePath(m_patrolField[index]);
+                    FindPath(m_patrolField[index]);
                 }
                 else
                 {
@@ -184,16 +188,7 @@ namespace DC_ARPG
             {
                 if (!isChasing)
                 {
-                    if (LevelState.Instance.ChasingEnemies.Count > 1)
-                    {
-                        CalculatePath(LevelState.Instance.GetTargetNearPlayer(this));
-                    }
-                    else
-                    {
-                        CalculatePath(LevelState.Instance.Player.CurrentTile);
-                    }
-
-                    isChasing = true;
+                    FindPathToPlayer();
                 }
                 else
                 {
@@ -205,17 +200,13 @@ namespace DC_ARPG
             {
                 if (CheckPlayerInChaseRange() == true)
                 {
+                    changingChaseRange--;
+
                     m_chaseTimer.Start(m_chaseDurationTime);
                 }
                 else
                 {
-                    StopMoving();
-                    isChasing = false;
-
-                    Debug.Log("Started Patrol");
-                    EventOnChaseEnded?.Invoke(this);
-
-                    StartPatrolState();
+                    StopChasingAndStartPatrol();
                 } 
             }
         }
@@ -236,39 +227,18 @@ namespace DC_ARPG
             }
         }
 
-        private void MoveToTile(Tile tile, List<Tile> clearList)
-        {
-            path.Clear();
-
-            isMoving = true;
-
-            Tile next = tile;
-
-            while (next != null)
-            {
-                path.Push(next);
-
-                next = next.ParentTile;
-            }
-
-            foreach (var t in clearList)
-            {
-                t.ResetPathFindingValues();
-            }
-        }
-
         private void Move()
         {
             if (path.Count > 0)
             {
                 Tile t = path.Peek();
 
-                if (!t.Occupied.State)
+                if (t.OccupiedBy == null)
                 {
                     t.SetTileOccupied(m_enemy);
                 }
 
-                if (t.Occupied.State && t.Occupied.By != m_enemy || t.Type == TileType.Closable && t.CheckClosed())
+                if (t.OccupiedBy != m_enemy || t.Type == TileType.Closable && t.CheckClosed())
                 {
                     StopMoving();
                     return;
@@ -304,10 +274,10 @@ namespace DC_ARPG
 
                     transform.position = targetPosition;
 
-                    if (t != currentTile)
+                    if (t != m_enemy.CurrentTile)
                     {
-                        currentTile.SetTileOccupied(null);
-                        currentTile = t;
+                        m_enemy.CurrentTile.SetTileOccupied(null);
+                        m_enemy.SetCurrentTile(t);
                     }
 
                     path.Pop();
@@ -319,12 +289,18 @@ namespace DC_ARPG
 
                 if (isChasing)
                 {
-                    CalculateHeadingDirection(m_enemyFOV.PlayerGameObject.transform.position);
-
-                    if (currentDirection != headingDirection)
+                    if (LevelState.Instance.Player != null)
                     {
-                        isTurning = true;
-                        return;
+                        if (!LevelState.Instance.Player.IsFallingOrFallen && CheckCloseRange() == true)
+                        {
+                            CalculateHeadingDirection(m_enemyFOV.PlayerGameObject.transform.position);
+
+                            if (currentDirection != headingDirection)
+                            {
+                                isTurning = true;
+                                return;
+                            }
+                        }
                     }
 
                     StopChasing();
@@ -360,11 +336,13 @@ namespace DC_ARPG
             {
                 Tile t = path.Peek();
 
-                if (t.Occupied.State && t.Occupied.By == m_enemy && t != currentTile)
+                if (t.OccupiedBy == m_enemy && t != m_enemy.CurrentTile)
                 {
                     t.SetTileOccupied(null);
                 }
             }
+
+            if (m_state == EnemyState.Chase) StopChasing();
         }
 
         private void StopChasing()
@@ -377,137 +355,94 @@ namespace DC_ARPG
             }
 
             isChasing = false;
+
+            ClearTargetedTile();
         }
 
-        private void CalculatePath(Tile target)
+        private void StopChasingAndStartPatrol()
         {
-            if (target == null) return;
+            StopMoving();
 
-            if (currentTile == null) currentTile = m_enemy.GetCurrentTile();
+            Debug.Log("Started Patrol");
+            EventOnChaseEnded?.Invoke(this);
 
-            List<Tile> openList = new List<Tile>();
-            List<Tile> closedList = new List<Tile>();
+            StartPatrolState();
+        }
 
-            List<Tile> clearList = new List<Tile>();
+        private void FindPath(Tile target, bool targetNeighbourTile = false)
+        {
+            if (target == null || _busyFindingPath) return;
 
-            openList.Add(currentTile);
-            clearList.Add(currentTile);
-            currentTile.h = Vector3.Distance(currentTile.transform.position, target.transform.position);
-            currentTile.f = currentTile.h;
+            _busyFindingPath = true;
 
-            while(openList.Count > 0)
+            Stack<Tile> newPath = pathFinder.CalculatePath(target, targetNeighbourTile);
+
+            _busyFindingPath = false;
+
+            if (newPath == null || newPath.Count == 0)
             {
-                Tile t = FindLowestF(openList);
+                if (m_state == EnemyState.Chase) StopChasingAndStartPatrol();
+            }
+            else
+            {
+                path.Clear();
+                path = newPath;
 
-                closedList.Add(t);
+                isMoving = true;
+                if (m_state == EnemyState.Chase) isChasing = true;
+            }
+        }
 
-                if (t == target)
+        private void FindPathToPlayer()
+        {
+            if (LevelState.Instance.Player == null || LevelState.Instance.Player.IsFallingOrFallen || _busyFindingPath)
+            {
+                StopChasingAndStartPatrol();
+
+                return;
+            }
+
+            if (LevelState.Instance.ChasingEnemies.Count > 1)
+            {
+                // Get available tiles Near Player from LevelState
+                var potentialTargets = LevelState.Instance.GetAvailableNeighborTilesToPlayer();
+
+                if (potentialTargets.Count == 0)
                 {
-                    if (m_state == EnemyState.Chase && LevelState.Instance.ChasingEnemies.Count == 1)
-                    {
-                        targetTile = FindEndTile(t);
-                        MoveToTile(targetTile, clearList);
-                    }
-                    else MoveToTile(t, clearList);
+                    StopChasingAndStartPatrol();
 
                     return;
                 }
 
-                foreach (var tile in t.NeighborTiles)
+                // Choose shortest path or available
+                _busyFindingPath = true;
+
+                Stack<Tile> shortestPath = pathFinder.GetShortestPath(potentialTargets, out Tile target);
+
+                _busyFindingPath = false;
+
+                if (shortestPath == null || shortestPath.Count == 0)
                 {
-                    // Tile Checks START
+                    // Do nothing and stand at place if no paths
+                    //if (m_state == EnemyState.Chase) StopChasingAndStartPatrol();
+                }
+                else
+                {
+                    path.Clear();
+                    path = shortestPath;
 
-                    if (m_state == EnemyState.Patrol && tile.Type != TileType.Walkable) continue;
+                    ClearTargetedTile(); // just to be safe
+                    target.TargetedBy = m_enemy;
+                    targetedTile = target;
 
-                    if (tile.Type == TileType.Pit || tile.Type == TileType.Obstacle) continue;
-
-                    if (tile.Type == TileType.Closable && tile.CheckClosed()) continue;
-
-                    if (tile.Occupied.State && tile.Occupied.By != m_enemy && tile != target) continue;
-
-                    // Tile Checks END
-
-                    clearList.Add(tile);
-
-                    if (closedList.Contains(tile))
-                    {
-                        // Do nothing, already processed
-                    }
-                    else if (openList.Contains(tile))
-                    {
-                        float tempG = t.g + Vector3.Distance(tile.transform.position, t.transform.position);
-
-                        if (tempG < tile.g)
-                        {
-                            tile.ParentTile = t;
-
-                            tile.g = tempG;
-                            tile.f = tile.g + tile.h;
-                        }
-                    }
-                    else
-                    {
-                        tile.ParentTile = t;
-
-                        tile.g = t.g + Vector3.Distance(tile.transform.position, t.transform.position);
-                        tile.h = Vector3.Distance(tile.transform.position, target.transform.position);
-                        tile.f = tile.g + tile.h;
-
-                        openList.Add(tile);
-                    }
+                    isMoving = true;
+                    isChasing = true;
                 }
             }
-
-            // what to do if no path to target
-            Debug.Log("Path not found");
-
-            foreach (var tile in clearList)
+            else
             {
-                tile.ResetPathFindingValues();
+                FindPath(LevelState.Instance.Player.CurrentTile, true);
             }
-
-            if (m_state == EnemyState.Chase)
-            {
-                StopMoving();
-                isChasing = false;
-
-                Debug.Log("Started Patrol");
-                EventOnChaseEnded?.Invoke(this);
-
-                StartPatrolState();
-            }
-        }
-
-        private Tile FindLowestF(List<Tile> list)
-        {
-            Tile lowest = list[0];
-
-            foreach (var t in list)
-            {
-                if (t.f < lowest.f)
-                {
-                    lowest = t;
-                }
-            }
-
-            list.Remove(lowest);
-
-            return lowest;
-        }
-
-        private Tile FindEndTile(Tile t)
-        {
-            Stack<Tile> tempPath = new Stack<Tile>();
-
-            Tile next = t.ParentTile;
-
-            while (next != null)
-            {
-                tempPath.Push(next);
-                next = next.ParentTile;
-            }
-
-            return t.ParentTile;
         }
 
         #region Timers

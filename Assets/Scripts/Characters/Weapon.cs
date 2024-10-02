@@ -9,7 +9,6 @@ namespace DC_ARPG
         [SerializeField] private GameObject m_trail;
 
         public event UnityAction EventOnBrokenWeapon;
-        public event UnityAction EventOnBlock;
 
         private Collider m_collider;
 
@@ -57,7 +56,7 @@ namespace DC_ARPG
                 {
                     if (player.IsBlocking && player.CheckForwardGridForEnemy() == parentEnemy)
                     {
-                        EventOnBlock?.Invoke();
+                        player.OnBlock();
 
                         return;
                     }

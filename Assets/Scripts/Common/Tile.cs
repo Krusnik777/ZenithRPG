@@ -3,26 +3,6 @@ using UnityEngine;
 
 namespace DC_ARPG
 {
-    public struct OccupiedState
-    {
-        private bool isOccupied;
-        private CharacterAvatar occupiedBy;
-        public bool State => isOccupied;
-        public CharacterAvatar By => occupiedBy;
-
-        public OccupiedState(bool isOccupied = false, CharacterAvatar occupiedBy = null)
-        {
-            this.isOccupied = isOccupied;
-            this.occupiedBy = occupiedBy;
-        }
-
-        public void SetOccupied(bool isOccupied, CharacterAvatar occupiedBy)
-        {
-            this.isOccupied = isOccupied;
-            this.occupiedBy = occupiedBy;
-        }
-    }
-
     public enum TileType
     {
         Walkable,
@@ -41,23 +21,26 @@ namespace DC_ARPG
         [SerializeField] private InspectableObject m_objectOnTile;
         public TileType Type => m_type;
 
-        private OccupiedState m_occupied;
-        public OccupiedState Occupied => m_occupied;
+        private CharacterAvatar m_occupiedBy;
+        public CharacterAvatar OccupiedBy => m_occupiedBy;
 
         // Path Finding
 
         // Breadth-first search (BFS)
         public Tile ParentTile { get; set; }
+        public CharacterAvatar TargetedBy { get; set; }
 
         // A*
         public float f { get; set; }
         public float g { get; set; }
         public float h { get; set; }
 
-        public void SetTileOccupied(CharacterAvatar occupiedBy) => m_occupied.SetOccupied(occupiedBy != null, occupiedBy);
+        public void SetTileOccupied(CharacterAvatar characterAvatar) => m_occupiedBy = characterAvatar;
 
         public bool CheckClosed()
         {
+            if (m_type != TileType.Closable) return false;
+
             if (m_objectOnTile == null)
             {
                 m_type = TileType.Walkable;
@@ -135,8 +118,6 @@ namespace DC_ARPG
             f = g = h = 0;
 
             ParentTile = null;
-
-            //m_occupied = new OccupiedState();
         }
 
         public void Reset()
@@ -147,7 +128,9 @@ namespace DC_ARPG
 
             f = g = h = 0;
 
-            m_occupied = new OccupiedState();
+            //m_occupiedBy = null;
+
+            TargetedBy = null;
         }
 
         private void CheckTile(Vector3 direction)

@@ -8,12 +8,12 @@ namespace DC_ARPG
     {
         [SerializeField] private Animator m_animator;
 
+        public UnityEvent EventOnShopEntered;
+        public UnityEvent EventOnShopExited;
+
         private Shop m_shop;
 
         private PositionTrigger m_positionTrigger;
-
-        public event UnityAction EventOnShopEntered;
-        public event UnityAction EventOnShopExited;
 
         public bool StandingInFrontOfShopDoor => m_positionTrigger != null ? m_positionTrigger.InRightPosition : false;
 
@@ -62,7 +62,9 @@ namespace DC_ARPG
 
             UIShop.Instance.ShowShop(m_shop);
 
-            EventOnShopEntered?.Invoke(); // For LevelState??
+            LevelState.Instance.StopAllActivity();
+
+            EventOnShopEntered?.Invoke();
         }
 
         private void OnShopExited()
@@ -70,7 +72,9 @@ namespace DC_ARPG
             m_animator.SetTrigger("Close");
             m_audio.Play();
 
-            EventOnShopExited?.Invoke(); // For LevelState??
+            LevelState.Instance.ResumeAllActivity();
+
+            EventOnShopExited?.Invoke();
         }
     }
 }

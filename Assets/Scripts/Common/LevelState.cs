@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -13,9 +14,6 @@ namespace DC_ARPG
 
         private List<EnemyAIController> m_chasingEnemies;
         public List<EnemyAIController> ChasingEnemies => m_chasingEnemies;
-
-        private ShopDoor[] m_allShops;
-        public ShopDoor[] AllShops => m_allShops;
 
         private Player m_player;
         public void Construct(Player player) => m_player = player;
@@ -63,9 +61,9 @@ namespace DC_ARPG
             }
         }
 
-        public Tile GetTargetNearPlayer(EnemyAIController chasingEnemyAI)
+        public List<Tile> GetAvailableNeighborTilesToPlayer()
         {
-            if (!m_chasingEnemies.Contains(chasingEnemyAI)) return null;
+            List<Tile> tiles = new List<Tile>();
 
             var possibleTargetTiles = m_player.CurrentTile.NeighborTiles;
 
@@ -73,13 +71,14 @@ namespace DC_ARPG
 
             for (int i = 0; i < possibleTargetTiles.Count; i++)
             {
-                if (m_chasingEnemies.IndexOf(chasingEnemyAI) == i)
-                {
-                    return possibleTargetTiles[i];
-                }
+                if (possibleTargetTiles[i].Type == TileType.Obstacle || possibleTargetTiles[i].Type == TileType.Pit) continue;
+
+                if (possibleTargetTiles[i].Type == TileType.Closable && possibleTargetTiles[i].CheckClosed()) continue;
+
+                tiles.Add(possibleTargetTiles[i]);
             }
 
-            return null;
+            return tiles;
         }
 
         private void Start()
@@ -96,8 +95,6 @@ namespace DC_ARPG
 
             m_chasingEnemies = new List<EnemyAIController>();
 
-            m_allShops = FindObjectsOfType<ShopDoor>();
-
             StoryEventManager.Instance.EventOnStoryEventStarted += StopAllActivity;
             StoryEventManager.Instance.EventOnStoryEventEnded += ResumeAllActivity;
             
@@ -108,24 +105,12 @@ namespace DC_ARPG
                 enemy.EnemyAI.EventOnChaseStarted += AddChasingEnemyToList;
                 enemy.EnemyAI.EventOnChaseEnded += RemoveChasingEnemyFromList;
             }
-
-            foreach(var shop in m_allShops)
-            {
-                shop.EventOnShopEntered += StopAllActivity;
-                shop.EventOnShopExited += ResumeAllActivity;
-            }
         }
 
         private void OnDestroy()
         {
             StoryEventManager.Instance.EventOnStoryEventStarted -= StopAllActivity;
             StoryEventManager.Instance.EventOnStoryEventEnded -= ResumeAllActivity;
-
-            foreach (var shop in m_allShops)
-            {
-                shop.EventOnShopEntered -= StopAllActivity;
-                shop.EventOnShopExited -= ResumeAllActivity;
-            }
         }
 
         private void OnEnemyDeath(Enemy enemy)
