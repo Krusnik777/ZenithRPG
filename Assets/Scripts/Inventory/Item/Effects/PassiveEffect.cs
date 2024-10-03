@@ -23,8 +23,8 @@ namespace DC_ARPG
 
         private void Revive(Player player, IItemSlot slot)
         {
-            player.Character.PlayerStats.ChangeCurrentHitPoints(this, 9999);
-            player.Character.Inventory.RemoveItemFromInventory(this, slot);
+            player.Character.Stats.ChangeCurrentHitPoints(this, 9999);
+            (player.Character as PlayerCharacter).Inventory.RemoveItemFromInventory(this, slot);
 
             ShortMessage.Instance.ShowMessage("Что-то сломалось в рюкзаке, но чувствуется прилив сил.");
         }

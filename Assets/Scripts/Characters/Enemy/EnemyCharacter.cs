@@ -11,7 +11,7 @@ namespace DC_ARPG
         public UnityEvent OnEnemyDeath;
 
         private EnemyStats enemyStats;
-        public EnemyStats EnemyStats => enemyStats;
+        public override CharacterStats Stats => enemyStats;
 
         private Enemy enemy;
         public Enemy Enemy => enemy;
@@ -52,8 +52,10 @@ namespace DC_ARPG
 
             if (sender is Player)
             {
-                (sender as Player).Character.PlayerStats.AddExperience(enemyStats.ExperiencePoints);
-                (sender as Player).Character.AddMoney(enemyStats.DroppedGold);
+                var player = sender as Player;
+
+                (player.Character.Stats as PlayerStats).AddExperience(enemyStats.ExperiencePoints);
+                (player.Character as PlayerCharacter).AddMoney(enemyStats.DroppedGold);
             }
 
             deathRoutine = StartCoroutine(PlayDeath(sender));
@@ -62,7 +64,7 @@ namespace DC_ARPG
         private void DropItem(int index)
         {
             var item = enemyStats.DroppedItems[index].DroppedItemData.CreateItem();
-            var itemContainer = Instantiate(enemyStats.DroppedItems[index].DroppedItemData.ItemInfo.Prefab, transform.position, Quaternion.identity);
+            var itemContainer = Instantiate(enemyStats.DroppedItems[index].DroppedItemData.ItemInfo.Prefab, enemy.CurrentTile.transform.position, Quaternion.identity);
             itemContainer.GetComponent<ItemContainer>().SetupCreatedContainer();
             itemContainer.GetComponent<ItemContainer>().AssignItem(item);
         }
@@ -81,7 +83,7 @@ namespace DC_ARPG
             {
                 for (int i = 0; i < enemyStats.DroppedItems.Length; i++)
                 {
-                    if (Random.value + (sender as Player).Character.DropItemBooster > 1 - enemyStats.DroppedItems[i].ItemDropChance)
+                    if (Random.value + ((sender as Player).Character as PlayerCharacter).DropItemBooster > 1 - enemyStats.DroppedItems[i].ItemDropChance)
                     {
                         DropItem(i);
                     }

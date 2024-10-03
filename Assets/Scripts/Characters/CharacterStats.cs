@@ -9,7 +9,7 @@ namespace DC_ARPG
         Magic
     }
 
-    public abstract class CharacterStats<T> where T : CharacterStatsInfo
+    public abstract class CharacterStats
     {
         #region BaseStats
         public int Level { get; protected set; }
@@ -39,7 +39,7 @@ namespace DC_ARPG
 
         #endregion
 
-        public virtual void InitStats(T characterInfo)
+        public virtual void InitStats(CharacterStatsInfo characterInfo)
         {
             Level = characterInfo.Level;
             HitPoints = characterInfo.HitPoints;

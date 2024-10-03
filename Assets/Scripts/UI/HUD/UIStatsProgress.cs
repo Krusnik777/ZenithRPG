@@ -21,6 +21,8 @@ namespace DC_ARPG
         [SerializeField] private TextMeshProUGUI m_magicResistValueText;
         [SerializeField] private Image m_magicResistFillImage;
 
+        private PlayerStats stats => m_playerCharacter.Stats as PlayerStats;
+
         private void Start()
         {
             SetLevelValue();
@@ -33,43 +35,43 @@ namespace DC_ARPG
             FillIntelligenceBar();
             FillMagicResistBar();
 
-            m_playerCharacter.PlayerStats.EventOnExperienceChange += FillLevelBar;
-            m_playerCharacter.PlayerStats.EventOnStrengthExperienceChange += FillStrengthBar;
-            m_playerCharacter.PlayerStats.EventOnIntelligenceExperienceChange += FillIntelligenceBar;
-            m_playerCharacter.PlayerStats.EventOnMagicResistExperienceChange += FillMagicResistBar;
+            stats.EventOnExperienceChange += FillLevelBar;
+            stats.EventOnStrengthExperienceChange += FillStrengthBar;
+            stats.EventOnIntelligenceExperienceChange += FillIntelligenceBar;
+            stats.EventOnMagicResistExperienceChange += FillMagicResistBar;
 
-            m_playerCharacter.PlayerStats.EventOnLevelUp += SetLevelValue;
-            m_playerCharacter.PlayerStats.EventOnStrengthUp += SetStrengthValue;
-            m_playerCharacter.PlayerStats.EventOnIntelligenceUp += SetIntelligenceValue;
-            m_playerCharacter.PlayerStats.EventOnMagicResistUp += SetMagicResistValue;
+            stats.EventOnLevelUp += SetLevelValue;
+            stats.EventOnStrengthUp += SetStrengthValue;
+            stats.EventOnIntelligenceUp += SetIntelligenceValue;
+            stats.EventOnMagicResistUp += SetMagicResistValue;
 
-            m_playerCharacter.PlayerStats.EventOnStatsUpdated += UpdateAll;
+            stats.EventOnStatsUpdated += UpdateAll;
         }
 
         private void OnDestroy()
         {
-            m_playerCharacter.PlayerStats.EventOnExperienceChange -= FillLevelBar;
-            m_playerCharacter.PlayerStats.EventOnStrengthExperienceChange -= FillStrengthBar;
-            m_playerCharacter.PlayerStats.EventOnIntelligenceExperienceChange -= FillIntelligenceBar;
-            m_playerCharacter.PlayerStats.EventOnMagicResistExperienceChange -= FillMagicResistBar;
+            stats.EventOnExperienceChange -= FillLevelBar;
+            stats.EventOnStrengthExperienceChange -= FillStrengthBar;
+            stats.EventOnIntelligenceExperienceChange -= FillIntelligenceBar;
+            stats.EventOnMagicResistExperienceChange -= FillMagicResistBar;
 
-            m_playerCharacter.PlayerStats.EventOnLevelUp -= SetLevelValue;
-            m_playerCharacter.PlayerStats.EventOnStrengthUp -= SetStrengthValue;
-            m_playerCharacter.PlayerStats.EventOnIntelligenceUp -= SetIntelligenceValue;
-            m_playerCharacter.PlayerStats.EventOnMagicResistUp -= SetMagicResistValue;
+            stats.EventOnLevelUp -= SetLevelValue;
+            stats.EventOnStrengthUp -= SetStrengthValue;
+            stats.EventOnIntelligenceUp -= SetIntelligenceValue;
+            stats.EventOnMagicResistUp -= SetMagicResistValue;
 
-            m_playerCharacter.PlayerStats.EventOnStatsUpdated -= UpdateAll;
+            stats.EventOnStatsUpdated -= UpdateAll;
         }
 
-        public void FillLevelBar() => m_levelFillImage.fillAmount = m_playerCharacter.PlayerStats.Level >= m_playerCharacter.PlayerStats.MaxLevel ? 1 : (float) m_playerCharacter.PlayerStats.CurrentExperiencePoints / (float) m_playerCharacter.PlayerStats.GetExperienceForLevelUp();
-        public void FillStrengthBar() => m_strengthFillImage.fillAmount = m_playerCharacter.PlayerStats.Strength >= m_playerCharacter.PlayerStats.MaxStatLevel ? 1 : (float) m_playerCharacter.PlayerStats.CurrentStrengthExperiencePoints / (float) m_playerCharacter.PlayerStats.GetExperienceForStrengthUp();
-        public void FillIntelligenceBar() => m_intelligenceFillImage.fillAmount = m_playerCharacter.PlayerStats.Intelligence >= m_playerCharacter.PlayerStats.MaxStatLevel ? 1 : (float) m_playerCharacter.PlayerStats.CurrentIntelligenceExperiencePoints / (float) m_playerCharacter.PlayerStats.GetExperienceForIntelligenceUp();
-        public void FillMagicResistBar() => m_magicResistFillImage.fillAmount = m_playerCharacter.PlayerStats.MagicResist >= m_playerCharacter.PlayerStats.MaxStatLevel ? 1 : (float) m_playerCharacter.PlayerStats.CurrentMagicResistExperiencePoints / (float) m_playerCharacter.PlayerStats.GetExperienceForMagicResistUp();
+        public void FillLevelBar() => m_levelFillImage.fillAmount = stats.Level >= stats.MaxLevel ? 1 : (float) stats.CurrentExperiencePoints / (float) stats.GetExperienceForLevelUp();
+        public void FillStrengthBar() => m_strengthFillImage.fillAmount = stats.Strength >= stats.MaxStatLevel ? 1 : (float) stats.CurrentStrengthExperiencePoints / (float) stats.GetExperienceForStrengthUp();
+        public void FillIntelligenceBar() => m_intelligenceFillImage.fillAmount = stats.Intelligence >= stats.MaxStatLevel ? 1 : (float) stats.CurrentIntelligenceExperiencePoints / (float) stats.GetExperienceForIntelligenceUp();
+        public void FillMagicResistBar() => m_magicResistFillImage.fillAmount = stats.MagicResist >= stats.MaxStatLevel ? 1 : (float) stats.CurrentMagicResistExperiencePoints / (float) stats.GetExperienceForMagicResistUp();
 
-        public void SetLevelValue() => m_levelValueText.text = m_playerCharacter.PlayerStats.Level.ToString();
-        public void SetStrengthValue() => m_strengthValueText.text = m_playerCharacter.PlayerStats.Strength.ToString();
-        public void SetIntelligenceValue() => m_intelligenceValueText.text = m_playerCharacter.PlayerStats.Intelligence.ToString();
-        public void SetMagicResistValue() => m_magicResistValueText.text = m_playerCharacter.PlayerStats.MagicResist.ToString();
+        public void SetLevelValue() => m_levelValueText.text = m_playerCharacter.Stats.Level.ToString();
+        public void SetStrengthValue() => m_strengthValueText.text = m_playerCharacter.Stats.Strength.ToString();
+        public void SetIntelligenceValue() => m_intelligenceValueText.text = m_playerCharacter.Stats.Intelligence.ToString();
+        public void SetMagicResistValue() => m_magicResistValueText.text = m_playerCharacter.Stats.MagicResist.ToString();
 
         private void UpdateAll()
         {

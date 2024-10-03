@@ -35,15 +35,15 @@ namespace DC_ARPG
 
             while(m_animator.GetCurrentAnimatorStateInfo(0).IsName("ActiveState"))
             {
-                if (hitPointsRecoveryTime >= m_player.Character.PlayerStats.HitPointsRecoveryRate)
+                if (hitPointsRecoveryTime >= (m_player.Character.Stats as PlayerStats).HitPointsRecoveryRate)
                 {
-                    m_player.Character.PlayerStats.ChangeCurrentHitPoints(this, 1);
+                    m_player.Character.Stats.ChangeCurrentHitPoints(this, 1);
                     hitPointsRecoveryTime = 0;
                 }
 
-                if (magicPointsRecoveryTime >= m_player.Character.PlayerStats.MagicPointsRecoveryRate)
+                if (magicPointsRecoveryTime >= (m_player.Character.Stats as PlayerStats).MagicPointsRecoveryRate)
                 {
-                    m_player.Character.PlayerStats.RecoverMagicPoints(this, 1);
+                    m_player.Character.Stats.RecoverMagicPoints(this, 1);
                     magicPointsRecoveryTime = 0;
                 }
 

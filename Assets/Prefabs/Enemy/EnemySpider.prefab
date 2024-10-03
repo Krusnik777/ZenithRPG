@@ -226,7 +226,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4e8560462e060643a8482cd5b4bc61e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_character: {fileID: 8064331239519658845}
   m_characterAvatar: {fileID: 8425953057646393830}
   m_footstepSound: {fileID: 8300000, guid: e8e9beea36680be48a76a7cfc47f1f0b, type: 3}
   m_jumpSound: {fileID: 8300000, guid: eeffcbb39ec446a478ab230288a6b658, type: 3}
@@ -328,6 +327,7 @@ MonoBehaviour:
   m_weapon: {fileID: 8194321721980781095}
   m_additionalWeapon: {fileID: 1755279718904748087}
   m_attackHits: 2
+  m_character: {fileID: 8064331239519658845}
   m_prefabId: EnemySpiderPrefab_Default
   m_id: 
   m_isSerializable: 1

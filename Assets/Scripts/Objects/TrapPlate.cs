@@ -3,19 +3,42 @@ using UnityEngine;
 
 namespace DC_ARPG
 {
-    public class TrapPlate : InspectableObject, IDataPersistence
+    public class TrapPlate : InspectableObject, IActivableObject, IDataPersistence
     {
-        [SerializeField] private DamageZone m_trap;
+        [SerializeField] protected int m_damage;
+        [SerializeField] private Animator m_animator;
+        [SerializeField] private AudioSource m_audioSource;
 
-        public void SetTrapActive(bool state) => m_trap.SetTrapActive(state);
+        protected bool disabled;
 
-        public override bool Disabled => m_trap.Disabled;
+        public void SetDamage(int damage) => m_damage = damage;
+
+        public void SetTrapActive(bool state) => disabled = !state;
+
+        public override bool Disabled => disabled;
 
         public override void OnInspection(Player player)
         {
             ShortMessage.Instance.ShowMessage("Ловушка!");
 
             base.OnInspection(player);
+        }
+
+        public void Activate(CharacterAvatar characterAvatar = null)
+        {
+            if (characterAvatar == null) return;
+
+            if (disabled) return;
+
+            characterAvatar.Character.Stats.ChangeCurrentHitPoints(this, -m_damage);
+
+            SetAnimationAndSound();
+        }
+
+        private void SetAnimationAndSound()
+        {
+            m_animator.SetTrigger("Activate");
+            m_audioSource.Play();
         }
 
         #region Serialize
@@ -43,7 +66,7 @@ namespace DC_ARPG
         {
             DataState s = new DataState();
 
-            s.trapDisabled = m_trap.Disabled;
+            s.trapDisabled = disabled;
             s.enabled = gameObject.activeInHierarchy;
 
             return JsonUtility.ToJson(s);
@@ -83,6 +106,25 @@ namespace DC_ARPG
             gameObject.name = name;
             m_id = name;
             UnityEditor.EditorUtility.SetDirty(this);
+        }
+
+        #endif
+
+        #if UNITY_EDITOR
+
+        [ContextMenu(nameof(ChangeDamageForAllTraps))]
+        private void ChangeDamageForAllTraps()
+        {
+            if (Application.isPlaying) return;
+
+            List<TrapPlate> trapsInScene = new List<TrapPlate>();
+            trapsInScene.AddRange(FindObjectsOfType<TrapPlate>());
+
+            foreach (var trap in trapsInScene)
+            {
+                trap.SetDamage(m_damage);
+                UnityEditor.EditorUtility.SetDirty(trap);
+            }
         }
 
         #endif

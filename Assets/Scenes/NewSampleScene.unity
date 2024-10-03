@@ -1606,6 +1606,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1609368929763334326, guid: ae0390556cfeb214cbce793a59a2d548, type: 3}
+      propertyPath: m_damageAfterFall
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6975020431161511676, guid: ae0390556cfeb214cbce793a59a2d548, type: 3}
       propertyPath: m_damage
       value: 0
@@ -2969,6 +2973,38 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3174386107487005345, guid: fd69271a3249ed34a882722058881c8a, type: 3}
+      propertyPath: m_hasSpring
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3174386107487005345, guid: fd69271a3249ed34a882722058881c8a, type: 3}
+      propertyPath: OnButtonPressed.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3174386107487005345, guid: fd69271a3249ed34a882722058881c8a, type: 3}
+      propertyPath: OnButtonPressed.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3174386107487005345, guid: fd69271a3249ed34a882722058881c8a, type: 3}
+      propertyPath: OnButtonPressed.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1789181213}
+    - target: {fileID: 3174386107487005345, guid: fd69271a3249ed34a882722058881c8a, type: 3}
+      propertyPath: OnButtonPressed.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3174386107487005345, guid: fd69271a3249ed34a882722058881c8a, type: 3}
+      propertyPath: OnButtonPressed.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: UnpressButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 3174386107487005345, guid: fd69271a3249ed34a882722058881c8a, type: 3}
+      propertyPath: OnButtonPressed.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: DC_ARPG.ButtonPlate, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3174386107487005345, guid: fd69271a3249ed34a882722058881c8a, type: 3}
+      propertyPath: OnButtonPressed.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 7973526735051814907, guid: fd69271a3249ed34a882722058881c8a, type: 3}
       propertyPath: m_hasSpring
       value: 1
@@ -3553,7 +3589,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3700599518249305028, guid: 6a4eaf30a68e2424d85431c5fdd70034, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5401230965603082535, guid: 6a4eaf30a68e2424d85431c5fdd70034, type: 3}
       propertyPath: m_patrolRestTime
@@ -8638,6 +8674,10 @@ PrefabInstance:
     - target: {fileID: 489459555325452488, guid: ae0390556cfeb214cbce793a59a2d548, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1609368929763334326, guid: ae0390556cfeb214cbce793a59a2d548, type: 3}
+      propertyPath: m_damageAfterFall
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: ae0390556cfeb214cbce793a59a2d548, type: 3}
       propertyPath: m_Name
@@ -15445,6 +15485,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7582256868603149772, guid: 054d98e407e145f4cba5b46ffc1355f3, type: 3}
+      propertyPath: m_damageAfterFall
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 054d98e407e145f4cba5b46ffc1355f3, type: 3}
       propertyPath: m_Name
       value: Prison_Block_Pit_Hidden
@@ -15725,6 +15769,10 @@ PrefabInstance:
     - target: {fileID: 489459555325452488, guid: 010f0094c2e42c342945072956db673d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1775136662870366508, guid: 010f0094c2e42c342945072956db673d, type: 3}
+      propertyPath: m_damageAfterFall
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 010f0094c2e42c342945072956db673d, type: 3}
       propertyPath: m_Name
@@ -18952,6 +19000,62 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3174386107487005345, guid: fd69271a3249ed34a882722058881c8a, type: 3}
+      propertyPath: OnButtonPressed.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3174386107487005345, guid: fd69271a3249ed34a882722058881c8a, type: 3}
+      propertyPath: OnButtonUnpressed.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3174386107487005345, guid: fd69271a3249ed34a882722058881c8a, type: 3}
+      propertyPath: OnButtonPressed.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3174386107487005345, guid: fd69271a3249ed34a882722058881c8a, type: 3}
+      propertyPath: OnButtonPressed.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1921852045}
+    - target: {fileID: 3174386107487005345, guid: fd69271a3249ed34a882722058881c8a, type: 3}
+      propertyPath: OnButtonUnpressed.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3174386107487005345, guid: fd69271a3249ed34a882722058881c8a, type: 3}
+      propertyPath: OnButtonUnpressed.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1921852045}
+    - target: {fileID: 3174386107487005345, guid: fd69271a3249ed34a882722058881c8a, type: 3}
+      propertyPath: OnButtonPressed.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3174386107487005345, guid: fd69271a3249ed34a882722058881c8a, type: 3}
+      propertyPath: OnButtonPressed.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Unlock
+      objectReference: {fileID: 0}
+    - target: {fileID: 3174386107487005345, guid: fd69271a3249ed34a882722058881c8a, type: 3}
+      propertyPath: OnButtonUnpressed.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3174386107487005345, guid: fd69271a3249ed34a882722058881c8a, type: 3}
+      propertyPath: OnButtonUnpressed.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Lock
+      objectReference: {fileID: 0}
+    - target: {fileID: 3174386107487005345, guid: fd69271a3249ed34a882722058881c8a, type: 3}
+      propertyPath: OnButtonPressed.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: DC_ARPG.Door, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3174386107487005345, guid: fd69271a3249ed34a882722058881c8a, type: 3}
+      propertyPath: OnButtonUnpressed.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: DC_ARPG.Door, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3174386107487005345, guid: fd69271a3249ed34a882722058881c8a, type: 3}
+      propertyPath: OnButtonPressed.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 3174386107487005345, guid: fd69271a3249ed34a882722058881c8a, type: 3}
+      propertyPath: OnButtonUnpressed.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 7973526735051814907, guid: fd69271a3249ed34a882722058881c8a, type: 3}
       propertyPath: OnButtonPressed.m_PersistentCalls.m_Calls.Array.size
       value: 1
@@ -19342,6 +19446,10 @@ PrefabInstance:
     - target: {fileID: 489459555325452488, guid: 054d98e407e145f4cba5b46ffc1355f3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7582256868603149772, guid: 054d98e407e145f4cba5b46ffc1355f3, type: 3}
+      propertyPath: m_damageAfterFall
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 054d98e407e145f4cba5b46ffc1355f3, type: 3}
       propertyPath: m_Name
@@ -20804,6 +20912,10 @@ PrefabInstance:
     - target: {fileID: 489459555325452488, guid: 010f0094c2e42c342945072956db673d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1775136662870366508, guid: 010f0094c2e42c342945072956db673d, type: 3}
+      propertyPath: m_damageAfterFall
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8524334448642957186, guid: 010f0094c2e42c342945072956db673d, type: 3}
       propertyPath: m_Name
@@ -22858,6 +22970,38 @@ PrefabInstance:
     - target: {fileID: 489459555325452488, guid: fd69271a3249ed34a882722058881c8a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3174386107487005345, guid: fd69271a3249ed34a882722058881c8a, type: 3}
+      propertyPath: m_hasSpring
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3174386107487005345, guid: fd69271a3249ed34a882722058881c8a, type: 3}
+      propertyPath: OnButtonPressed.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3174386107487005345, guid: fd69271a3249ed34a882722058881c8a, type: 3}
+      propertyPath: OnButtonPressed.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3174386107487005345, guid: fd69271a3249ed34a882722058881c8a, type: 3}
+      propertyPath: OnButtonPressed.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2028094145}
+    - target: {fileID: 3174386107487005345, guid: fd69271a3249ed34a882722058881c8a, type: 3}
+      propertyPath: OnButtonPressed.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3174386107487005345, guid: fd69271a3249ed34a882722058881c8a, type: 3}
+      propertyPath: OnButtonPressed.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Shoot
+      objectReference: {fileID: 0}
+    - target: {fileID: 3174386107487005345, guid: fd69271a3249ed34a882722058881c8a, type: 3}
+      propertyPath: OnButtonPressed.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: DC_ARPG.TrapGun, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3174386107487005345, guid: fd69271a3249ed34a882722058881c8a, type: 3}
+      propertyPath: OnButtonPressed.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 7973526735051814907, guid: fd69271a3249ed34a882722058881c8a, type: 3}
       propertyPath: m_hasSpring

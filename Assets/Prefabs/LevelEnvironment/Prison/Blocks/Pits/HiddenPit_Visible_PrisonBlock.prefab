@@ -137,7 +137,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2299555549377992107}
-  - component: {fileID: 2699789963234462691}
   - component: {fileID: 5519604145924316322}
   m_Layer: 0
   m_Name: TrapFloor
@@ -159,32 +158,10 @@ Transform:
   m_LocalScale: {x: 0.1, y: 1, z: 0.1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 863134404357470197}
   - {fileID: 333653391048709945}
+  - {fileID: 863134404357470197}
   m_Father: {fileID: 489459555325452488}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!64 &2699789963234462691
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2250753780684534805}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!114 &5519604145924316322
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -197,61 +174,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0e4b9fc80141d64aa883bebf2da8566, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_destroyTime: 0.1
   m_floorBreakEffectPrefab: {fileID: 2331595999424382646, guid: 72dc221004752ad49b32cba20f77d438, type: 3}
+  m_effectDestroyTime: 1
   m_prefabId: TrapFloorPrefab_Default
   m_id: 
   m_isSerializable: 1
---- !u!1 &2518968459588610814
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2323513363065718100}
-  - component: {fileID: 4424551524668565545}
-  m_Layer: 0
-  m_Name: PitInspectable
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2323513363065718100
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2518968459588610814}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 2430459770782440549}
-  m_Father: {fileID: 489459555325452488}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4424551524668565545
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2518968459588610814}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ae92a638ca7cbec4aaa435312d4eb9b1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_infoText: 
-  EventOnInspection:
-    m_PersistentCalls:
-      m_Calls: []
-  m_trapFloor: {fileID: 5519604145924316322}
 --- !u!1 &4760042107150807395
 GameObject:
   m_ObjectHideFlags: 0
@@ -282,7 +209,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 2323513363065718100}
+  m_Father: {fileID: 489459555325452488}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &8421813991326242786
 BoxCollider:
@@ -587,73 +514,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_minimapIconId: 
---- !u!1 &8071819369563695202
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 6513123055514098075}
-  - component: {fileID: 3447143936522576198}
-  - component: {fileID: 6975020431161511676}
-  m_Layer: 0
-  m_Name: DamageZone
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &6513123055514098075
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8071819369563695202}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.85000026, z: 0}
-  m_LocalScale: {x: 1, y: 0.3, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 489459555325452488}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &3447143936522576198
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8071819369563695202}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &6975020431161511676
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8071819369563695202}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1ac6981a27658ef4397a665496df32db, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_damage: 5
 --- !u!1 &8399889817228013128
 GameObject:
   m_ObjectHideFlags: 0
@@ -770,8 +630,9 @@ GameObject:
   m_Component:
   - component: {fileID: 489459555325452488}
   - component: {fileID: 6362156206953499342}
+  - component: {fileID: 1775136662870366508}
   m_Layer: 0
-  m_Name: Prison_Block_Pit_Hidden_v
+  m_Name: HiddenPit_Visible_PrisonBlock
   m_TagString: Untagged
   m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -790,13 +651,12 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 125937484427105766}
-  - {fileID: 6513123055514098075}
-  - {fileID: 2299555549377992107}
-  - {fileID: 2323513363065718100}
+  - {fileID: 2430459770782440549}
   - {fileID: 4897019339927552885}
-  - {fileID: 2441604501820199436}
+  - {fileID: 2299555549377992107}
+  - {fileID: 125937484427105766}
   - {fileID: 6355335587704318791}
+  - {fileID: 2441604501820199436}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6362156206953499342
@@ -812,7 +672,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_type: 2
-  m_objectOnTile: {fileID: 0}
+  m_objectOnTile: {fileID: 1775136662870366508}
+--- !u!114 &1775136662870366508
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8524334448642957186}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a4f47e1f1c5a154fa4772768e3349ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_infoText: 
+  EventOnInspection:
+    m_PersistentCalls:
+      m_Calls: []
+  m_damageAfterFall: 10
+  m_trapFloor: {fileID: 5519604145924316322}
 --- !u!1001 &1245998639802388355
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -909,7 +787,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5239272197777735519, guid: e348e7143b6247b488737e4be26fb038, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5239272197777735519, guid: e348e7143b6247b488737e4be26fb038, type: 3}
       propertyPath: m_LocalPosition.y
@@ -953,7 +831,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: a2f4af23a75b99d4d889dce3097af45a, type: 2}
     - target: {fileID: 9100508158649072905, guid: e348e7143b6247b488737e4be26fb038, type: 3}
       propertyPath: m_Name
-      value: Floor
+      value: VisualModel
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

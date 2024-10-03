@@ -5,7 +5,6 @@ namespace DC_ARPG
 {
     public class CharacterSFX : MonoBehaviour
     {
-        [SerializeField] private CharacterBase m_character;
         [SerializeField] private CharacterAvatar m_characterAvatar;
         [Header("Sounds")]
         [SerializeField] private AudioClip m_footstepSound;
@@ -74,21 +73,21 @@ namespace DC_ARPG
             if (m_blockEffect != null)
                 if (m_blockEffect.activeInHierarchy) m_blockEffect.SetActive(false);
 
-            m_character.EventOnHit += OnHit;
+            m_characterAvatar.Character.EventOnHit += OnHit;
             if (m_brokenSwordEffectPrefab != null) m_characterAvatar.Weapon.EventOnBrokenWeapon += OnBrokenWeapon;
             m_characterAvatar.EventOnBlock += OnBlock;
         }
 
         private void OnDestroy()
         {
-            m_character.EventOnHit -= OnHit;
+            m_characterAvatar.Character.EventOnHit -= OnHit;
             m_characterAvatar.Weapon.EventOnBrokenWeapon -= OnBrokenWeapon;
             m_characterAvatar.EventOnBlock -= OnBlock;
         }
 
         private void OnHit()
         {
-            PlayGetHitSFX(m_character.transform.position);
+            PlayGetHitSFX(m_characterAvatar.Character.transform.position);
         }
                
 

@@ -50,8 +50,10 @@ namespace DC_ARPG
             return !m_objectOnTile.Disabled;
         }
 
-        public bool CheckMechanism()
+        public bool CheckMechanismDisabled()
         {
+            if (m_type != TileType.Mechanism) return false;
+
             if (m_objectOnTile == null)
             {
                 m_type = TileType.Walkable;
@@ -59,6 +61,36 @@ namespace DC_ARPG
             }
 
             return m_objectOnTile.Disabled;
+        }
+
+        public void GetTileReaction(CharacterAvatar characterAvatar = null)
+        {
+            if (m_type != TileType.Mechanism && m_type != TileType.Pit
+                || m_objectOnTile == null || m_objectOnTile.Disabled) return;
+
+            if (m_objectOnTile is not IActivableObject) return;
+
+            (m_objectOnTile as IActivableObject).Activate(characterAvatar);
+        }
+
+        public void ReturnMechanismToDefault()
+        {
+            if (m_type != TileType.Mechanism || m_objectOnTile == null || m_objectOnTile.Disabled) return;
+
+            if (m_objectOnTile is not IReturnableObject) return;
+
+            (m_objectOnTile as IReturnableObject).ReturnToDefault();
+        }
+
+        public int GetDamageFromPit()
+        {
+            if (m_type != TileType.Pit || m_objectOnTile == null) return 0;
+
+            if (m_objectOnTile is not Pit) return 0;
+
+            var pit = m_objectOnTile as Pit;
+
+            return pit.DamageAfterFall;
         }
 
         public bool CheckTileOccupied()

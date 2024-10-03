@@ -8,16 +8,18 @@ namespace DC_ARPG
 
         private PlayerCharacter m_playerCharacter;
 
+        private PlayerStats stats => m_playerCharacter.Stats as PlayerStats;
+
         private void Start()
         {
             m_playerCharacter = GetComponent<PlayerCharacter>();
 
-            m_playerCharacter.PlayerStats.EventOnLevelUp += OnLevelUp;
+            stats.EventOnLevelUp += OnLevelUp;
         }
 
         private void OnDestroy()
         {
-            m_playerCharacter.PlayerStats.EventOnLevelUp -= OnLevelUp;
+            stats.EventOnLevelUp -= OnLevelUp;
         }
 
         private void OnLevelUp()

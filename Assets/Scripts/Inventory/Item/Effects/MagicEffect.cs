@@ -21,24 +21,26 @@ namespace DC_ARPG
 
         private void UseFireball(Player player, MagicItem item)
         {
+            var playerCharacter = player.Character as PlayerCharacter;
+
             if (!item.HasInfiniteUses)
             {
-                player.Character.AvailableMagic.CreateFireball(player.gameObject, player.transform.position, player.transform.rotation);
+                playerCharacter.AvailableMagic.CreateFireball(player.gameObject, player.transform.position, player.transform.rotation);
 
                 item.Uses--;
 
                 if (item.Uses <= 0)
                 {
-                    player.Character.Inventory.RemoveItemFromInventory(this, player.Character.Inventory.MagicItemSlot);
+                    playerCharacter.Inventory.RemoveItemFromInventory(this, (player.Character as PlayerCharacter).Inventory.MagicItemSlot);
 
                     UISounds.Instance.PlayMagicItemDisappearSound();
                 }
             }
             else
             {
-                if (player.Character.PlayerStats.TryUseMagicPoints(item.MagicPointsForUse))
+                if (player.Character.Stats.TryUseMagicPoints(item.MagicPointsForUse))
                 {
-                    player.Character.AvailableMagic.CreateFireball(player.gameObject, player.transform.position, player.transform.rotation);
+                    playerCharacter.AvailableMagic.CreateFireball(player.gameObject, player.transform.position, player.transform.rotation);
                 }
                 else
                 {
@@ -57,11 +59,11 @@ namespace DC_ARPG
 
                 item.Uses--;
 
-                if (item.Uses <= 0) player.Character.Inventory.RemoveItemFromInventory(this, player.Character.Inventory.MagicItemSlot);
+                if (item.Uses <= 0) (player.Character as PlayerCharacter).Inventory.RemoveItemFromInventory(this, (player.Character as PlayerCharacter).Inventory.MagicItemSlot);
             }
             else
             {
-                if (player.Character.PlayerStats.TryUseMagicPoints(item.MagicPointsForUse))
+                if (player.Character.Stats.TryUseMagicPoints(item.MagicPointsForUse))
                 {
                     ShortMessage.Instance.ShowMessage("ÑÈËÀ!");
 

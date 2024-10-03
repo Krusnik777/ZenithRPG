@@ -60,7 +60,8 @@ namespace DC_ARPG
                         
                         if (enemyAI != null)
                         {
-                            if (enemyAI.State == EnemyState.Patrol && tile.Type == TileType.Mechanism) continue;
+                            if (enemyAI.State == EnemyState.Patrol
+                                && tile.Type == TileType.Mechanism && !tile.CheckMechanismDisabled()) continue;
                         }
                     }
 
@@ -123,7 +124,7 @@ namespace DC_ARPG
 
             foreach (var p in  paths)
             {
-                if (path.Count < p.Value.Count)
+                if (path.Count == 0 || path.Count > p.Value.Count)
                 {
                     path = p.Value;
                     targetedTile = p.Key;

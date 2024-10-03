@@ -36,14 +36,14 @@ namespace DC_ARPG
             {
                 if (other.transform.parent.TryGetComponent(out Enemy enemy))
                 {
-                    if (enemy.Character.EnemyStats.CurrentHitPoints > 0)
+                    if (enemy.Character.Stats.CurrentHitPoints > 0)
                     {
-                        enemy.Character.EnemyStats.ChangeCurrentHitPoints(parentPlayer, -parentPlayer.Character.PlayerStats.Attack, DamageType.Physic);
-                        parentPlayer.Character.PlayerStats.AddStrengthExperience(enemy.Character.EnemyStats.Level);
+                        enemy.Character.Stats.ChangeCurrentHitPoints(parentPlayer, -parentPlayer.Character.Stats.Attack, DamageType.Physic);
+                        (parentPlayer.Character.Stats as PlayerStats).AddStrengthExperience(enemy.Character.Stats.Level);
 
 
-                        var weaponItem = parentPlayer.Character.Inventory.WeaponItemSlot.Item as WeaponItem;
-                        if (!weaponItem.HasInfiniteUses) parentPlayer.Character.Inventory.WeaponItemSlot.UseWeapon(this, parentPlayer, EventOnBrokenWeapon);
+                        var weaponItem = (parentPlayer.Character as PlayerCharacter).Inventory.WeaponItemSlot.Item as WeaponItem;
+                        if (!weaponItem.HasInfiniteUses) (parentPlayer.Character as PlayerCharacter).Inventory.WeaponItemSlot.UseWeapon(this, parentPlayer, EventOnBrokenWeapon);
                     }
 
                     SetWeaponActive(false);
@@ -63,13 +63,13 @@ namespace DC_ARPG
 
                     if (player.State == Player.PlayerState.Rest)
                     {
-                        player.Character.PlayerStats.ChangeCurrentHitPoints(m_parent, -parentEnemy.Character.EnemyStats.Attack * 2, DamageType.Physic); // Damage x2
+                        player.Character.Stats.ChangeCurrentHitPoints(m_parent, -parentEnemy.Character.Stats.Attack * 2, DamageType.Physic); // Damage x2
                         player.ChangeRestState();
 
                         return;
                     }
 
-                    player.Character.PlayerStats.ChangeCurrentHitPoints(m_parent, -parentEnemy.Character.EnemyStats.Attack, DamageType.Physic);
+                    player.Character.Stats.ChangeCurrentHitPoints(m_parent, -parentEnemy.Character.Stats.Attack, DamageType.Physic);
                     SetWeaponActive(false);
                 }
             }

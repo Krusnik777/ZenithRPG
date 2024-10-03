@@ -5,34 +5,18 @@ namespace DC_ARPG
 {
     public class TrapFloor : MonoBehaviour, IDataPersistence
     {
-        [SerializeField] private float m_destroyTime = 0.1f;
         [SerializeField] private GameObject m_floorBreakEffectPrefab;
+        [SerializeField] private float m_effectDestroyTime = 1.0f;
 
-        private bool isTriggered = false;
-
-        public void DestroyTrapFloor(float destroyTime = 0.1f)
+        public void DestroyTrapFloor()
         {
             if (m_floorBreakEffectPrefab != null)
             {
                 var effect = Instantiate(m_floorBreakEffectPrefab, transform.position, Quaternion.identity);
-                Destroy(effect, 1.0f);
+                Destroy(effect, m_effectDestroyTime);
             }
 
-            Destroy(gameObject, destroyTime);
-        }
-
-        private void OnCollisionStay(Collision collision)
-        {
-            if (isTriggered) return;
-
-            if (collision.gameObject.TryGetComponent(out Player player))
-            {
-                if (player.IsJumping && !player.JumpedAndLanded) return;
-
-                isTriggered = true;
-
-                DestroyTrapFloor(m_destroyTime);
-            }
+            Destroy(gameObject);
         }
 
         #region Serialize
@@ -75,7 +59,7 @@ namespace DC_ARPG
 
         #endregion
 
-#if UNITY_EDITOR
+        #if UNITY_EDITOR
 
         [ContextMenu(nameof(GenerateIdForAllTrapFloors))]
         private void GenerateIdForAllTrapFloors()
@@ -98,6 +82,6 @@ namespace DC_ARPG
             UnityEditor.EditorUtility.SetDirty(this);
         }
 
-#endif
+        #endif
     }
 }

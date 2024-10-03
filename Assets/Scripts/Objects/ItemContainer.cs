@@ -17,7 +17,7 @@ namespace DC_ARPG
                 return;
             }
 
-            if (player.Character.Inventory.TryToAddItem(this, m_item) == true)
+            if ((player.Character as PlayerCharacter).Inventory.TryToAddItem(this, m_item) == true)
             {
                 if ((m_item is UsableItem || m_item is NotUsableItem) && m_item.Amount > 1)
                     ShortMessage.Instance.ShowMessage("Добавлено в инвентарь: " + m_item.Info.Title + " x" + m_item.Amount + ".");

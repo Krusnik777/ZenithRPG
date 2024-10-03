@@ -14,38 +14,40 @@ namespace DC_ARPG
         [SerializeField] private TextMeshProUGUI m_magicPointsValueText;
         [SerializeField] private Image m_magicPointsFillImage;
 
+        private PlayerStats stats => m_playerCharacter.Stats as PlayerStats;
+
         private void Start()
         {
-            m_playerCharacter.PlayerStats.EventOnHitPointsChange += SetHitPoints;
-            m_playerCharacter.PlayerStats.EventOnMagicPointsChange += SetMagicPoints;
-            m_playerCharacter.PlayerStats.EventOnIntelligenceUp += SetMagicPoints;
+            stats.EventOnHitPointsChange += SetHitPoints;
+            stats.EventOnMagicPointsChange += SetMagicPoints;
+            stats.EventOnIntelligenceUp += SetMagicPoints;
 
-            m_playerCharacter.PlayerStats.EventOnLevelUp += SetBothPoints;
-            m_playerCharacter.PlayerStats.EventOnStatsUpdated += SetBothPoints;
+            stats.EventOnLevelUp += SetBothPoints;
+            stats.EventOnStatsUpdated += SetBothPoints;
 
             SetBothPoints();
         }
 
         private void OnDestroy()
         {
-            m_playerCharacter.PlayerStats.EventOnHitPointsChange -= SetHitPoints;
-            m_playerCharacter.PlayerStats.EventOnMagicPointsChange -= SetMagicPoints;
-            m_playerCharacter.PlayerStats.EventOnIntelligenceUp -= SetMagicPoints;
+            stats.EventOnHitPointsChange -= SetHitPoints;
+            stats.EventOnMagicPointsChange -= SetMagicPoints;
+            stats.EventOnIntelligenceUp -= SetMagicPoints;
 
-            m_playerCharacter.PlayerStats.EventOnLevelUp -= SetBothPoints;
-            m_playerCharacter.PlayerStats.EventOnStatsUpdated -= SetBothPoints;
+            stats.EventOnLevelUp -= SetBothPoints;
+            stats.EventOnStatsUpdated -= SetBothPoints;
         }
 
         private void SetHitPoints(int change = 0)
         {
-            m_hitPointsValueText.text = $"{m_playerCharacter.PlayerStats.CurrentHitPoints}/{m_playerCharacter.PlayerStats.HitPoints}";
-            m_hitPointsFillImage.fillAmount = (float) m_playerCharacter.PlayerStats.CurrentHitPoints / (float) m_playerCharacter.PlayerStats.HitPoints;
+            m_hitPointsValueText.text = $"{m_playerCharacter.Stats.CurrentHitPoints}/{m_playerCharacter.Stats.HitPoints}";
+            m_hitPointsFillImage.fillAmount = (float) m_playerCharacter.Stats.CurrentHitPoints / (float) m_playerCharacter.Stats.HitPoints;
         }
 
         private void SetMagicPoints()
         {
-            m_magicPointsValueText.text = $"{m_playerCharacter.PlayerStats.CurrentMagicPoints}/{m_playerCharacter.PlayerStats.MagicPoints}";
-            m_magicPointsFillImage.fillAmount = (float) m_playerCharacter.PlayerStats.CurrentMagicPoints / (float) m_playerCharacter.PlayerStats.MagicPoints;
+            m_magicPointsValueText.text = $"{m_playerCharacter.Stats.CurrentMagicPoints}/{m_playerCharacter.Stats.MagicPoints}";
+            m_magicPointsFillImage.fillAmount = (float) m_playerCharacter.Stats.CurrentMagicPoints / (float) m_playerCharacter.Stats.MagicPoints;
         }
 
         private void SetBothPoints()

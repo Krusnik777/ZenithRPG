@@ -36,15 +36,15 @@ namespace DC_ARPG
             {
                 if (collision.gameObject.TryGetComponent(out Enemy enemy))
                 {
-                    if (enemy.Character.EnemyStats.CurrentHitPoints > 0)
+                    if (enemy.Character.Stats.CurrentHitPoints > 0)
                     {
                         if (enemy.EnemyAI.State != EnemyState.Chase || enemy.EnemyAI.State != EnemyState.Battle)
                         {
                             enemy.EnemyAI.StartChaseState();
                         }
 
-                        enemy.Character.EnemyStats.ChangeCurrentHitPoints(parentPlayer, -m_damage, DamageType.Magic);
-                        parentPlayer.Character.PlayerStats.AddIntelligenceExperience(m_fireballLevel);
+                        enemy.Character.Stats.ChangeCurrentHitPoints(parentPlayer, -m_damage, DamageType.Magic);
+                        (parentPlayer.Character.Stats as PlayerStats).AddIntelligenceExperience(m_fireballLevel);
                     }
                 }
             }
@@ -56,15 +56,15 @@ namespace DC_ARPG
                 {
                     if (player.State == Player.PlayerState.Rest)
                     {
-                        player.Character.PlayerStats.ChangeCurrentHitPoints(m_parent, -m_damage*2, DamageType.Magic); // Damage x2
-                        player.Character.PlayerStats.AddMagicResistExperience(m_fireballLevel);
+                        player.Character.Stats.ChangeCurrentHitPoints(m_parent, -m_damage*2, DamageType.Magic); // Damage x2
+                        (player.Character.Stats as PlayerStats).AddMagicResistExperience(m_fireballLevel);
 
                         player.ChangeRestState();
                     }
                     else
                     {
-                        player.Character.PlayerStats.ChangeCurrentHitPoints(m_parent, -m_damage, DamageType.Magic);
-                        player.Character.PlayerStats.AddMagicResistExperience(m_fireballLevel);
+                        player.Character.Stats.ChangeCurrentHitPoints(m_parent, -m_damage, DamageType.Magic);
+                        (player.Character.Stats as PlayerStats).AddMagicResistExperience(m_fireballLevel);
                     }
                 }
 
@@ -72,7 +72,7 @@ namespace DC_ARPG
                 {
                     if (enemy.EnemyAI.State != EnemyState.Patrol)
                     {
-                        enemy.Character.EnemyStats.ChangeCurrentHitPoints(m_parent, -m_damage, DamageType.Magic);
+                        enemy.Character.Stats.ChangeCurrentHitPoints(m_parent, -m_damage, DamageType.Magic);
                     }
                 }
             }

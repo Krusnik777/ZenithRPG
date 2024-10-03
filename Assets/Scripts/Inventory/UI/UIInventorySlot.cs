@@ -20,7 +20,7 @@ namespace DC_ARPG
         {
             if (m_uiInventory.State == UIInventory.InteractionState.Normal) Inventory.UseItem(this, m_inventorySlot);
 
-            if (m_uiInventory.State == UIInventory.InteractionState.Shop) UIShop.Instance.SellItem(this, m_uiInventory.Player.Character, m_inventorySlot);
+            if (m_uiInventory.State == UIInventory.InteractionState.Shop) UIShop.Instance.SellItem(this, m_uiInventory.Player.Character as PlayerCharacter, m_inventorySlot);
         }
 
         public void RemoveItem()
@@ -31,12 +31,11 @@ namespace DC_ARPG
 
                 if (potentialPit is Pit)
                 {
-                    if (potentialPit is HiddenPit)
+                    var pit = potentialPit as Pit;
+
+                    if (pit.TrapFloor != null)
                     {
-                        if ((potentialPit as HiddenPit).TrapFloor != null)
-                        {
-                            (potentialPit as HiddenPit).UnveilHiddenPit();
-                        }
+                        pit.UnveilHiddenPit();
                     }
 
                     ShortMessage.Instance.ShowMessage("Предмет пропал в недрах ямы.");

@@ -28,7 +28,7 @@ namespace DC_ARPG
 
         private void Heal(Player player, IItem item)
         {
-            player.Character.PlayerStats.ChangeCurrentHitPoints(this, 9999);
+            player.Character.Stats.ChangeCurrentHitPoints(this, 9999);
             item.Amount--;
             UISounds.Instance.PlayItemUsedSound(m_useSound);
         }
@@ -137,32 +137,25 @@ namespace DC_ARPG
         {
             UISounds.Instance.PlayItemUsedSound(m_useSound);
 
-            var potentialHiddenPit = player.CheckForwardGridForInspectableObject();
+            var potentialPit = player.CheckForwardGridForInspectableObject();
 
-            if (potentialHiddenPit is Pit)
+            if (potentialPit is Pit)
             {
-                if (potentialHiddenPit is HiddenPit)
+                var pit = potentialPit as Pit;
+
+                if (pit.TrapFloor != null)
                 {
-                    var hiddenPit = potentialHiddenPit as HiddenPit;
-
-                    if (hiddenPit.TrapFloor != null)
-                    {
-                        ShortMessage.Instance.ShowMessage("Здесь яма!");
-                        hiddenPit.UnveilHiddenPit();
-                        item.Amount--;
-                        return;
-                    }
-                    else
-                    {
-                        ShortMessage.Instance.ShowMessage("Шар упал в яму.");
-                        item.Amount--;
-                        return;
-                    }
+                    ShortMessage.Instance.ShowMessage("Здесь яма!");
+                    pit.UnveilHiddenPit();
+                    item.Amount--;
+                    return;
                 }
-
-                ShortMessage.Instance.ShowMessage("Шар упал в яму.");
-                item.Amount--;
-                return;
+                else
+                {
+                    ShortMessage.Instance.ShowMessage("Шар упал в яму.");
+                    item.Amount--;
+                    return;
+                }
             }
 
             if (player.CheckForwardGridIsEmpty() == true)
@@ -172,7 +165,7 @@ namespace DC_ARPG
             else
             {
                 ShortMessage.Instance.ShowMessage("Шар отскочил от препятствия и упал на ногу.");
-                player.Character.PlayerStats.ChangeCurrentHitPoints(item, -1);
+                player.Character.Stats.ChangeCurrentHitPoints(item, -1);
             }
         }
     }

@@ -23,7 +23,7 @@ namespace DC_ARPG
 
         public void UpdateStatus(PlayerCharacter playerCharacter)
         {
-            var stats = playerCharacter.PlayerStats;
+            var stats = playerCharacter.Stats;
 
             m_levelValue.text = stats.Level.ToString();
 

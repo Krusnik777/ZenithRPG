@@ -77,8 +77,8 @@ namespace DC_ARPG
                 if (dataPersistenceObject is Player)
                 {
                     (dataPersistenceObject as Player).ResetCheckpointPosition();
-                    var playerCharacter = (dataPersistenceObject as Player).Character;
-                    m_gameData.PlayerData = new PlayerData(playerCharacter.PlayerStats, playerCharacter.Inventory, playerCharacter.Money);
+                    var playerCharacter = (dataPersistenceObject as Player).Character as PlayerCharacter;
+                    m_gameData.PlayerData = new PlayerData(playerCharacter.Stats as PlayerStats, playerCharacter.Inventory, playerCharacter.Money);
                 }
 
                 var sceneObject = new SceneObject(dataPersistenceObject.PrefabId, dataPersistenceObject.EntityId, dataPersistenceObject.SerializeState(), dataPersistenceObject.IsCreated);
@@ -130,9 +130,9 @@ namespace DC_ARPG
                 if (dataPersistenceObject is Player)
                 {
                     (dataPersistenceObject as Player).ResetCheckpointPosition();
-                    var playerCharacter = (dataPersistenceObject as Player).Character;
-                    m_tempData.PlayerData = new PlayerData(playerCharacter.PlayerStats, playerCharacter.Inventory, playerCharacter.Money);
-                    m_tempData.ActiveSceneState.PlayerDataAtStart = new PlayerData(playerCharacter.PlayerStats, playerCharacter.Inventory, playerCharacter.Money);
+                    var playerCharacter = (dataPersistenceObject as Player).Character as PlayerCharacter;
+                    m_tempData.PlayerData = new PlayerData(playerCharacter.Stats as PlayerStats, playerCharacter.Inventory, playerCharacter.Money);
+                    m_tempData.ActiveSceneState.PlayerDataAtStart = new PlayerData(playerCharacter.Stats as PlayerStats, playerCharacter.Inventory, playerCharacter.Money);
                 }
 
                 var sceneObject = new SceneObject(dataPersistenceObject.PrefabId, dataPersistenceObject.EntityId, dataPersistenceObject.SerializeState(), dataPersistenceObject.IsCreated);
@@ -157,8 +157,8 @@ namespace DC_ARPG
         public void LoadPlayerDataFromTempData()
         {
             var player = FindObjectOfType<Player>();
-            player.Character.UpdatePlayerCharacter(m_tempData.PlayerData);
-            m_tempData.ActiveSceneState.PlayerDataAtStart = new PlayerData(player.Character.PlayerStats, player.Character.Inventory, player.Character.Money);
+            (player.Character as PlayerCharacter).UpdatePlayerCharacter(m_tempData.PlayerData);
+            m_tempData.ActiveSceneState.PlayerDataAtStart = new PlayerData(player.Character.Stats as PlayerStats, (player.Character as PlayerCharacter).Inventory, (player.Character as PlayerCharacter).Money);
             if (Exit.ChangedLevels) player.transform.forward = -player.transform.forward;
         }
 
@@ -256,7 +256,7 @@ namespace DC_ARPG
 
                         if (dataPersistenceObject is Player)
                         {
-                            var playerCharacter = (dataPersistenceObject as Player).Character;
+                            var playerCharacter = ((dataPersistenceObject as Player).Character as PlayerCharacter);
                             playerCharacter.UpdatePlayerCharacter(m_gameData.PlayerData);
                         }
 
@@ -303,7 +303,7 @@ namespace DC_ARPG
 
                         if (dataPersistenceObject is Player)
                         {
-                            var playerCharacter = (dataPersistenceObject as Player).Character;
+                            var playerCharacter = (dataPersistenceObject as Player).Character as PlayerCharacter;
                             playerCharacter.UpdatePlayerCharacter(m_tempData.ActiveSceneState.PlayerDataAtStart);
                         }
 

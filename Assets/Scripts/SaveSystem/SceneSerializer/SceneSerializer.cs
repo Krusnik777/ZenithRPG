@@ -45,8 +45,8 @@ namespace DC_ARPG
 
                 if (dataPersistenceObject is Player)
                 {
-                    var playerCharacter = (dataPersistenceObject as Player).Character;
-                    m_sceneData.PlayerData = new PlayerData(playerCharacter.PlayerStats, playerCharacter.Inventory, playerCharacter.Money);
+                    var playerCharacter = (dataPersistenceObject as Player).Character as PlayerCharacter;
+                    m_sceneData.PlayerData = new PlayerData(playerCharacter.Stats as PlayerStats, playerCharacter.Inventory, playerCharacter.Money);
                 }
             }
 
@@ -80,7 +80,7 @@ namespace DC_ARPG
 
                         if (dataPersistenceObject is Player)
                         {
-                            var playerCharacter = (dataPersistenceObject as Player).Character;
+                            var playerCharacter = (dataPersistenceObject as Player).Character as PlayerCharacter;
                             playerCharacter.UpdatePlayerCharacter(m_sceneData.PlayerData);
                         }
 

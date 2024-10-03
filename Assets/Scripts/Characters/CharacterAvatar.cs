@@ -19,6 +19,8 @@ namespace DC_ARPG
         [SerializeField] private int m_attackHits = 2;
         public Weapon Weapon => m_weapon;
 
+        public abstract CharacterBase Character { get; }
+
         #region Tile
 
         protected Tile currentTile;
@@ -57,12 +59,6 @@ namespace DC_ARPG
         protected bool isJumping;
         public bool IsJumping => isJumping;
 
-        protected bool landedAfterJump = false;
-        public bool LandedAfterJump => landedAfterJump;
-
-        public bool JumpedAndLanded => isJumping && landedAfterJump;
-
-
         protected bool isAttacking;
         public bool IsAttacking => isAttacking;
 
@@ -70,15 +66,12 @@ namespace DC_ARPG
 
         protected Coroutine attackRoutine;
 
-
         protected bool isBlocking;
         public bool IsBlocking => isBlocking;
         public event UnityAction EventOnBlock;
 
-
         protected virtual bool inIdleState => !(inMovement || isJumping || isFalling || isAttacking || isBlocking);
         public bool InIdleState => inIdleState;
-
 
         protected Animator m_animator;
         public Animator Animator => m_animator;
@@ -89,10 +82,10 @@ namespace DC_ARPG
 
         public void LandAfterJump()
         {
-            landedAfterJump = true;
+            // Can do something
         }
 
-        public void LandAfterFall()
+        public virtual void LandAfterFall()
         {
             isFalling = false;
             isFallen = true;
@@ -319,19 +312,29 @@ namespace DC_ARPG
             return direction;
         }
 
-        private void FreePreviousTileAndCheckNewForPit()
+        private void UpdateNewPosition()
         {
             if (currentTile != null)
             {
                 currentTile.SetTileOccupied(null);
 
+                if (currentTile.Type == TileType.Mechanism) currentTile.ReturnMechanismToDefault();
+
                 currentTile = GetCurrentTile();
 
                 if (currentTile != null)
+                {
+                    if (currentTile.Type == TileType.Mechanism)
+                    {
+                        currentTile.GetTileReaction(this);
+                    }
+
                     if (currentTile.Type == TileType.Pit)
                     {
+                        currentTile.GetTileReaction();
                         Fall();
                     }
+                }
             }
         }
 
@@ -366,7 +369,7 @@ namespace DC_ARPG
 
             transform.position = targetPosition;
 
-            FreePreviousTileAndCheckNewForPit();
+            UpdateNewPosition();
 
             //yield return null;
 
@@ -430,7 +433,6 @@ namespace DC_ARPG
 
         private IEnumerator JumpToForwardTile(Tile targetTile)
         {
-            landedAfterJump = false;
             isJumping = true;
 
             targetTile.SetTileOccupied(this);
@@ -456,7 +458,7 @@ namespace DC_ARPG
 
             transform.position = targetPosition;
 
-            FreePreviousTileAndCheckNewForPit();
+            UpdateNewPosition();
 
             if (isFalling)
             {
@@ -474,7 +476,6 @@ namespace DC_ARPG
 
         private IEnumerator JumpTwoTilesForward(Tile[] tiles)
         {
-            landedAfterJump = false;
             isJumping = true;
 
             tiles[0].SetTileOccupied(this);
@@ -500,7 +501,7 @@ namespace DC_ARPG
 
             transform.position = targetPosition;
 
-            FreePreviousTileAndCheckNewForPit();
+            UpdateNewPosition();
 
             tiles[0].SetTileOccupied(null);
 
@@ -520,7 +521,6 @@ namespace DC_ARPG
 
         private IEnumerator JumpInPlace()
         {
-            landedAfterJump = false;
             isJumping = true;
 
             m_animator.Play("Jump");
@@ -536,7 +536,6 @@ namespace DC_ARPG
 
         private IEnumerator JumpUpForward(Tile targetTile)
         {
-            landedAfterJump = false;
             isJumping = true;
 
             targetTile.SetTileOccupied(this);
@@ -571,7 +570,7 @@ namespace DC_ARPG
 
             transform.position = targetPosition;
 
-            FreePreviousTileAndCheckNewForPit();
+            UpdateNewPosition();
 
             if (isFalling)
             {

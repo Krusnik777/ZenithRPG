@@ -20,11 +20,11 @@ namespace DC_ARPG
         {
             if (enemy != null)
             {
-                if (enemy.Character.EnemyStats.CurrentHitPoints > 0)
+                if (enemy.Character.Stats.CurrentHitPoints > 0)
                     m_enemyHealthBarPanel.SetActive(true);
                 else m_enemyHealthBarPanel.SetActive(false);
 
-                m_fillImage.fillAmount = (float) enemy.Character.EnemyStats.CurrentHitPoints / (float) enemy.Character.EnemyStats.HitPoints;
+                m_fillImage.fillAmount = (float) enemy.Character.Stats.CurrentHitPoints / (float) enemy.Character.Stats.HitPoints;
             }
             else
             {

@@ -117,6 +117,7 @@ namespace DC_ARPG
             isStopped = true;
 
             StopMoving();
+            if (m_state == EnemyState.Chase) StopChasing();
         }
 
         public void ResumeActivity()
@@ -241,6 +242,7 @@ namespace DC_ARPG
                 if (t.OccupiedBy != m_enemy || t.Type == TileType.Closable && t.CheckClosed())
                 {
                     StopMoving();
+                    if (m_state == EnemyState.Chase) StopChasing();
                     return;
                 }
 
@@ -277,7 +279,9 @@ namespace DC_ARPG
                     if (t != m_enemy.CurrentTile)
                     {
                         m_enemy.CurrentTile.SetTileOccupied(null);
+                        if (m_enemy.CurrentTile.Type == TileType.Mechanism) m_enemy.CurrentTile.ReturnMechanismToDefault();
                         m_enemy.SetCurrentTile(t);
+                        if (m_enemy.CurrentTile.Type == TileType.Mechanism) m_enemy.CurrentTile.GetTileReaction(m_enemy);
                     }
 
                     path.Pop();
@@ -341,8 +345,6 @@ namespace DC_ARPG
                     t.SetTileOccupied(null);
                 }
             }
-
-            if (m_state == EnemyState.Chase) StopChasing();
         }
 
         private void StopChasing()
@@ -362,6 +364,7 @@ namespace DC_ARPG
         private void StopChasingAndStartPatrol()
         {
             StopMoving();
+            StopChasing();
 
             Debug.Log("Started Patrol");
             EventOnChaseEnded?.Invoke(this);

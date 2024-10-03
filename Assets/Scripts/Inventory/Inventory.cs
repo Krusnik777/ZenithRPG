@@ -36,7 +36,7 @@ namespace DC_ARPG
 
         private Player m_player;
         public Player ParentPlayer => m_player;
-        public PlayerCharacter ParentCharacter => m_player.Character;
+        public PlayerCharacter ParentCharacter => m_player.Character as PlayerCharacter;
 
         public int UnlockedPockets = 3;
 

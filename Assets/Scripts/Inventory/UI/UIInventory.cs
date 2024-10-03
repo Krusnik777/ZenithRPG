@@ -110,7 +110,7 @@ namespace DC_ARPG
 
         private void Start()
         {
-            if (m_inventory == null) m_inventory = m_player.Character.Inventory;
+            if (m_inventory == null) m_inventory = (m_player.Character as PlayerCharacter).Inventory;
 
             m_inventory.SetParent(m_player);
 
@@ -129,10 +129,10 @@ namespace DC_ARPG
             m_inventory.EventOnItemUsed += OnItemUsed;
             m_inventory.EventOnTransitCompleted += OnTransitCompleted;
 
-            m_player.Character.EventOnMoneySpend += UpdateMoneyInfo;
-            m_player.Character.EventOnMoneyAdded += UpdateMoneyInfo;
+            (m_player.Character as PlayerCharacter).EventOnMoneySpend += UpdateMoneyInfo;
+            (m_player.Character as PlayerCharacter).EventOnMoneyAdded += UpdateMoneyInfo;
 
-            m_player.Character.OnPlayerDeath.AddListener(OnPlayerDeath);
+            (m_player.Character as PlayerCharacter).OnPlayerDeath.AddListener(OnPlayerDeath);
         }
 
         private void OnDestroy()
@@ -142,10 +142,10 @@ namespace DC_ARPG
             m_inventory.EventOnItemUsed -= OnItemUsed;
             m_inventory.EventOnTransitCompleted -= OnTransitCompleted;
 
-            m_player.Character.EventOnMoneyAdded -= UpdateMoneyInfo;
-            m_player.Character.EventOnMoneySpend -= UpdateMoneyInfo;
+            (m_player.Character as PlayerCharacter).EventOnMoneyAdded -= UpdateMoneyInfo;
+            (m_player.Character as PlayerCharacter).EventOnMoneySpend -= UpdateMoneyInfo;
 
-            m_player.Character.OnPlayerDeath.RemoveListener(OnPlayerDeath);
+            (m_player.Character as PlayerCharacter).OnPlayerDeath.RemoveListener(OnPlayerDeath);
         }
 
         private void SetInventory()
@@ -240,7 +240,7 @@ namespace DC_ARPG
 
         private void UpdateMoneyInfo()
         {
-            m_moneyValueText.text = m_player.Character.Money.ToString();
+            m_moneyValueText.text = (m_player.Character as PlayerCharacter).Money.ToString();
         }
 
         private void OnPlayerDeath()

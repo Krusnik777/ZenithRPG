@@ -62,7 +62,7 @@ namespace DC_ARPG
 
             if (price <= 0) price = ((int)(m_shop.ShopInfo.Surcharge * m_shop.DefaultPrice) + m_shop.DefaultPrice) * item.Amount;
 
-            if (m_uiInventory.Player.Character.Money < price)
+            if ((m_uiInventory.Player.Character as PlayerCharacter).Money < price)
             {
                 index = Random.Range(0, m_shop.Shopkeeper.NotEnoughMoneyLines.Count);
                 m_shopkeeperSpeech.ShowShortPhrase(m_shop.Shopkeeper.NotEnoughMoneyLines[index]);
@@ -82,7 +82,7 @@ namespace DC_ARPG
                 return;
             }
 
-            m_uiInventory.Player.Character.SpendMoney(price);
+            (m_uiInventory.Player.Character as PlayerCharacter).SpendMoney(price);
 
             index = Random.Range(0, m_shop.Shopkeeper.PurchaseLines.Count);
             m_shopkeeperSpeech.ShowShortPhrase(m_shop.Shopkeeper.PurchaseLines[index]);

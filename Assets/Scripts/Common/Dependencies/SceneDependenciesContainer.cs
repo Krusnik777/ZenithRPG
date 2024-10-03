@@ -13,7 +13,7 @@ namespace DC_ARPG
             if (m_player == null)
             {
                 m_player = FindObjectOfType<Player>(true);
-                m_playerCharacter = m_player.Character;
+                m_playerCharacter = m_player.Character as PlayerCharacter;
             }
 
             Bind<Player>(m_player, monoBehaviourInScene);

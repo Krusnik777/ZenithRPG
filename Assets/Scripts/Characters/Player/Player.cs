@@ -17,9 +17,9 @@ namespace DC_ARPG
 
         public override Tile CurrentTile => currentTile ?? GetCurrentTile();
 
-        public bool ActionsIsAvailable { get; set; }
+        public bool ActionsIsAvailable => !(IsFallingOrFallen || CurrentTile.Type == TileType.Mechanism);
 
-        public PlayerCharacter Character => m_character;
+        public override CharacterBase Character => m_character;
 
         private Ray m_lookRay;
 
@@ -31,11 +31,22 @@ namespace DC_ARPG
 
         protected override bool inIdleState => !(inMovement || isJumping || isFalling || isAttacking || isBlocking || isCasting);
 
+        public override void LandAfterFall()
+        {
+            base.LandAfterFall();
+
+            if (currentTile.Type == TileType.Pit)
+            {
+                int damageAfterFall = currentTile.GetDamageFromPit();
+                m_character.Stats.ChangeCurrentHitPoints(currentTile, -damageAfterFall);
+            }
+        }
+
         #region PlayerActions
 
         public override void Attack()
         {
-            if (Character.Inventory.WeaponItemSlot.IsEmpty) return;
+            if (m_character.Inventory.WeaponItemSlot.IsEmpty) return;
 
             if (Mathf.Sign(transform.position.y) < 0) return;
 
@@ -44,7 +55,7 @@ namespace DC_ARPG
 
         public override void Block(string name)
         {
-            if (Character.Inventory.ShieldItemSlot.IsEmpty) return;
+            if (m_character.Inventory.ShieldItemSlot.IsEmpty) return;
 
             if (Mathf.Sign(transform.position.y) < 0) return;
 
@@ -71,7 +82,7 @@ namespace DC_ARPG
         {
             if (!inIdleState) return;
 
-            if (Character.Inventory.MagicItemSlot.IsEmpty) return;
+            if (m_character.Inventory.MagicItemSlot.IsEmpty) return;
 
             if (Mathf.Sign(transform.position.y) < 0) return;
 
@@ -114,22 +125,22 @@ namespace DC_ARPG
         {
             if (!inIdleState) return;
 
-            Character.Inventory.UseItem(this, Character.Inventory.ActiveItemSlot);
+            m_character.Inventory.UseItem(this, m_character.Inventory.ActiveItemSlot);
         }
 
         public void ChooseLeftActiveItem()
         {
-            Character.Inventory.SetActiveItemSlot(this, 0);
+            m_character.Inventory.SetActiveItemSlot(this, 0);
         }
 
         public void ChooseMiddleActiveItem()
         {
-            Character.Inventory.SetActiveItemSlot(this, 1);
+            m_character.Inventory.SetActiveItemSlot(this, 1);
         }
 
         public void ChooseRightActiveItem()
         {
-            Character.Inventory.SetActiveItemSlot(this, 2);
+            m_character.Inventory.SetActiveItemSlot(this, 2);
         }
 
         #endregion
@@ -186,7 +197,6 @@ namespace DC_ARPG
         private void Awake()
         {
             m_animator = GetComponentInChildren<Animator>();
-            ActionsIsAvailable = true;
         }
 
         private void Update()
@@ -213,7 +223,7 @@ namespace DC_ARPG
                 yield return null;
             }
 
-            Character.Inventory.MagicItemSlot.UseMagic(this, this);
+            m_character.Inventory.MagicItemSlot.UseMagic(this, this);
 
             yield return new WaitWhile(() => m_animator.GetCurrentAnimatorStateInfo(0).IsName("CastMagic"));
 

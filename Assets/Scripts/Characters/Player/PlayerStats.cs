@@ -2,7 +2,7 @@ using UnityEngine.Events;
 
 namespace DC_ARPG
 {
-    public class PlayerStats : CharacterStats<PlayerStatsInfo>
+    public class PlayerStats : CharacterStats
     {
         #region VariablesForUpgradableStats
 
@@ -73,8 +73,12 @@ namespace DC_ARPG
 
         #endregion
 
-        public override void InitStats(PlayerStatsInfo playerInfo)
+        public override void InitStats(CharacterStatsInfo characterInfo)
         {
+            if (characterInfo is not PlayerStatsInfo) return;
+
+            var playerInfo = characterInfo as PlayerStatsInfo;
+
             base.InitStats(playerInfo);
 
             MaxLevel = playerInfo.MaxLevel;

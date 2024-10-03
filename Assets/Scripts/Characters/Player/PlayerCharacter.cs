@@ -31,7 +31,7 @@ namespace DC_ARPG
         public WeaponItem BrokenWeapon => m_brokenWeapon;
 
         private PlayerStats playerStats;
-        public PlayerStats PlayerStats => playerStats;
+        public override CharacterStats Stats => playerStats;
 
         private Inventory inventory;
         public Inventory Inventory => inventory;

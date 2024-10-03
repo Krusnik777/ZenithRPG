@@ -6,9 +6,10 @@ namespace DC_ARPG
     public class InspectableObject : MonoBehaviour
     {
         [SerializeField] protected string m_infoText;
+        [Space]
         public UnityEvent EventOnInspection;
 
-        public virtual bool Disabled => false;
+        public virtual bool Disabled => true;
 
         public virtual string InfoText => m_infoText;
 
