@@ -13,11 +13,9 @@ namespace DC_ARPG
         [SerializeField] protected float m_afterJumpDelay = 0.1f;
         [SerializeField] protected float m_transitionFallSpeed = 0.25f;
         [SerializeField] protected AnimationCurve m_jumpUpCurve;
-        [Header("Attack")]
-        [SerializeField] protected Weapon m_weapon;
-        [SerializeField] protected Weapon m_additionalWeapon;
+        [Header("Attack & Defense")]
         [SerializeField] private int m_attackHits = 2;
-        public Weapon Weapon => m_weapon;
+        [SerializeField] private BlockStamina m_blockStamina;
 
         public abstract CharacterBase Character { get; }
 
@@ -240,6 +238,9 @@ namespace DC_ARPG
 
         public virtual void Block(string name)
         {
+            if (m_blockStamina != null)
+                if (m_blockStamina.DefenseBreaked) return;
+
             if (isAttacking)
             {
                 if (attackRoutine != null)
@@ -283,6 +284,40 @@ namespace DC_ARPG
         public virtual void OnBlock()
         {
             EventOnBlock?.Invoke();
+
+            if (m_blockStamina == null) return;
+
+            m_blockStamina.SpendStamina();
+
+            if (!m_blockStamina.DefenseBreaked)
+            {
+                m_animator.SetTrigger("BlockHit");
+            }
+            else
+            {
+                // TEMP
+
+                StartCoroutine(BlockEnd());
+            }
+        }
+
+        public CharacterAvatar CheckForwardGridForOpponent()
+        {
+            RaycastHit hit;
+
+            var lookRay = new Ray(transform.position + new Vector3(0, 0.4f, 0), transform.forward);
+
+            if (Physics.Raycast(lookRay, out hit, 1f))
+            {
+                if (hit.collider != null)
+                {
+                    if (hit.collider.transform.parent.TryGetComponent(out CharacterAvatar opponent))
+                    {
+                        return opponent;
+                    }
+                }
+            }
+            return null;
         }
 
         #endregion
@@ -293,6 +328,8 @@ namespace DC_ARPG
 
             currentTile = GetCurrentTile();
             if (currentTile != null) currentTile.SetTileOccupied(this);
+
+            if (m_blockStamina != null) m_blockStamina.InitStamina(this);
         }
 
         private Vector3 GetDirection(Vector2 inputDirection)
@@ -342,8 +379,6 @@ namespace DC_ARPG
         {
             isAttacking = false;
             hitCount = 0;
-            m_weapon.SetWeaponActive(false);
-            if (m_additionalWeapon != null) m_additionalWeapon.SetWeaponActive(false);
             attackRoutine = null;
         }
 
@@ -639,9 +674,6 @@ namespace DC_ARPG
 
                 yield return new WaitUntil(() => m_animator.GetCurrentAnimatorStateInfo(0).IsName("AttackState.Attack" + attackCount));
             }
-
-            m_weapon.SetWeaponActive(true);
-            if(m_additionalWeapon != null) m_additionalWeapon.SetWeaponActive(true);
 
             yield return new WaitWhile(() => m_animator.GetCurrentAnimatorStateInfo(0).IsName("AttackState.Attack" + attackCount));
 

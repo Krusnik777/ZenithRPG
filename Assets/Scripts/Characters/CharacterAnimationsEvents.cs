@@ -37,6 +37,10 @@ namespace DC_ARPG
         public void OnAttackAnimation()
         {
             m_characterSFX.PlayAttackSound();
+
+            var opponent = m_characterAvatar.CheckForwardGridForOpponent();
+
+            if (opponent != null) m_characterAvatar.Character.DamageOpponent(opponent);
         }
 
         public void OnDeathAnimation()
@@ -44,7 +48,7 @@ namespace DC_ARPG
             m_characterSFX.PlayDeathSFX(m_characterAvatar.transform.position);
         }
 
-        private void Awake()
+        private void Start()
         {
             m_characterAvatar.EventOnFallStart += OnFallAnimation;
         }

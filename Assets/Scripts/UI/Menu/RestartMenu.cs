@@ -12,6 +12,7 @@ namespace DC_ARPG
             Load
         }
 
+        [SerializeField] private PlayerCharacter m_playerCharacter;
         [SerializeField] private GameObject m_panel;
         [SerializeField] private UISelectableButtonContainer m_buttons;
         [Header("Buttons")]
@@ -72,6 +73,16 @@ namespace DC_ARPG
             m_restartFromCheckpointButton.SetActive(SceneSerializer.Instance.CheckCheckpointExists());
 
             m_loadButton.SetActive(DataPersistenceManager.Instance.CheckAnySaveFilesExists());
+        }
+
+        private void Start()
+        {
+            m_playerCharacter.EventOnDeath.AddListener(ShowPanel);
+        }
+
+        private void OnDestroy()
+        {
+            m_playerCharacter.EventOnDeath.RemoveListener(ShowPanel);
         }
     }
 }

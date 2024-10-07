@@ -69,31 +69,41 @@ namespace DC_ARPG
         private void Awake()
         {
             m_audioSource = GetComponent<AudioSource>();
-            
+        }
+
+        private void Start()
+        {
             if (m_blockEffect != null)
                 if (m_blockEffect.activeInHierarchy) m_blockEffect.SetActive(false);
 
             m_characterAvatar.Character.EventOnHit += OnHit;
-            if (m_brokenSwordEffectPrefab != null) m_characterAvatar.Weapon.EventOnBrokenWeapon += OnBrokenWeapon;
             m_characterAvatar.EventOnBlock += OnBlock;
+
+            if (m_characterAvatar is Player)
+            {
+                (m_characterAvatar.Character as PlayerCharacter).Inventory.WeaponItemSlot.EventOnBrokenWeapon += OnBrokenWeapon;
+            }
         }
 
         private void OnDestroy()
         {
             m_characterAvatar.Character.EventOnHit -= OnHit;
-            m_characterAvatar.Weapon.EventOnBrokenWeapon -= OnBrokenWeapon;
             m_characterAvatar.EventOnBlock -= OnBlock;
+
+            if (m_characterAvatar is Player)
+            {
+                (m_characterAvatar.Character as PlayerCharacter).Inventory.WeaponItemSlot.EventOnBrokenWeapon -= OnBrokenWeapon;
+            }
         }
 
         private void OnHit()
         {
             PlayGetHitSFX(m_characterAvatar.Character.transform.position);
         }
-               
 
-        private void OnBrokenWeapon()
+        private void OnBrokenWeapon(object sender)
         {
-            PlayBrokenSwordEffect(m_characterAvatar.Weapon.transform.position);
+            PlayBrokenSwordEffect(m_characterAvatar.transform.position);
         }
 
         private void OnBlock()

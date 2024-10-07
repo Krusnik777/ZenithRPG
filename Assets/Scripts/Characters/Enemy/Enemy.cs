@@ -25,6 +25,11 @@ namespace DC_ARPG
             m_character.Stats.EventOnDeath -= EventOnDeathEnemyCharacter;
         }
 
+        private void Update()
+        {
+            Debug.DrawRay(transform.position + new Vector3(0, 0.25f, 0), transform.forward);
+        }
+
         private void EventOnDeathEnemyCharacter(object sender) => EventOnDeath?.Invoke(this);
 
         #region Serialize

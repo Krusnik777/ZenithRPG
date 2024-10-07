@@ -132,7 +132,7 @@ namespace DC_ARPG
             (m_player.Character as PlayerCharacter).EventOnMoneySpend += UpdateMoneyInfo;
             (m_player.Character as PlayerCharacter).EventOnMoneyAdded += UpdateMoneyInfo;
 
-            (m_player.Character as PlayerCharacter).OnPlayerDeath.AddListener(OnPlayerDeath);
+            m_player.Character.EventOnDeath.AddListener(OnPlayerDeath);
         }
 
         private void OnDestroy()
@@ -145,7 +145,7 @@ namespace DC_ARPG
             (m_player.Character as PlayerCharacter).EventOnMoneyAdded -= UpdateMoneyInfo;
             (m_player.Character as PlayerCharacter).EventOnMoneySpend -= UpdateMoneyInfo;
 
-            (m_player.Character as PlayerCharacter).OnPlayerDeath.RemoveListener(OnPlayerDeath);
+            m_player.Character.EventOnDeath.RemoveListener(OnPlayerDeath);
         }
 
         private void SetInventory()

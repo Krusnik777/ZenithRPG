@@ -55,7 +55,7 @@ namespace DC_ARPG
             return TrySetItemInSlot(item);
         }
 
-        public void UseWeapon(object sender, Player player, UnityAction OnBroken = null)
+        public void UseWeapon(object sender, Player player)
         {
             var weaponItem = Item as WeaponItem;
 
@@ -70,7 +70,6 @@ namespace DC_ARPG
 
                 UISounds.Instance.PlaySwordBreakSound();
 
-                OnBroken?.Invoke();
                 EventOnBrokenWeapon?.Invoke(sender);
             }
 

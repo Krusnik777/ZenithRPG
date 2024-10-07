@@ -7,8 +7,6 @@ namespace DC_ARPG
     public class EnemyCharacter : CharacterBase
     {
         [SerializeField] private EnemyStatsInfo m_enemyStatsInfo;
-        [Space]
-        public UnityEvent OnEnemyDeath;
 
         private EnemyStats enemyStats;
         public override CharacterStats Stats => enemyStats;
@@ -17,6 +15,32 @@ namespace DC_ARPG
         public Enemy Enemy => enemy;
 
         private Coroutine deathRoutine;
+
+        public override void DamageOpponent(CharacterAvatar opponent)
+        {
+            if (opponent.Character.Stats.CurrentHitPoints <= 0) return;
+
+            if (opponent is not Player) return;
+
+            var player = opponent as Player;
+
+            if (player.IsBlocking && player.CheckForwardGridForEnemy() == enemy)
+            {
+                player.OnBlock();
+
+                return;
+            }
+
+            if (player.State == Player.PlayerState.Rest)
+            {
+                player.Character.Stats.ChangeCurrentHitPoints(enemy, -enemyStats.Attack * 2, DamageType.Physic); // Damage x2
+                player.ChangeRestState();
+
+                return;
+            }
+
+            opponent.Character.Stats.ChangeCurrentHitPoints(enemy, -enemyStats.Attack, DamageType.Physic);
+        }
 
         private void Awake()
         {
@@ -100,7 +124,7 @@ namespace DC_ARPG
                 }
             }
 
-            OnEnemyDeath?.Invoke();
+            OnDead();
 
             Destroy(gameObject);
         }

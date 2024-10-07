@@ -405,6 +405,42 @@ namespace DC_ARPG
                 return;
             }
 
+            // Get available tiles Near Player from LevelState
+            var potentialTargets = LevelState.Instance.GetAvailableNeighborTilesToPlayer();
+
+            if (potentialTargets.Count == 0)
+            {
+                StopChasingAndStartPatrol();
+
+                return;
+            }
+
+            // Choose shortest path or available
+            _busyFindingPath = true;
+
+            Stack<Tile> shortestPath = pathFinder.GetShortestPath(potentialTargets, out Tile target);
+
+            _busyFindingPath = false;
+
+            if (shortestPath == null || shortestPath.Count == 0)
+            {
+                // Do nothing and stand at place if no paths
+                //if (m_state == EnemyState.Chase) StopChasingAndStartPatrol();
+            }
+            else
+            {
+                path.Clear();
+                path = shortestPath;
+
+                ClearTargetedTile(); // just to be safe
+                target.TargetedBy = m_enemy;
+                targetedTile = target;
+
+                isMoving = true;
+                isChasing = true;
+            }
+
+            /*
             if (LevelState.Instance.ChasingEnemies.Count > 1)
             {
                 // Get available tiles Near Player from LevelState
@@ -445,7 +481,7 @@ namespace DC_ARPG
             else
             {
                 FindPath(LevelState.Instance.Player.CurrentTile, true);
-            }
+            }*/
         }
 
         #region Timers

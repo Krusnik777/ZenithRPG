@@ -194,11 +194,6 @@ namespace DC_ARPG
             return true;
         }
 
-        private void Awake()
-        {
-            m_animator = GetComponentInChildren<Animator>();
-        }
-
         private void Update()
         {
             m_lookRay = new Ray(transform.position + new Vector3(0, 0.1f, 0), transform.forward);

@@ -324,8 +324,6 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  m_weapon: {fileID: 6113838619211676390}
-  m_additionalWeapon: {fileID: 0}
   m_attackHits: 2
   m_character: {fileID: 4915202404410297225}
   m_prefabId: EnemyKnightPrefab_Default
@@ -403,10 +401,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2100000, guid: be4587d62df6bab46a3bcb7f63d17b51, type: 2}
     - target: {fileID: 2621589565668612994, guid: 7c03e77928fe2324a83a18756ad0dceb, type: 3}
-      propertyPath: m_trail
-      value: 
-      objectReference: {fileID: 4401249446239641810}
-    - target: {fileID: 2621589565668612994, guid: 7c03e77928fe2324a83a18756ad0dceb, type: 3}
       propertyPath: m_parent
       value: 
       objectReference: {fileID: 3700599518249305028}
@@ -473,26 +467,33 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3725847184253068341, guid: 7c03e77928fe2324a83a18756ad0dceb, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2297832597425568988}
   m_SourcePrefab: {fileID: 100100000, guid: 7c03e77928fe2324a83a18756ad0dceb, type: 3}
---- !u!1 &4401249446239641810 stripped
+--- !u!1 &4831702980961650001 stripped
 GameObject:
-  m_CorrespondingSourceObject: {fileID: 5597155236668948918, guid: 7c03e77928fe2324a83a18756ad0dceb, type: 3}
+  m_CorrespondingSourceObject: {fileID: 3725847184253068341, guid: 7c03e77928fe2324a83a18756ad0dceb, type: 3}
   m_PrefabInstance: {fileID: 8122653167065325924}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2297832597425568988
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4831702980961650001}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f43d5ea8938cf1d48879ac2251d299e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_characterAvatar: {fileID: 5625230263563871144}
+  m_characterSFX: {fileID: 5654172165861338612}
+  m_rigBuilder: {fileID: 0}
 --- !u!4 &5207982989591060459 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4107017785693666959, guid: 7c03e77928fe2324a83a18756ad0dceb, type: 3}
   m_PrefabInstance: {fileID: 8122653167065325924}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &6113838619211676390 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2621589565668612994, guid: 7c03e77928fe2324a83a18756ad0dceb, type: 3}
-  m_PrefabInstance: {fileID: 8122653167065325924}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b484d9d1485883a4eb16efd221b0d1c0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

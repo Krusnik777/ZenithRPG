@@ -23,8 +23,6 @@ namespace DC_ARPG
         [SerializeField] private int m_unlockedPockets;
         [SerializeField] private EquippedItems m_equippedItems;
         [SerializeField] private ItemData[] m_items;
-        [Space]
-        public UnityEvent OnPlayerDeath;
 
         public Player Player => m_player;
         public Magic AvailableMagic => m_availableMagic;
@@ -43,6 +41,17 @@ namespace DC_ARPG
 
         public event UnityAction EventOnMoneyAdded;
         public event UnityAction EventOnMoneySpend;
+
+        public override void DamageOpponent(CharacterAvatar opponent)
+        {
+            if (opponent.Character.Stats.CurrentHitPoints <= 0) return;
+
+            opponent.Character.Stats.ChangeCurrentHitPoints(m_player, -playerStats.Attack, DamageType.Physic);
+            playerStats.AddStrengthExperience(opponent.Character.Stats.Level);
+
+            var weaponItem = m_equippedItems.Weapon;
+            if (!weaponItem.HasInfiniteUses) inventory.WeaponItemSlot.UseWeapon(m_player, m_player);
+        }
 
         public void UpdatePlayerCharacter(PlayerData playerData)
         {
@@ -198,7 +207,7 @@ namespace DC_ARPG
 
             m_player.Animator.Play("Death");
 
-            OnPlayerDeath?.Invoke();
+            OnDead();
         }
 
         private void OnEquipItemRemoved(object sender, IItemSlot slot)

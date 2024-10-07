@@ -1,6 +1,4 @@
 using UnityEngine;
-using static DC_ARPG.Chest;
-
 
 namespace DC_ARPG
 {
