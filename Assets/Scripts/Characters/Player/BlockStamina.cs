@@ -17,6 +17,11 @@ namespace DC_ARPG
         private CharacterAvatar parentCharacterAvatar;
 
         private float currentStamina;
+        public float CurrentStamina => currentStamina;
+        public float MaxStamina => m_defaultStaminaValue;
+
+        public bool Recovered => currentStamina == m_defaultStaminaValue;
+
         private Coroutine recoveryRoutine;
 
         private bool breaked;
@@ -63,8 +68,6 @@ namespace DC_ARPG
                     currentStamina += m_recoveryPerSecondAfterBreak;
                 else
                     currentStamina += m_recoveryPerSecond;
-
-                Debug.Log("CurrentStamina : " + currentStamina);
             }
 
             currentStamina = m_defaultStaminaValue;

@@ -68,8 +68,6 @@ namespace DC_ARPG
                 playerCharacter.Inventory.RemoveItemFromInventory(sender, playerCharacter.Inventory.WeaponItemSlot);
                 playerCharacter.Inventory.SetBrokenWeapon(sender, playerCharacter.BrokenWeapon);
 
-                UISounds.Instance.PlaySwordBreakSound();
-
                 EventOnBrokenWeapon?.Invoke(sender);
             }
 

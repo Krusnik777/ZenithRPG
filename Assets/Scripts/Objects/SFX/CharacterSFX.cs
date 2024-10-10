@@ -6,6 +6,8 @@ namespace DC_ARPG
     public class CharacterSFX : MonoBehaviour
     {
         [SerializeField] private CharacterAvatar m_characterAvatar;
+        [SerializeField] private Transform m_rightHandPoint;
+        [SerializeField] private Transform m_shieldHoldPoint;
         [Header("Sounds")]
         [SerializeField] private AudioClip m_footstepSound;
         [SerializeField] private AudioClip m_jumpSound;
@@ -13,6 +15,8 @@ namespace DC_ARPG
         [SerializeField] private AudioClip m_attackSound;
         [Header("Effects")]
         [SerializeField] private GameObject m_blockEffect;
+        [SerializeField] private GameObject m_breakBlockEffectPrefab;
+        [SerializeField] private GameObject m_parryEffectPrefab;
         [SerializeField] private GameObject m_hitEffectPrefab;
         [SerializeField] private GameObject m_deathEffectPrefab;
         [SerializeField] private GameObject m_brokenSwordEffectPrefab;
@@ -56,6 +60,26 @@ namespace DC_ARPG
             blockCoroutine = StartCoroutine(ActivateBlockEffect());
         }
 
+        public void PlayBreakBlockEffect(Vector3 position)
+        {
+            if (m_breakBlockEffectPrefab != null)
+            {
+                var effect = Instantiate(m_breakBlockEffectPrefab, position, Quaternion.identity);
+
+                Destroy(effect, 2.0f);
+            }
+        }
+
+        public void PlayParryEffect(Vector3 position)
+        {
+            if (m_parryEffectPrefab != null)
+            {
+                var effect = Instantiate(m_parryEffectPrefab, position, Quaternion.identity);
+
+                Destroy(effect, 2.0f);
+            }
+        }
+
         public void PlayBrokenSwordEffect(Vector3 position)
         {
             if (m_brokenSwordEffectPrefab != null)
@@ -64,6 +88,8 @@ namespace DC_ARPG
 
                 Destroy(effect, 1.0f);
             }
+
+            UISounds.Instance.PlaySwordBreakSound();
         }
 
         private void Awake()
@@ -77,7 +103,9 @@ namespace DC_ARPG
                 if (m_blockEffect.activeInHierarchy) m_blockEffect.SetActive(false);
 
             m_characterAvatar.Character.EventOnHit += OnHit;
+            m_characterAvatar.EventOnParry += OnParry;
             m_characterAvatar.EventOnBlock += OnBlock;
+            m_characterAvatar.EventOnBlockBreak += OnBlockBreak;
 
             if (m_characterAvatar is Player)
             {
@@ -88,7 +116,9 @@ namespace DC_ARPG
         private void OnDestroy()
         {
             m_characterAvatar.Character.EventOnHit -= OnHit;
+            m_characterAvatar.EventOnParry -= OnParry;
             m_characterAvatar.EventOnBlock -= OnBlock;
+            m_characterAvatar.EventOnBlockBreak -= OnBlockBreak;
 
             if (m_characterAvatar is Player)
             {
@@ -103,12 +133,28 @@ namespace DC_ARPG
 
         private void OnBrokenWeapon(object sender)
         {
-            PlayBrokenSwordEffect(m_characterAvatar.transform.position);
+            if (m_rightHandPoint == null) return;
+
+            PlayBrokenSwordEffect(m_rightHandPoint.position);
+        }
+
+        private void OnParry()
+        {
+            if (m_shieldHoldPoint == null) return;
+
+            PlayParryEffect(m_shieldHoldPoint.position);
         }
 
         private void OnBlock()
         {
             PlayBlockSFX();
+        }
+
+        private void OnBlockBreak()
+        {
+            if (m_shieldHoldPoint == null) return;
+
+            PlayBreakBlockEffect(m_shieldHoldPoint.position);
         }
 
         #region Coroutines

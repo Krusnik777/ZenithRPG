@@ -66,7 +66,9 @@ namespace DC_ARPG
 
         protected bool isBlocking;
         public bool IsBlocking => isBlocking;
+        public event UnityAction EventOnParry;
         public event UnityAction EventOnBlock;
+        public event UnityAction EventOnBlockBreak;
 
         protected virtual bool inIdleState => !(inMovement || isJumping || isFalling || isAttacking || isBlocking);
         public bool InIdleState => inIdleState;
@@ -283,19 +285,32 @@ namespace DC_ARPG
 
         public virtual void OnBlock()
         {
-            EventOnBlock?.Invoke();
-
             if (m_blockStamina == null) return;
+
+            bool animatorChecker = m_animator.GetCurrentAnimatorStateInfo(0).IsName("BlockState.BlockStart");
+
+            if (animatorChecker)
+            {
+                if (m_animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.2f && m_animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 0.6f)
+                {
+                    EventOnParry?.Invoke();
+
+                    return;
+                }
+            }
 
             m_blockStamina.SpendStamina();
 
             if (!m_blockStamina.DefenseBreaked)
             {
-                m_animator.SetTrigger("BlockHit");
+                if (!animatorChecker)
+                    m_animator.SetTrigger("BlockHit");
+
+                EventOnBlock?.Invoke();
             }
             else
             {
-                // TEMP
+                EventOnBlockBreak?.Invoke();
 
                 StartCoroutine(BlockEnd());
             }
