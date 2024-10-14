@@ -5,13 +5,61 @@ namespace DC_ARPG
 {
     public class Enemy : CharacterAvatar, IDataPersistence
     {
+        [SerializeField][Range(0, 1)] private float m_comboChance = 0.33f;
+        [Header("EnemyCharacter")]
         [SerializeField] private EnemyCharacter m_character;
+        
         public event UnityAction<Enemy> EventOnDeath;
 
         public override CharacterBase Character => m_character;
 
         private EnemyAIController enemyAI;
         public EnemyAIController EnemyAI => enemyAI == null ? GetComponent<EnemyAIController>() : enemyAI;
+
+        public override void Attack()
+        {
+            if (isAttacking) return;
+
+            isAttacking = true;
+
+            if (Random.value > 1 - m_comboChance)
+            {
+                m_animator.SetTrigger("Attack1");
+                m_animator.SetBool("ComboAttack", true);
+
+                return;
+            }
+
+            int attackCount = Random.Range(0, m_attackHits);
+            attackCount++;
+
+            m_animator.SetTrigger("Attack" + attackCount);
+        }
+
+        public void StopAttack()
+        {
+            if (!isAttacking) return;
+
+            for (int i = 1; i <= m_attackHits; i++)
+            {
+                m_animator.ResetTrigger("Attack" + i);
+            }
+
+            m_animator.SetBool("ComboAttack", false);
+
+            isAttacking = false;
+        }
+
+        public void StartMovement()
+        {
+            m_animator.SetFloat("MovementZ", 1);
+        }
+
+        public void StopMovement()
+        {
+            m_animator.SetFloat("MovementZ", 0);
+            m_animator.SetTrigger("IdleTrigger");
+        }
 
         private void Start()
         {
@@ -23,11 +71,6 @@ namespace DC_ARPG
         private void OnDestroy()
         {
             m_character.Stats.EventOnDeath -= EventOnDeathEnemyCharacter;
-        }
-
-        private void Update()
-        {
-            Debug.DrawRay(transform.position + new Vector3(0, 0.25f, 0), transform.forward);
         }
 
         private void EventOnDeathEnemyCharacter(object sender) => EventOnDeath?.Invoke(this);

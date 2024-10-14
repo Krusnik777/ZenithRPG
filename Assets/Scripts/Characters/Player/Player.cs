@@ -48,7 +48,7 @@ namespace DC_ARPG
         {
             if (m_character.Inventory.WeaponItemSlot.IsEmpty) return;
 
-            if (Mathf.Sign(transform.position.y) < 0) return;
+            if (isFallen) return;
 
             base.Attack();
         }
@@ -57,7 +57,7 @@ namespace DC_ARPG
         {
             if (m_character.Inventory.ShieldItemSlot.IsEmpty) return;
 
-            if (Mathf.Sign(transform.position.y) < 0) return;
+            if (isFallen) return;
 
             base.Block(name);
         }

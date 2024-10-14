@@ -205,7 +205,7 @@ namespace DC_ARPG
 
             MusicCommander.Instance.PlayGameOverMusic();
 
-            m_player.Animator.Play("Death");
+            m_player.Die();
 
             OnDead();
         }

@@ -1,6 +1,5 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.Events;
 
 namespace DC_ARPG
 {
@@ -97,9 +96,7 @@ namespace DC_ARPG
         {
             enemy.EnemyAI.StopActivity();
 
-            enemy.Animator.Play("Death");
-
-            yield return new WaitUntil(() => enemy.Animator.GetCurrentAnimatorStateInfo(0).IsName("Death"));
+            enemy.Die();
 
             yield return new WaitForSeconds(1.5f);
 

@@ -43,6 +43,13 @@ namespace DC_ARPG
             if (opponent != null) m_characterAvatar.Character.DamageOpponent(opponent);
         }
 
+        public void OnAttackAnimationEnd()
+        {
+            if (m_characterAvatar is not Enemy) return;
+
+            (m_characterAvatar as Enemy).StopAttack();
+        }
+
         public void OnDeathAnimation()
         {
             m_characterSFX.PlayDeathSFX(m_characterAvatar.transform.position);

@@ -31,6 +31,8 @@ namespace DC_ARPG
         {
             currentStamina = m_defaultStaminaValue;
             parentCharacterAvatar = characterAvatar;
+
+            parentCharacterAvatar.Character.EventOnDeath.AddListener(OnParentDeath);
         }
 
         public void SpendStamina()
@@ -50,16 +52,36 @@ namespace DC_ARPG
             if (recoveryRoutine == null) recoveryRoutine = StartCoroutine(RecoveryRoutine());
         }
 
+        private void OnDestroy()
+        {
+            if (parentCharacterAvatar != null)
+                parentCharacterAvatar.Character.EventOnDeath.RemoveListener(OnParentDeath);
+        }
+
         private void BreakDefense()
         {
             breaked = true;
             EventOnDefenseBreaked?.Invoke();
         }
 
+        private void OnParentDeath()
+        {
+            if (recoveryRoutine != null) StopCoroutine(recoveryRoutine);
+
+            currentStamina = m_defaultStaminaValue;
+
+            if (breaked) breaked = false;
+            recoveryRoutine = null;
+        }
+
         private IEnumerator RecoveryRoutine()
         {
             while (currentStamina < m_defaultStaminaValue)
             {
+                yield return new WaitForSeconds(0.2f);
+
+                if (parentCharacterAvatar.IsBlocking) continue;
+
                 yield return new WaitForSeconds(1.0f);
 
                 if (parentCharacterAvatar.IsBlocking) continue;

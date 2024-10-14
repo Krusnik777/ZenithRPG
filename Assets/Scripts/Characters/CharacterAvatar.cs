@@ -14,8 +14,8 @@ namespace DC_ARPG
         [SerializeField] protected float m_transitionFallSpeed = 0.25f;
         [SerializeField] protected AnimationCurve m_jumpUpCurve;
         [Header("Attack & Defense")]
-        [SerializeField] private int m_attackHits = 2;
-        [SerializeField] private BlockStamina m_blockStamina;
+        [SerializeField] protected int m_attackHits = 2;
+        [SerializeField] protected BlockStamina m_blockStamina;
 
         public abstract CharacterBase Character { get; }
 
@@ -74,7 +74,6 @@ namespace DC_ARPG
         public bool InIdleState => inIdleState;
 
         protected Animator m_animator;
-        public Animator Animator => m_animator;
 
         #endregion
 
@@ -314,6 +313,11 @@ namespace DC_ARPG
 
                 StartCoroutine(BlockEnd());
             }
+        }
+
+        public virtual void Die()
+        {
+            m_animator.Play("Death");
         }
 
         public CharacterAvatar CheckForwardGridForOpponent()

@@ -172,14 +172,9 @@ namespace DC_ARPG
                     else Turn();
                 }
             }
-
-            if (!isTurning)
+            else
             {
-                if (SeePlayer || CheckCloseRange() == true)
-                {
-                    StartChaseState();
-                    StopMoving();
-                }
+                SeeIfPlayerNearBy();
             }
         }
 
@@ -218,7 +213,9 @@ namespace DC_ARPG
             {
                 m_enemy.Attack();
 
-                m_attackTimer.Start(Random.Range(m_attackMinDelayTime, m_attackMaxDelayTime));
+                float timeForNextAttack = Random.Range(m_attackMinDelayTime, m_attackMaxDelayTime);
+
+                m_attackTimer.Start(timeForNextAttack);
             }
 
             if (!m_enemy.IsAttacking)
@@ -248,7 +245,7 @@ namespace DC_ARPG
 
                 Vector3 targetPosition = t.transform.position;
 
-                m_enemy.Animator.SetFloat("MovementZ", 1);
+                m_enemy.StartMovement();
 
                 // Calculate unit position on top of target tile
 
@@ -260,8 +257,7 @@ namespace DC_ARPG
                     if (currentDirection != headingDirection)
                     {
                         isTurning = true;
-                        m_enemy.Animator.SetTrigger("IdleTrigger");
-                        m_enemy.Animator.SetFloat("MovementZ", 0);
+                        m_enemy.StopMovement();
                         return;
                     }
 
@@ -285,6 +281,11 @@ namespace DC_ARPG
                     }
 
                     path.Pop();
+
+                    if (m_state == EnemyState.Patrol)
+                    {
+                        SeeIfPlayerNearBy();
+                    }
                 }
             }
             else
@@ -331,8 +332,7 @@ namespace DC_ARPG
 
         private void StopMoving()
         {
-            m_enemy.Animator.SetTrigger("IdleTrigger");
-            m_enemy.Animator.SetFloat("MovementZ", 0);
+            m_enemy.StopMovement();
 
             isMoving = false;
 
@@ -370,6 +370,17 @@ namespace DC_ARPG
             EventOnChaseEnded?.Invoke(this);
 
             StartPatrolState();
+        }
+
+        private void SeeIfPlayerNearBy()
+        {
+            if (isTurning) return;
+
+            if (SeePlayer || CheckCloseRange() == true)
+            {
+                if (isMoving) StopMoving();
+                StartChaseState();
+            }
         }
 
         private void FindPath(Tile target, bool targetNeighbourTile = false)
