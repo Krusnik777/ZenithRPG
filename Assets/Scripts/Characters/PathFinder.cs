@@ -69,7 +69,7 @@ namespace DC_ARPG
 
                     if (tile.Type == TileType.Closable && tile.CheckClosed()) continue;
 
-                    if (tile.OccupiedBy != null && tile.OccupiedBy != characterAvatar && tile != target) continue;
+                    if (tile.OccupiedBy != null && tile.OccupiedBy != (IMovable) characterAvatar && tile != target) continue;
 
                     // Tile Checks END
 
@@ -140,7 +140,7 @@ namespace DC_ARPG
 
             for (int i = 0; i < targets.Count; i++)
             {
-                if (targets[i].OccupiedBy != null && targets[i].OccupiedBy != characterAvatar) continue;
+                if (targets[i].OccupiedBy != null && targets[i].OccupiedBy != (IMovable) characterAvatar) continue;
 
                 if (targets[i].TargetedBy != null && targets[i].TargetedBy != characterAvatar) continue;
 

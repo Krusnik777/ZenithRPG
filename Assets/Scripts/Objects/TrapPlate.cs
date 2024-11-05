@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 namespace DC_ARPG
 {
@@ -24,13 +25,17 @@ namespace DC_ARPG
             base.OnInspection(player);
         }
 
-        public void Activate(CharacterAvatar characterAvatar = null)
+        public void Activate(IMovable movable = null)
         {
-            if (characterAvatar == null) return;
+            if (movable == null) return;
 
             if (disabled) return;
 
-            characterAvatar.Character.Stats.ChangeCurrentHitPoints(this, -m_damage);
+            if (movable is CharacterAvatar)
+            {
+                var characterAvatar = movable as CharacterAvatar;
+                characterAvatar.Character.Stats.ChangeCurrentHitPoints(this, -m_damage);
+            }
 
             SetAnimationAndSound();
         }

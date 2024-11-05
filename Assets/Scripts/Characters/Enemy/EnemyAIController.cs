@@ -143,6 +143,8 @@ namespace DC_ARPG
         {
             if (isStopped) return;
 
+            if (m_enemy.IsPushedBack) return;
+
             UpdateTimers();
 
             ChooseAction();
@@ -236,7 +238,7 @@ namespace DC_ARPG
                     t.SetTileOccupied(m_enemy);
                 }
 
-                if (t.OccupiedBy != m_enemy || t.Type == TileType.Closable && t.CheckClosed())
+                if (t.OccupiedBy != (IMovable) m_enemy || t.Type == TileType.Closable && t.CheckClosed())
                 {
                     StopMoving();
                     if (m_state == EnemyState.Chase) StopChasing();
@@ -272,13 +274,7 @@ namespace DC_ARPG
 
                     transform.position = targetPosition;
 
-                    if (t != m_enemy.CurrentTile)
-                    {
-                        m_enemy.CurrentTile.SetTileOccupied(null);
-                        if (m_enemy.CurrentTile.Type == TileType.Mechanism) m_enemy.CurrentTile.ReturnMechanismToDefault();
-                        m_enemy.SetCurrentTile(t);
-                        if (m_enemy.CurrentTile.Type == TileType.Mechanism) m_enemy.CurrentTile.GetTileReaction(m_enemy);
-                    }
+                    if (t != m_enemy.CurrentTile) m_enemy.UpdateNewPosition(t);
 
                     path.Pop();
 
@@ -340,7 +336,7 @@ namespace DC_ARPG
             {
                 Tile t = path.Peek();
 
-                if (t.OccupiedBy == m_enemy && t != m_enemy.CurrentTile)
+                if (t.OccupiedBy == (IMovable) m_enemy && t != m_enemy.CurrentTile)
                 {
                     t.SetTileOccupied(null);
                 }

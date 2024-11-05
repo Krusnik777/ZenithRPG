@@ -29,7 +29,7 @@ namespace DC_ARPG
         private bool isCasting;
         public bool IsCasting => isCasting;
 
-        protected override bool inIdleState => !(inMovement || isJumping || isFalling || isAttacking || isBlocking || isCasting);
+        protected override bool inIdleState => !(inMovement || isJumping || isFalling || isAttacking || isBlocking || isKicking || isCasting);
 
         public override void LandAfterFall()
         {

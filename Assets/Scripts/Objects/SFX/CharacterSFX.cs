@@ -13,6 +13,7 @@ namespace DC_ARPG
         [SerializeField] private AudioClip m_jumpSound;
         [SerializeField] private AudioClip m_landSound;
         [SerializeField] private AudioClip m_attackSound;
+        [SerializeField] private AudioClip m_kickSound;
         [Header("Effects")]
         [SerializeField] private GameObject m_blockEffect;
         [SerializeField] private GameObject m_breakBlockEffectPrefab;
@@ -29,6 +30,7 @@ namespace DC_ARPG
         public void PlayJumpSound() => m_audioSource.PlayOneShot(m_jumpSound);
         public void PlayLandSound() => m_audioSource.PlayOneShot(m_landSound);
         public void PlayAttackSound() => m_audioSource.PlayOneShot(m_attackSound);
+        public void PlayKickSound() => m_audioSource.PlayOneShot(m_kickSound);
         public void PlayDeathSFX(Vector3 position)
         {
             if (m_deathEffectPrefab != null)

@@ -4,7 +4,7 @@ using UnityEngine.Events;
 
 namespace DC_ARPG
 {
-    public abstract class CharacterAvatar : MonoBehaviour
+    public abstract class CharacterAvatar : MonoBehaviour, IMovable
     {
         [Header("MovementParameters")]
         [SerializeField] protected float m_transitionMoveSpeed = 0.5f;
@@ -41,6 +41,32 @@ namespace DC_ARPG
 
         public void SetCurrentTile(Tile tile) => currentTile = tile;
 
+        public virtual void UpdateNewPosition(Tile newTile = null)
+        {
+            if (currentTile == null) return;
+
+            currentTile.SetTileOccupied(null);
+
+            if (currentTile.Type == TileType.Mechanism) currentTile.ReturnMechanismToDefault();
+
+            if (newTile != null) currentTile = newTile;
+            else currentTile = GetCurrentTile();
+
+            if (currentTile != null)
+            {
+                if (currentTile.Type == TileType.Mechanism)
+                {
+                    currentTile.GetTileReaction(this);
+                }
+
+                if (currentTile.Type == TileType.Pit)
+                {
+                    currentTile.GetTileReaction();
+                    Fall();
+                }
+            }
+        }
+
         #endregion
 
         #region Parameters
@@ -70,7 +96,10 @@ namespace DC_ARPG
         public event UnityAction EventOnBlock;
         public event UnityAction EventOnBlockBreak;
 
-        protected virtual bool inIdleState => !(inMovement || isJumping || isFalling || isAttacking || isBlocking);
+        protected bool isKicking;
+        public bool IsKicking => isKicking;
+
+        protected virtual bool inIdleState => !(inMovement || isJumping || isFalling || isAttacking || isBlocking || isKicking);
         public bool InIdleState => inIdleState;
 
         protected Animator m_animator;
@@ -90,6 +119,13 @@ namespace DC_ARPG
             isFallen = true;
 
             m_animator.ResetTrigger("Fall"); // Just to be safe
+        }
+
+        public virtual void RecoverAfterKick()
+        {
+            isKicking = false;
+
+            m_animator.ResetTrigger("Kick"); // Just to be safe
         }
 
         #endregion
@@ -118,10 +154,6 @@ namespace DC_ARPG
 
             if (targetTile == null) return;
 
-            if (targetTile.OccupiedBy != null || targetTile.Type == TileType.Obstacle) return;
-
-            if (targetTile.Type == TileType.Closable && targetTile.CheckClosed()) return;
-
             m_animator.SetFloat("MovementX", inputDirection.x);
             m_animator.SetFloat("MovementZ", inputDirection.y);
 
@@ -145,10 +177,6 @@ namespace DC_ARPG
 
                 if (targetTile == null) return;
 
-                if (targetTile.OccupiedBy != null || targetTile.Type == TileType.Obstacle) return;
-
-                if (targetTile.Type == TileType.Closable && targetTile.CheckClosed()) return;
-
                 StartCoroutine(JumpUpForward(targetTile));
 
                 isFallen = false;
@@ -166,41 +194,13 @@ namespace DC_ARPG
             }
             else
             {
-                if (forwardTiles[0].OccupiedBy != null || forwardTiles[0].Type == TileType.Closable && forwardTiles[0].CheckClosed())
+                if (forwardTiles[1] != null)
                 {
-                    StartCoroutine(JumpInPlace());
+                    StartCoroutine(JumpTwoTilesForward(forwardTiles));
                 }
                 else
                 {
-                    if (forwardTiles[1] != null)
-                    {
-                        if (forwardTiles[1].OccupiedBy != null || forwardTiles[1].Type == TileType.Obstacle || forwardTiles[1].Type == TileType.Closable && forwardTiles[1].CheckClosed())
-                        {
-                            if (forwardTiles[0].Type != TileType.Obstacle)
-                            {
-                                StartCoroutine(JumpToForwardTile(forwardTiles[0]));
-                            }
-                            else
-                            {
-                                StartCoroutine(JumpInPlace());
-                            }
-                        }
-                        else
-                        {
-                            StartCoroutine(JumpTwoTilesForward(forwardTiles));
-                        }
-                    }
-                    else
-                    {
-                        if (forwardTiles[0].Type != TileType.Obstacle)
-                        {
-                            StartCoroutine(JumpToForwardTile(forwardTiles[0]));
-                        }
-                        else
-                        {
-                            StartCoroutine(JumpInPlace());
-                        }
-                    }
+                    StartCoroutine(JumpToForwardTile(forwardTiles[0]));
                 }
             }
         }
@@ -282,6 +282,15 @@ namespace DC_ARPG
             }
         }
 
+        public virtual void Kick()
+        {
+            if (!inIdleState) return;
+
+            isKicking = true;
+
+            m_animator.SetTrigger("Kick");
+        }
+
         public virtual void OnBlock()
         {
             if (m_blockStamina == null) return;
@@ -336,6 +345,27 @@ namespace DC_ARPG
                     }
                 }
             }
+
+            return null;
+        }
+
+        public Kickable CheckForwardGridForKickableObject()
+        {
+            RaycastHit hit;
+
+            var lookRay = new Ray(transform.position + new Vector3(0, 0.4f, 0), transform.forward);
+
+            if (Physics.Raycast(lookRay, out hit, 1f))
+            {
+                if (hit.collider != null)
+                {
+                    if (hit.collider.transform.parent.TryGetComponent(out Kickable kickable))
+                    {
+                        return kickable.enabled ? kickable : null;
+                    }
+                }
+            }
+
             return null;
         }
 
@@ -368,32 +398,6 @@ namespace DC_ARPG
             return direction;
         }
 
-        private void UpdateNewPosition()
-        {
-            if (currentTile != null)
-            {
-                currentTile.SetTileOccupied(null);
-
-                if (currentTile.Type == TileType.Mechanism) currentTile.ReturnMechanismToDefault();
-
-                currentTile = GetCurrentTile();
-
-                if (currentTile != null)
-                {
-                    if (currentTile.Type == TileType.Mechanism)
-                    {
-                        currentTile.GetTileReaction(this);
-                    }
-
-                    if (currentTile.Type == TileType.Pit)
-                    {
-                        currentTile.GetTileReaction();
-                        Fall();
-                    }
-                }
-            }
-        }
-
         private void ResetAttack()
         {
             isAttacking = false;
@@ -423,7 +427,7 @@ namespace DC_ARPG
 
             transform.position = targetPosition;
 
-            UpdateNewPosition();
+            UpdateNewPosition(targetTile);
 
             //yield return null;
 
@@ -512,7 +516,7 @@ namespace DC_ARPG
 
             transform.position = targetPosition;
 
-            UpdateNewPosition();
+            UpdateNewPosition(targetTile);
 
             if (isFalling)
             {

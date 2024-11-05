@@ -37,6 +37,8 @@ namespace DC_ARPG
             _controls.Gameplay.Block.performed += OnBlockHolded;
             _controls.Gameplay.Block.canceled += OnBlockCanceled;
 
+            _controls.Gameplay.Kick.performed += OnKick;
+
             _controls.Gameplay.UseMagic.performed += OnUseMagic;
 
             _controls.Gameplay.Rest.performed += OnRest;
@@ -64,6 +66,8 @@ namespace DC_ARPG
             _controls.Gameplay.Block.started -= OnBlockStarted;
             _controls.Gameplay.Block.performed -= OnBlockHolded;
             _controls.Gameplay.Block.canceled -= OnBlockCanceled;
+
+            _controls.Gameplay.Kick.performed -= OnKick;
 
             _controls.Gameplay.UseMagic.performed -= OnUseMagic;
 
@@ -156,6 +160,13 @@ namespace DC_ARPG
             if (player.State != Player.PlayerState.Active) return;
 
             player.Block("BlockEnd");
+        }
+
+        private void OnKick(InputAction.CallbackContext obj)
+        {
+            if (player.State != Player.PlayerState.Active) return;
+
+            player.Kick();
         }
 
         private void OnUseMagic(InputAction.CallbackContext obj)

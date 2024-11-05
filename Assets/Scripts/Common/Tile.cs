@@ -21,8 +21,8 @@ namespace DC_ARPG
         [SerializeField] private InspectableObject m_objectOnTile;
         public TileType Type => m_type;
 
-        private CharacterAvatar m_occupiedBy;
-        public CharacterAvatar OccupiedBy => m_occupiedBy;
+        private IMovable m_occupiedBy;
+        public IMovable OccupiedBy => m_occupiedBy;
 
         // Path Finding
 
@@ -35,7 +35,7 @@ namespace DC_ARPG
         public float g { get; set; }
         public float h { get; set; }
 
-        public void SetTileOccupied(CharacterAvatar characterAvatar) => m_occupiedBy = characterAvatar;
+        public void SetTileOccupied(IMovable movable) => m_occupiedBy = movable;
 
         public bool CheckClosed()
         {
@@ -63,14 +63,14 @@ namespace DC_ARPG
             return m_objectOnTile.Disabled;
         }
 
-        public void GetTileReaction(CharacterAvatar characterAvatar = null)
+        public void GetTileReaction(IMovable movable = null)
         {
             if (m_type != TileType.Mechanism && m_type != TileType.Pit
                 || m_objectOnTile == null || m_objectOnTile.Disabled) return;
 
             if (m_objectOnTile is not IActivableObject) return;
 
-            (m_objectOnTile as IActivableObject).Activate(characterAvatar);
+            (m_objectOnTile as IActivableObject).Activate(movable);
         }
 
         public void ReturnMechanismToDefault()
@@ -93,6 +93,20 @@ namespace DC_ARPG
             return pit.DamageAfterFall;
         }
 
+        public void FillPit()
+        {
+            if (m_type != TileType.Pit) return;
+
+            m_type = TileType.Walkable;
+
+            if (m_objectOnTile == null) return;
+
+            var pit = m_objectOnTile as Pit;
+            pit.FillGap();
+
+            m_objectOnTile = null;
+        }
+
         public bool CheckTileOccupied()
         {
             Collider[] colliders = Physics.OverlapSphere(transform.position + Vector3.up * 0.6f, 0.45f);
@@ -107,7 +121,7 @@ namespace DC_ARPG
             return false;
         }
 
-        public Tile FindNeighbourByDirection(Vector3 direction)
+        public Tile FindNeighbourByDirection(Vector3 direction, bool includeObstacleType = false)
         {
             Tile tile = null;
 
@@ -118,7 +132,17 @@ namespace DC_ARPG
             {
                 tile = collider.GetComponentInParent<Tile>();
 
-                if (tile != null) return tile;
+                if (tile != null)
+                {
+                    if (tile.OccupiedBy == null && !tile.CheckClosed())
+                    {
+                        if (includeObstacleType) break;
+
+                        if (tile.Type != TileType.Obstacle) break;
+                    }
+
+                    tile = null;
+                }
             }
 
             return tile;
@@ -128,9 +152,17 @@ namespace DC_ARPG
         {
             Tile[] tiles = new Tile[2];
 
-            tiles[0] = FindNeighbourByDirection(direction);
+            tiles[0] = FindNeighbourByDirection(direction, true);
 
-            if (tiles[0] != null) tiles[1] = tiles[0].FindNeighbourByDirection(direction);
+            if (tiles[0] != null)
+            {
+                tiles[1] = tiles[0].FindNeighbourByDirection(direction);
+
+                if (tiles[1] == null)
+                {
+                    if (tiles[0].Type == TileType.Obstacle) tiles[0] = null;
+                }
+            }
 
             return tiles;
         }

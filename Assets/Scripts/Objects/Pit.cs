@@ -19,6 +19,18 @@ namespace DC_ARPG
             m_trapFloor.DestroyTrapFloor();
         }
 
+        public void FillGap()
+        {
+            var colliders = transform.GetComponentsInChildren<Collider>();
+
+            for (int i = 0; i < colliders.Length; i++)
+            {
+                if (!colliders[i].isTrigger) continue;
+
+                colliders[i].enabled = false;
+            }
+        }
+
         public override void OnInspection(Player player)
         {
             if (m_trapFloor != null)
@@ -33,7 +45,7 @@ namespace DC_ARPG
             }
         }
 
-        public void Activate(CharacterAvatar characterAvatar = null)
+        public void Activate(IMovable movable = null)
         {
             if (m_trapFloor == null) return;
 

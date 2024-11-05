@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 41fde8a5e5b34654fb1f0a54297bd2a9
+guid: 5a178c27a8ce1c64bb1479440ec80153
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -33,11 +33,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Warrior_Kick
+      name: Warrior_BlockHit
       takeName: mixamo.com
       internalID: -203655887218126122
       firstFrame: 0
-      lastFrame: 71
+      lastFrame: 46
       wrapMode: 0
       orientationOffsetY: 0
       level: 0

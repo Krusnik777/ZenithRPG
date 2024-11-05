@@ -27,7 +27,7 @@ namespace DC_ARPG
             base.OnInspection(player);
         }
 
-        public void Activate(CharacterAvatar characterAvatar = null)
+        public void Activate(IMovable movable = null)
         {
             PressButton();
         }

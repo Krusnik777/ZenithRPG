@@ -8,6 +8,7 @@ namespace DC_ARPG
         [SerializeField] private CharacterAvatar m_characterAvatar;
         [SerializeField] private CharacterSFX m_characterSFX;
         [SerializeField] private RigBuilder m_rigBuilder;
+        [SerializeField] private GameObject m_kickEffect;
 
         public void OnFootstepAnimation()
         {
@@ -48,6 +49,27 @@ namespace DC_ARPG
             if (m_characterAvatar is not Enemy) return;
 
             (m_characterAvatar as Enemy).StopAttack();
+        }
+
+        public void OnKickAnimation()
+        {
+            m_characterSFX.PlayKickSound();
+
+            var kickable = m_characterAvatar.CheckForwardGridForKickableObject();
+
+            if (kickable != null)
+            {
+                m_kickEffect.SetActive(true);
+
+                kickable.OnKicked(m_characterAvatar.transform.forward);
+            }
+        }
+
+        public void OnKickAnimationEnd()
+        {
+            m_characterAvatar.RecoverAfterKick();
+
+            m_kickEffect.SetActive(false);
         }
 
         public void OnDeathAnimation()

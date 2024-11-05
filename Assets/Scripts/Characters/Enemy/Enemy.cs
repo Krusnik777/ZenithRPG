@@ -1,11 +1,14 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 
 namespace DC_ARPG
 {
-    public class Enemy : CharacterAvatar, IDataPersistence
+    public class Enemy : CharacterAvatar, IKickable, IDataPersistence
     {
         [SerializeField][Range(0, 1)] private float m_comboChance = 0.33f;
+        [SerializeField] private float m_transitionSpeedByPush = 3.0f;
+        [SerializeField] private float m_afterPushDelay = 0.3f;
         [Header("EnemyCharacter")]
         [SerializeField] private EnemyCharacter m_character;
         
@@ -15,6 +18,45 @@ namespace DC_ARPG
 
         private EnemyAIController enemyAI;
         public EnemyAIController EnemyAI => enemyAI == null ? GetComponent<EnemyAIController>() : enemyAI;
+
+        public bool IsPushedBack { get; private set; }
+
+        public void OnKicked(Vector3 direction)
+        {
+            if (IsPushedBack) return;
+
+            Tile targetTile = currentTile.FindNeighbourByDirection(direction);
+
+            if (targetTile == null) return;
+
+            if (targetTile.Type == TileType.Pit) return;
+
+            StartCoroutine(MoveByPush(targetTile));
+        }
+
+        public override void UpdateNewPosition(Tile newTile = null)
+        {
+            if (currentTile == null)
+            {
+                Debug.LogError("Current Tile is Empty");
+                return;
+            }
+
+            currentTile.SetTileOccupied(null);
+
+            if (currentTile.Type == TileType.Mechanism) currentTile.ReturnMechanismToDefault();
+
+            if (newTile != null) currentTile = newTile;
+            else currentTile = GetCurrentTile();
+
+            if (currentTile != null)
+            {
+                if (currentTile.Type == TileType.Mechanism)
+                {
+                    currentTile.GetTileReaction(this);
+                }
+            }
+        }
 
         public override void Attack()
         {
@@ -74,6 +116,37 @@ namespace DC_ARPG
         }
 
         private void EventOnDeathEnemyCharacter(object sender) => EventOnDeath?.Invoke(this);
+
+        private IEnumerator MoveByPush(Tile targetTile)
+        {
+            IsPushedBack = true;
+
+            targetTile.SetTileOccupied(this);
+
+            var startPosition = transform.position;
+            var targetPosition = targetTile.transform.position;
+
+            var elapsed = 0.0f;
+
+            m_animator.Play("Impact");
+            StopAttack();
+
+            while (Vector3.Distance(transform.position, targetPosition) >= 0.05f)
+            {
+                transform.position = Vector3.Lerp(startPosition, targetPosition, elapsed * m_transitionSpeedByPush);
+                elapsed += Time.deltaTime;
+
+                yield return null;
+            }
+
+            transform.position = targetPosition;
+
+            UpdateNewPosition(targetTile);
+
+            yield return new WaitForSeconds(m_afterPushDelay);
+
+            IsPushedBack = false;
+        }
 
         #region Serialize
 

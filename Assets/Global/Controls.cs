@@ -100,6 +100,15 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
+                    ""name"": ""Kick"",
+                    ""type"": ""Button"",
+                    ""id"": ""276974f0-2b74-4b68-a15f-0f495a71f098"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""UseMagic"",
                     ""type"": ""Button"",
                     ""id"": ""28e6f7ae-50e9-4734-933a-f54ddc230319"",
@@ -665,6 +674,28 @@ public partial class @Controls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""LeftItem"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""439086e3-b93f-4d9b-936a-9b7aa61e4989"",
+                    ""path"": ""<Keyboard>/k"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Kick"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""26dd2ec4-daba-4250-8cc0-d7fb7135b441"",
+                    ""path"": ""<Gamepad>/rightStickPress"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Kick"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1838,6 +1869,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         m_Gameplay_Use = m_Gameplay.FindAction("Use", throwIfNotFound: true);
         m_Gameplay_Attack = m_Gameplay.FindAction("Attack", throwIfNotFound: true);
         m_Gameplay_Block = m_Gameplay.FindAction("Block", throwIfNotFound: true);
+        m_Gameplay_Kick = m_Gameplay.FindAction("Kick", throwIfNotFound: true);
         m_Gameplay_UseMagic = m_Gameplay.FindAction("UseMagic", throwIfNotFound: true);
         m_Gameplay_Rest = m_Gameplay.FindAction("Rest", throwIfNotFound: true);
         m_Gameplay_Pause = m_Gameplay.FindAction("Pause", throwIfNotFound: true);
@@ -1939,6 +1971,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Gameplay_Use;
     private readonly InputAction m_Gameplay_Attack;
     private readonly InputAction m_Gameplay_Block;
+    private readonly InputAction m_Gameplay_Kick;
     private readonly InputAction m_Gameplay_UseMagic;
     private readonly InputAction m_Gameplay_Rest;
     private readonly InputAction m_Gameplay_Pause;
@@ -1959,6 +1992,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         public InputAction @Use => m_Wrapper.m_Gameplay_Use;
         public InputAction @Attack => m_Wrapper.m_Gameplay_Attack;
         public InputAction @Block => m_Wrapper.m_Gameplay_Block;
+        public InputAction @Kick => m_Wrapper.m_Gameplay_Kick;
         public InputAction @UseMagic => m_Wrapper.m_Gameplay_UseMagic;
         public InputAction @Rest => m_Wrapper.m_Gameplay_Rest;
         public InputAction @Pause => m_Wrapper.m_Gameplay_Pause;
@@ -2000,6 +2034,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @Block.started += instance.OnBlock;
             @Block.performed += instance.OnBlock;
             @Block.canceled += instance.OnBlock;
+            @Kick.started += instance.OnKick;
+            @Kick.performed += instance.OnKick;
+            @Kick.canceled += instance.OnKick;
             @UseMagic.started += instance.OnUseMagic;
             @UseMagic.performed += instance.OnUseMagic;
             @UseMagic.canceled += instance.OnUseMagic;
@@ -2052,6 +2089,9 @@ public partial class @Controls: IInputActionCollection2, IDisposable
             @Block.started -= instance.OnBlock;
             @Block.performed -= instance.OnBlock;
             @Block.canceled -= instance.OnBlock;
+            @Kick.started -= instance.OnKick;
+            @Kick.performed -= instance.OnKick;
+            @Kick.canceled -= instance.OnKick;
             @UseMagic.started -= instance.OnUseMagic;
             @UseMagic.performed -= instance.OnUseMagic;
             @UseMagic.canceled -= instance.OnUseMagic;
@@ -2383,6 +2423,7 @@ public partial class @Controls: IInputActionCollection2, IDisposable
         void OnUse(InputAction.CallbackContext context);
         void OnAttack(InputAction.CallbackContext context);
         void OnBlock(InputAction.CallbackContext context);
+        void OnKick(InputAction.CallbackContext context);
         void OnUseMagic(InputAction.CallbackContext context);
         void OnRest(InputAction.CallbackContext context);
         void OnPause(InputAction.CallbackContext context);
