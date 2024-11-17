@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace DC_ARPG
 {
@@ -24,6 +25,23 @@ namespace DC_ARPG
         private IMovable m_occupiedBy;
         public IMovable OccupiedBy => m_occupiedBy;
 
+        #region MAP
+
+        public event UnityAction EventOnDiscovered;
+        public event UnityAction EventOnStateChange;
+
+        public void OnPlayerOnTile(Vector3 direction)
+        {
+            EventOnDiscovered?.Invoke();
+
+            for (int i = 0; i < neighborTiles.Count; i++)
+            {
+                neighborTiles[i].EventOnDiscovered?.Invoke();
+            }
+        }
+
+        #endregion
+
         // Path Finding
 
         // Breadth-first search (BFS)
@@ -35,7 +53,15 @@ namespace DC_ARPG
         public float g { get; set; }
         public float h { get; set; }
 
-        public void SetTileOccupied(IMovable movable) => m_occupiedBy = movable;
+        public void SetTileOccupied(IMovable movable)
+        {
+            m_occupiedBy = movable;
+
+            if (movable is Player)
+            {
+                OnPlayerOnTile((movable as Player).transform.forward);
+            }
+        }
 
         public bool CheckClosed()
         {
@@ -71,6 +97,8 @@ namespace DC_ARPG
             if (m_objectOnTile is not IActivableObject) return;
 
             (m_objectOnTile as IActivableObject).Activate(movable);
+
+            EventOnStateChange?.Invoke();
         }
 
         public void ReturnMechanismToDefault()

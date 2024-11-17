@@ -631,6 +631,7 @@ GameObject:
   - component: {fileID: 489459555325452488}
   - component: {fileID: 3272544513594771249}
   - component: {fileID: 7582256868603149772}
+  - component: {fileID: 1405864247324233570}
   m_Layer: 0
   m_Name: HiddenPit_PrisonBlock
   m_TagString: Untagged
@@ -691,6 +692,21 @@ MonoBehaviour:
       m_Calls: []
   m_damageAfterFall: 10
   m_trapFloor: {fileID: 5519604145924316322}
+--- !u!114 &1405864247324233570
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8524334448642957186}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 774175413b3589f4b89963487cba58c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_parentTile: {fileID: 3272544513594771249}
+  m_neighbourTiles: []
+  m_type: 4
 --- !u!1001 &1245998639802388355
 PrefabInstance:
   m_ObjectHideFlags: 0
