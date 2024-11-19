@@ -33,11 +33,6 @@ namespace DC_ARPG
         public void OnPlayerOnTile(Vector3 direction)
         {
             EventOnDiscovered?.Invoke();
-
-            for (int i = 0; i < neighborTiles.Count; i++)
-            {
-                neighborTiles[i].EventOnDiscovered?.Invoke();
-            }
         }
 
         #endregion

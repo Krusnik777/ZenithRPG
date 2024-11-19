@@ -779,8 +779,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_parentTile: {fileID: 2614176099011986512}
-  m_neighbourTiles: []
-  m_type: 4
+  m_neighbours: []
+  m_type: 5
 --- !u!1 &8590613956117952036
 GameObject:
   m_ObjectHideFlags: 0

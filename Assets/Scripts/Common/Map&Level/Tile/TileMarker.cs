@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -23,15 +24,18 @@ namespace DC_ARPG
     public class TileMarker : MonoBehaviour
     {
         [SerializeField] private Tile m_parentTile;
-        [SerializeField] private Tile[] m_neighbourTiles;
+        [SerializeField] private List<TileMarker> m_neighbours;
         [SerializeField] private MarkerType m_type;
 
         public Tile ParentTile => m_parentTile;
-        public Tile[] NeighbourTiles => m_neighbourTiles;
         public MarkerType Type => m_type;
 
         private Vector2 gridPos;
         public Vector2 PositionInGrid => gridPos;
+
+        private UITile uITile;
+
+        
 
         public void ChangeGridPosition(float offsetX, float offsetY)
         {
@@ -40,67 +44,98 @@ namespace DC_ARPG
             //Debug.Log("TransformPos: " + transform.localPosition + " : GridPos: " + gridPos);
         }
 
-        public void SubscribeToChanges(TileData tileData, UITile uITile)
+        public void SubscribeToDiscovered(UITile uITile)
         {
+            this.uITile = uITile;
+
+            if (m_parentTile == null) return;
+
             UnityAction onDiscovered = null;
 
-            if (m_parentTile != null)
+            onDiscovered = () =>
             {
-                onDiscovered = () =>
+                this.uITile.SetIcon(m_type, true);
+
+                for (int i = 0; i < m_neighbours.Count; i++)
                 {
-                    OnTileMarketDiscovered(tileData, uITile);
-                    Debug.Log($"HERE - {tileData.PositionInGrid}");
-                    m_parentTile.EventOnDiscovered -= onDiscovered;
-                };
-
-                m_parentTile.EventOnDiscovered += onDiscovered;
-
-                if (m_type == MarkerType.HiddenPit)
-                {
-                    UnityAction onChange = null;
-
-                    onChange = () =>
-                    {
-                        m_type = MarkerType.Pit;
-                        tileData.MarkerType = m_type;
-                        uITile.SetIcon(m_type);
-                        m_parentTile.EventOnStateChange -= onChange;
-                    };
-
-                    m_parentTile.EventOnStateChange += onChange;
-                }
-            }
-            else
-            {
-                if (m_neighbourTiles.Length == 0)
-                {
-                    //Debug.LogError("NeighbourTiles are empty");
-                    return;
+                    m_neighbours[i].uITile.SetIcon(m_neighbours[i].Type, true);
                 }
 
-                onDiscovered = () =>
-                {
-                    OnTileMarketDiscovered(tileData, uITile);
-                    Debug.Log($"HERE - {tileData.PositionInGrid}");
+                m_parentTile.EventOnDiscovered -= onDiscovered;
+            };
 
-                    for (int j = 0; j < m_neighbourTiles.Length; j++)
-                    {
-                        m_neighbourTiles[j].EventOnDiscovered -= onDiscovered;
-                    }
-                };
-
-                for (int i = 0; i < m_neighbourTiles.Length; i++)
-                {
-                    m_neighbourTiles[i].EventOnDiscovered += onDiscovered;
-                }
-
-            }
+            m_parentTile.EventOnDiscovered += onDiscovered;
         }
 
-        private void OnTileMarketDiscovered(TileData tileData, UITile uITile)
+        public void SubscribeToChanges(UITile uITile)
         {
-            tileData.Discovered = true;
-            uITile.SetIcon(m_type);
+            if (m_parentTile == null) return;
+
+            if (m_type == MarkerType.HiddenPit)
+            {
+                UnityAction onChange = null;
+
+                onChange = () =>
+                {
+                    m_type = MarkerType.Pit;
+                    uITile.ChangeIcon(m_type);
+                    m_parentTile.EventOnStateChange -= onChange;
+                };
+
+                m_parentTile.EventOnStateChange += onChange;
+            }
         }
+
+
+        #if UNITY_EDITOR
+
+        [ContextMenu(nameof(FindNeigboursForAllMarkers))]
+        private void FindNeigboursForAllMarkers()
+        {
+            if (Application.isPlaying) return;
+
+            TileMarker[] markers = FindObjectsOfType<TileMarker>();
+
+            for (int i = 0; i < markers.Length; i++)
+            {
+                markers[i].FindNeigbours();
+            }
+        }
+
+        private void FindNeigbours()
+        {
+            m_neighbours = new List<TileMarker>();
+
+            LookForNeighbour(Vector3.forward);
+            LookForNeighbour(-Vector3.forward);
+            LookForNeighbour(Vector3.right);
+            LookForNeighbour(-Vector3.right);
+            LookForNeighbour(-Vector3.forward + Vector3.right);
+            LookForNeighbour(-Vector3.forward - Vector3.right);
+            LookForNeighbour(Vector3.forward + Vector3.right);
+            LookForNeighbour(Vector3.forward - Vector3.right);
+
+            UnityEditor.EditorUtility.SetDirty(this);
+        }
+
+        private void LookForNeighbour(Vector3 direction)
+        {
+            Vector3 halfExtents = new Vector3(0.25f, 0.25f, 0.25f);
+            Collider[] colliders = Physics.OverlapBox(transform.position + direction, halfExtents);
+
+            foreach (var collider in colliders)
+            {
+                TileMarker tile = collider.GetComponentInParent<TileMarker>();
+
+                if (collider.isTrigger) continue;
+
+                if (tile != null && !m_neighbours.Contains(tile))
+                {
+                    m_neighbours.Add(tile);
+                }
+            }
+        }
+
+#endif
     }
 }

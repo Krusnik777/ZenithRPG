@@ -47,17 +47,24 @@ namespace DC_ARPG
                     {
                         if (tileData != null)
                         {
-                            if (tileData.Discovered) uiTile.SetIcon(tileData.MarkerType);
+                            uiTile.SetTileData(tileData);
+
+                            if (tileData.Discovered)
+                            {
+                                uiTile.SetIcon(tileData.MarkerType, true);
+                            }
                             else
                             {
-                                uiTile.SetIcon(MarkerType.Empty);
-                                tileData.TileMarker.SubscribeToChanges(tileData, uiTile);
+                                uiTile.SetIcon(MarkerType.Empty, false);
+                                // If current level
+                                tileData.TileMarker.SubscribeToDiscovered(uiTile);
                             }
 
-                            // Subscribe to events - TO DO
+                            // Subscribe to events if current level
+                            tileData.TileMarker.SubscribeToChanges(uiTile);
                         }
                     }
-                    else uiTile.SetIcon(MarkerType.Empty);
+                    else uiTile.SetIcon(MarkerType.Empty, false);
 
                     //uiTiles.Add(uiTile);
                 }
