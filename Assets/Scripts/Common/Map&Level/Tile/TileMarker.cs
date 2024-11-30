@@ -35,8 +35,6 @@ namespace DC_ARPG
 
         private UITile uITile;
 
-        
-
         public void ChangeGridPosition(float offsetX, float offsetY)
         {
             gridPos = new Vector2(transform.localPosition.x + offsetX + 0.5f, transform.localPosition.z + offsetY + 0.5f);
@@ -85,7 +83,6 @@ namespace DC_ARPG
                 m_parentTile.EventOnStateChange += onChange;
             }
         }
-
 
         #if UNITY_EDITOR
 
