@@ -1934,6 +1934,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6368729463511603548}
   - component: {fileID: 6318741146072787718}
+  - component: {fileID: 9039501035726113364}
   m_Layer: 5
   m_Name: MapConstructor
   m_TagString: Untagged
@@ -1978,8 +1979,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_gridLayout: {fileID: 5874329684268504717}
   m_uiTilePrefab: {fileID: 7012548893582690012, guid: 1970fadf182a401419283db9e1673c1e, type: 3}
+  m_playerIconUpdater: {fileID: 9039501035726113364}
+--- !u!114 &9039501035726113364
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3228429276803454854}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: adc4a57404fd6c4418d99a4a6cf7b3be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   m_playerIcon: {fileID: 4592238126209828764}
-  m_field: {fileID: 330082849433595685}
+  m_map: {fileID: 330082849433595685}
 --- !u!1 &3271292544105257031
 GameObject:
   m_ObjectHideFlags: 0
