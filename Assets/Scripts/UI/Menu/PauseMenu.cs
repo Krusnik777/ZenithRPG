@@ -192,7 +192,6 @@ namespace DC_ARPG
 
             LevelState.Instance.ResumeAllActivity();
         }
-
         private void ShowSaveLoadMenu(SaveSlotsMenu.MenuState saveSlotMenuState)
         {
             m_dataButtons.SetInteractable(false);

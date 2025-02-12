@@ -115,7 +115,7 @@ namespace DC_ARPG
 
             currentMap = new Map(m_tileMarkers, "test", gridSize);
 
-            m_mapConstructor = m_player.GetComponentInChildren<MapConstructor>();
+            m_mapConstructor = GetComponentInChildren<MapConstructor>();
 
             m_mapConstructor.ConstructMap(currentMap);
 

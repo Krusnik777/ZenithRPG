@@ -7,11 +7,11 @@ namespace DC_ARPG
         [SerializeField] private RectTransform m_playerIcon;
         [SerializeField] private RectTransform m_map;
 
-        bool isReady;
+        private bool isReady;
 
-        int gridSize;
+        private int gridSize;
 
-        Vector2 mapOffset;
+        private Vector2 mapOffset;
 
         public void Init(int gridSize, Vector2 cellSize, Vector2 posInGrid)
         {
@@ -35,7 +35,8 @@ namespace DC_ARPG
             Vector3 normalizedPosition = new Vector3(LevelState.Instance.Player.transform.position.x / (gridSize * 0.5f), 0, LevelState.Instance.Player.transform.position.z / (gridSize * 0.5f));
             Vector3 positionInMinimap = new Vector3(normalizedPosition.x * m_map.sizeDelta.x * 0.5f, normalizedPosition.z * m_map.sizeDelta.y * 0.5f, 0);
 
-            m_playerIcon.transform.position = m_map.transform.position + positionInMinimap - new Vector3(mapOffset.x, mapOffset.y);
+            m_playerIcon.transform.localPosition = m_map.transform.position + positionInMinimap - new Vector3(mapOffset.x, mapOffset.y);
+
             m_playerIcon.transform.rotation = new Quaternion(0, 0, -LevelState.Instance.Player.transform.rotation.y, LevelState.Instance.Player.transform.rotation.w);
         }
     }
