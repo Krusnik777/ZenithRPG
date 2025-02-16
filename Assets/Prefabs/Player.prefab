@@ -10088,51 +10088,6 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
---- !u!1 &2438353966306210508
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 3714083635487172659}
-  - component: {fileID: 8700071605861731854}
-  m_Layer: 0
-  m_Name: AvailableMagic
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &3714083635487172659
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2438353966306210508}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 9129960976531030484}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8700071605861731854
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2438353966306210508}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0c62009ad67d1842ac5ee2b2ed66bd2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_fireBallPrefab: {fileID: 6504091377025521423, guid: 5bd85481b69615d4c9146872fe290af5, type: 3}
 --- !u!1 &3601795907708650887
 GameObject:
   m_ObjectHideFlags: 0
@@ -10503,7 +10458,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5901516259871736286}
-  - {fileID: 3714083635487172659}
   - {fileID: 2737737595968777959}
   m_Father: {fileID: 2578975128228413239}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -10525,7 +10479,7 @@ MonoBehaviour:
   m_player: {fileID: 6766054219301148474}
   m_playerStatsInfo: {fileID: 11400000, guid: fd46a6466bdcabb4cb5d41de891b793c, type: 2}
   m_startedMoney: 999
-  m_availableMagic: {fileID: 8700071605861731854}
+  m_availableMagic: {fileID: 0}
   m_brokenWeapon:
     m_itemInfo: {fileID: 11400000, guid: 3fae1436d81c79847a9ecd17419bc27e, type: 2}
     m_uses: 0

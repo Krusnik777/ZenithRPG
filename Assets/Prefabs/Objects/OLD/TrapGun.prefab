@@ -1,50 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &416146335572763781
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 9086965820251721593}
-  - component: {fileID: 2093217685510030840}
-  m_Layer: 0
-  m_Name: Magic
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &9086965820251721593
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 416146335572763781}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 0}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 7718168225823503543}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2093217685510030840
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 416146335572763781}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0c62009ad67d1842ac5ee2b2ed66bd2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_fireBallPrefab: {fileID: 6504091377025521423, guid: ebc5d61941b710d4cbdb0a886e6456f4, type: 3}
 --- !u!1 &2154957064232562572
 GameObject:
   m_ObjectHideFlags: 0
@@ -213,7 +168,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_holeObject: {fileID: 7937055660396270247}
-  m_magic: {fileID: 2093217685510030840}
+  m_fireBallPrefab: {fileID: 6281403276955380635, guid: ebc5d61941b710d4cbdb0a886e6456f4, type: 3}
   m_prefabId: 
   m_id: 
   m_isSerializable: 1
@@ -298,8 +253,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0.575, z: 0.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 9086965820251721593}
+  m_Children: []
   m_Father: {fileID: 6822851689026922055}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &6173348051596986572

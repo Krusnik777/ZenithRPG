@@ -1,4 +1,5 @@
 using UnityEngine.Events;
+using static UnityEditor.Progress;
 
 namespace DC_ARPG
 {
@@ -56,7 +57,18 @@ namespace DC_ARPG
 
         public void UseMagic(object sender, Player player)
         {
-            (ItemInfo as MagicItemInfo).Magic.Use(player, Item as MagicItem);
+            var item = Item as MagicItem;
+
+            (ItemInfo as MagicItemInfo).Magic.Use(player, item);
+
+            if (item.Uses <= 0)
+            {
+                var character = player.Character as PlayerCharacter;
+
+                character.Inventory.RemoveItemFromInventory(this, character.Inventory.MagicItemSlot);
+
+                UISounds.Instance.PlayMagicItemDisappearSound();
+            }
 
             EventOnMagicUsed?.Invoke(sender, Item as MagicItem);
         }

@@ -3817,6 +3817,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: ba0c1000f3fdf72459c20fa7a2a7b597, type: 2}
     - target: {fileID: 5128590638175710160, guid: 3ca53e71b8431dd49a556a2c40d4d54d, type: 3}
+      propertyPath: m_isSerializable
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5128590638175710160, guid: 3ca53e71b8431dd49a556a2c40d4d54d, type: 3}
       propertyPath: m_itemData.Amount
       value: 24
       objectReference: {fileID: 0}
@@ -3824,6 +3828,10 @@ PrefabInstance:
       propertyPath: m_itemData.ItemInfo
       value: 
       objectReference: {fileID: 11400000, guid: ba0c1000f3fdf72459c20fa7a2a7b597, type: 2}
+    - target: {fileID: 5128590638175710160, guid: 3ca53e71b8431dd49a556a2c40d4d54d, type: 3}
+      propertyPath: m_itemData.ItemInfoId
+      value: Hammer_Info
+      objectReference: {fileID: 0}
     - target: {fileID: 6822851689026922055, guid: 3ca53e71b8431dd49a556a2c40d4d54d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 2
@@ -8401,6 +8409,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 633718033887017198, guid: 1c8994eec4ee92a4ab90c1fbe572678e, type: 3}
+      propertyPath: m_fireBallPrefab
+      value: 
+      objectReference: {fileID: 6281403276955380635, guid: ebc5d61941b710d4cbdb0a886e6456f4, type: 3}
     - target: {fileID: 5010736486517576525, guid: 1c8994eec4ee92a4ab90c1fbe572678e, type: 3}
       propertyPath: m_Name
       value: TrapGun
@@ -21275,6 +21287,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: ba0c1000f3fdf72459c20fa7a2a7b597, type: 2}
     - target: {fileID: 5128590638175710160, guid: 3ca53e71b8431dd49a556a2c40d4d54d, type: 3}
+      propertyPath: m_isSerializable
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5128590638175710160, guid: 3ca53e71b8431dd49a556a2c40d4d54d, type: 3}
       propertyPath: m_itemData.Amount
       value: 33
       objectReference: {fileID: 0}
@@ -21282,6 +21298,10 @@ PrefabInstance:
       propertyPath: m_itemData.ItemInfo
       value: 
       objectReference: {fileID: 11400000, guid: ba0c1000f3fdf72459c20fa7a2a7b597, type: 2}
+    - target: {fileID: 5128590638175710160, guid: 3ca53e71b8431dd49a556a2c40d4d54d, type: 3}
+      propertyPath: m_itemData.ItemInfoId
+      value: SteelBall_Info
+      objectReference: {fileID: 0}
     - target: {fileID: 6822851689026922055, guid: 3ca53e71b8431dd49a556a2c40d4d54d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 4
@@ -23870,7 +23890,7 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: a4a0deeee3282d44982f1d09bbea2084, type: 2}
     - target: {fileID: 2999589642607726072, guid: 46b82607ee66fd34fad608322138db8d, type: 3}
       propertyPath: m_itemData.Amount
-      value: 22
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2999589642607726072, guid: 46b82607ee66fd34fad608322138db8d, type: 3}
       propertyPath: m_itemData.ItemInfo
@@ -23879,6 +23899,10 @@ PrefabInstance:
     - target: {fileID: 2999589642607726072, guid: 46b82607ee66fd34fad608322138db8d, type: 3}
       propertyPath: m_requireSpecialKey
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2999589642607726072, guid: 46b82607ee66fd34fad608322138db8d, type: 3}
+      propertyPath: m_itemData.ItemInfoId
+      value: LeatherArmor_Info
       objectReference: {fileID: 0}
     - target: {fileID: 2999589642607726072, guid: 46b82607ee66fd34fad608322138db8d, type: 3}
       propertyPath: m_specificKeyItemInfo
@@ -27238,6 +27262,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: a4a0deeee3282d44982f1d09bbea2084, type: 2}
     - target: {fileID: 5128590638175710160, guid: 3ca53e71b8431dd49a556a2c40d4d54d, type: 3}
+      propertyPath: m_isSerializable
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5128590638175710160, guid: 3ca53e71b8431dd49a556a2c40d4d54d, type: 3}
       propertyPath: m_itemData.Amount
       value: 1
       objectReference: {fileID: 0}
@@ -27245,6 +27273,10 @@ PrefabInstance:
       propertyPath: m_itemData.ItemInfo
       value: 
       objectReference: {fileID: 11400000, guid: a4a0deeee3282d44982f1d09bbea2084, type: 2}
+    - target: {fileID: 5128590638175710160, guid: 3ca53e71b8431dd49a556a2c40d4d54d, type: 3}
+      propertyPath: m_itemData.ItemInfoId
+      value: SpecialKey101_Info
+      objectReference: {fileID: 0}
     - target: {fileID: 6822851689026922055, guid: 3ca53e71b8431dd49a556a2c40d4d54d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

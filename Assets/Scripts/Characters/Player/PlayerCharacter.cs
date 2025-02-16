@@ -17,7 +17,6 @@ namespace DC_ARPG
         [SerializeField] private Player m_player;
         [SerializeField] private PlayerStatsInfo m_playerStatsInfo;
         [SerializeField] private int m_startedMoney = 999;
-        [SerializeField] private Magic m_availableMagic;
         [SerializeField] private WeaponItem m_brokenWeapon;
         [Header("Inventory Initial State")]
         [SerializeField] private int m_unlockedPockets;
@@ -25,7 +24,6 @@ namespace DC_ARPG
         [SerializeField] private ItemData[] m_items;
 
         public Player Player => m_player;
-        public Magic AvailableMagic => m_availableMagic;
         public WeaponItem BrokenWeapon => m_brokenWeapon;
 
         private PlayerStats playerStats;
@@ -185,9 +183,7 @@ namespace DC_ARPG
 
         private void OnDeath(object sender)
         {
-            var slot = inventory.MainPocket.FindSlot(PassiveEffect.PassiveType.Revival);
-
-            if (slot != null)
+            if (inventory.MainPocket.TryFindSlot(PassiveEffect.PassiveType.Revival, out IItemSlot slot))
             {
                 var revivalItem = slot.ItemInfo as NotUsableItemInfo;
 

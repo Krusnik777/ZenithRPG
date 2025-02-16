@@ -112,8 +112,6 @@ namespace DC_ARPG
         {
             if (m_inventory == null) m_inventory = (m_player.Character as PlayerCharacter).Inventory;
 
-            m_inventory.SetParent(m_player);
-
             m_uiSlotButtonsContainer = m_inventoryPanel.GetComponent<UISelectableButtonContainer>();
 
             SetInventory();

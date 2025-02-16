@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace DC_ARPG
 {
@@ -34,6 +35,13 @@ namespace DC_ARPG
         {
             var clonedItem = new WeaponItem(m_itemInfo, m_uses);
             return clonedItem;
+        }
+
+        public void Use(object sender, Inventory inventory, IItemSlot slot, UnityAction<object, IItemSlot> onUse)
+        {
+            inventory.EquipItem(sender, slot);
+
+            UISounds.Instance.PlayItemEquipSound();
         }
     }
 }

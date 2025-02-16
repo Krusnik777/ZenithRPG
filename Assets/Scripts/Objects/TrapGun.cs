@@ -5,7 +5,7 @@ namespace DC_ARPG
     public class TrapGun : InspectableObject, IDataPersistence
     {
         [SerializeField] private GameObject m_holeObject;
-        [SerializeField] private Magic m_magic;
+        [SerializeField] private FireBallFlight m_fireBallPrefab;
 
         private bool disabled = false;
 
@@ -25,7 +25,8 @@ namespace DC_ARPG
         {
             if (disabled) return;
 
-            m_magic.CreateFireball(gameObject, m_holeObject.transform.position, m_holeObject.transform.rotation);
+            var fireBall = Instantiate(m_fireBallPrefab, m_holeObject.transform.position, m_holeObject.transform.rotation);
+            fireBall.SetParent(gameObject);
         }
 
         #region Serialize

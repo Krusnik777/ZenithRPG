@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace DC_ARPG
 {
-    public class FireBall : MonoBehaviour
+    public class FireBallFlight : MonoBehaviour
     {
         [SerializeField] protected float m_velocity;
         [SerializeField] protected float m_lifeTime;

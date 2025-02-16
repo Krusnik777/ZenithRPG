@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace DC_ARPG
 {
@@ -90,5 +91,7 @@ namespace DC_ARPG
         int Price { get; }
 
         IItem Clone();
+
+        void Use(object sender, Inventory inventory, IItemSlot slot, UnityAction<object, IItemSlot> onUse = null);
     }
 }

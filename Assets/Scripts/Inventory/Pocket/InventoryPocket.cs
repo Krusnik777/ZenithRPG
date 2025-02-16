@@ -82,17 +82,23 @@ namespace DC_ARPG
             return null;
         }
 
-        public IItemSlot FindSlot(PassiveEffect.PassiveType passiveEffect)
+        public bool TryFindSlot(PassiveEffect.PassiveType passiveEffect, out IItemSlot slot)
         {
-            foreach (var slot in ItemSlots)
+            slot = null;
+
+            foreach (var s in ItemSlots)
             {
-                if (slot.Item is NotUsableItem)
+                if (s.Item is NotUsableItem)
                 {
-                    if ((slot.ItemInfo as NotUsableItemInfo).PassiveEffect.EffectType == passiveEffect)
-                        return slot;
+                    if ((s.ItemInfo as NotUsableItemInfo).PassiveEffect.EffectType == passiveEffect)
+                    {
+                        slot = s;
+                        return true;
+                    }
                 }
             }
-            return null;
+
+            return false;
         }
 
         public IItem FindItem(IItem item)

@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace DC_ARPG
 {
@@ -24,6 +25,12 @@ namespace DC_ARPG
         {
             var clonedItem = new NotUsableItem(m_itemInfo, m_amount);
             return clonedItem;
+        }
+
+        public void Use(object sender, Inventory inventory, IItemSlot slot, UnityAction<object, IItemSlot> onUse)
+        {
+            Debug.Log("NotUsable");
+            UISounds.Instance.PlayInventoryActionFailureSound();
         }
     }
 }

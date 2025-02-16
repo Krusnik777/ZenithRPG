@@ -34,10 +34,6 @@ namespace DC_ARPG
 
         #region Support Parameters and Methods
 
-        private Player m_player;
-        public Player ParentPlayer => m_player;
-        public PlayerCharacter ParentCharacter => m_player.Character as PlayerCharacter;
-
         public int UnlockedPockets = 3;
 
         private IItemSlot m_fromSlot;
@@ -51,11 +47,6 @@ namespace DC_ARPG
         {
             TransitFromSlotToSlot(sender, m_fromSlot, toSlot);
             m_fromSlot = null;
-        }
-
-        public void SetParent(Player player)
-        {
-            m_player = player;
         }
 
         public void SetActiveItemSlot(object sender, int slotNumber)
@@ -230,6 +221,9 @@ namespace DC_ARPG
                 return;
             }
 
+            slot.Item.Use(sender, this, slot, EventOnItemUsed);
+
+            /*
             if (slot.Item is NotUsableItem)
             {
                 Debug.Log("NotUsable");
@@ -250,6 +244,31 @@ namespace DC_ARPG
                 EventOnItemUsed?.Invoke(sender, slot);
             }
             else EquipItem(sender, slot);
+            */
+        }
+
+        public void EquipItem(object sender, IItemSlot slot)
+        {
+            if (slot.Item is WeaponItem)
+            {
+                TransitFromSlotToSlot(sender, slot, WeaponItemSlot);
+            }
+
+            if (slot.Item is MagicItem)
+            {
+                TransitFromSlotToSlot(sender, slot, MagicItemSlot);
+            }
+
+            if (slot.Item is EquipItem)
+            {
+                var item = slot.Item as EquipItem;
+
+                if (item.EquipType == EquipItemType.Armor)
+                    TransitFromSlotToSlot(sender, slot, ArmorItemSlot);
+
+                if (item.EquipType == EquipItemType.Shield)
+                    TransitFromSlotToSlot(sender, slot, ShieldItemSlot);
+            }
         }
 
         public IItemSlot TryToGetInventorySlot(IItemSlot slot)
@@ -388,33 +407,6 @@ namespace DC_ARPG
 
             EventOnTransitCompleted?.Invoke(sender, fromSlot, toSlot);
         }
-
-        private void EquipItem(object sender, IItemSlot slot)
-        {
-            if (slot.Item is WeaponItem)
-            {
-                TransitFromSlotToSlot(sender, slot, WeaponItemSlot);
-            }
-
-            if (slot.Item is MagicItem)
-            {
-                TransitFromSlotToSlot(sender, slot, MagicItemSlot);
-            }
-
-            if (slot.Item is EquipItem)
-            {
-                var item = slot.Item as EquipItem;
-
-                if (item.EquipType == EquipItemType.Armor)
-                    TransitFromSlotToSlot(sender, slot, ArmorItemSlot);
-
-                if (item.EquipType == EquipItemType.Shield)
-                    TransitFromSlotToSlot(sender, slot, ShieldItemSlot);
-            }
-
-            UISounds.Instance.PlayItemEquipSound();
-        }
-
         #endregion
     }
 }

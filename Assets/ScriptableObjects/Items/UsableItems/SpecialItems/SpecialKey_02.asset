@@ -22,6 +22,4 @@ MonoBehaviour:
   Prefab: {fileID: 5010736486517576525, guid: 3ca53e71b8431dd49a556a2c40d4d54d, type: 3}
   Price: 0
   MaxAmount: 1
-  UseEffect:
-    m_useEffect: 2
-    m_useSound: {fileID: 0}
+  UseEffect: {fileID: 11400000, guid: d288c61b49c4ee04891cee1cf5691445, type: 2}
