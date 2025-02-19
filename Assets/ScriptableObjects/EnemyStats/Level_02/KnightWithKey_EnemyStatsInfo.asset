@@ -24,7 +24,6 @@ MonoBehaviour:
   ExperiencePoints: 200
   DroppedGold: 300
   DroppedItems:
-  - DroppedItemData:
-      ItemInfoId: SpecialKey102_Info
-      Amount: 1
+  - m_itemInfo: {fileID: 11400000, guid: 32c14b3fb757da441b3018497a51fad0, type: 2}
+    m_amount: 1
     ItemDropChance: 1

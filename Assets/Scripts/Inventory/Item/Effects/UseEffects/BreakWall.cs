@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace DC_ARPG
 {
-    [CreateAssetMenu(fileName = "BreakWall", menuName = "ScriptableObjects/UseEffects/BreakWall")]
+    [CreateAssetMenu(fileName = "BreakWall", menuName = "ScriptableObjects/UseEffect/BreakWall")]
     public class BreakWall : UseEffect
     {
         public override void Use(IItem item)

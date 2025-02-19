@@ -24,11 +24,9 @@ MonoBehaviour:
   ExperiencePoints: 450
   DroppedGold: 700
   DroppedItems:
-  - DroppedItemData:
-      ItemInfoId: Potion_Info
-      Amount: 1
+  - m_itemInfo: {fileID: 11400000, guid: ba0c1000f3fdf72459c20fa7a2a7b597, type: 2}
+    m_amount: 1
     ItemDropChance: 0.1
-  - DroppedItemData:
-      ItemInfoId: Key_Info
-      Amount: 1
+  - m_itemInfo: {fileID: 11400000, guid: 097fda4fc58e48a4fbb25f7ac89563d4, type: 2}
+    m_amount: 1
     ItemDropChance: 0.05

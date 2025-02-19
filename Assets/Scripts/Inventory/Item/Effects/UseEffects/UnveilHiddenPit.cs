@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace DC_ARPG
 {
-    [CreateAssetMenu(fileName = "UnveilHiddenPit", menuName = "ScriptableObjects/UseEffects/UnveilHiddenPit")]
+    [CreateAssetMenu(fileName = "UnveilHiddenPit", menuName = "ScriptableObjects/UseEffect/UnveilHiddenPit")]
     public class UnveilHiddenPit : UseEffect
     {
         public override void Use(IItem item)

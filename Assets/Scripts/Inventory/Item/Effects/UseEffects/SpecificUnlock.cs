@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace DC_ARPG
 {
-    [CreateAssetMenu(fileName = "SpecificUnlock", menuName = "ScriptableObjects/UseEffects/SpecificUnlock")]
+    [CreateAssetMenu(fileName = "SpecificUnlock", menuName = "ScriptableObjects/UseEffect/SpecificUnlock")]
     public class SpecificUnlock : UseEffect
     {
         public override void Use(IItem item)

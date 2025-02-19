@@ -183,7 +183,10 @@ namespace DC_ARPG
 
             s.enabled = gameObject.activeInHierarchy;
             s.locked = m_locked;
-            s.itemData = new ItemData(m_itemData);
+
+            if (m_itemData != null) s.itemData = new ItemData(m_itemData);
+            else s.itemData = new ItemData(m_itemInfo, m_amount);
+
             s.unlockingInventoryPocket = m_unlockInventoryPocket;
             s.givingMoney = m_giveMoney;
             s.money = m_money;
@@ -201,6 +204,8 @@ namespace DC_ARPG
             m_locked = s.locked;
             m_itemData = new ItemData(s.itemData);
             m_item = m_itemData.CreateItem();
+            m_itemInfo = m_itemData.ItemInfo;
+
             m_unlockInventoryPocket = s.unlockingInventoryPocket;
             m_giveMoney = s.givingMoney;
             m_money = s.money;

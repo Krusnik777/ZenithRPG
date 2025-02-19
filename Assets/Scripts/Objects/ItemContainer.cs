@@ -4,7 +4,11 @@ namespace DC_ARPG
 {
     public class ItemContainer : InspectableObject, IDataPersistence
     {
-        [SerializeField] protected ItemData m_itemData;
+        [Header("DefaultItem")]
+        [SerializeField] protected ItemInfo m_itemInfo;
+        [SerializeField] protected int m_amount;
+        
+        protected ItemData m_itemData;
 
         protected IItem m_item;
 
@@ -42,11 +46,24 @@ namespace DC_ARPG
             m_item = item.Clone();
 
             m_itemData = new ItemData(m_item);
+            m_itemInfo = m_itemData.ItemInfo;
         }
 
         private void Start()
         {
-            if (m_item == null) m_item = m_itemData.CreateItem();
+            if (m_item == null)
+            {
+                if (m_itemData == null)
+                {
+                    m_itemData = new ItemData(m_itemInfo, m_amount);
+
+                    m_item = m_itemData.CreateItem();
+                }
+                else
+                {
+                    m_item = m_itemData.CreateItem();
+                }
+            }
         }
 
         #region Serialize
@@ -81,7 +98,8 @@ namespace DC_ARPG
             if (m_isCreated)
             {
                 s.position = transform.position;
-                s.itemData = new ItemData(m_itemData);
+                if (m_itemData != null) s.itemData = new ItemData(m_itemData);
+                else s.itemData = new ItemData(m_itemInfo, m_amount);
             }
 
             return JsonUtility.ToJson(s);
@@ -96,6 +114,7 @@ namespace DC_ARPG
                 transform.position = s.position;
                 m_itemData = new ItemData(s.itemData);
                 m_item = m_itemData.CreateItem();
+                m_itemInfo = m_itemData.ItemInfo;
             }
 
             gameObject.SetActive(s.enabled);

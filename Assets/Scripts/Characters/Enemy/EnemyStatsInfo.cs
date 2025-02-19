@@ -5,8 +5,18 @@ namespace DC_ARPG
     [System.Serializable]
     public class DroppedItem
     {
-        public ItemData DroppedItemData;
+        [SerializeField] private ItemInfo m_itemInfo;
+        [SerializeField] private int m_amount;
         [Range(0, 1)] public float ItemDropChance;
+
+        public IItem CreateItem()
+        {
+            ItemData itemData = new ItemData(m_itemInfo, m_amount);
+
+            IItem item = itemData.CreateItem();
+
+            return item;
+        }
     }
 
     [CreateAssetMenu(fileName = "EnemyStatsInfo", menuName = "ScriptableObjects/CharacterStatsInfo/EnemyStatsInfo")]

@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace DC_ARPG
 {
-    [CreateAssetMenu(fileName = "Heal", menuName = "ScriptableObjects/UseEffects/Heal")]
+    [CreateAssetMenu(fileName = "Heal", menuName = "ScriptableObjects/UseEffect/Heal")]
     public class Heal : UseEffect
     {
         public override void Use(IItem item)
