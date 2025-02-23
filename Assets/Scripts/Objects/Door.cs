@@ -3,10 +3,11 @@ using UnityEngine.Events;
 
 namespace DC_ARPG
 {
-    [RequireComponent(typeof(Animator))]
+    [RequireComponent(typeof(DoorAnimator))]
     public class Door : InspectableObject, IDataPersistence
     {
-        [SerializeField] private Animator m_animator;
+        //[SerializeField] private Animator m_animator;
+        [SerializeField] private DoorAnimator m_animator;
         [SerializeField] private Collider m_collider;
         [SerializeField] private bool m_openableDirectly;
         [SerializeField] private bool m_locked;
@@ -29,9 +30,11 @@ namespace DC_ARPG
 
         private DoorSFX m_doorSFX;
 
-        private bool inClosedState => m_animator.GetCurrentAnimatorStateInfo(0).IsName("ClosedState");
+        //private bool inClosedState => m_animator.GetCurrentAnimatorStateInfo(0).IsName("ClosedState");
+        private bool inClosedState => m_animator.InInitState;
         public bool Closed => inClosedState;
-        private bool inOpenedState => m_animator.GetCurrentAnimatorStateInfo(0).IsName("OpenedState");
+        //private bool inOpenedState => m_animator.GetCurrentAnimatorStateInfo(0).IsName("OpenedState");
+        private bool inOpenedState => m_animator.InActiveState;
         public bool Opened => inOpenedState;
 
         public override bool Disabled => m_collider.isTrigger;
@@ -139,7 +142,8 @@ namespace DC_ARPG
         {
             if (inOpenedState) return;
 
-            m_animator.SetTrigger("Open");
+            //m_animator.SetTrigger("Open");
+            m_animator.Play();
             m_doorSFX.PlayUseSound();
             m_collider.isTrigger = true;
 
@@ -150,7 +154,8 @@ namespace DC_ARPG
         {
             if (inClosedState) return;
 
-            m_animator.SetTrigger("Close");
+            //m_animator.SetTrigger("Close");
+            m_animator.ResetToInit();
             m_doorSFX.PlayUseSound();
             m_collider.isTrigger = false;
 
@@ -166,7 +171,8 @@ namespace DC_ARPG
             public bool openableDirectly;
             public bool locked;
             public bool colliderState;
-            public int animatorState;
+            //public int animatorState;
+            public bool animatorActiveState;
 
             public DataState() { }
         }
@@ -190,7 +196,8 @@ namespace DC_ARPG
             s.locked = m_locked;
             s.colliderState = m_collider.isTrigger;
             if (gameObject.activeInHierarchy)
-                s.animatorState = m_animator.GetCurrentAnimatorStateInfo(0).shortNameHash;
+                //s.animatorState = m_animator.GetCurrentAnimatorStateInfo(0).shortNameHash;
+                s.animatorActiveState = m_animator.InActiveState;
 
             return JsonUtility.ToJson(s);
         }
@@ -204,7 +211,8 @@ namespace DC_ARPG
             m_locked = s.locked;
             m_collider.isTrigger = s.colliderState;
             if (s.enabled)
-                m_animator.Play(s.animatorState);
+                //m_animator.Play(s.animatorState);
+                m_animator.ChangeInitialState(s.animatorActiveState);
         }
 
         public void SetupCreatedDataPersistenceObject(string entityId, bool isCreated, string state) { }

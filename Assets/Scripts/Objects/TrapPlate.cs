@@ -42,8 +42,13 @@ namespace DC_ARPG
 
         private void SetAnimationAndSound()
         {
-            m_animator.SetTrigger("Activate");
+            m_animator.enabled = true;
             m_audioSource.Play();
+        }
+
+        private void OnAnimationEnd()
+        {
+            m_animator.enabled = false;
         }
 
         #region Serialize
@@ -112,10 +117,6 @@ namespace DC_ARPG
             m_id = name;
             UnityEditor.EditorUtility.SetDirty(this);
         }
-
-        #endif
-
-        #if UNITY_EDITOR
 
         [ContextMenu(nameof(ChangeDamageForAllTraps))]
         private void ChangeDamageForAllTraps()

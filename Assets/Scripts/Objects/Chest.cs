@@ -3,11 +3,12 @@ using UnityEngine.Events;
 
 namespace DC_ARPG
 {
-    [RequireComponent(typeof(Animator))]
+    [RequireComponent(typeof(ChestAnimator))]
     public class Chest : ItemContainer
     {
         [Header("Chest")]
-        [SerializeField] private Animator m_animator;
+        //[SerializeField] private Animator m_animator;
+        [SerializeField] private ChestAnimator m_animator;
         [SerializeField] private bool m_locked;
         [SerializeField] private bool m_requireSpecialKey;
         [SerializeField] private UsableItemInfo m_specificKeyItemInfo;
@@ -31,9 +32,11 @@ namespace DC_ARPG
 
         private ChestSFX m_chestSFX;
 
-        private bool inClosedState => m_animator.GetCurrentAnimatorStateInfo(0).IsName("ClosedState");
+        //private bool inClosedState => m_animator.GetCurrentAnimatorStateInfo(0).IsName("ClosedState");
+        private bool inClosedState => m_animator.InInitState;
         public bool Closed => inClosedState;
-        private bool inOpenedState => m_animator.GetCurrentAnimatorStateInfo(0).IsName("OpenedState");
+        //private bool inOpenedState => m_animator.GetCurrentAnimatorStateInfo(0).IsName("OpenedState");
+        private bool inOpenedState => m_animator.InActiveState;
         public bool Opened => inOpenedState;
 
         public override string InfoText
@@ -73,7 +76,8 @@ namespace DC_ARPG
 
         public void Close()
         {
-            m_animator.SetTrigger("Close");
+            //m_animator.SetTrigger("Close");
+            m_animator.ResetToInit();
             m_chestSFX.PlayCloseSound();
         }
 
@@ -107,7 +111,8 @@ namespace DC_ARPG
 
         private void Open(Player player)
         {
-            m_animator.SetTrigger("Open");
+            //m_animator.SetTrigger("Open");
+            m_animator.Play();
             m_chestSFX.PlayOpenSound();
 
             if (m_item == null)
@@ -171,7 +176,8 @@ namespace DC_ARPG
             public bool unlockingInventoryPocket;
             public bool givingMoney;
             public int money;
-            public int animatorState;
+            //public int animatorState;
+            public bool animatorActiveState;
 
             public ChestDataState() { }
         }
@@ -191,7 +197,8 @@ namespace DC_ARPG
             s.givingMoney = m_giveMoney;
             s.money = m_money;
             if (gameObject.activeInHierarchy)
-                s.animatorState = m_animator.GetCurrentAnimatorStateInfo(0).shortNameHash;
+                //s.animatorState = m_animator.GetCurrentAnimatorStateInfo(0).shortNameHash;
+                s.animatorActiveState = m_animator.InActiveState;
 
             return JsonUtility.ToJson(s);
         }
@@ -210,7 +217,8 @@ namespace DC_ARPG
             m_giveMoney = s.givingMoney;
             m_money = s.money;
             if (s.enabled)
-                m_animator.Play(s.animatorState);
+                //m_animator.Play(s.animatorState);
+                m_animator.ChangeInitialState(s.animatorActiveState);
         }
 
         #endregion

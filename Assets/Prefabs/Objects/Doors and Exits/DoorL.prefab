@@ -206,7 +206,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 388919840688140952}
-  - component: {fileID: 4289264148175112980}
+  - component: {fileID: 376340789327583496}
   - component: {fileID: 7545055123025963328}
   m_Layer: 0
   m_Name: DoorL
@@ -235,27 +235,24 @@ Transform:
   - {fileID: 3595703594666184667}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!95 &4289264148175112980
-Animator:
-  serializedVersion: 5
+--- !u!114 &376340789327583496
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3796913609631046454}
   m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 000619b1a08f3264eab002e0d934852e, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b38d2c922ac88cf40b4ef8b8e05e5f4f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_leftDoor: {fileID: 3348948801657573573}
+  m_rightDoor: {fileID: 4640419141187489698}
+  m_defaultAngle: 0
+  m_targetAngleL: -90
+  m_targetAngleR: 90
+  m_speed: 200
 --- !u!114 &7545055123025963328
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -272,7 +269,7 @@ MonoBehaviour:
   EventOnInspection:
     m_PersistentCalls:
       m_Calls: []
-  m_animator: {fileID: 4289264148175112980}
+  m_animator: {fileID: 376340789327583496}
   m_collider: {fileID: 5346726631591803513}
   m_openableDirectly: 0
   m_locked: 0

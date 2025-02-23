@@ -4,7 +4,7 @@ namespace DC_ARPG
 {
     public class ItemContainer : InspectableObject, IDataPersistence
     {
-        [Header("DefaultItem")]
+        [Header("Start Item")]
         [SerializeField] protected ItemInfo m_itemInfo;
         [SerializeField] protected int m_amount;
         

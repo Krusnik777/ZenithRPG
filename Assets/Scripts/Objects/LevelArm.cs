@@ -3,10 +3,11 @@ using UnityEngine.Events;
 
 namespace DC_ARPG
 {
-    [RequireComponent(typeof(Animator))]
+    [RequireComponent(typeof(LevelArmAnimator))]
     public class LevelArm : InspectableObject, IDataPersistence
     {
-        [SerializeField] private Animator m_animator;
+        //[SerializeField] private Animator m_animator;
+        [SerializeField] private LevelArmAnimator m_animator;
         [SerializeField] private AudioSource m_audioSFX;
         [SerializeField] private bool m_canReset;
         public bool CanReset => m_canReset;
@@ -14,9 +15,11 @@ namespace DC_ARPG
         public UnityEvent OnUsed;
         public UnityEvent OnReseted;
 
-        private bool inUpperState => m_animator.GetCurrentAnimatorStateInfo(0).IsName("UpperState");
+        //private bool inUpperState => m_animator.GetCurrentAnimatorStateInfo(0).IsName("UpperState");
+        private bool inUpperState => m_animator.InInitState;
         public bool Used => inLoweredState;
-        private bool inLoweredState => m_animator.GetCurrentAnimatorStateInfo(0).IsName("LoweredState");
+        //private bool inLoweredState => m_animator.GetCurrentAnimatorStateInfo(0).IsName("LoweredState");
+        private bool inLoweredState => m_animator.InActiveState;
 
         public override string InfoText
         {
@@ -43,7 +46,8 @@ namespace DC_ARPG
         private void UseLevelArm()
         {
             if (m_audioSFX != null) m_audioSFX.Play();
-            m_animator.SetTrigger("Use");
+            //m_animator.SetTrigger("Use");
+            m_animator.Play();
             OnUsed?.Invoke();
         }
 
@@ -52,7 +56,8 @@ namespace DC_ARPG
             if (!m_canReset) return;
 
             if (m_audioSFX != null) m_audioSFX.Play();
-            m_animator.SetTrigger("Reset");
+            //m_animator.SetTrigger("Reset");
+            m_animator.ResetToInit();
             OnReseted?.Invoke();
         }
 
@@ -62,7 +67,8 @@ namespace DC_ARPG
         public class DataState
         {
             public bool enabled;
-            public int animatorState;
+            //public int animatorState;
+            public bool animatorActiveState;
 
             public DataState() { }
         }
@@ -83,7 +89,8 @@ namespace DC_ARPG
 
             s.enabled = gameObject.activeInHierarchy;
             if (gameObject.activeInHierarchy)
-                s.animatorState = m_animator.GetCurrentAnimatorStateInfo(0).shortNameHash;
+                //s.animatorState = m_animator.GetCurrentAnimatorStateInfo(0).shortNameHash;
+                s.animatorActiveState = m_animator.InActiveState;
 
             return JsonUtility.ToJson(s);
         }
@@ -94,7 +101,8 @@ namespace DC_ARPG
 
             gameObject.SetActive(s.enabled);
             if (s.enabled)
-                m_animator.Play(s.animatorState);
+                //m_animator.Play(s.animatorState);
+                m_animator.ChangeInitialState(s.animatorActiveState);
         }
 
         public void SetupCreatedDataPersistenceObject(string entityId, bool isCreated, string state) { }

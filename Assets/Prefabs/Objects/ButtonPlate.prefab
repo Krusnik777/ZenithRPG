@@ -107,8 +107,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1205748579659032842}
+  - component: {fileID: 6018542633578456792}
   - component: {fileID: 7565788147585606165}
-  - component: {fileID: 4445595956617294467}
   m_Layer: 0
   m_Name: ButtonPlate
   m_TagString: Untagged
@@ -135,6 +135,22 @@ Transform:
   - {fileID: 5948279648581520679}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6018542633578456792
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3398984640761354266}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78084dd445d2a704b8380c220248fe7e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_plate: {fileID: 5574971573767317205}
+  m_defaultPosition: 0.025
+  m_targetPosition: -0.025
+  m_speed: 180
 --- !u!114 &7565788147585606165
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -151,31 +167,18 @@ MonoBehaviour:
   EventOnInspection:
     m_PersistentCalls:
       m_Calls: []
-  m_buttonPressTrigger: {fileID: 3050365442374123343}
+  m_hasSpring: 0
+  m_audioSFX: {fileID: 0}
+  m_animator: {fileID: 6018542633578456792}
+  OnButtonPressed:
+    m_PersistentCalls:
+      m_Calls: []
+  OnButtonUnpressed:
+    m_PersistentCalls:
+      m_Calls: []
   m_prefabId: ButtonPlatePrefab_Default
   m_id: 
   m_isSerializable: 1
---- !u!95 &4445595956617294467
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3398984640761354266}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 4cfef4c17ddb778498a618e69cbc67f9, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &3702249544790003186
 GameObject:
   m_ObjectHideFlags: 0
@@ -346,7 +349,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2178007519673124473}
   - component: {fileID: 8851207206333418601}
-  - component: {fileID: 3050365442374123343}
   m_Layer: 0
   m_Name: Trigger
   m_TagString: Untagged
@@ -390,27 +392,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.7008511, y: 0.19449273, z: 0.69922507}
   m_Center: {x: -0.0005017519, y: -0.40275365, z: 0.0013154149}
---- !u!114 &3050365442374123343
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7526846879783635802}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8b65d874a804730479642dd729d008f6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_hasSpring: 0
-  m_audioSFX: {fileID: 2672163300166075676}
-  m_animator: {fileID: 4445595956617294467}
-  OnButtonPressed:
-    m_PersistentCalls:
-      m_Calls: []
-  OnButtonUnpressed:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1001 &8499917242942979960
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -500,6 +481,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0c3e9c4fb65d3304b8220facc80fea2d, type: 3}
+--- !u!4 &5574971573767317205 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4083501151425157549, guid: 0c3e9c4fb65d3304b8220facc80fea2d, type: 3}
+  m_PrefabInstance: {fileID: 8499917242942979960}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8250450274412927123 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 0c3e9c4fb65d3304b8220facc80fea2d, type: 3}

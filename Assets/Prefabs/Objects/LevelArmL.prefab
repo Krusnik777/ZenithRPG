@@ -135,7 +135,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6822851689026922055}
-  - component: {fileID: 9120895313891661057}
+  - component: {fileID: 3328948822374937303}
   - component: {fileID: 7769838929219067508}
   m_Layer: 0
   m_Name: LevelArmL
@@ -163,27 +163,22 @@ Transform:
   - {fileID: 8217871849445276012}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!95 &9120895313891661057
-Animator:
-  serializedVersion: 5
+--- !u!114 &3328948822374937303
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5010736486517576525}
   m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 08a37cb7da80f544281f23fc3ec95634, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb99ef537ba9e7a469aba504f2415050, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_cylinder: {fileID: 564112786795286923}
+  m_defaultAngle: 0
+  m_targetAngle: -80
+  m_speed: 180
 --- !u!114 &7769838929219067508
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -200,7 +195,7 @@ MonoBehaviour:
   EventOnInspection:
     m_PersistentCalls:
       m_Calls: []
-  m_animator: {fileID: 9120895313891661057}
+  m_animator: {fileID: 3328948822374937303}
   m_audioSFX: {fileID: 4886813829272294542}
   m_canReset: 0
   OnUsed:
@@ -458,6 +453,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b63e90f3d4671a54f9ea7f78adf9c7ec, type: 3}
+--- !u!4 &564112786795286923 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -2577548232221058511, guid: b63e90f3d4671a54f9ea7f78adf9c7ec, type: 3}
+  m_PrefabInstance: {fileID: 6624394955076357050}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6657496040767892561 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: b63e90f3d4671a54f9ea7f78adf9c7ec, type: 3}

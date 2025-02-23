@@ -3,12 +3,13 @@ using UnityEngine.Events;
 
 namespace DC_ARPG
 {
-    [RequireComponent(typeof(Animator))]
+    [RequireComponent(typeof(ButtonPlateAnimator))]
     public class ButtonPlate : InspectableObject, IActivableObject, IReturnableObject, IDataPersistence
     {
         [SerializeField] private bool m_hasSpring;
         [SerializeField] private AudioSource m_audioSFX;
-        [SerializeField] private Animator m_animator;
+        //[SerializeField] private Animator m_animator;
+        [SerializeField] private ButtonPlateAnimator m_animator;
         [Space]
         public UnityEvent OnButtonPressed;
         public UnityEvent OnButtonUnpressed;
@@ -17,8 +18,10 @@ namespace DC_ARPG
 
         private bool disabled;
 
-        private bool inPressedState => m_animator.GetCurrentAnimatorStateInfo(0).IsName("PressedState");
-        private bool inUnpressedState => m_animator.GetCurrentAnimatorStateInfo(0).IsName("UnpressedState");
+        //private bool inPressedState => m_animator.GetCurrentAnimatorStateInfo(0).IsName("PressedState");
+        private bool inPressedState => m_animator.InActiveState;
+        //private bool inUnpressedState => m_animator.GetCurrentAnimatorStateInfo(0).IsName("UnpressedState");
+        private bool inUnpressedState => m_animator.InInitState;
 
         public override void OnInspection(Player player)
         {
@@ -45,7 +48,8 @@ namespace DC_ARPG
             {
                 if (inUnpressedState)
                 {
-                    m_animator.SetTrigger("Press");
+                    //m_animator.SetTrigger("Press");
+                    m_animator.Play();
                     m_audioSFX.Play();
                 }
             }
@@ -53,7 +57,8 @@ namespace DC_ARPG
             {
                 if (inPressedState && m_hasSpring)
                 {
-                    m_animator.SetTrigger("Unpress");
+                    //m_animator.SetTrigger("Unpress");
+                    m_animator.ResetToInit();
                     m_audioSFX.Play();
                 }
             }
@@ -65,7 +70,8 @@ namespace DC_ARPG
 
             if (inUnpressedState)
             {
-                m_animator.SetTrigger("Press");
+                //m_animator.SetTrigger("Press");
+                m_animator.Play();
                 m_audioSFX.Play();
                 OnButtonPressed?.Invoke();
             }
@@ -77,7 +83,8 @@ namespace DC_ARPG
 
             if (inPressedState)
             {
-                m_animator.SetTrigger("Unpress");
+                //m_animator.SetTrigger("Unpress");
+                m_animator.ResetToInit();
                 m_audioSFX.Play();
                 OnButtonUnpressed?.Invoke();
             }
@@ -90,7 +97,9 @@ namespace DC_ARPG
         {
             public bool enabled;
             public bool triggerDisabled;
+            //public int animatorState;
             public int animatorState;
+            public bool animatorActiveState;
 
             public DataState() { }
         }
@@ -112,7 +121,8 @@ namespace DC_ARPG
             s.enabled = gameObject.activeInHierarchy;
             if (gameObject.activeInHierarchy)
             {
-                s.animatorState = m_animator.GetCurrentAnimatorStateInfo(0).shortNameHash;
+                //s.animatorState = m_animator.GetCurrentAnimatorStateInfo(0).shortNameHash;
+                s.animatorActiveState = m_animator.InActiveState;
                 s.triggerDisabled = disabled;
             }
 
@@ -126,7 +136,8 @@ namespace DC_ARPG
             gameObject.SetActive(s.enabled);
             if (s.enabled)
             {
-                m_animator.Play(s.animatorState);
+                //m_animator.Play(s.animatorState);
+                m_animator.ChangeInitialState(s.animatorActiveState);
                 disabled = s.triggerDisabled;
             }
         }

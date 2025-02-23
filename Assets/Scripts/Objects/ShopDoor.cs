@@ -3,10 +3,11 @@ using UnityEngine.Events;
 
 namespace DC_ARPG
 {
-    [RequireComponent(typeof(Animator),typeof(AudioSource))]
+    [RequireComponent(typeof(DoorAnimator),typeof(AudioSource))]
     public class ShopDoor : InspectableObject
     {
-        [SerializeField] private Animator m_animator;
+        //[SerializeField] private Animator m_animator;
+        [SerializeField] private DoorAnimator m_animator;
 
         public UnityEvent EventOnShopEntered;
         public UnityEvent EventOnShopExited;
@@ -19,8 +20,10 @@ namespace DC_ARPG
 
         private AudioSource m_audio;
 
-        private bool inClosedState => m_animator.GetCurrentAnimatorStateInfo(0).IsName("ClosedState");
-        private bool inOpenedState => m_animator.GetCurrentAnimatorStateInfo(0).IsName("OpenedState");
+        //private bool inClosedState => m_animator.GetCurrentAnimatorStateInfo(0).IsName("ClosedState");
+        private bool inClosedState => m_animator.InInitState;
+        //private bool inOpenedState => m_animator.GetCurrentAnimatorStateInfo(0).IsName("OpenedState");
+        private bool inOpenedState => m_animator.InActiveState;
 
         public override void OnInspection(Player player)
         {
@@ -57,7 +60,8 @@ namespace DC_ARPG
 
         private void EnterShop()
         {
-            m_animator.SetTrigger("Open");
+            //m_animator.SetTrigger("Open");
+            m_animator.Play();
             m_audio.Play();
 
             UIShop.Instance.ShowShop(m_shop);
@@ -69,7 +73,8 @@ namespace DC_ARPG
 
         private void OnShopExited()
         {
-            m_animator.SetTrigger("Close");
+            //m_animator.SetTrigger("Close");
+            m_animator.ResetToInit();
             m_audio.Play();
 
             LevelState.Instance.ResumeAllActivity();
