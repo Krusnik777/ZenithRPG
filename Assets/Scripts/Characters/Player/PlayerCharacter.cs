@@ -189,13 +189,6 @@ namespace DC_ARPG
 
                 revivalItem.PassiveEffect.GetEffect(m_player, slot);
 
-                if (revivalItem.PassiveEffect.SFX != null)
-                {
-                    var sfx = Instantiate(revivalItem.PassiveEffect.SFX, m_player.transform.position, Quaternion.identity);
-
-                    Destroy(sfx, 1.0f);
-                }
-
                 return;
             }
 

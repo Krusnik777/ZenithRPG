@@ -22,6 +22,4 @@ MonoBehaviour:
   Prefab: {fileID: 5010736486517576525, guid: 3ca53e71b8431dd49a556a2c40d4d54d, type: 3}
   Price: 10000
   MaxAmount: 1
-  PassiveEffect:
-    m_passiveEffect: 1
-    m_sFXPrefab: {fileID: 4671104871228174247, guid: 231ff9b8191b2d540a5ffd603e6b826b, type: 3}
+  PassiveEffect: {fileID: 11400000, guid: 44ec0f49a245df24d96142801949e73d, type: 2}

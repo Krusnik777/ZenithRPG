@@ -18563,7 +18563,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1844385430773188566, guid: 6d9d2a695028a324ebb44d3d583ffc36, type: 3}
       propertyPath: m_items.Array.size
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 1844385430773188566, guid: 6d9d2a695028a324ebb44d3d583ffc36, type: 3}
       propertyPath: m_equippedItems.Magic.m_uses
@@ -18579,11 +18579,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1844385430773188566, guid: 6d9d2a695028a324ebb44d3d583ffc36, type: 3}
       propertyPath: m_items.Array.data[2].Amount
-      value: 4
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1844385430773188566, guid: 6d9d2a695028a324ebb44d3d583ffc36, type: 3}
       propertyPath: m_items.Array.data[3].Amount
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1844385430773188566, guid: 6d9d2a695028a324ebb44d3d583ffc36, type: 3}
       propertyPath: m_items.Array.data[5].Amount
@@ -18640,6 +18640,14 @@ PrefabInstance:
     - target: {fileID: 1844385430773188566, guid: 6d9d2a695028a324ebb44d3d583ffc36, type: 3}
       propertyPath: m_items.Array.data[1].ItemInfoId
       value: Potion_Info
+      objectReference: {fileID: 0}
+    - target: {fileID: 1844385430773188566, guid: 6d9d2a695028a324ebb44d3d583ffc36, type: 3}
+      propertyPath: m_items.Array.data[2].ItemInfoId
+      value: RevivalRing_Info
+      objectReference: {fileID: 0}
+    - target: {fileID: 1844385430773188566, guid: 6d9d2a695028a324ebb44d3d583ffc36, type: 3}
+      propertyPath: m_items.Array.data[3].ItemInfoId
+      value: GoldBar_Info
       objectReference: {fileID: 0}
     - target: {fileID: 1844385430773188566, guid: 6d9d2a695028a324ebb44d3d583ffc36, type: 3}
       propertyPath: m_equippedItems.Shield.m_itemInfo
@@ -36383,7 +36391,7 @@ MonoBehaviour:
   - {fileID: 888548044}
   - {fileID: 742074242}
   - {fileID: 1707828020}
-  m_type: 8
+  m_type: 9
 --- !u!1 &8524334448780283820
 GameObject:
   m_ObjectHideFlags: 0
@@ -36423,7 +36431,7 @@ MonoBehaviour:
   - {fileID: 1084361273}
   - {fileID: 1707828020}
   - {fileID: 901164105}
-  m_type: 8
+  m_type: 9
 --- !u!1001 &8730336924271187655
 PrefabInstance:
   m_ObjectHideFlags: 0

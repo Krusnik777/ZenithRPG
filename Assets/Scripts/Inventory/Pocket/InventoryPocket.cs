@@ -82,7 +82,7 @@ namespace DC_ARPG
             return null;
         }
 
-        public bool TryFindSlot(PassiveEffect.PassiveType passiveEffect, out IItemSlot slot)
+        public bool TryFindSlot(PassiveEffect.PassiveType passive, out IItemSlot slot)
         {
             slot = null;
 
@@ -90,7 +90,11 @@ namespace DC_ARPG
             {
                 if (s.Item is NotUsableItem)
                 {
-                    if ((s.ItemInfo as NotUsableItemInfo).PassiveEffect.EffectType == passiveEffect)
+                    var passiveEffect = (s.ItemInfo as NotUsableItemInfo).PassiveEffect;
+
+                    if (passiveEffect == null) continue;
+
+                    if (passiveEffect.Type == passive)
                     {
                         slot = s;
                         return true;

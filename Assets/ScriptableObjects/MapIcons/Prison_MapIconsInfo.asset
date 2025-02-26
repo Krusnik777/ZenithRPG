@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Prison_MapIconsInfo
   m_EditorClassIdentifier: 
   Empty: {fileID: 21300000, guid: 12339d1692820cb40a12586d48e3eacf, type: 3}
-  Floor: {fileID: 21300000, guid: a94cac10ad0b69f44b7f000eb8f9a05d, type: 3}
+  Floor: {fileID: 21300000, guid: fd04a9687c24c8a40834defc7a6bc24b, type: 3}
   Wall: {fileID: 21300000, guid: 81ea783374c677e4d86e90e2cacf7198, type: 3}
   Pit: {fileID: 21300000, guid: 55d7f806eedbc264ea0244d5b4ef285a, type: 3}
   Trap: {fileID: 21300000, guid: bd488312189b4514097299690eca0dc7, type: 3}
