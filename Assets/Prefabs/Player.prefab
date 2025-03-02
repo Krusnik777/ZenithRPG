@@ -10479,7 +10479,6 @@ MonoBehaviour:
   m_player: {fileID: 6766054219301148474}
   m_playerStatsInfo: {fileID: 11400000, guid: fd46a6466bdcabb4cb5d41de891b793c, type: 2}
   m_startedMoney: 999
-  m_availableMagic: {fileID: 0}
   m_brokenWeapon:
     m_itemInfo: {fileID: 11400000, guid: 3fae1436d81c79847a9ecd17419bc27e, type: 2}
     m_uses: 0
@@ -10575,7 +10574,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 60
+  field of view: 45
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
