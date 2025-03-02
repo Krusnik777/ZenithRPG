@@ -123,6 +123,8 @@ namespace DC_ARPG
 
             OnDead();
 
+            enemy.CurrentTile.SetTileOccupied(null);
+
             Destroy(gameObject);
         }
     }

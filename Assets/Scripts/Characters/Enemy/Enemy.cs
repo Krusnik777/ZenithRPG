@@ -115,7 +115,10 @@ namespace DC_ARPG
             m_character.Stats.EventOnDeath -= EventOnDeathEnemyCharacter;
         }
 
-        private void EventOnDeathEnemyCharacter(object sender) => EventOnDeath?.Invoke(this);
+        private void EventOnDeathEnemyCharacter(object sender)
+        {
+            EventOnDeath?.Invoke(this);
+        }
 
         private IEnumerator MoveByPush(Tile targetTile)
         {
