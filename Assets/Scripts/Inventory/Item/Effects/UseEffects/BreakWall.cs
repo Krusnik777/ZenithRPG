@@ -26,7 +26,14 @@ namespace DC_ARPG
                     breakableWall.BreakWall();
                     item.Amount--;
                 }
+                else OnFailure();
             }
+            else OnFailure();
+        }
+
+        private void OnFailure()
+        {
+            UISounds.Instance.PlayInventoryActionFailureSound();
         }
     }
 }

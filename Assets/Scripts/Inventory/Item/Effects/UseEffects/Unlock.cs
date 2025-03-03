@@ -32,8 +32,11 @@ namespace DC_ARPG
                     {
                         if (chest.SpecificKeyItemInfo != null) ShortMessage.Instance.ShowMessage("Похоже, здесь нужен особый ключ.");
                         else ShortMessage.Instance.ShowMessage("Похоже, открывается не ключем.");
+
+                        OnFailure();
                     }
                 }
+                else OnFailure();
             }
 
             if (potentialUnlockable is Door)
@@ -51,9 +54,18 @@ namespace DC_ARPG
                     {
                         if (door.SpecificKeyItemInfo != null) ShortMessage.Instance.ShowMessage("Похоже, здесь нужен особый ключ.");
                         else ShortMessage.Instance.ShowMessage("Похоже, открывается не ключем.");
+
+                        OnFailure();
                     }
                 }
+                else OnFailure();
             }
+            else OnFailure();
+        }
+
+        private void OnFailure()
+        {
+            UISounds.Instance.PlayInventoryActionFailureSound();
         }
     }
 }

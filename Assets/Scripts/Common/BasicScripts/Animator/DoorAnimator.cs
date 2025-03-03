@@ -5,10 +5,10 @@ namespace DC_ARPG
 {
     public class DoorAnimator : TwoStateAnimator
     {
-        [SerializeField] private Transform m_leftDoor;
+        //[SerializeField] private Transform m_leftDoor;
         [SerializeField] private Transform m_rightDoor;
         [SerializeField] private float m_defaultAngle = 0f;
-        [SerializeField] private float m_targetAngleL = -90f;
+        //[SerializeField] private float m_targetAngleL = -90f;
         [SerializeField] private float m_targetAngleR = 90f;
         [SerializeField] private float m_speed = 200f;
 
@@ -22,14 +22,13 @@ namespace DC_ARPG
         {
             if (active)
             {
-                m_leftDoor.transform.localRotation = Quaternion.Euler(0, m_targetAngleL, 0);
-                m_rightDoor.transform.localRotation = Quaternion.Euler(0, m_targetAngleR, 0);
-
+                //m_leftDoor.localRotation = Quaternion.Euler(0, m_targetAngleL, 0);
+                m_rightDoor.localRotation = Quaternion.Euler(0, m_targetAngleR, 0);
             }
             else
             {
-                m_leftDoor.transform.localRotation = Quaternion.Euler(0, m_defaultAngle, 0);
-                m_rightDoor.transform.localRotation = Quaternion.Euler(0, m_defaultAngle, 0);
+                //m_leftDoor.localRotation = Quaternion.Euler(0, m_defaultAngle, 0);
+                m_rightDoor.localRotation = Quaternion.Euler(0, m_defaultAngle, 0);
             }
 
             activated = active;
@@ -55,13 +54,13 @@ namespace DC_ARPG
 
         private IEnumerator Open()
         {
-            var leftTargetRotation = Quaternion.Euler(0, m_targetAngleL, 0);
+            //var leftTargetRotation = Quaternion.Euler(0, m_targetAngleL, 0);
             var rightTargetRotation = Quaternion.Euler(0, m_targetAngleR, 0);
 
-            while (m_leftDoor.transform.localRotation != leftTargetRotation && m_rightDoor.transform.localRotation != rightTargetRotation)
+            while (/*m_leftDoor.localRotation != leftTargetRotation &&*/ m_rightDoor.localRotation != rightTargetRotation)
             {
-                m_leftDoor.transform.localRotation = Quaternion.RotateTowards(m_leftDoor.transform.localRotation, leftTargetRotation, Time.deltaTime * m_speed);
-                m_rightDoor.transform.localRotation = Quaternion.RotateTowards(m_rightDoor.transform.localRotation, rightTargetRotation, Time.deltaTime * m_speed);
+                //m_leftDoor.localRotation = Quaternion.RotateTowards(m_leftDoor.localRotation, leftTargetRotation, Time.deltaTime * m_speed);
+                m_rightDoor.localRotation = Quaternion.RotateTowards(m_rightDoor.localRotation, rightTargetRotation, Time.deltaTime * m_speed);
                 yield return null;
             }
 
@@ -73,9 +72,9 @@ namespace DC_ARPG
         {
             var targetRotation = Quaternion.Euler(0, m_defaultAngle, 0);
 
-            while (m_leftDoor.transform.localRotation != targetRotation && m_rightDoor.transform.localRotation != targetRotation)
+            while (/*m_leftDoor.transform.localRotation != targetRotation &&*/ m_rightDoor.transform.localRotation != targetRotation)
             {
-                m_leftDoor.transform.localRotation = Quaternion.RotateTowards(m_leftDoor.transform.localRotation, targetRotation, Time.deltaTime * m_speed);
+                //m_leftDoor.transform.localRotation = Quaternion.RotateTowards(m_leftDoor.transform.localRotation, targetRotation, Time.deltaTime * m_speed);
                 m_rightDoor.transform.localRotation = Quaternion.RotateTowards(m_rightDoor.transform.localRotation, targetRotation, Time.deltaTime * m_speed);
                 yield return null;
             }

@@ -31,8 +31,10 @@ namespace DC_ARPG
                     else
                     {
                         ShortMessage.Instance.ShowMessage("Этот ключ сюда не подходит.");
+                        OnFailure();
                     }
                 }
+                else OnFailure();
             }
 
             if (potentialUnlockable is Door)
@@ -49,9 +51,17 @@ namespace DC_ARPG
                     else
                     {
                         ShortMessage.Instance.ShowMessage("Этот ключ сюда не подходит.");
+                        OnFailure();
                     }
                 }
+                else OnFailure();
             }
+            else OnFailure();
+        }
+
+        private void OnFailure()
+        {
+            UISounds.Instance.PlayInventoryActionFailureSound();
         }
     }
 }
