@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 991de079794450f46b88b5e12fab3882, type: 3}
+  m_Name: RevivalRing
+  m_EditorClassIdentifier: 
+  ID: RevivalRing_Info
+  Title: "\u041A\u043E\u043B\u044C\u0446\u043E \u0432\u043E\u0441\u043A\u0440\u0435\u0448\u0435\u043D\u0438\u044F"
+  Description: "\u0412\u043E\u0441\u043A\u0440\u0435\u0448\u0430\u0435\u0442 \u0432
+    \u0441\u043B\u0443\u0447\u0430\u0435 \u0441\u043C\u0435\u0440\u0442\u0438, \u043D\u043E
+    \u043B\u043E\u043C\u0430\u0435\u0442\u0441\u044F \u043F\u043E\u0441\u043B\u0435."
+  Icon: {fileID: 21300000, guid: 5fb0b4ff1fe56114e9b4dbe2f0733f40, type: 3}
+  ItemTypeIcon: {fileID: 21300000, guid: 36e29cabe5d8efe40af8e14ec11a209c, type: 3}
+  Prefab: {fileID: 5010736486517576525, guid: 3ca53e71b8431dd49a556a2c40d4d54d, type: 3}
+  Price: 10000
+  MaxAmount: 1
+  PassiveEffect: {fileID: 11400000, guid: 44ec0f49a245df24d96142801949e73d, type: 2}

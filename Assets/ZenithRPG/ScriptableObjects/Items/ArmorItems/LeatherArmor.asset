@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd317bf1a5b330a45ae4b42eb6be11fc, type: 3}
+  m_Name: LeatherArmor
+  m_EditorClassIdentifier: 
+  ID: LeatherArmor_Info
+  Title: "\u041A\u043E\u0436\u0430\u043D\u044B\u0439 \u0434\u043E\u0441\u043F\u0435\u0445"
+  Description: "\u0421\u0438\u043B\u044C\u043D\u043E \u0438\u0437\u043D\u043E\u0448\u0435\u043D\u043D\u044B\u0439,
+    \u043D\u043E \u043A\u043E\u0435-\u043A\u0430\u043A \u0437\u0430\u0449\u0438\u0449\u0430\u0435\u0442."
+  Icon: {fileID: 21300000, guid: ba8647846e6428f44a91f9cf057b6a4c, type: 3}
+  ItemTypeIcon: {fileID: 21300000, guid: e51e9042641ce114081750a76a92cff6, type: 3}
+  Prefab: {fileID: 5010736486517576525, guid: 3ca53e71b8431dd49a556a2c40d4d54d, type: 3}
+  Price: 1200
+  EquipType: 0
+  DefenseIncrease: 1
