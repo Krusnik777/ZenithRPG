@@ -112,33 +112,33 @@ ModelImporter:
     serializedVersion: 3
     human: []
     skeleton:
-    - name: Rig(Clone)
+    - name: OldRig(Clone)
       parentName: 
       position: {x: 0, y: 0, z: 0}
       rotation: {x: 0, y: 0, z: 0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: r3
-      parentName: Rig(Clone)
+      parentName: OldRig(Clone)
       position: {x: -0, y: 0, z: 0}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: m2
-      parentName: Rig(Clone)
+      parentName: OldRig(Clone)
       position: {x: -0, y: 0, z: 0}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: h5
-      parentName: Rig(Clone)
+      parentName: OldRig(Clone)
       position: {x: -0, y: 0, z: 0}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: v1
-      parentName: Rig(Clone)
+      parentName: OldRig(Clone)
       position: {x: -0, y: 0, z: 0}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: mixamorig:Hips
-      parentName: Rig(Clone)
+      parentName: OldRig(Clone)
       position: {x: 0.0000047534836, y: 0.56893766, z: -0.007981119}
       rotation: {x: 0.0000031185082, y: 0.00000224724, z: -0.00006989225, w: 1}
       scale: {x: 1, y: 1, z: 1}

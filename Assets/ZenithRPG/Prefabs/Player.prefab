@@ -16543,6 +16543,30 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1718067095325285036}
     m_Modifications:
+    - target: {fileID: 1473298727270955927, guid: 329d682314c0c434c9cb6425ecf48120, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 25.349054
+      objectReference: {fileID: 0}
+    - target: {fileID: 1473298727270955927, guid: 329d682314c0c434c9cb6425ecf48120, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 33.99939
+      objectReference: {fileID: 0}
+    - target: {fileID: 1473298727270955927, guid: 329d682314c0c434c9cb6425ecf48120, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -174.27435
+      objectReference: {fileID: 0}
+    - target: {fileID: 3708694670624589135, guid: 329d682314c0c434c9cb6425ecf48120, type: 3}
+      propertyPath: m_Name
+      value: Warrior_Prefab
+      objectReference: {fileID: 0}
+    - target: {fileID: 4092640833425956729, guid: 329d682314c0c434c9cb6425ecf48120, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8825983311099384097, guid: 329d682314c0c434c9cb6425ecf48120, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 785113457967202633, guid: d5e01126c1cd14044ab57d4d0b5f6cef, type: 3}
       propertyPath: m_parent
       value: 
@@ -17014,22 +17038,6 @@ PrefabInstance:
     - target: {fileID: 9117680446547458640, guid: d5e01126c1cd14044ab57d4d0b5f6cef, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 1.8560003
-      objectReference: {fileID: 0}
-    - target: {fileID: 1473298727270955927, guid: 329d682314c0c434c9cb6425ecf48120, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 25.349054
-      objectReference: {fileID: 0}
-    - target: {fileID: 1473298727270955927, guid: 329d682314c0c434c9cb6425ecf48120, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 33.99939
-      objectReference: {fileID: 0}
-    - target: {fileID: 1473298727270955927, guid: 329d682314c0c434c9cb6425ecf48120, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: -174.27435
-      objectReference: {fileID: 0}
-    - target: {fileID: 3708694670624589135, guid: 329d682314c0c434c9cb6425ecf48120, type: 3}
-      propertyPath: m_Name
-      value: Warrior_Prefab
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

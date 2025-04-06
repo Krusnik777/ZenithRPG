@@ -7,7 +7,7 @@ namespace DC_ARPG
     {
         [SerializeField] private CharacterAvatar m_characterAvatar;
         [SerializeField] private CharacterSFX m_characterSFX;
-        [SerializeField] private RigBuilder m_rigBuilder;
+        //[SerializeField] private RigBuilder m_rigBuilder;
         [SerializeField] private GameObject m_kickEffect;
 
         public void OnFootstepAnimation()
@@ -31,8 +31,8 @@ namespace DC_ARPG
             m_characterSFX.PlayLandSound(); // Maybe another sound? Or without it
             m_characterAvatar.LandAfterFall();
 
-            m_rigBuilder.layers[0].active = false;
-            m_rigBuilder.layers[1].active = false;
+            //m_rigBuilder.layers[0].active = false;
+            //m_rigBuilder.layers[1].active = false;
         }
 
         public void OnAttackAnimation()
@@ -89,8 +89,8 @@ namespace DC_ARPG
 
         private void OnFallAnimation()
         {
-            m_rigBuilder.layers[0].active = true;
-            m_rigBuilder.layers[1].active = true;
+            //m_rigBuilder.layers[0].active = true;
+            //m_rigBuilder.layers[1].active = true;
         }
     }
 }

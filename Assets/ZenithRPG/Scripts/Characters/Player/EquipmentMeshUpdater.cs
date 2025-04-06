@@ -9,7 +9,7 @@ namespace DC_ARPG
         [SerializeField] private GameObject m_swordMesh;
         [SerializeField] private GameObject m_brokenWeaponMesh;
         [SerializeField] private GameObject m_shieldMesh;
-        [SerializeField] private RigBuilder m_rigBuilder;
+        //[SerializeField] private RigBuilder m_rigBuilder;
 
         private void Start()
         {
@@ -23,11 +23,11 @@ namespace DC_ARPG
             else
                 m_swordMesh.SetActive(false);
 
-            m_rigBuilder.layers[1].active = m_playerCharacter.Inventory.WeaponItemSlot.IsEmpty;
+            //m_rigBuilder.layers[1].active = m_playerCharacter.Inventory.WeaponItemSlot.IsEmpty;
 
             m_shieldMesh.SetActive(!m_playerCharacter.Inventory.ShieldItemSlot.IsEmpty);
 
-            m_rigBuilder.layers[0].active = m_playerCharacter.Inventory.ShieldItemSlot.IsEmpty;
+            //m_rigBuilder.layers[0].active = m_playerCharacter.Inventory.ShieldItemSlot.IsEmpty;
 
             m_playerCharacter.Inventory.EventOnTransitCompleted += OnEquipItemChange;
             m_playerCharacter.Inventory.EventOnItemRemoved += OnEquipItemRemoved;
@@ -53,12 +53,12 @@ namespace DC_ARPG
             else
                 m_swordMesh.SetActive(false);
 
-            m_rigBuilder.layers[1].active = m_playerCharacter.Inventory.WeaponItemSlot.IsEmpty;
+            //m_rigBuilder.layers[1].active = m_playerCharacter.Inventory.WeaponItemSlot.IsEmpty;
 
             if (slot == m_playerCharacter.Inventory.ShieldItemSlot)
                 m_shieldMesh.SetActive(!m_playerCharacter.Inventory.ShieldItemSlot.IsEmpty);
 
-            m_rigBuilder.layers[0].active = m_playerCharacter.Inventory.ShieldItemSlot.IsEmpty;
+            //m_rigBuilder.layers[0].active = m_playerCharacter.Inventory.ShieldItemSlot.IsEmpty;
         }
 
         private void OnEquipItemChange(object sender, IItemSlot fromSlot, IItemSlot toSlot)
@@ -73,12 +73,12 @@ namespace DC_ARPG
             else
                 m_swordMesh.SetActive(false);
 
-            m_rigBuilder.layers[1].active = m_playerCharacter.Inventory.WeaponItemSlot.IsEmpty;
+            //m_rigBuilder.layers[1].active = m_playerCharacter.Inventory.WeaponItemSlot.IsEmpty;
 
             if (fromSlot == m_playerCharacter.Inventory.ShieldItemSlot || toSlot == m_playerCharacter.Inventory.ShieldItemSlot)
                 m_shieldMesh.SetActive(!m_playerCharacter.Inventory.ShieldItemSlot.IsEmpty);
 
-            m_rigBuilder.layers[0].active = m_playerCharacter.Inventory.ShieldItemSlot.IsEmpty;
+            //m_rigBuilder.layers[0].active = m_playerCharacter.Inventory.ShieldItemSlot.IsEmpty;
         }
 
         private void OnBrokenWeapon(object sender)
@@ -92,7 +92,7 @@ namespace DC_ARPG
             else
                 m_swordMesh.SetActive(false);
 
-            m_rigBuilder.layers[1].active = m_playerCharacter.Inventory.WeaponItemSlot.IsEmpty;
+            //m_rigBuilder.layers[1].active = m_playerCharacter.Inventory.WeaponItemSlot.IsEmpty;
         }
 
     }
