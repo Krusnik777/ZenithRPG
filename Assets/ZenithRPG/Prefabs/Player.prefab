@@ -15817,7 +15817,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  m_attackHits: 2
+  m_attackHits: 3
   m_blockStamina: {fileID: 7802567922907667958}
   m_character: {fileID: 1844385430773188566}
   m_castDelay: 0.25
@@ -16380,7 +16380,6 @@ MonoBehaviour:
   m_swordMesh: {fileID: 7220679155670826132}
   m_brokenWeaponMesh: {fileID: 3973442985869978081}
   m_shieldMesh: {fileID: 351425696891761358}
-  m_rigBuilder: {fileID: 5243854061240593908}
 --- !u!1 &9151219222595327241
 GameObject:
   m_ObjectHideFlags: 0
@@ -17080,7 +17079,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_characterAvatar: {fileID: 6766054219301148474}
   m_characterSFX: {fileID: 1526247927414751933}
-  m_rigBuilder: {fileID: 5243854061240593908}
   m_kickEffect: {fileID: 8068967424665070518}
 --- !u!1 &1737469870107951566 stripped
 GameObject:
@@ -17102,17 +17100,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 84111302501334411, guid: 329d682314c0c434c9cb6425ecf48120, type: 3}
   m_PrefabInstance: {fileID: 3895142671683146858}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &5243854061240593908 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 9136601753458833822, guid: 329d682314c0c434c9cb6425ecf48120, type: 3}
-  m_PrefabInstance: {fileID: 3895142671683146858}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 394555040776671525}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fff0960ef4ea6e04eac66b4a7fd2189d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &6989982036260732361 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6273290255408654755, guid: 329d682314c0c434c9cb6425ecf48120, type: 3}

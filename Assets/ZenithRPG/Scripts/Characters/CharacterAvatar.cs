@@ -221,6 +221,8 @@ namespace DC_ARPG
                 && m_animator.GetCurrentAnimatorStateInfo(0).IsName("AttackState.Attack" + hitCount)
                 ) return;
 
+            Debug.Log("Here" + hitCount);
+
             hitCount++;
 
             if (hitCount > m_attackHits)
