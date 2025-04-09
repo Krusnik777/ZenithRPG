@@ -221,8 +221,6 @@ namespace DC_ARPG
                 && m_animator.GetCurrentAnimatorStateInfo(0).IsName("AttackState.Attack" + hitCount)
                 ) return;
 
-            Debug.Log("Here" + hitCount);
-
             hitCount++;
 
             if (hitCount > m_attackHits)
@@ -254,6 +252,7 @@ namespace DC_ARPG
                 ResetAttack();
 
                 m_animator.SetTrigger("AttackToBlock");
+                m_animator.SetBool("BlockHold", true);
                 isBlocking = true;
             }
 
@@ -301,12 +300,17 @@ namespace DC_ARPG
 
             if (animatorChecker)
             {
+                /*
                 if (m_animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.2f && m_animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 0.6f)
                 {
                     EventOnParry?.Invoke();
 
                     return;
-                }
+                }*/
+
+                EventOnParry?.Invoke();
+
+                return;
             }
 
             m_blockStamina.SpendStamina();
@@ -400,7 +404,7 @@ namespace DC_ARPG
             return direction;
         }
 
-        private void ResetAttack()
+        protected virtual void ResetAttack()
         {
             isAttacking = false;
             hitCount = 0;

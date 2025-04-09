@@ -5,7 +5,7 @@ namespace DC_ARPG
 {
     public class CharacterAnimationsEvents : MonoBehaviour
     {
-        [SerializeField] private CharacterAvatar m_characterAvatar;
+        [SerializeField] protected CharacterAvatar m_characterAvatar;
         [SerializeField] private CharacterSFX m_characterSFX;
         //[SerializeField] private RigBuilder m_rigBuilder;
         [SerializeField] private GameObject m_kickEffect;

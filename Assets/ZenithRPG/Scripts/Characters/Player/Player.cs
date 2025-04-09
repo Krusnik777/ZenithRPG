@@ -30,6 +30,7 @@ namespace DC_ARPG
         public bool IsCasting => isCasting;
 
         protected override bool inIdleState => !(inMovement || isJumping || isFalling || isAttacking || isBlocking || isKicking || isCasting);
+        public bool ComboIsAvailable { get; set; }
 
         public override void LandAfterFall()
         {
@@ -50,7 +51,30 @@ namespace DC_ARPG
 
             if (isFallen) return;
 
-            base.Attack();
+            if (!inIdleState && !isAttacking) return;
+
+            //base.Attack();
+
+            if (!ComboIsAvailable && hitCount != 0) return;
+
+            hitCount++;
+
+            if (hitCount > m_attackHits) return;
+
+            ComboIsAvailable = false;
+            
+            m_animator.SetInteger("Attack", hitCount);
+
+            if (hitCount == 1) attackRoutine = StartCoroutine(ResetAttackRoutine());
+        }
+
+        protected override void ResetAttack()
+        {
+            ComboIsAvailable = false;
+            m_animator.SetInteger("Attack", 0);
+            isAttacking = false;
+            hitCount = 0;
+            attackRoutine = null;
         }
 
         public override void Block(string name)
@@ -58,6 +82,8 @@ namespace DC_ARPG
             if (m_character.Inventory.ShieldItemSlot.IsEmpty) return;
 
             if (isFallen) return;
+
+            if (isAttacking && !ComboIsAvailable) return;
 
             base.Block(name);
         }
@@ -200,6 +226,17 @@ namespace DC_ARPG
         }
 
         #region Coroutines
+
+        private IEnumerator ResetAttackRoutine()
+        {
+            isAttacking = true;
+
+            yield return new WaitUntil(() => m_animator.GetCurrentAnimatorStateInfo(0).IsName("AttackState.Attack" + hitCount));
+
+            yield return new WaitUntil(() => m_animator.GetCurrentAnimatorStateInfo(0).IsName("Idle"));
+
+            ResetAttack();
+        }
 
         private IEnumerator CastMagic()
         {
