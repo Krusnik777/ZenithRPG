@@ -85,6 +85,7 @@ namespace DC_ARPG
 
         protected bool isAttacking;
         public bool IsAttacking => isAttacking;
+        public virtual event UnityAction<int> EventOnAttack;
 
         protected int hitCount = 0;
 
@@ -695,6 +696,8 @@ namespace DC_ARPG
                 m_animator.SetTrigger("Attack1");
 
                 yield return new WaitUntil(() => m_animator.GetCurrentAnimatorStateInfo(0).IsName("AttackState.Attack1"));
+
+                EventOnAttack?.Invoke(attackCount);
             }
 
             if (attackCount > 1 && attackCount <= m_attackHits)
@@ -702,6 +705,8 @@ namespace DC_ARPG
                 m_animator.SetTrigger("Attack" + attackCount);
 
                 yield return new WaitUntil(() => m_animator.GetCurrentAnimatorStateInfo(0).IsName("AttackState.Attack" + attackCount));
+
+                EventOnAttack?.Invoke(attackCount);
             }
 
             yield return new WaitWhile(() => m_animator.GetCurrentAnimatorStateInfo(0).IsName("AttackState.Attack" + attackCount));

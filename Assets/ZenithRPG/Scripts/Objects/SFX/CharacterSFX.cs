@@ -21,6 +21,10 @@ namespace DC_ARPG
         [SerializeField] private GameObject m_hitEffectPrefab;
         [SerializeField] private GameObject m_deathEffectPrefab;
         [SerializeField] private GameObject m_brokenSwordEffectPrefab;
+        [Header("AttackEffects")]
+        [SerializeField] private GameObject m_attack1Effect;
+        [SerializeField] private GameObject m_attack2Effect;
+        [SerializeField] private GameObject m_attack3Effect;
 
         private AudioSource m_audioSource;
 
@@ -109,6 +113,8 @@ namespace DC_ARPG
             m_characterAvatar.EventOnBlock += OnBlock;
             m_characterAvatar.EventOnBlockBreak += OnBlockBreak;
 
+            m_characterAvatar.EventOnAttack += OnAttack;
+
             if (m_characterAvatar is Player)
             {
                 (m_characterAvatar.Character as PlayerCharacter).Inventory.WeaponItemSlot.EventOnBrokenWeapon += OnBrokenWeapon;
@@ -122,10 +128,19 @@ namespace DC_ARPG
             m_characterAvatar.EventOnBlock -= OnBlock;
             m_characterAvatar.EventOnBlockBreak -= OnBlockBreak;
 
+            m_characterAvatar.EventOnAttack -= OnAttack;
+
             if (m_characterAvatar is Player)
             {
                 (m_characterAvatar.Character as PlayerCharacter).Inventory.WeaponItemSlot.EventOnBrokenWeapon -= OnBrokenWeapon;
             }
+        }
+
+        private void OnAttack(int hitCount)
+        {
+            if (hitCount == 1) StartCoroutine(ActivateGameObject(m_attack1Effect, 0.1f));
+            if (hitCount == 2) StartCoroutine(ActivateGameObject(m_attack2Effect, 0.4f));
+            if (hitCount == 3) StartCoroutine(ActivateGameObject(m_attack3Effect, 0.2f));
         }
 
         private void OnHit()
@@ -168,6 +183,17 @@ namespace DC_ARPG
             yield return new WaitForSeconds(0.6f);
 
             m_blockEffect.SetActive(false);
+        }
+
+        private IEnumerator ActivateGameObject(GameObject gameObject, float delay)
+        {
+            yield return new WaitForSeconds(delay);
+
+            gameObject.SetActive(true);
+
+            yield return new WaitForSeconds(1);
+
+            gameObject.SetActive(false);
         }
 
         #endregion

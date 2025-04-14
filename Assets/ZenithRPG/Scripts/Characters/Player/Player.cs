@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace DC_ARPG
 {
@@ -28,6 +29,8 @@ namespace DC_ARPG
 
         private bool isCasting;
         public bool IsCasting => isCasting;
+
+        public override event UnityAction<int> EventOnAttack;
 
         protected override bool inIdleState => !(inMovement || isJumping || isFalling || isAttacking || isBlocking || isKicking || isCasting);
         public bool ComboIsAvailable { get; set; }
@@ -64,6 +67,7 @@ namespace DC_ARPG
             ComboIsAvailable = false;
             
             m_animator.SetInteger("Attack", hitCount);
+            EventOnAttack?.Invoke(hitCount);
 
             if (hitCount == 1) attackRoutine = StartCoroutine(ResetAttackRoutine());
         }
