@@ -193,7 +193,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: dd01c516da6cf1c46ac531bd585e9c8c, type: 2}
+  - {fileID: 2100000, guid: d801814702a370643943f79099497c7a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -225,7 +225,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3317338134431721709}
   - component: {fileID: 6503226606780427865}
-  - component: {fileID: 4059723956231192987}
   - component: {fileID: 3665716152974042895}
   m_Layer: 0
   m_Name: Trigger
@@ -270,20 +269,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.7008511, y: 0.19449273, z: 0.69922507}
   m_Center: {x: -0.0005017519, y: -0.40275365, z: 0.0013154149}
---- !u!114 &4059723956231192987
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7063569820666844859}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1c3928aade85b624b975d69286d5afdd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_damage: 10
-  m_animator: {fileID: 7157544246097136069}
 --- !u!82 &3665716152974042895
 AudioSource:
   m_ObjectHideFlags: 0
@@ -432,7 +417,9 @@ MonoBehaviour:
   EventOnInspection:
     m_PersistentCalls:
       m_Calls: []
-  m_trap: {fileID: 4059723956231192987}
+  m_damage: 0
+  m_animator: {fileID: 0}
+  m_audioSource: {fileID: 0}
   m_prefabId: SpikeTrapPrefab_Default
   m_id: 
   m_isSerializable: 1

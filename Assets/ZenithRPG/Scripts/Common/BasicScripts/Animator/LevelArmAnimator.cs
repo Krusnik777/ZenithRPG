@@ -6,6 +6,7 @@ namespace DC_ARPG
     public class LevelArmAnimator : TwoStateAnimator
     {
         [SerializeField] private Transform m_cylinder;
+        //[SerializeField] private ParticleSystem m_dust;
         [SerializeField] private float m_defaultAngle = 0f;
         [SerializeField] private float m_targetAngle = -80f;
         [SerializeField] private float m_speed = 180f;
@@ -52,6 +53,8 @@ namespace DC_ARPG
         {
             var targetRotation = Quaternion.Euler(m_targetAngle, 0, 0);
 
+            //m_dust.Play();
+
             while (m_cylinder.transform.localRotation != targetRotation)
             {
                 m_cylinder.transform.localRotation = Quaternion.RotateTowards(m_cylinder.transform.localRotation, targetRotation, Time.deltaTime * m_speed);
@@ -65,6 +68,8 @@ namespace DC_ARPG
         private IEnumerator UpArm()
         {
             var targetRotation = Quaternion.Euler(m_defaultAngle, 0, 0);
+
+            //m_dust.Play();
 
             while (m_cylinder.transform.localRotation != targetRotation)
             {

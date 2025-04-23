@@ -653,6 +653,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_rightDoor: {fileID: 1761161769832933582}
+  m_dust: {fileID: 0}
   m_defaultAngle: 90
   m_targetAngleR: 200
   m_speed: 200
