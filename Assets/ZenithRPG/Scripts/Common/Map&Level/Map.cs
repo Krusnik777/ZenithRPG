@@ -19,5 +19,19 @@ namespace DC_ARPG
                 Tiles[i] = new TileData(markers[i]);
             }
         }
+
+        public float GetMapCompletionPercent()
+        {
+            int discoveredCount = 0;
+
+            for (int i = 0; i < Tiles.Length; i++)
+            {
+                if (Tiles[i].Discovered) discoveredCount++;
+            }
+
+            float percent = (float)discoveredCount / Tiles.Length * 100;
+
+            return percent;
+        }
     }
 }

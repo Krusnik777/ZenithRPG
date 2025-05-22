@@ -60,7 +60,7 @@ namespace DC_ARPG
                         
                         if (enemyAI != null)
                         {
-                            if (enemyAI.State == EnemyState.Patrol
+                            if (enemyAI.State == EnemyStateEnum.Patrol
                                 && tile.Type == TileType.Mechanism && !tile.CheckMechanismDisabled()) continue;
                         }
                     }

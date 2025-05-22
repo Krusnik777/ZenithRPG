@@ -4,7 +4,7 @@ using UnityEngine.Events;
 
 namespace DC_ARPG
 {
-    public enum EnemyState
+    public enum EnemyStateEnum
     {
         Patrol,
         Chase,
@@ -40,10 +40,10 @@ namespace DC_ARPG
 
         private Stack<Tile> path = new Stack<Tile>();
 
-        private EnemyState m_state;
-        public EnemyState State => m_state;
+        private EnemyStateEnum m_state;
+        public EnemyStateEnum State => m_state;
 
-        public bool InChaseState => m_state == EnemyState.Chase;
+        public bool InChaseState => m_state == EnemyStateEnum.Chase;
 
         private Vector3 currentDirection;
         private Vector3 headingDirection;
@@ -91,7 +91,7 @@ namespace DC_ARPG
 
         public void StartChaseState()
         {
-            StartState(EnemyState.Chase);
+            StartState(EnemyStateEnum.Chase);
 
             EventOnChaseStarted?.Invoke(this);
 
@@ -104,12 +104,12 @@ namespace DC_ARPG
 
         public void StartPatrolState()
         {
-            StartState(EnemyState.Patrol);
+            StartState(EnemyStateEnum.Patrol);
         }
 
         public void StartBattleState()
         { 
-            StartState(EnemyState.Battle); 
+            StartState(EnemyStateEnum.Battle); 
         }
 
         public void StopActivity()
@@ -117,7 +117,7 @@ namespace DC_ARPG
             isStopped = true;
 
             StopMoving();
-            if (m_state == EnemyState.Chase) StopChasing();
+            if (m_state == EnemyStateEnum.Chase) StopChasing();
         }
 
         public void ResumeActivity()
@@ -125,7 +125,7 @@ namespace DC_ARPG
             isStopped = false;
         }
 
-        private void StartState(EnemyState state)
+        private void StartState(EnemyStateEnum state)
         {
             m_state = state;
         }
@@ -152,11 +152,11 @@ namespace DC_ARPG
 
         private void ChooseAction()
         {
-            if (m_state == EnemyState.Patrol) Patrol();
+            if (m_state == EnemyStateEnum.Patrol) Patrol();
 
-            if (m_state == EnemyState.Chase) Chase();
+            if (m_state == EnemyStateEnum.Chase) Chase();
 
-            if (m_state == EnemyState.Battle) Fight();
+            if (m_state == EnemyStateEnum.Battle) Fight();
         }
 
         private void Patrol()
@@ -241,7 +241,7 @@ namespace DC_ARPG
                 if (t.OccupiedBy != (IMovable) m_enemy || t.Type == TileType.Closable && t.CheckClosed())
                 {
                     StopMoving();
-                    if (m_state == EnemyState.Chase) StopChasing();
+                    if (m_state == EnemyStateEnum.Chase) StopChasing();
                     return;
                 }
 
@@ -278,7 +278,7 @@ namespace DC_ARPG
 
                     path.Pop();
 
-                    if (m_state == EnemyState.Patrol)
+                    if (m_state == EnemyStateEnum.Patrol)
                     {
                         SeeIfPlayerNearBy();
                     }
@@ -307,7 +307,7 @@ namespace DC_ARPG
                     StopChasing();
                 }
 
-                if (m_state == EnemyState.Patrol) m_patrolRestTimer.Start(m_patrolRestTime);
+                if (m_state == EnemyStateEnum.Patrol) m_patrolRestTimer.Start(m_patrolRestTime);
             }
         }
 
@@ -391,7 +391,7 @@ namespace DC_ARPG
 
             if (newPath == null || newPath.Count == 0)
             {
-                if (m_state == EnemyState.Chase) StopChasingAndStartPatrol();
+                if (m_state == EnemyStateEnum.Chase) StopChasingAndStartPatrol();
             }
             else
             {
@@ -399,7 +399,7 @@ namespace DC_ARPG
                 path = newPath;
 
                 isMoving = true;
-                if (m_state == EnemyState.Chase) isChasing = true;
+                if (m_state == EnemyStateEnum.Chase) isChasing = true;
             }
         }
 

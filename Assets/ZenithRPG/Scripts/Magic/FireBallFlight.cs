@@ -38,7 +38,7 @@ namespace DC_ARPG
                 {
                     if (enemy.Character.Stats.CurrentHitPoints > 0)
                     {
-                        if (enemy.EnemyAI.State != EnemyState.Chase || enemy.EnemyAI.State != EnemyState.Battle)
+                        if (enemy.EnemyAI.State != EnemyStateEnum.Chase || enemy.EnemyAI.State != EnemyStateEnum.Battle)
                         {
                             enemy.EnemyAI.StartChaseState();
                         }
@@ -70,7 +70,7 @@ namespace DC_ARPG
 
                 if (collision.gameObject.TryGetComponent(out Enemy enemy))
                 {
-                    if (enemy.EnemyAI.State != EnemyState.Patrol)
+                    if (enemy.EnemyAI.State != EnemyStateEnum.Patrol)
                     {
                         enemy.Character.Stats.ChangeCurrentHitPoints(m_parent, -m_damage, DamageType.Magic);
                     }
