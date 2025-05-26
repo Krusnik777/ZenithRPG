@@ -2,12 +2,10 @@
 
 namespace DC_ARPG
 {
-    public abstract class EnemyState
+    public abstract class EnemyState : MonoBehaviour
     {
-        [SerializeField] protected EnemyState m_nextState;
-
-        public abstract void Act(EnemyAIController controller);
-
-        public abstract void StartNextState(EnemyAIController controller);
+        public abstract void OnStart(EnemyAIController controller);
+        public abstract void DoActions(EnemyAIController controller);
+        public abstract void CheckTransitions(EnemyAIController controller);
     }
 }

@@ -14,6 +14,7 @@ namespace DC_ARPG
     public class EnemyAIController : MonoBehaviour
     {
         [SerializeField] private Enemy m_enemy;
+        public Enemy Enemy => m_enemy;
         [SerializeField] private FieldOfView m_enemyFOV;
         [Header("AIParameters")]
         [SerializeField] private Tile[] m_patrolField;

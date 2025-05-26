@@ -6,14 +6,21 @@ namespace DC_ARPG
 {
     public class PatrolState : EnemyState
     {
-        public override void Act(EnemyAIController controller)
+        public override void OnStart(EnemyAIController controller)
         {
             
         }
 
-        public override void StartNextState(EnemyAIController controller)
+        public override void CheckTransitions(EnemyAIController controller)
+        {
+
+        }
+
+        public override void DoActions(EnemyAIController controller)
         {
             
         }
+
+        
     }
 }
