@@ -58,7 +58,7 @@ namespace DC_ARPG
             enemyStats.EventOnDeath -= OnDeath;
         }
 
-        private void OnHitPointsChange(int change)
+        private void OnHitPointsChange(object sender, int change)
         {
             if (change < 0 && enemyStats.CurrentHitPoints != 0)
             {

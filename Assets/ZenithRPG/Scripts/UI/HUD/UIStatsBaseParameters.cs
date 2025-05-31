@@ -38,7 +38,7 @@ namespace DC_ARPG
             stats.EventOnStatsUpdated -= SetBothPoints;
         }
 
-        private void SetHitPoints(int change = 0)
+        private void SetHitPoints(object sender, int change)
         {
             m_hitPointsValueText.text = $"{m_playerCharacter.Stats.CurrentHitPoints}/{m_playerCharacter.Stats.HitPoints}";
             m_hitPointsFillImage.fillAmount = (float) m_playerCharacter.Stats.CurrentHitPoints / (float) m_playerCharacter.Stats.HitPoints;
@@ -52,7 +52,7 @@ namespace DC_ARPG
 
         private void SetBothPoints()
         {
-            SetHitPoints();
+            SetHitPoints(this, 0);
             SetMagicPoints();
         }
     }

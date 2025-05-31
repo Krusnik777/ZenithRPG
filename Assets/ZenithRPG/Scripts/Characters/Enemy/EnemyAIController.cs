@@ -15,10 +15,13 @@ namespace DC_ARPG
     {
         [SerializeField] private Enemy m_enemy;
         public Enemy Enemy => m_enemy;
+        [SerializeField] private EnemyState m_activeState;
+        [SerializeField] private EnemyState m_dummyState; // TO DO
         [SerializeField] private FieldOfView m_enemyFOV;
-        [Header("AIParameters")]
-        [SerializeField] private Tile[] m_patrolField;
-        [SerializeField] private float m_chaseRange = 6.0f;
+        public FieldOfView EnemyFOV => m_enemyFOV;
+        //[Header("AIParameters")]
+        //[SerializeField] private Tile[] m_patrolField;
+        /*[SerializeField] private float m_chaseRange = 6.0f;
         [SerializeField] private float m_closeRange = 1.5f;
         [Header("ForTimers")]
         [SerializeField] private float m_patrolRestTime = 5.0f;
@@ -29,19 +32,26 @@ namespace DC_ARPG
         [SerializeField] private float m_moveSpeed = 1.25f;
         [SerializeField] private float m_turnSpeed = 5f;
 
-        private static bool _busyFindingPath;
+        private static bool _busyFindingPath; // TO DO PUBLIC ?*/
+        public static bool BusyFindingPath;
 
         public event UnityAction<EnemyAIController> EventOnChaseStarted;
+        public void OnChaseStartInvoke() => EventOnChaseStarted?.Invoke(this);
         public event UnityAction<EnemyAIController> EventOnChaseEnded;
+        public void OnChaseEndInvoke() => EventOnChaseEnded?.Invoke(this);
 
-        public FieldOfView EnemyFieldOfView => m_enemyFOV;
-        public bool SeePlayer => m_enemyFOV.CanSeePlayer;
+
+        //public FieldOfView EnemyFieldOfView => m_enemyFOV;
+        //public bool SeePlayer => m_enemyFOV.CanSeePlayer;
 
         private PathFinder pathFinder;
+        public PathFinder PathFinder => pathFinder;
 
-        private Stack<Tile> path = new Stack<Tile>();
+        private bool isStopped = false;
 
-        private EnemyStateEnum m_state;
+        //private Stack<Tile> path = new Stack<Tile>();
+
+        /*private EnemyStateEnum m_state;
         public EnemyStateEnum State => m_state;
 
         public bool InChaseState => m_state == EnemyStateEnum.Chase;
@@ -88,9 +98,18 @@ namespace DC_ARPG
             }
 
             return false;
+        }*/
+
+        public void StartState(EnemyState state, EnemyDecision decision = null)
+        {
+            m_activeState = state;
+
+            m_activeState.OnStart(this);
+
+            Debug.Log(transform.name + " - New State: " + state.GetType() + " by Desision " + decision);
         }
 
-        public void StartChaseState()
+        /*public void StartChaseState()
         {
             StartState(EnemyStateEnum.Chase);
 
@@ -111,14 +130,14 @@ namespace DC_ARPG
         public void StartBattleState()
         { 
             StartState(EnemyStateEnum.Battle); 
-        }
+        }*/
 
         public void StopActivity()
         {
             isStopped = true;
 
-            StopMoving();
-            if (m_state == EnemyStateEnum.Chase) StopChasing();
+            //StopMoving();
+            //if (m_state == EnemyStateEnum.Chase) StopChasing();
         }
 
         public void ResumeActivity()
@@ -126,18 +145,20 @@ namespace DC_ARPG
             isStopped = false;
         }
 
-        private void StartState(EnemyStateEnum state)
+        /*private void StartState(EnemyStateEnum state)
         {
             m_state = state;
-        }
+        }*/
 
         private void Start()
         {
             pathFinder = new PathFinder(m_enemy);
 
-            InitTimers();
+            m_activeState.OnStart(this);
 
-            currentDirection = transform.forward;
+            //InitTimers();
+
+            //currentDirection = transform.forward;
         }
 
         private void Update()
@@ -146,12 +167,16 @@ namespace DC_ARPG
 
             if (m_enemy.IsPushedBack) return;
 
-            UpdateTimers();
+            m_activeState.DoActions(this);
+            
+            m_activeState.CheckTransitions(this);
 
-            ChooseAction();
+            //UpdateTimers();
+
+            //ChooseAction();
         }
 
-        private void ChooseAction()
+        /*private void ChooseAction()
         {
             if (m_state == EnemyStateEnum.Patrol) Patrol();
 
@@ -448,7 +473,7 @@ namespace DC_ARPG
                 isChasing = true;
             }
 
-            /*
+            // NOT ENCLUDED
             if (LevelState.Instance.ChasingEnemies.Count > 1)
             {
                 // Get available tiles Near Player from LevelState
@@ -489,10 +514,10 @@ namespace DC_ARPG
             else
             {
                 FindPath(LevelState.Instance.Player.CurrentTile, true);
-            }*/
-        }
+            }
+        }*/
 
-        #region Timers
+        /*#region Timers
 
         private void InitTimers()
         {
@@ -508,6 +533,6 @@ namespace DC_ARPG
             m_attackTimer.RemoveTime(Time.deltaTime);
         }
 
-        #endregion
+        #endregion*/
     }
 }

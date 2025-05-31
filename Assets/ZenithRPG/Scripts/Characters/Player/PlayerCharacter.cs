@@ -173,7 +173,7 @@ namespace DC_ARPG
             }
         }
 
-        private void OnHitPointsChange(int change)
+        private void OnHitPointsChange(object sender, int change)
         {
             if (change < 0 && playerStats.CurrentHitPoints != 0)
             {

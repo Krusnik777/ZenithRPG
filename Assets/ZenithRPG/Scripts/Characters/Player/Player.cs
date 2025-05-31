@@ -104,7 +104,7 @@ namespace DC_ARPG
             }
             else
             {
-                ShortMessage.Instance.ShowMessage("Ничего интересного.");
+                ShortMessage.Instance.ShowMessage("пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.");
             }
         }
 
@@ -125,7 +125,7 @@ namespace DC_ARPG
 
             if (!ActionsIsAvailable)
             {
-                ShortMessage.Instance.ShowMessage("Здесь не получится отдохнуть.");
+                ShortMessage.Instance.ShowMessage("пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.");
 
                 return;
             }

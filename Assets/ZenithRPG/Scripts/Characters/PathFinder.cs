@@ -14,7 +14,7 @@ namespace DC_ARPG
             this.characterAvatar = characterAvatar;
         }
 
-        public Stack<Tile> CalculatePath(Tile target, bool targetNeighbourTile = false)
+        public Stack<Tile> CalculatePath(Tile target, bool ignoreMechanismTiles, bool targetNeighbourTile = false)
         {
             if (characterAvatar == null || target == null) return null;
 
@@ -54,16 +54,7 @@ namespace DC_ARPG
                 {
                     // Tile Checks START
 
-                    if (characterAvatar is Enemy)
-                    {
-                        var enemyAI = (characterAvatar as Enemy).EnemyAI;
-                        
-                        if (enemyAI != null)
-                        {
-                            if (enemyAI.State == EnemyStateEnum.Patrol
-                                && tile.Type == TileType.Mechanism && !tile.CheckMechanismDisabled()) continue;
-                        }
-                    }
+                    if (ignoreMechanismTiles && tile.Type == TileType.Mechanism && !tile.CheckMechanismDisabled()) continue;
 
                     if (tile.Type == TileType.Pit || tile.Type == TileType.Obstacle) continue;
 
@@ -153,7 +144,7 @@ namespace DC_ARPG
 
             for (int i = 0; i < realTargets.Count; i++)
             {
-                var p = CalculatePath(realTargets[i]);
+                var p = CalculatePath(realTargets[i], false);
 
                 if (p == null || p.Count == 0) continue;
 

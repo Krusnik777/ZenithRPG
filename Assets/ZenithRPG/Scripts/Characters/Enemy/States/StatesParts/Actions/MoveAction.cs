@@ -9,6 +9,10 @@ namespace DC_ARPG
         [SerializeField] private float m_speed = 1.25f;
         [SerializeField] private float m_turnSpeed = 5f;
 
+        public bool MeetObstacle { get; private set; }
+        public bool InCenterOfTile { get; private set; }
+        public bool ReachedTarget { get; private set; }
+
         private Stack<Tile> path;
 
         private bool isMoving = false;
@@ -19,7 +23,7 @@ namespace DC_ARPG
         private Vector3 velocity;
         private Quaternion targetRotation;
 
-        public MoveAction(Stack<Tile> path)
+        public void SetPath(Stack<Tile> path)
         {
             this.path = path;
         }
@@ -45,6 +49,8 @@ namespace DC_ARPG
 
         private void Move(EnemyAIController controller)
         {
+            ResetFlags();
+
             if (path.Count > 0)
             {
                 Tile t = path.Peek();
@@ -60,6 +66,8 @@ namespace DC_ARPG
                 {
                     StopMoving(controller);
                     //if (m_state == EnemyStateEnum.Chase) StopChasing();
+                    MeetObstacle = true;
+
                     return;
                 }
 
@@ -98,6 +106,8 @@ namespace DC_ARPG
 
                     path.Pop();
 
+                    InCenterOfTile = true;
+
                     // TO TRANSITION ?
 
                     /*if (m_state == EnemyStateEnum.Patrol)
@@ -111,6 +121,10 @@ namespace DC_ARPG
             else
             {
                 StopMoving(controller);
+
+                ReachedTarget = true;
+
+                Debug.Log("HERE");
             }
         }
 
@@ -144,6 +158,13 @@ namespace DC_ARPG
                     t.SetTileOccupied(null);
                 }
             }
+        }
+
+        private void ResetFlags()
+        {
+            MeetObstacle = false;
+            InCenterOfTile = false;
+            ReachedTarget = false;
         }
     }
 }
