@@ -104,7 +104,7 @@ namespace DC_ARPG
             }
             else
             {
-                ShortMessage.Instance.ShowMessage("������ �����������.");
+                ShortMessage.Instance.ShowMessage("Ничего интересного.");
             }
         }
 
@@ -125,7 +125,7 @@ namespace DC_ARPG
 
             if (!ActionsIsAvailable)
             {
-                ShortMessage.Instance.ShowMessage("����� �� ��������� ���������.");
+                ShortMessage.Instance.ShowMessage("Здесь не получится отдохнуть.");
 
                 return;
             }

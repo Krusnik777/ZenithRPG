@@ -35,12 +35,12 @@ namespace DC_ARPG
         {
             if (m_trapFloor != null)
             {
-                ShortMessage.Instance.ShowMessage("Подозрительный пол.");
+                ShortMessage.Instance.ShowMessage("РџРѕРґРѕР·СЂРёС‚РµР»СЊРЅС‹Р№ РїРѕР».");
                 base.OnInspection(player);
             }
             else
             {
-                ShortMessage.Instance.ShowMessage("Яма!");
+                ShortMessage.Instance.ShowMessage("РЇРјР°!");
                 base.OnInspection(player);
             }
         }

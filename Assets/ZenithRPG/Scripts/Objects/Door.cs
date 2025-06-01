@@ -43,8 +43,8 @@ namespace DC_ARPG
         {
             get
             {
-                if (inClosedState) m_infoText = "Открыть";
-                if (inOpenedState) m_infoText = "Закрыть";
+                if (inClosedState) m_infoText = "РћС‚РєСЂС‹С‚СЊ";
+                if (inOpenedState) m_infoText = "Р—Р°РєСЂС‹С‚СЊ";
 
                 return m_infoText;
             }
@@ -89,7 +89,7 @@ namespace DC_ARPG
             if (m_openableDirectly)
             {
                 m_doorSFX.PlayUnlockedSound();
-                if (StandingInFrontOfDoor) ShortMessage.Instance.ShowMessage("Открыто.");
+                if (StandingInFrontOfDoor) ShortMessage.Instance.ShowMessage("РћС‚РєСЂС‹С‚Рѕ.");
             }
 
             if (inClosedState) Open();
@@ -103,14 +103,14 @@ namespace DC_ARPG
                 {
                     // Not Possible but just to be sure
 
-                    ShortMessage.Instance.ShowMessage("Дверь. С этой стороны не открыть.");
+                    ShortMessage.Instance.ShowMessage("Р”РІРµСЂСЊ. РЎ СЌС‚РѕР№ СЃС‚РѕСЂРѕРЅС‹ РЅРµ РѕС‚РєСЂС‹С‚СЊ.");
                     return;
                 }
 
                 if (m_locked)
                 {
-                    if (!m_requireSpecialKey) ShortMessage.Instance.ShowMessage("Закрыто на замок.");
-                    else ShortMessage.Instance.ShowMessage("Закрыто на необычный замок.");
+                    if (!m_requireSpecialKey) ShortMessage.Instance.ShowMessage("Р—Р°РєСЂС‹С‚Рѕ РЅР° Р·Р°РјРѕРє.");
+                    else ShortMessage.Instance.ShowMessage("Р—Р°РєСЂС‹С‚Рѕ РЅР° РЅРµРѕР±С‹С‡РЅС‹Р№ Р·Р°РјРѕРє.");
 
                     m_doorSFX.PlayLockedSound();
                 }
@@ -126,7 +126,7 @@ namespace DC_ARPG
             {
                 if (StandingInFrontOfDoor)
                 {
-                    ShortMessage.Instance.ShowMessage("Не поддается.");
+                    ShortMessage.Instance.ShowMessage("РќРµ РїРѕРґРґР°РµС‚СЃСЏ.");
 
                     m_doorSFX.PlayLockedSound();
                 }

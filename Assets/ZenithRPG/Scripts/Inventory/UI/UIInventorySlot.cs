@@ -38,7 +38,7 @@ namespace DC_ARPG
                         pit.UnveilHiddenPit();
                     }
 
-                    ShortMessage.Instance.ShowMessage("Предмет пропал в недрах ямы.");
+                    ShortMessage.Instance.ShowMessage("РџСЂРµРґРјРµС‚ РїСЂРѕРїР°Р» РІ РЅРµРґСЂР°С… СЏРјС‹.");
 
                     Inventory.RemoveItemFromInventory(this, m_inventorySlot);
 
@@ -65,7 +65,7 @@ namespace DC_ARPG
 
                     if (chest.Item != null || chest.HasSpecialContents)
                     {
-                        ShortMessage.Instance.ShowMessage("Больше нет места.");
+                        ShortMessage.Instance.ShowMessage("Р‘РѕР»СЊС€Рµ РЅРµС‚ РјРµСЃС‚Р°.");
 
                         UISounds.Instance.PlayInventoryActionFailureSound();
 
@@ -83,7 +83,7 @@ namespace DC_ARPG
                     return;
                 }
 
-                ShortMessage.Instance.ShowMessage("Некуда класть.");
+                ShortMessage.Instance.ShowMessage("РќРµРєСѓРґР° РєР»Р°СЃС‚СЊ.");
 
                 UISounds.Instance.PlayInventoryActionFailureSound();
             }  

@@ -39,11 +39,11 @@ namespace DC_ARPG
             {
                 // Not Possible but just to be sure
 
-                ShortMessage.Instance.ShowMessage("Стена с трещиной. С этой стороны не рассмотреть.");
+                ShortMessage.Instance.ShowMessage("РЎС‚РµРЅР° СЃ С‚СЂРµС‰РёРЅРѕР№. РЎ СЌС‚РѕР№ СЃС‚РѕСЂРѕРЅС‹ РЅРµ СЂР°СЃСЃРјРѕС‚СЂРµС‚СЊ.");
                 return;
             }
 
-            ShortMessage.Instance.ShowMessage("Один сильный удар - и эта стена развалится.");
+            ShortMessage.Instance.ShowMessage("РћРґРёРЅ СЃРёР»СЊРЅС‹Р№ СѓРґР°СЂ - Рё СЌС‚Р° СЃС‚РµРЅР° СЂР°Р·РІР°Р»РёС‚СЃСЏ.");
 
             base.OnInspection(player);
         }

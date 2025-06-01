@@ -25,14 +25,14 @@ namespace DC_ARPG
 
                 if (pit.TrapFloor != null)
                 {
-                    ShortMessage.Instance.ShowMessage("Здесь яма!");
+                    ShortMessage.Instance.ShowMessage("Р—РґРµСЃСЊ СЏРјР°!");
                     pit.UnveilHiddenPit();
                     item.Amount--;
                     return;
                 }
                 else
                 {
-                    ShortMessage.Instance.ShowMessage("Шар упал в яму.");
+                    ShortMessage.Instance.ShowMessage("РЁР°СЂ СѓРїР°Р» РІ СЏРјСѓ.");
                     item.Amount--;
                     return;
                 }
@@ -40,11 +40,11 @@ namespace DC_ARPG
 
             if (player.CheckForwardGridIsEmpty() == true)
             {
-                ShortMessage.Instance.ShowMessage("Ямы впереди нет.");
+                ShortMessage.Instance.ShowMessage("РЇРјС‹ РІРїРµСЂРµРґРё РЅРµС‚.");
             }
             else
             {
-                ShortMessage.Instance.ShowMessage("Шар отскочил от препятствия и упал на ногу.");
+                ShortMessage.Instance.ShowMessage("РЁР°СЂ РѕС‚СЃРєРѕС‡РёР» РѕС‚ РїСЂРµРїСЏС‚СЃС‚РІРёСЏ Рё СѓРїР°Р» РЅР° РЅРѕРіСѓ.");
                 player.Character.Stats.ChangeCurrentHitPoints(item, -1);
             }
         }

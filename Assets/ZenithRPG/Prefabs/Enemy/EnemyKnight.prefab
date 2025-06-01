@@ -289,6 +289,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_patrolRestState: {fileID: 907760558562612075}
   m_moveAction:
+    m_chasingMovement: 1
     m_speed: 1.2
     m_turnSpeed: 8
   m_waitAction:
@@ -621,7 +622,6 @@ MonoBehaviour:
   m_activeState: {fileID: 3808138716847922430}
   m_dummyState: {fileID: 0}
   m_enemyFOV: {fileID: 5235701103468699958}
-  m_patrolField: []
 --- !u!114 &5235701103468699958
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1167,6 +1167,7 @@ MonoBehaviour:
   m_restState: {fileID: 907760558562612075}
   m_patrolField: []
   m_moveAction:
+    m_chasingMovement: 0
     m_speed: 1.2
     m_turnSpeed: 8
   m_chaseStateTransition:

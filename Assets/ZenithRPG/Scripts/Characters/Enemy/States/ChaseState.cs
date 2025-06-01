@@ -11,6 +11,7 @@ namespace DC_ARPG
         [SerializeField] private ChaseStateControlTransition m_chaseStateControlTransition;
         [SerializeField] private AttackStateTransition m_attackStateTransition;
         private Stack<Tile> path = new Stack<Tile>();
+        private bool pathAssigned;
 
         private Tile targetedTile;
         private void ClearTargetedTile()
@@ -24,7 +25,7 @@ namespace DC_ARPG
 
         public override void OnStart(EnemyAIController controller)
         {
-            path.Clear();
+            pathAssigned = false;
 
             m_chaseStateControlTransition.Init();
             m_attackStateTransition.Init();
@@ -39,7 +40,7 @@ namespace DC_ARPG
 
         public override void DoActions(EnemyAIController controller)
         {
-            if (path.Count == 0)
+            if (!pathAssigned)
             {
                 TryAssignPath(controller);
             }
@@ -53,7 +54,7 @@ namespace DC_ARPG
 
         public override void CheckTransitions(EnemyAIController controller)
         {
-            if (m_moveAction.InCenterOfTile || m_moveAction.ReachedTarget)
+            if (m_moveAction.MeetObstacle || m_moveAction.ReachedTarget)
             {
                 for (int i = 0; i < m_attackStateTransition.Decisions.Length; i++)
                 {
@@ -66,7 +67,7 @@ namespace DC_ARPG
                 }
             }
 
-            if (m_moveAction.MeetObstacle) path.Clear();
+            if (m_moveAction.MeetObstacle || m_moveAction.ReachedTarget) pathAssigned = false;
 
             for (int i = 0; i < m_chaseStateControlTransition.Decisions.Length; i++)
             {
@@ -88,7 +89,7 @@ namespace DC_ARPG
         {
             FindPathToPlayer(controller);
 
-            if (path.Count == 0) return;
+            if (!pathAssigned) return;
 
             m_moveAction.SetPath(path);
 
@@ -134,6 +135,8 @@ namespace DC_ARPG
                 ClearTargetedTile(); // just to be safe
                 target.TargetedBy = controller.Enemy;
                 targetedTile = target;
+
+                pathAssigned = true;
             }
         }
     }

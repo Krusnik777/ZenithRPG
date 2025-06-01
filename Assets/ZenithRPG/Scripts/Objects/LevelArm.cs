@@ -29,7 +29,7 @@ namespace DC_ARPG
                 {
                     m_infoText = string.Empty;
                 }
-                else m_infoText = "Использовать";
+                else m_infoText = "РСЃРїРѕР»СЊР·РѕРІР°С‚СЊ";
 
                 return m_infoText;
             }

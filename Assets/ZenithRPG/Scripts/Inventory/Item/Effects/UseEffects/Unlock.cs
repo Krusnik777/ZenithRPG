@@ -30,8 +30,8 @@ namespace DC_ARPG
                     }
                     else
                     {
-                        if (chest.SpecificKeyItemInfo != null) ShortMessage.Instance.ShowMessage("Похоже, здесь нужен особый ключ.");
-                        else ShortMessage.Instance.ShowMessage("Похоже, открывается не ключем.");
+                        if (chest.SpecificKeyItemInfo != null) ShortMessage.Instance.ShowMessage("РџРѕС…РѕР¶Рµ, Р·РґРµСЃСЊ РЅСѓР¶РµРЅ РѕСЃРѕР±С‹Р№ РєР»СЋС‡.");
+                        else ShortMessage.Instance.ShowMessage("РџРѕС…РѕР¶Рµ, РѕС‚РєСЂС‹РІР°РµС‚СЃСЏ РЅРµ РєР»СЋС‡РµРј.");
 
                         OnFailure();
                     }
@@ -52,8 +52,8 @@ namespace DC_ARPG
                     }
                     else
                     {
-                        if (door.SpecificKeyItemInfo != null) ShortMessage.Instance.ShowMessage("Похоже, здесь нужен особый ключ.");
-                        else ShortMessage.Instance.ShowMessage("Похоже, открывается не ключем.");
+                        if (door.SpecificKeyItemInfo != null) ShortMessage.Instance.ShowMessage("РџРѕС…РѕР¶Рµ, Р·РґРµСЃСЊ РЅСѓР¶РµРЅ РѕСЃРѕР±С‹Р№ РєР»СЋС‡.");
+                        else ShortMessage.Instance.ShowMessage("РџРѕС…РѕР¶Рµ, РѕС‚РєСЂС‹РІР°РµС‚СЃСЏ РЅРµ РєР»СЋС‡РµРј.");
 
                         OnFailure();
                     }

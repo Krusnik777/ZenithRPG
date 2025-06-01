@@ -27,7 +27,7 @@ namespace DC_ARPG
                 }
 
                 m_buttonInfoPanel.SetActive(false);
-                m_useText.text = "Использовать";
+                m_useText.text = "РСЃРїРѕР»СЊР·РѕРІР°С‚СЊ";
             }
             else
             {

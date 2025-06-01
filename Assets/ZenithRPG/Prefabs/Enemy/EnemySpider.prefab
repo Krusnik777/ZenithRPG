@@ -200,6 +200,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_patrolRestState: {fileID: 1418374237425105600}
   m_moveAction:
+    m_chasingMovement: 1
     m_speed: 1.75
     m_turnSpeed: 7.5
   m_waitAction:
@@ -446,6 +447,7 @@ MonoBehaviour:
   m_restState: {fileID: 1418374237425105600}
   m_patrolField: []
   m_moveAction:
+    m_chasingMovement: 0
     m_speed: 1.75
     m_turnSpeed: 7.5
   m_chaseStateTransition:

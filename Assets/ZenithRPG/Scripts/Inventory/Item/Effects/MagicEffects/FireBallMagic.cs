@@ -27,7 +27,7 @@ namespace DC_ARPG
                 }
                 else
                 {
-                    ShortMessage.Instance.ShowMessage("Не хватает маны.");
+                    ShortMessage.Instance.ShowMessage("РќРµ С…РІР°С‚Р°РµС‚ РјР°РЅС‹.");
                 }
             }
         }

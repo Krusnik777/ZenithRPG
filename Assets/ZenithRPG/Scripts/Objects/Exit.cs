@@ -26,7 +26,7 @@ namespace DC_ARPG
             {
                 // Not Possible but just to be sure
 
-                ShortMessage.Instance.ShowMessage("Выход. С этой стороны не уйти.");
+                ShortMessage.Instance.ShowMessage("Р’С‹С…РѕРґ. РЎ СЌС‚РѕР№ СЃС‚РѕСЂРѕРЅС‹ РЅРµ СѓР№С‚Рё.");
                 return;
             }
 

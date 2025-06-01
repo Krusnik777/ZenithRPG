@@ -22,7 +22,7 @@ namespace DC_ARPG
                 Destroy(sfx, 1.0f);
             }
 
-            ShortMessage.Instance.ShowMessage("Что-то сломалось в рюкзаке, но чувствуется прилив сил.");
+            ShortMessage.Instance.ShowMessage("Р§С‚Рѕ-С‚Рѕ СЃР»РѕРјР°Р»РѕСЃСЊ РІ СЂСЋРєР·Р°РєРµ, РЅРѕ С‡СѓРІСЃС‚РІСѓРµС‚СЃСЏ РїСЂРёР»РёРІ СЃРёР».");
         }
     }
 }

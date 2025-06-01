@@ -9,7 +9,7 @@ namespace DC_ARPG
         {
             if (!item.HasInfiniteUses)
             {
-                ShortMessage.Instance.ShowMessage("—»À¿!");
+                ShortMessage.Instance.ShowMessage("–°–ò–õ–ê!");
 
                 // Do Magic
 
@@ -19,13 +19,13 @@ namespace DC_ARPG
             {
                 if (player.Character.Stats.TryUseMagicPoints(item.MagicPointsForUse))
                 {
-                    ShortMessage.Instance.ShowMessage("—»À¿!");
+                    ShortMessage.Instance.ShowMessage("–°–ò–õ–ê!");
 
                     // Do Magic
                 }
                 else
                 {
-                    ShortMessage.Instance.ShowMessage("ÕÂ ı‚‡Ú‡ÂÚ Ï‡Ì˚.");
+                    ShortMessage.Instance.ShowMessage("–ù–µ —Ö–≤–∞—Ç–∞–µ—Ç –º–∞–Ω—ã.");
                 }
             }
         }

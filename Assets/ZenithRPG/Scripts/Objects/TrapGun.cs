@@ -16,7 +16,7 @@ namespace DC_ARPG
 
         public override void OnInspection(Player player)
         {
-            ShortMessage.Instance.ShowMessage("Подозрительное отверстие.");
+            ShortMessage.Instance.ShowMessage("РџРѕРґРѕР·СЂРёС‚РµР»СЊРЅРѕРµ РѕС‚РІРµСЂСЃС‚РёРµ.");
 
             base.OnInspection(player);
         }

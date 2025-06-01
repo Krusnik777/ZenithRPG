@@ -26,7 +26,7 @@ namespace DC_ARPG
         {
             if (m_levelUpEffect == null) return;
 
-            ShortMessage.Instance.ShowMessage("спнбемэ онбшьем!");
+            ShortMessage.Instance.ShowMessage("пёп═п·п▓п∙п²п╛ п÷п·п▓п╚п╗п∙п²!");
 
             m_levelUpEffect.SetActive(true);
 

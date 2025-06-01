@@ -20,7 +20,7 @@ namespace DC_ARPG
 
         public override void OnInspection(Player player)
         {
-            ShortMessage.Instance.ShowMessage("Ловушка!");
+            ShortMessage.Instance.ShowMessage("Р›РѕРІСѓС€РєР°!");
 
             base.OnInspection(player);
         }

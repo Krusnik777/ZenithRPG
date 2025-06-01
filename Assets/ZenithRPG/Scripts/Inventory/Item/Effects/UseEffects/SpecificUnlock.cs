@@ -30,7 +30,7 @@ namespace DC_ARPG
                     }
                     else
                     {
-                        ShortMessage.Instance.ShowMessage("Этот ключ сюда не подходит.");
+                        ShortMessage.Instance.ShowMessage("Р­С‚РѕС‚ РєР»СЋС‡ СЃСЋРґР° РЅРµ РїРѕРґС…РѕРґРёС‚.");
                         OnFailure();
                     }
                 }
@@ -50,7 +50,7 @@ namespace DC_ARPG
                     }
                     else
                     {
-                        ShortMessage.Instance.ShowMessage("Этот ключ сюда не подходит.");
+                        ShortMessage.Instance.ShowMessage("Р­С‚РѕС‚ РєР»СЋС‡ СЃСЋРґР° РЅРµ РїРѕРґС…РѕРґРёС‚.");
                         OnFailure();
                     }
                 }

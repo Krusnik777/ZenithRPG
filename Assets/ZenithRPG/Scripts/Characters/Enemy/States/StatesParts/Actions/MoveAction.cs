@@ -6,6 +6,7 @@ namespace DC_ARPG
     [System.Serializable]
     public class MoveAction : EnemyAction
     {
+        [SerializeField] private bool m_chasingMovement;
         [SerializeField] private float m_speed = 1.25f;
         [SerializeField] private float m_turnSpeed = 5f;
 
@@ -15,7 +16,6 @@ namespace DC_ARPG
 
         private Stack<Tile> path;
 
-        private bool isMoving = false;
         private bool isTurning = false;
 
         private Vector3 currentDirection;
@@ -32,13 +32,13 @@ namespace DC_ARPG
         {
             currentDirection = controller.transform.forward;
 
-            isMoving = true;
+            isTurning = false;
+
+            ResetFlags();
         }
 
         public override void Act(EnemyAIController controller)
         {
-            if (!isMoving) return;
-
             if (!isTurning) Move(controller);
             else Turn(controller);
         }
@@ -60,18 +60,13 @@ namespace DC_ARPG
                     t.SetTileOccupied(controller.Enemy);
                 }
 
-                // TO TRANSITION ?
-
                 if (t.OccupiedBy != (IMovable)controller.Enemy || t.Type == TileType.Closable && t.CheckClosed())
                 {
                     StopMoving(controller);
-                    //if (m_state == EnemyStateEnum.Chase) StopChasing();
                     MeetObstacle = true;
 
                     return;
                 }
-
-                // TO TRANSITION ?
 
                 Vector3 targetPosition = t.transform.position;
 
@@ -107,24 +102,30 @@ namespace DC_ARPG
                     path.Pop();
 
                     InCenterOfTile = true;
-
-                    // TO TRANSITION ?
-
-                    /*if (m_state == EnemyStateEnum.Patrol)
-                    {
-                        SeeIfPlayerNearBy();
-                    }*/
-
-                    // TO TRANSITION ?
                 }
             }
             else
             {
                 StopMoving(controller);
 
-                ReachedTarget = true;
+                if (m_chasingMovement)
+                {
+                    if (LevelState.Instance.Player != null)
+                    {
+                        if (!LevelState.Instance.Player.IsFallingOrFallen)
+                        {
+                            CalculateHeadingDirection(LevelState.Instance.Player.transform.position, controller);
 
-                Debug.Log("HERE");
+                            if (currentDirection != headingDirection)
+                            {
+                                isTurning = true;
+                                return;
+                            }
+                        }
+                    }
+                }
+
+                ReachedTarget = true;
             }
         }
 
@@ -146,8 +147,6 @@ namespace DC_ARPG
         private void StopMoving(EnemyAIController controller)
         {
             controller.Enemy.StopMovement();
-
-            isMoving = false;
 
             if (path.Count > 0)
             {

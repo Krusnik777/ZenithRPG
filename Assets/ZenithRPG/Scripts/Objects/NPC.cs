@@ -21,7 +21,7 @@ namespace DC_ARPG
             {
                 if (!StandingInFrontOfNPC) return string.Empty;
                 
-                m_infoText = "Поговорить";
+                m_infoText = "РџРѕРіРѕРІРѕСЂРёС‚СЊ";
 
                 return m_infoText;
             }

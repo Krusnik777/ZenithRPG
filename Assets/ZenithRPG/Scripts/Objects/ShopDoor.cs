@@ -31,7 +31,7 @@ namespace DC_ARPG
             {
                 // Not Possible but just to be sure
 
-                ShortMessage.Instance.ShowMessage("Дверь. С этой стороны не открыть.");
+                ShortMessage.Instance.ShowMessage("Р”РІРµСЂСЊ. РЎ СЌС‚РѕР№ СЃС‚РѕСЂРѕРЅС‹ РЅРµ РѕС‚РєСЂС‹С‚СЊ.");
                 return;
             }
 

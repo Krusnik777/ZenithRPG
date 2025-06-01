@@ -45,7 +45,7 @@ namespace DC_ARPG
 
         public override void OnInspection(Player player)
         {
-            ShortMessage.Instance.ShowMessage("Похоже, это можно толкнуть.");
+            ShortMessage.Instance.ShowMessage("РџРѕС…РѕР¶Рµ, СЌС‚Рѕ РјРѕР¶РЅРѕ С‚РѕР»РєРЅСѓС‚СЊ.");
 
             base.OnInspection(player);
         }

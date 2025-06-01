@@ -45,8 +45,8 @@ namespace DC_ARPG
             {
                 if (!StandingInFrontOfChest) return string.Empty;
 
-                if (inClosedState) m_infoText = "Открыть";
-                if (inOpenedState) m_infoText = "Закрыть";
+                if (inClosedState) m_infoText = "РћС‚РєСЂС‹С‚СЊ";
+                if (inOpenedState) m_infoText = "Р—Р°РєСЂС‹С‚СЊ";
 
                 return m_infoText;
             }
@@ -71,7 +71,7 @@ namespace DC_ARPG
 
             m_chestSFX.PlayUnlockedSound();
 
-            if (StandingInFrontOfChest) ShortMessage.Instance.ShowMessage("Открыто.");
+            if (StandingInFrontOfChest) ShortMessage.Instance.ShowMessage("РћС‚РєСЂС‹С‚Рѕ.");
         }
 
         public void Close()
@@ -85,14 +85,14 @@ namespace DC_ARPG
         {
             if (!StandingInFrontOfChest)
             {
-                ShortMessage.Instance.ShowMessage("Сундук. С этой стороны с ним ничего не сделать.");
+                ShortMessage.Instance.ShowMessage("РЎСѓРЅРґСѓРє. РЎ СЌС‚РѕР№ СЃС‚РѕСЂРѕРЅС‹ СЃ РЅРёРј РЅРёС‡РµРіРѕ РЅРµ СЃРґРµР»Р°С‚СЊ.");
                 return;
             }
 
             if (m_locked)
             {
-                if (!m_requireSpecialKey) ShortMessage.Instance.ShowMessage("Закрыто.");
-                else ShortMessage.Instance.ShowMessage("Закрыто на необычный замок.");
+                if (!m_requireSpecialKey) ShortMessage.Instance.ShowMessage("Р—Р°РєСЂС‹С‚Рѕ.");
+                else ShortMessage.Instance.ShowMessage("Р—Р°РєСЂС‹С‚Рѕ РЅР° РЅРµРѕР±С‹С‡РЅС‹Р№ Р·Р°РјРѕРє.");
 
                 m_chestSFX.PlayLockedSound();
 
@@ -119,7 +119,7 @@ namespace DC_ARPG
             {
                 if (m_giveMoney)
                 {
-                    ShortMessage.Instance.ShowMessage("Найдено денег: " + m_money);
+                    ShortMessage.Instance.ShowMessage("РќР°Р№РґРµРЅРѕ РґРµРЅРµРі: " + m_money);
                     (player.Character as PlayerCharacter).AddMoney(m_money);
                     m_giveMoney = false;
 
@@ -130,7 +130,7 @@ namespace DC_ARPG
 
                 if (m_unlockInventoryPocket)
                 {
-                    ShortMessage.Instance.ShowMessage("Найдена дополнительная сумка для инвентаря.");
+                    ShortMessage.Instance.ShowMessage("РќР°Р№РґРµРЅР° РґРѕРїРѕР»РЅРёС‚РµР»СЊРЅР°СЏ СЃСѓРјРєР° РґР»СЏ РёРЅРІРµРЅС‚Р°СЂСЏ.");
                     (player.Character as PlayerCharacter).UnlockExtraPocket();
                     m_unlockInventoryPocket = false;
 
@@ -139,16 +139,16 @@ namespace DC_ARPG
                     return;
                 }
 
-                ShortMessage.Instance.ShowMessage("Пусто.");
+                ShortMessage.Instance.ShowMessage("РџСѓСЃС‚Рѕ.");
                 return;
             }
 
             if ((player.Character as PlayerCharacter).Inventory.TryToAddItem(this, m_item) == true)
             {
                 if ((m_item is UsableItem || m_item is NotUsableItem) && m_item.Amount > 1)
-                    ShortMessage.Instance.ShowMessage("Добавлено в инвентарь: " + m_item.Info.Title + " x" + m_item.Amount + ".");
+                    ShortMessage.Instance.ShowMessage("Р”РѕР±Р°РІР»РµРЅРѕ РІ РёРЅРІРµРЅС‚Р°СЂСЊ: " + m_item.Info.Title + " x" + m_item.Amount + ".");
                 else
-                    ShortMessage.Instance.ShowMessage("Добавлено в инвентарь: " + m_item.Info.Title + ".");
+                    ShortMessage.Instance.ShowMessage("Р”РѕР±Р°РІР»РµРЅРѕ РІ РёРЅРІРµРЅС‚Р°СЂСЊ: " + m_item.Info.Title + ".");
 
                 UISounds.Instance.PlayItemCollectedSound();
 
@@ -159,7 +159,7 @@ namespace DC_ARPG
             }
             else
             {
-                ShortMessage.Instance.ShowMessage("Нет места в инвентаре.");
+                ShortMessage.Instance.ShowMessage("РќРµС‚ РјРµСЃС‚Р° РІ РёРЅРІРµРЅС‚Р°СЂРµ.");
                 UISounds.Instance.PlayInventoryActionFailureSound();
                 Close();
             }

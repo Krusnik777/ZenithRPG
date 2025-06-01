@@ -25,7 +25,7 @@ namespace DC_ARPG
 
         public override void OnInspection(Player player)
         {
-            ShortMessage.Instance.ShowMessage("Нажимная плита.");
+            ShortMessage.Instance.ShowMessage("РќР°Р¶РёРјРЅР°СЏ РїР»РёС‚Р°.");
 
             base.OnInspection(player);
         }

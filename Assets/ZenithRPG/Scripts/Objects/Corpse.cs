@@ -28,7 +28,7 @@ namespace DC_ARPG
             {
                 if (m_item == null)
                 {
-                    ShortMessage.Instance.ShowMessage("При тщательном обыске ничего не найдено.");
+                    ShortMessage.Instance.ShowMessage("РџСЂРё С‚С‰Р°С‚РµР»СЊРЅРѕРј РѕР±С‹СЃРєРµ РЅРёС‡РµРіРѕ РЅРµ РЅР°Р№РґРµРЅРѕ.");
                     collected = true;
                     return;
                 }
@@ -36,9 +36,9 @@ namespace DC_ARPG
                 if ((player.Character as PlayerCharacter).Inventory.TryToAddItem(this, m_item) == true)
                 {
                     if ((m_item is UsableItem || m_item is NotUsableItem) && m_item.Amount > 1)
-                        ShortMessage.Instance.ShowMessage("При тщательном обыске найдено: " + m_item.Info.Title + " x" + m_item.Amount + ".");
+                        ShortMessage.Instance.ShowMessage("РџСЂРё С‚С‰Р°С‚РµР»СЊРЅРѕРј РѕР±С‹СЃРєРµ РЅР°Р№РґРµРЅРѕ: " + m_item.Info.Title + " x" + m_item.Amount + ".");
                     else
-                        ShortMessage.Instance.ShowMessage("При тщательном обыске найдено: " + m_item.Info.Title + ".");
+                        ShortMessage.Instance.ShowMessage("РџСЂРё С‚С‰Р°С‚РµР»СЊРЅРѕРј РѕР±С‹СЃРєРµ РЅР°Р№РґРµРЅРѕ: " + m_item.Info.Title + ".");
 
                     UISounds.Instance.PlayItemCollectedSound();
 
@@ -48,7 +48,7 @@ namespace DC_ARPG
                 }
                 else
                 {
-                    ShortMessage.Instance.ShowMessage("При тщательном обыске найдено: " + m_item.Info.Title + " x" + m_item.Amount + ", но в инвентаре нет места.");
+                    ShortMessage.Instance.ShowMessage("РџСЂРё С‚С‰Р°С‚РµР»СЊРЅРѕРј РѕР±С‹СЃРєРµ РЅР°Р№РґРµРЅРѕ: " + m_item.Info.Title + " x" + m_item.Amount + ", пїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ.");
                     UISounds.Instance.PlayInventoryActionFailureSound();
                 }
 

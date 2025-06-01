@@ -16,7 +16,7 @@ namespace DC_ARPG
         {
             if (m_item == null)
             {
-                ShortMessage.Instance.ShowMessage("Пусто.");
+                ShortMessage.Instance.ShowMessage("РџСѓСЃС‚Рѕ.");
                 Destroy(gameObject);
                 return;
             }
@@ -24,9 +24,9 @@ namespace DC_ARPG
             if ((player.Character as PlayerCharacter).Inventory.TryToAddItem(this, m_item) == true)
             {
                 if ((m_item is UsableItem || m_item is NotUsableItem) && m_item.Amount > 1)
-                    ShortMessage.Instance.ShowMessage("Добавлено в инвентарь: " + m_item.Info.Title + " x" + m_item.Amount + ".");
+                    ShortMessage.Instance.ShowMessage("Р”РѕР±Р°РІР»РµРЅРѕ РІ РёРЅРІРµРЅС‚Р°СЂСЊ: " + m_item.Info.Title + " x" + m_item.Amount + ".");
                 else
-                    ShortMessage.Instance.ShowMessage("Добавлено в инвентарь: " + m_item.Info.Title + ".");
+                    ShortMessage.Instance.ShowMessage("Р”РѕР±Р°РІР»РµРЅРѕ РІ РёРЅРІРµРЅС‚Р°СЂСЊ: " + m_item.Info.Title + ".");
 
                 UISounds.Instance.PlayItemCollectedSound();
 
@@ -36,7 +36,7 @@ namespace DC_ARPG
             }
             else
             {
-                ShortMessage.Instance.ShowMessage("Нет места в инвентаре.");
+                ShortMessage.Instance.ShowMessage("РќРµС‚ РјРµСЃС‚Р° РІ РёРЅРІРµРЅС‚Р°СЂРµ.");
                 UISounds.Instance.PlayInventoryActionFailureSound();
             }
         }

@@ -21,11 +21,11 @@ namespace DC_ARPG
         {
             if (m_fire.activeInHierarchy)
             {
-                ShortMessage.Instance.ShowMessage("Факел.");
+                ShortMessage.Instance.ShowMessage("Р¤Р°РєРµР».");
             }
             else
             {
-                ShortMessage.Instance.ShowMessage("Потухший факел.");
+                ShortMessage.Instance.ShowMessage("РџРѕС‚СѓС…С€РёР№ С„Р°РєРµР».");
             }
 
             base.OnInspection(player);

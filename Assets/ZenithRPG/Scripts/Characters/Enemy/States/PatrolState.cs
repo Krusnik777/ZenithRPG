@@ -11,10 +11,11 @@ namespace DC_ARPG
         [SerializeField] private ChaseStateTransition m_chaseStateTransition;
 
         private Stack<Tile> path = new Stack<Tile>();
+        private bool pathAssigned;
 
         public override void OnStart(EnemyAIController controller)
         {
-            path.Clear();
+            pathAssigned = false;
 
             m_chaseStateTransition.Init();
 
@@ -25,7 +26,7 @@ namespace DC_ARPG
 
         public override void DoActions(EnemyAIController controller)
         {
-            if (path.Count == 0)
+            if (!pathAssigned)
             {
                 TryAssignPath(controller);
             }
@@ -64,7 +65,7 @@ namespace DC_ARPG
             int index = Random.Range(0, m_patrolField.Length);
             FindPath(controller.PathFinder, m_patrolField[index]);
 
-            if (path.Count == 0) return;
+            if (!pathAssigned) return;
 
             m_moveAction.SetPath(path);
 
@@ -89,6 +90,8 @@ namespace DC_ARPG
             {
                 path.Clear();
                 path = newPath;
+
+                pathAssigned = true;
             }
         }
     }
