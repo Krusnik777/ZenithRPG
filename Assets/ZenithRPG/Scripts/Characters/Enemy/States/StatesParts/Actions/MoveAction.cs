@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -58,6 +59,7 @@ namespace DC_ARPG
                 if (t.OccupiedBy == null)
                 {
                     t.SetTileOccupied(controller.Enemy);
+                    controller.TargetedTile = t;
                 }
 
                 if (t.OccupiedBy != (IMovable)controller.Enemy || t.Type == TileType.Closable && t.CheckClosed())
@@ -96,6 +98,7 @@ namespace DC_ARPG
                     // tile center reached
 
                     controller.transform.position = targetPosition;
+                    controller.TargetedTile = null;
 
                     if (t != controller.Enemy.CurrentTile) controller.Enemy.UpdateNewPosition(t);
 

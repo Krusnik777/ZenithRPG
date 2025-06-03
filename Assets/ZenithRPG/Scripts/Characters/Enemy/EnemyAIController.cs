@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -24,6 +25,9 @@ namespace DC_ARPG
 
         private bool isStopped = false;
 
+        private Tile targetedTile;
+        public Tile TargetedTile { get => targetedTile; set => targetedTile = value; }
+
         public void StartState(EnemyState state, EnemyDecision decision = null)
         {
             m_activeState = state;
@@ -42,12 +46,19 @@ namespace DC_ARPG
         {
             isStopped = false;
         }
-        
+
         private void Start()
         {
             pathFinder = new PathFinder(m_enemy);
 
             m_activeState.OnStart(this);
+
+            m_enemy.EventOnDeath += OnDeath;
+        }
+
+        private void OnDestroy()
+        {
+            m_enemy.EventOnDeath -= OnDeath;
         }
 
         private void Update()
@@ -57,8 +68,16 @@ namespace DC_ARPG
             if (m_enemy.IsPushedBack) return;
 
             m_activeState.DoActions(this);
-            
+
             m_activeState.CheckTransitions(this);
+        }
+
+        private void OnDeath(Enemy enemy)
+        {
+            m_enemy.EventOnDeath -= OnDeath;
+
+            if (targetedTile != null) targetedTile.SetTileOccupied(null);
+            targetedTile = null;
         }
     }
 }
