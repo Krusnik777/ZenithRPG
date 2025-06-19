@@ -17,7 +17,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2232188374937776175
 Transform:
   m_ObjectHideFlags: 0
@@ -4890,9 +4890,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_velocity: 5
   m_lifeTime: 5
-  m_damage: 10
-  m_experienceForHit: 3
   m_hitPrefab: {fileID: 299112469175297276, guid: 7461556c2d09b68478987b728d0e40fe, type: 3}
+  m_fireballLevel: 3
+  m_damage: 10
 --- !u!54 &8515567084263900129
 Rigidbody:
   m_ObjectHideFlags: 0
