@@ -23,7 +23,7 @@ namespace DC_ARPG
 
             //Debug.Log(tileData.TileMarker.transform.position + " " + tileData.TileMarker.PositionInGrid);
 
-            //Debug.Log(mapOffset);
+            //Debug.Log(gridSize + " " + posInGrid + " " + mapOffset);
 
             isReady = true;
         }

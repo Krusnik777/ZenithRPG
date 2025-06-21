@@ -51,7 +51,7 @@ namespace DC_ARPG
                             uiTile.SetTileData(tileData);
 
                             // Check for player
-                            if (tileData.TileMarker.ParentTile != null)
+                            /*if (tileData.TileMarker.ParentTile != null)
                             {
                                 var tile = tileData.TileMarker.ParentTile;
 
@@ -59,6 +59,12 @@ namespace DC_ARPG
                                 {
                                     m_playerIconUpdater.Init(gridSize, m_gridLayout.cellSize, tileData.TileMarker.PositionInGrid);
                                 }
+                            }*/
+
+                            // GET OFFSET FROM ZERO POINT FOR PLAYER - NOT WORK IF TILEMARKER DOESN'T HAVE TILE WITH ZEROED POS
+                            if (tileData.TileMarker.transform.position == Vector3.zero)
+                            {
+                                m_playerIconUpdater.Init(gridSize, m_gridLayout.cellSize, tileData.TileMarker.PositionInGrid);
                             }
 
                             if (tileData.Discovered)

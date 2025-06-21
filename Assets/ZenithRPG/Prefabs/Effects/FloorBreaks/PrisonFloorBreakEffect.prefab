@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8042709462207918655}
   - component: {fileID: 7019456657164356528}
   m_Layer: 0
-  m_Name: FloorBreakEffect
+  m_Name: PrisonFloorBreakEffect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
