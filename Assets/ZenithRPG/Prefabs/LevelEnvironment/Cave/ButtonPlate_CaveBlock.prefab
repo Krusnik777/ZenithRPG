@@ -6393,6 +6393,7 @@ GameObject:
   m_Component:
   - component: {fileID: 489459555325452488}
   - component: {fileID: 2614176099011986512}
+  - component: {fileID: -7504577076749097811}
   m_Layer: 0
   m_Name: ButtonPlate_CaveBlock
   m_TagString: Untagged
@@ -6432,6 +6433,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_type: 1
   m_objectOnTile: {fileID: 3174386107487005345}
+--- !u!114 &-7504577076749097811
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8524334448642957186}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 774175413b3589f4b89963487cba58c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_parentTile: {fileID: 2614176099011986512}
+  m_neighbours: []
+  m_type: 1
 --- !u!1 &8616427585608254790
 GameObject:
   m_ObjectHideFlags: 0

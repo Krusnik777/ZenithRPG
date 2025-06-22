@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: MusicDataBase
   m_EditorClassIdentifier: 
   m_levelsBGM:
-  - SceneName: Level_Tutorial
+  - SceneName: Level_Tutorial2
     BGM: {fileID: 8300000, guid: 203b907980fe0024bb27d652f819e0f6, type: 3}
   - SceneName: Level_01
     BGM: {fileID: 8300000, guid: 9ad7b05c173beca478be154574182f58, type: 3}
