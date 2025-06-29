@@ -11,7 +11,7 @@ namespace DC_ARPG
         [SerializeField] private PlayerIconUpdater m_playerIconUpdater;
 
         private Dictionary<Vector2, TileData> tilesDictionary;
-        private Dictionary<TileData, UITile> uiTilesDictionary;
+        //private Dictionary<TileData, UITile> uiTilesDictionary;
 
         //private List<UITile> uiTiles;
 
@@ -50,23 +50,6 @@ namespace DC_ARPG
                         {
                             uiTile.SetTileData(tileData);
 
-                            // Check for player
-                            /*if (tileData.TileMarker.ParentTile != null)
-                            {
-                                var tile = tileData.TileMarker.ParentTile;
-
-                                if (tile == LevelState.Instance.Player.CurrentTile)
-                                {
-                                    m_playerIconUpdater.Init(gridSize, m_gridLayout.cellSize, tileData.TileMarker.PositionInGrid);
-                                }
-                            }*/
-
-                            // GET OFFSET FROM ZERO POINT FOR PLAYER - NOT WORK IF TILEMARKER DOESN'T HAVE TILE WITH ZEROED POS
-                            if (tileData.TileMarker.transform.position == Vector3.zero)
-                            {
-                                m_playerIconUpdater.Init(gridSize, m_gridLayout.cellSize, tileData.TileMarker.PositionInGrid);
-                            }
-
                             if (tileData.Discovered)
                             {
                                 uiTile.SetIcon(tileData.MarkerType, true);
@@ -87,6 +70,28 @@ namespace DC_ARPG
                     //uiTiles.Add(uiTile);
                 }
             }
+
+            TileData startTile = null;
+
+            for (int i = 0; i < gridSize; i++)
+            {
+                for (int j = 0; j < gridSize; j++)
+                {
+                    var tile = tilesDictionary.GetValueOrDefault(new Vector2(i, j));
+
+                    if (tile != null)
+                    {
+                        startTile = tile;
+                        break;
+                    }
+                }
+
+                if (startTile != null) break;
+            }
+
+            Vector2 worldOrigin = new Vector2(startTile.TileMarker.transform.position.x - startTile.PositionInGrid.x, startTile.TileMarker.transform.position.z - startTile.PositionInGrid.y);
+            
+            m_playerIconUpdater.Init(gridSize, worldOrigin, m_gridLayout.cellSize);
 
             //Debug.Log("Map Elements: " + uiTiles.Count);
         }
