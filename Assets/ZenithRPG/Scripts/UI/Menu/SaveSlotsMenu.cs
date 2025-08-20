@@ -24,9 +24,9 @@ namespace DC_ARPG
             m_state = state;
             if (m_title != null)
             {
-                if (m_state == MenuState.Save) m_title.text = "Сохранить";
-                if (m_state == MenuState.Load) m_title.text = "Загрузить";
-                if (m_state == MenuState.Erase) m_title.text = "Удалить";
+                if (m_state == MenuState.Save) m_title.text = "РЎРѕС…СЂР°РЅРёС‚СЊ";
+                if (m_state == MenuState.Load) m_title.text = "Р—Р°РіСЂСѓР·РёС‚СЊ";
+                if (m_state == MenuState.Erase) m_title.text = "РЈРґР°Р»РёС‚СЊ";
             }
         }
 
