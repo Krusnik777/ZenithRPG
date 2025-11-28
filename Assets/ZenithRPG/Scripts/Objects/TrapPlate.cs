@@ -102,7 +102,7 @@ namespace DC_ARPG
             if (Application.isPlaying) return;
 
             List<TrapPlate> trapsInScene = new List<TrapPlate>();
-            trapsInScene.AddRange(FindObjectsOfType<TrapPlate>());
+            trapsInScene.AddRange(FindObjectsByType<TrapPlate>(FindObjectsSortMode.None));
 
             for(int i = 0; i < trapsInScene.Count; i++)
             {
@@ -124,7 +124,7 @@ namespace DC_ARPG
             if (Application.isPlaying) return;
 
             List<TrapPlate> trapsInScene = new List<TrapPlate>();
-            trapsInScene.AddRange(FindObjectsOfType<TrapPlate>());
+            trapsInScene.AddRange(FindObjectsByType<TrapPlate>(FindObjectsSortMode.None));
 
             foreach (var trap in trapsInScene)
             {

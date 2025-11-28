@@ -84,7 +84,7 @@ namespace DC_ARPG
         {
             if (m_simpleMenuInputController == null)
             {
-                if (state == true) m_simpleMenuInputController = FindObjectOfType<SimpleMenuInputController>(true);
+                if (state == true) m_simpleMenuInputController = FindFirstObjectByType<SimpleMenuInputController>(FindObjectsInactive.Include);
 
                 if (m_simpleMenuInputController == null) return;
             }
@@ -129,14 +129,14 @@ namespace DC_ARPG
 
             if (scene.name == SceneCommander.MainMenuSceneName)
             {
-                m_mainMenuInputController = FindObjectOfType<MainMenuInputController>(true);
+                m_mainMenuInputController = FindFirstObjectByType<MainMenuInputController>(FindObjectsInactive.Include);
 
                 SetMainMenuControlsActive(true);
                 SetPlayerControlsActive(false);
             }
             else
             {
-                m_playerInputController = FindObjectOfType<PlayerInputController>(true);
+                m_playerInputController = FindFirstObjectByType<PlayerInputController>(FindObjectsInactive.Include);
 
                 SetMainMenuControlsActive(false);
                 SetPlayerControlsActive(true);

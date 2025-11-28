@@ -110,7 +110,7 @@ namespace DC_ARPG
 
         public List<IDataPersistence> FindAllDataPersistenceObjects()
         {
-            var dataPersistenceObjects = FindObjectsOfType<MonoBehaviour>(true).OfType<IDataPersistence>();
+            var dataPersistenceObjects = FindObjectsByType<MonoBehaviour>(FindObjectsInactive.Include, FindObjectsSortMode.None).OfType<IDataPersistence>();
 
             return new List<IDataPersistence>(dataPersistenceObjects);
         }

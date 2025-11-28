@@ -8,7 +8,7 @@ namespace DC_ARPG
 
         protected void FindAllObjectsToBind()
         {
-            MonoBehaviour[] allMonoInScene = FindObjectsOfType<MonoBehaviour>();
+            MonoBehaviour[] allMonoInScene = FindObjectsByType<MonoBehaviour>(FindObjectsSortMode.None);
 
             for (int i = 0; i < allMonoInScene.Length; i++)
             {

@@ -12,7 +12,7 @@ namespace DC_ARPG
         {
             if (m_player == null)
             {
-                m_player = FindObjectOfType<Player>(true);
+                m_player = FindFirstObjectByType<Player>(FindObjectsInactive.Include);
                 m_playerCharacter = m_player.Character as PlayerCharacter;
             }
 

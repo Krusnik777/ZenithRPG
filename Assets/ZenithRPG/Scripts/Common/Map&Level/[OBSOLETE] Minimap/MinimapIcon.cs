@@ -35,7 +35,7 @@ namespace DC_ARPG
         private void Start()
         {
             m_iconRenderer = GetComponent<SpriteRenderer>();
-            m_explorer = FindObjectOfType<Player>();
+            m_explorer = FindFirstObjectByType<Player>(FindObjectsInactive.Exclude);
 
             if (m_iconRenderer.enabled == true)
                 m_iconRenderer.enabled = false;
@@ -83,7 +83,7 @@ namespace DC_ARPG
             if (Application.isPlaying) return;
 
             List<MinimapIcon> minimapIconsInScene = new List<MinimapIcon>();
-            minimapIconsInScene.AddRange(FindObjectsOfType<MinimapIcon>(true));
+            minimapIconsInScene.AddRange(FindObjectsByType<MinimapIcon>(FindObjectsInactive.Include, FindObjectsSortMode.None));
 
             foreach (var minimapIcon in minimapIconsInScene)
             {

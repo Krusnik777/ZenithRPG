@@ -36,7 +36,7 @@ namespace DC_ARPG
 
         public List<IDataPersistence> FindAllDataPersistenceObjects()
         {
-            var dataPersistenceObjects = FindObjectsOfType<MonoBehaviour>(true).OfType<IDataPersistence>();
+            var dataPersistenceObjects = FindObjectsByType<MonoBehaviour>(FindObjectsInactive.Include, FindObjectsSortMode.None).OfType<IDataPersistence>();
 
             return new List<IDataPersistence>(dataPersistenceObjects);
         }
@@ -156,7 +156,7 @@ namespace DC_ARPG
 
         public void LoadPlayerDataFromTempData()
         {
-            var player = FindObjectOfType<Player>();
+            var player = FindFirstObjectByType<Player>();
             (player.Character as PlayerCharacter).UpdatePlayerCharacter(m_tempData.PlayerData);
             m_tempData.ActiveSceneState.PlayerDataAtStart = new PlayerData(player.Character.Stats as PlayerStats, (player.Character as PlayerCharacter).Inventory, (player.Character as PlayerCharacter).Money);
             if (Exit.ChangedLevels) player.transform.forward = -player.transform.forward;

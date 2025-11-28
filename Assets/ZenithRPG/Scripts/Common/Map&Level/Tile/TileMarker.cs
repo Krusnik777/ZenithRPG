@@ -91,7 +91,7 @@ namespace DC_ARPG
         {
             if (Application.isPlaying) return;
 
-            TileMarker[] markers = FindObjectsOfType<TileMarker>();
+            TileMarker[] markers = FindObjectsByType<TileMarker>(FindObjectsSortMode.None);
 
             for (int i = 0; i < markers.Length; i++)
             {

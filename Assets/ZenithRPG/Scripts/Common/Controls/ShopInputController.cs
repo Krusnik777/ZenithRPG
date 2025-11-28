@@ -18,7 +18,7 @@ namespace DC_ARPG
         {
             if (_controls == null) _controls = m_controlsManager.Controls;
 
-            if (m_uIInventory == null) m_uIInventory = FindObjectOfType<UIInventory>(true);
+            if (m_uIInventory == null) m_uIInventory = FindFirstObjectByType<UIInventory>(FindObjectsInactive.Include);
 
             _controls.Shop.Enable();
 

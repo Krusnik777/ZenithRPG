@@ -67,7 +67,7 @@ namespace DC_ARPG
             if (Application.isPlaying) return;
 
             List<TrapFloor> trapFloorsInScene = new List<TrapFloor>();
-            trapFloorsInScene.AddRange(FindObjectsOfType<TrapFloor>());
+            trapFloorsInScene.AddRange(FindObjectsByType<TrapFloor>(FindObjectsSortMode.None));
 
             foreach (var trapFloor in trapFloorsInScene)
             {

@@ -98,7 +98,7 @@ namespace DC_ARPG
 
         private void Start()
         {
-            m_levelTileField = FindObjectsOfType<Tile>();
+            m_levelTileField = FindObjectsByType<Tile>(FindObjectsSortMode.None);
 
             foreach (var tile in m_levelTileField)
             {
@@ -122,7 +122,7 @@ namespace DC_ARPG
             //
 
             m_allEnemies = new List<Enemy>();
-            m_allEnemies.AddRange(FindObjectsOfType<Enemy>(true));
+            m_allEnemies.AddRange(FindObjectsByType<Enemy>(FindObjectsInactive.Include, FindObjectsSortMode.None));
 
             m_chasingEnemies = new List<EnemyAIController>();
 
@@ -173,7 +173,7 @@ namespace DC_ARPG
 
         private void SetupTileMarkers()
         {
-            m_tileMarkers = FindObjectsOfType<TileMarker>();
+            m_tileMarkers = FindObjectsByType<TileMarker>(FindObjectsSortMode.None);
 
             float posX = m_tileMarkers[0].transform.localPosition.x + 0.5f;
             float posZ = m_tileMarkers[0].transform.localPosition.z + 0.5f;
