@@ -6,23 +6,36 @@ namespace DC_ARPG
 {
     public class UIInventoryButtonsPanel : MonoBehaviour
     {
+        [System.Serializable]
+        public class Sprites
+        {
+            public Sprite gamepadSprite;
+            public Sprite keyboardSprite;
+        }
+
         [Header("Use")]
         [SerializeField] private Image m_useButtonIcon;
+        [SerializeField] private Sprites m_useButtonSprites;
         [SerializeField] private TextMeshProUGUI m_useText;
         [Header("Remove")]
         [SerializeField] private Image m_removeButtonIcon;
-        [SerializeField] private Sprite m_removeButtonIconImage;
-        [SerializeField] private Sprite m_backButtonIconImage;
+        [SerializeField] private Sprites m_removeButtonSprites;
+        [SerializeField] private Sprites m_backButtonSprites;
         [SerializeField] private TextMeshProUGUI m_removeText;
         [Header("Move")]
         [SerializeField] private Image m_moveButtonIcon;
+        [SerializeField] private Sprites m_moveButtonSprites;
         [SerializeField] private TextMeshProUGUI m_moveText;
+
+        private UIInventory.InteractionState lastInventoryState;
 
         public void UpdateButtonsPanel(UIInventory uIInventory, IItemSlot slot)
         {
+            lastInventoryState = uIInventory.State;
+
             if (UIInventorySlotButton.InTransit == true)
             {
-                m_moveText.text = "Выбрать";
+                m_moveText.text = "Р’С‹Р±СЂР°С‚СЊ";
 
                 SetMoveInfoTransparencyToDefault();
                 ChangeUseInfoTransparency();
@@ -31,18 +44,20 @@ namespace DC_ARPG
             else
             {
                 UpdateUseInfo(uIInventory, slot);
-                m_moveText.text = "Двигать";
+                m_moveText.text = "Р”РІРёРіР°С‚СЊ";
+
+                bool isGamepad = ControlsManager.CurrentControlDevice is UnityEngine.InputSystem.Gamepad;
 
                 if (uIInventory.State == UIInventory.InteractionState.Normal)
                 {
-                    m_removeButtonIcon.sprite = m_removeButtonIconImage;
-                    m_removeText.text = "Бросить";
+                    m_removeButtonIcon.sprite = isGamepad ? m_removeButtonSprites.gamepadSprite : m_removeButtonSprites.keyboardSprite;
+                    m_removeText.text = "Р‘СЂРѕСЃРёС‚СЊ";
                 }
 
                 if (uIInventory.State == UIInventory.InteractionState.Shop)
                 {
-                    m_removeButtonIcon.sprite = m_backButtonIconImage;
-                    m_removeText.text = "Назад";
+                    m_removeButtonIcon.sprite = isGamepad ? m_backButtonSprites.gamepadSprite : m_backButtonSprites.keyboardSprite;
+                    m_removeText.text = "РќР°Р·Р°Рґ";
                 }
 
                 if (slot.IsEmpty)
@@ -63,6 +78,17 @@ namespace DC_ARPG
             ChangeUseInfoTransparency();
             ChangeMoveInfoTransparency();
             if (uIInventory.State == UIInventory.InteractionState.Normal) ChangeRemoveInfoTransparency();
+        }
+
+        private void OnEnable()
+        {
+            ChangeButtonsIcon(ControlsManager.CurrentControlDevice);
+            ControlsManager.OnControlDeviceChanged += ChangeButtonsIcon;
+        }
+
+        private void OnDisable()
+        {
+            ControlsManager.OnControlDeviceChanged -= ChangeButtonsIcon;
         }
 
         private void SetMoveInfoTransparencyToDefault()
@@ -134,18 +160,18 @@ namespace DC_ARPG
 
                 if (slot.Item is UsableItem || slot.Item is NotUsableItem || slot.IsEmpty)
                 {
-                    m_useText.text = "Использовать";
+                    m_useText.text = "РСЃРїРѕР»СЊР·РѕРІР°С‚СЊ";
                 }
 
                 if (slot.Item is WeaponItem || slot.Item is MagicItem || slot.Item is EquipItem)
                 {
-                    m_useText.text = "Экипировать";
+                    m_useText.text = "Р­РєРёРїРёСЂРѕРІР°С‚СЊ";
                 }
             }
 
             if (uIInventory.State == UIInventory.InteractionState.Shop)
             {
-                m_useText.text = "Продать";
+                m_useText.text = "РџСЂРѕРґР°С‚СЊ";
 
                 if (slot.IsEmpty)
                 {
@@ -155,6 +181,24 @@ namespace DC_ARPG
                 {
                     SetUseInfoTransparencyToDefault();
                 }
+            }
+        }
+
+        private void ChangeButtonsIcon(UnityEngine.InputSystem.InputDevice device)
+        {
+            if (device is UnityEngine.InputSystem.Gamepad)
+            {
+                m_useButtonIcon.sprite = m_useButtonSprites.gamepadSprite;
+                if (m_moveButtonIcon != null) m_moveButtonIcon.sprite = m_moveButtonSprites.gamepadSprite;
+
+                m_removeButtonIcon.sprite = lastInventoryState == UIInventory.InteractionState.Shop ? m_backButtonSprites.gamepadSprite : m_removeButtonSprites.gamepadSprite;
+            }
+            else
+            {
+                m_useButtonIcon.sprite = m_useButtonSprites.keyboardSprite;
+                if (m_moveButtonIcon != null) m_moveButtonIcon.sprite = m_moveButtonSprites.keyboardSprite;
+
+                m_removeButtonIcon.sprite = lastInventoryState == UIInventory.InteractionState.Shop ? m_backButtonSprites.keyboardSprite : m_removeButtonSprites.keyboardSprite;
             }
         }
     }

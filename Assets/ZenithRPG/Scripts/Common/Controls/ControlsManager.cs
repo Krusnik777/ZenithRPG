@@ -1,5 +1,6 @@
 using UnityEngine.SceneManagement;
 using UnityEngine;
+using UnityEngine.InputSystem.Users;
 using UnityEngine.InputSystem;
 
 namespace DC_ARPG
@@ -29,6 +30,10 @@ namespace DC_ARPG
 
         private Controls _controls;
         public Controls Controls => _controls;
+
+        private static InputDevice _currentDevice;
+        public static InputDevice CurrentControlDevice => _currentDevice;
+        public static event System.Action<InputDevice> OnControlDeviceChanged;
 
         public void TurnOffAllControls()
         {
@@ -101,6 +106,8 @@ namespace DC_ARPG
             _controls = new Controls();
             _controls.Enable();
 
+            InputSystem.onEvent += OnDeviceChange;
+
             SceneManager.sceneLoaded += OnSceneLoaded;
         }
 
@@ -111,7 +118,18 @@ namespace DC_ARPG
 
         private void OnDestroy()
         {
+            InputSystem.onEvent -= OnDeviceChange;
+
             SceneManager.sceneLoaded -= OnSceneLoaded;
+        }
+
+        private void OnDeviceChange(UnityEngine.InputSystem.LowLevel.InputEventPtr eventPtr, InputDevice device)
+        {
+            if (_currentDevice == device) return;
+
+            _currentDevice = device;
+
+            OnControlDeviceChanged?.Invoke(_currentDevice);
         }
 
         private void OnSceneLoaded(Scene scene, LoadSceneMode loadSceneMode)
